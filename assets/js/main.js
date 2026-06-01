@@ -3,25 +3,28 @@
    main.js — the immersive interaction + animation layer.
 
    TWO PATHS, ONE FILE:
-     • ENHANCED (studio-grade): GSAP 3.13 + ScrollTrigger + SplitText + Lenis.
-       Lenis smooth scroll, masked intro reveal, kinetic SplitText hero +
-       section titles, ScrollTrigger.batch reveals, image-mask wipes, scrub
-       parallax, ScrollTrigger count-up, scroll-velocity-reactive themes
-       marquee, magnetic CTAs + custom emerald cursor (desktop pointer only).
+     • ENHANCED (studio-grade): GSAP 3.13 + ScrollTrigger + SplitText.
+       NATIVE scroll (no Lenis — native is snappy and ScrollTrigger runs on it
+       directly), masked intro reveal, kinetic SplitText hero + section titles,
+       ScrollTrigger.batch reveals, image-mask wipes, scrub parallax,
+       ScrollTrigger count-up, scroll-velocity-reactive themes marquee, magnetic
+       CTAs + custom emerald cursor (desktop fine-pointer only).
      • FALLBACK (vanilla baseline): if ANY lib is blocked/absent, the page
        falls back to IntersectionObserver reveals, native scroll, CSS marquee,
-       rAF count-up, rAF poster parallax — exactly the prior behavior.
+       rAF count-up, rAF poster parallax.
 
    GUARDRAILS:
      • Feature-detects every lib (typeof window.X !== "undefined"); never
        assumes a CDN loaded; never throws (each module is try/caught).
-     • prefers-reduced-motion: no Lenis / intro / parallax / marquee loop /
-       cursor / magnetic / SplitText motion — instant final states. Live-toggle
-       tears the enhanced layer down.
-     • Mobile-first / perf: Lenis desktop/non-touch only; cursor + magnetic
-       desktop fine-pointer only; parallax lightened on phones; will-change
-       used sparingly and cleared after settle; only transform/opacity/
-       clip-path/filter animated.
+     • prefers-reduced-motion: no intro / parallax / marquee loop / cursor /
+       magnetic / SplitText motion — instant final states. Live-toggle tears the
+       enhanced layer down.
+     • Mobile-first / perf: native touch scroll always; cursor + magnetic +
+       hero-parallax + tilt desktop fine-pointer only; the heaviest enhanced
+       flourishes (intro / SplitText / mask wipes / scrub parallax / aurora
+       scrub) are skipped on touch so phones get a calm, fast, fully-revealed
+       page; will-change used sparingly; only transform/opacity/clip-path/filter
+       animated.
      • Nav drawer + lightbox + scrollspy + sticky header work in BOTH paths.
      • [data-year] hardcoded to 2026 (Date() intentionally never called).
    ============================================================================ */
@@ -54,8 +57,7 @@
   var LIB = {
     gsap:  typeof window.gsap !== "undefined",
     st:    typeof window.ScrollTrigger !== "undefined",
-    split: typeof window.SplitText !== "undefined",
-    lenis: typeof window.Lenis !== "undefined"
+    split: typeof window.SplitText !== "undefined"
   };
   // GSAP core is the master switch; the enhanced path runs only when GSAP is
   // present AND motion is allowed. Each sub-lib is additive on its own flag.
@@ -68,8 +70,17 @@
   }
   function on(el, ev, fn, opts) { if (el) el.addEventListener(ev, fn, opts || false); }
   function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+  function scrollY() { return window.pageYOffset || window.scrollY || 0; }
   var supportsIO = typeof window.IntersectionObserver === "function";
-  var NAV_H = 68; // mirrors --nav-h in styles.css
+
+  // Read --nav-h from CSS so JS + CSS never drift (CSS owns scroll-padding-top).
+  var NAV_H = (function () {
+    try {
+      var v = parseInt(
+        getComputedStyle(docEl).getPropertyValue("--nav-h"), 10);
+      return isNaN(v) ? 68 : v;
+    } catch (e) { return 68; }
+  })();
 
   /* Travel multiplier — lighten parallax on small screens. */
   function pxScale() { return window.innerWidth < 768 ? 0.45 : 1; }
@@ -89,8 +100,21 @@
     };
   }
 
+  /* --- Ref-counted scroll lock --------------------------------------------
+     Nav drawer, lightbox, and the intro all need to lock body scroll. A shared
+     counter guarantees no consumer clears another's lock: body.overflow only
+     returns to "" when the LAST lock releases. */
+  var scrollLocks = 0;
+  function lockScroll() {
+    scrollLocks++;
+    if (scrollLocks === 1) document.body.style.overflow = "hidden";
+  }
+  function unlockScroll() {
+    if (scrollLocks > 0) scrollLocks--;
+    if (scrollLocks === 0) document.body.style.overflow = "";
+  }
+
   /* --- Module-scope handles for teardown (reduced-motion live-toggle) ------ */
-  var lenisInstance = null;
   var cursorNodes = [];        // [dot, ring] for removal
   var splitInstances = [];     // SplitText instances to revert
   var enhancedActive = false;  // true once the enhanced layer is wired
@@ -115,20 +139,42 @@
   }
 
   /* ==========================================================================
-     2. STICKY NAV — add .is-scrolled past 24px.
-        window.pageYOffset still updates under Lenis (Lenis transforms the
-        scroll, not the DOM), so the native scroll listener keeps working.
+     2. STICKY NAV — add .is-scrolled past 24px (native scroll).
      ========================================================================== */
   function initStickyHeader() {
     var header = $("[data-site-header]");
     if (!header) return;
     var THRESHOLD = 24;
     var update = function () {
-      header.classList.toggle("is-scrolled", window.pageYOffset > THRESHOLD);
+      header.classList.toggle("is-scrolled", scrollY() > THRESHOLD);
     };
     update();
     on(window, "scroll", rafThrottle(update), { passive: true });
     on(window, "resize", rafThrottle(update), { passive: true });
+  }
+
+  /* ==========================================================================
+     2b. HERO BACKGROUND PAUSE — stop the infinite aurora/halo keyframe loops
+         while the hero is off-screen. These are large blurred layers (46-60vmax,
+         48-90px blur) that the compositor keeps re-compositing every frame even
+         when scrolled away (Chrome does NOT auto-pause off-screen compositor
+         animations) — a real scroll-jank source deep in the page. We toggle
+         .hero-bg-paused (animations.css -> animation-play-state: paused) via an
+         IntersectionObserver, mirroring the marquee's in-view gating. Runs in
+         BOTH paths (the CSS auroras animate enhanced AND fallback). No-op under
+         reduced motion (already animation:none) and a no-op while the hero is on
+         screen (no visual change).
+     ========================================================================== */
+  function initHeroBgPause() {
+    if (prefersReduced() || !supportsIO) return;
+    var hero = document.getElementById("hero");
+    var bg = hero ? $(".hero-bg", hero) : null;
+    if (!hero || !bg) return;
+    var io = new IntersectionObserver(function (entries) {
+      var e = entries[0];
+      bg.classList.toggle("hero-bg-paused", !(e && e.isIntersecting));
+    }, { rootMargin: "120px 0px" });
+    io.observe(hero);
   }
 
   /* ==========================================================================
@@ -141,12 +187,15 @@
 
     var DESKTOP = 992; // matches the styles.css inline-nav breakpoint
     var isDesktop = function () { return window.innerWidth >= DESKTOP; };
+    var locked = false;
 
     function setOpen(open) {
       menu.classList.toggle("is-open", open);
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
       toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-      document.body.style.overflow = open ? "hidden" : "";
+      // Ref-counted scroll lock (only flip the drawer's own lock once).
+      if (open && !locked) { lockScroll(); locked = true; }
+      else if (!open && locked) { unlockScroll(); locked = false; }
       if (open) {
         var firstLink = $('a[href^="#"]', menu);
         if (firstLink) {
@@ -163,7 +212,7 @@
 
     on(toggle, "click", function () { setOpen(!isOpen()); });
 
-    // Focus trap: cycle Tab between the toggle and the drawer links.
+    // Focus trap: keep Tab inside the drawer (toggle + links) on mobile.
     on(document, "keydown", function (e) {
       if (e.key !== "Tab" || !isOpen() || isDesktop()) return;
       var links = $all('a[href^="#"]', menu);
@@ -171,6 +220,12 @@
       var first = toggle;
       var last = links[links.length - 1];
       var active = document.activeElement;
+      // If focus has escaped the drawer entirely, pull it back in.
+      if (active !== toggle && !menu.contains(active)) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+        return;
+      }
       if (e.shiftKey) {
         if (active === first) { e.preventDefault(); last.focus(); }
       } else {
@@ -193,20 +248,20 @@
     });
 
     on(window, "resize", rafThrottle(function () {
+      // Resizing to desktop must release the lock + reset the drawer state.
       if (isDesktop() && isOpen()) {
         menu.classList.remove("is-open");
         toggle.setAttribute("aria-expanded", "false");
         toggle.setAttribute("aria-label", "Open menu");
-        document.body.style.overflow = "";
+        if (locked) { unlockScroll(); locked = false; }
       }
     }), { passive: true });
   }
 
   /* ==========================================================================
-     4. SMOOTH ANCHOR SCROLL + focus management.
-        ENHANCED + Lenis: glide via lenis.scrollTo with the sticky-nav offset.
-        Otherwise: native scrollIntoView (CSS owns scroll-padding-top).
-        Reduced motion: instant jump.
+     4. SMOOTH ANCHOR SCROLL + focus management (NATIVE scroll).
+        Native scrollIntoView({behavior:'smooth'}) — CSS scroll-padding-top
+        offsets the sticky nav. Reduced motion: instant jump.
      ========================================================================== */
   function initSmoothAnchors() {
     $all('a[href^="#"]').forEach(function (link) {
@@ -220,17 +275,10 @@
         try { history.pushState(null, "", hash); }
         catch (err) { /* file:// or restricted — ignore */ }
 
-        if (lenisInstance && !prefersReduced()) {
-          lenisInstance.scrollTo(target, {
-            offset: -(NAV_H + 16),
-            duration: 1.1
-          });
-        } else {
-          target.scrollIntoView({
-            behavior: prefersReduced() ? "auto" : "smooth",
-            block: "start"
-          });
-        }
+        target.scrollIntoView({
+          behavior: prefersReduced() ? "auto" : "smooth",
+          block: "start"
+        });
 
         // Move focus to the section for SR + keyboard users.
         var hadTabindex = target.hasAttribute("tabindex");
@@ -250,13 +298,12 @@
 
   /* ==========================================================================
      5. SCROLLSPY — mark the nav link of the section currently in view.
-        One listener, sourced from Lenis when present else native scroll.
+        One native passive scroll listener (rAF-throttled).
      ========================================================================== */
   function initScrollspy() {
     var navLinks = $all('[data-nav] a[href^="#"]');
     if (!navLinks.length) return;
 
-    // Map nav links -> section elements (skip the CTA "#join" duplicates fine).
     var map = navLinks
       .map(function (link) {
         var id = (link.getAttribute("href") || "").slice(1);
@@ -274,7 +321,7 @@
     measure();
 
     var update = rafThrottle(function () {
-      var probe = (window.pageYOffset || 0) + NAV_H + 48;
+      var probe = scrollY() + NAV_H + 48;
       var current = null;
       map.forEach(function (m) {
         if (m.top <= probe) current = m;
@@ -284,11 +331,7 @@
     });
 
     update();
-    if (lenisInstance) {
-      lenisInstance.on("scroll", update);
-    } else {
-      on(window, "scroll", update, { passive: true });
-    }
+    on(window, "scroll", update, { passive: true });
     var onResize = rafThrottle(function () { measure(); update(); });
     on(window, "resize", onResize, { passive: true });
     on(window, "load", function () { measure(); update(); });
@@ -334,12 +377,23 @@
      6b. REVEAL — ENHANCED path (GSAP ScrollTrigger.batch).
          Hero title + section titles are owned by SplitText (excluded here).
          Leader cards colorize on enter via .in-color.
+         No will-change churn: transform/opacity tweens are GPU-composited by
+         GSAP already; toggling will-change per batch thrashes layers right as a
+         section enters view (the moment you'd notice jank).
      ========================================================================== */
   function gsapRevealBatch() {
     var gsap = window.gsap, ST = window.ScrollTrigger;
 
+    // Exclude SplitText-owned titles (.hero-title, .section-title) AND every
+    // hero-inner reveal (.hero-eyebrow / .hero-lead / .hero-actions). The hero
+    // entrance is owned by buildHeroTimeline() on desktop and by an explicit
+    // .is-visible add on touch — if the batch also `gsap.set({opacity:0})` them,
+    // its inline opacity:0 overrides that .is-visible class, and because the
+    // batch only reveals on "top 88%" enter, any hero element already at/below
+    // that line at first paint (the CTAs on a 320/375 phone) stays invisible on
+    // load. Excluding the whole hero subtree keeps the CTAs visible immediately.
     var items = $all("[data-reveal]").filter(function (el) {
-      return !el.matches(".hero-title, .section-title");
+      return !el.matches(".hero-title, .section-title") && !el.closest(".hero");
     });
     if (items.length) {
       try {
@@ -351,13 +405,7 @@
             gsap.to(batch, {
               opacity: 1, y: 0, duration: 0.8, ease: "power3.out",
               stagger: { each: 0.08, from: "start" },
-              overwrite: true,
-              onStart: function () {
-                batch.forEach(function (b) { b.style.willChange = "transform, opacity"; });
-              },
-              onComplete: function () {
-                batch.forEach(function (b) { b.style.willChange = ""; });
-              }
+              overwrite: true
             });
           }
         });
@@ -445,7 +493,7 @@
   }
 
   /* ==========================================================================
-     7b. COUNT-UP — ENHANCED path (ScrollTrigger fires GSAP tweens).
+     7b. COUNT-UP — ENHANCED path (ScrollTrigger fires GSAP tweens, native scroll).
      ========================================================================== */
   function gsapCountUp() {
     var gsap = window.gsap, ST = window.ScrollTrigger;
@@ -557,35 +605,117 @@
 
   /* ==========================================================================
      10. THEMES MARQUEE — shared clone helper.
-     ========================================================================== */
+
+     The marquee loops by translating the track left by exactly ONE original set
+     ("half") then wrapping. For the viewport to STAY COVERED across a full loop,
+     the cloned content to the right of the wrap point must be at least one
+     viewport wide. One clone (2 sets total) only works when one set is already
+     wider than the viewport; the themes set (~925px) is NARROWER than the
+     marquee viewport (~1424px), so a single clone left a trailing gap on the
+     right every loop cycle (the owner's "gap" / "starts at center" report).
+
+     Fix: clone the ORIGINAL set as many times as needed so the total width is at
+     least one set + one viewport. We then expose the total set count via
+     --marquee-copies so the CSS-fallback keyframe translates by exactly one set
+     (-100%/copies, NOT a hard-coded -50%), and store the original child count so
+     the velocity ticker measures the true one-set period. -------------------- */
   function duplicateMarqueeChildren(track) {
     if (track.getAttribute("data-marquee-cloned") === "true") return;
     var originals = $all(":scope > *", track);
     if (!originals.length) return;
-    originals.forEach(function (node) {
-      var clone = node.cloneNode(true);
-      clone.setAttribute("aria-hidden", "true");
-      $all("a, button, [tabindex]", clone).forEach(function (f) {
-        f.setAttribute("tabindex", "-1");
+    var origCount = originals.length;
+
+    function cloneSet() {
+      originals.forEach(function (node) {
+        var clone = node.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        $all("a, button, [tabindex]", clone).forEach(function (f) {
+          f.setAttribute("tabindex", "-1");
+        });
+        track.appendChild(clone);
       });
-      track.appendChild(clone);
-    });
+    }
+
+    var marquee = track.closest(".themes-marquee");
+    var viewport = marquee ? marquee.clientWidth : (window.innerWidth || 0);
+
+    // Always clone at least one set (minimum 2 sets) so there's a clone to
+    // measure the period against.
+    cloneSet();
+    // Keep cloning whole sets until one-set-width + viewport <= total width, i.e.
+    // until the content remaining to the right of the wrap point (total - one set)
+    // covers the viewport. one-set-width = scrollWidth / (current set count).
+    var guard = 0;
+    while (guard++ < 12) {
+      var sets = track.children.length / origCount;
+      var oneSet = track.scrollWidth / sets;
+      if (oneSet + viewport <= track.scrollWidth) break;
+      cloneSet();
+    }
+
+    var copies = Math.round(track.children.length / origCount); // total set count
+    track.setAttribute("data-marquee-copies", String(copies));
+    track.setAttribute("data-marquee-orig", String(origCount));
+    track.style.setProperty("--marquee-copies", String(copies));
     track.setAttribute("data-marquee-cloned", "true");
   }
 
-  /* 10a. FALLBACK marquee — CSS keyframe loop, paused on hover/focus (CSS). */
+  /* Resize top-up: widening the viewport can exceed the cloned coverage, which
+     would reopen a trailing gap. Append more whole sets until one-set + viewport
+     <= total width again, then refresh --marquee-copies so the CSS-fallback
+     keyframe period stays = one set. No-op when already wide enough. Returns true
+     if more sets were added. */
+  function ensureMarqueeCoverage(track) {
+    var origCount = parseInt(track.getAttribute("data-marquee-orig"), 10);
+    if (!origCount || !track.children.length) return false;
+    var originals = $all(":scope > *", track).slice(0, origCount);
+    if (!originals.length) return false;
+    var marquee = track.closest(".themes-marquee");
+    var viewport = marquee ? marquee.clientWidth : (window.innerWidth || 0);
+    var added = false, guard = 0;
+    while (guard++ < 12) {
+      var sets = track.children.length / origCount;
+      var oneSet = track.scrollWidth / sets;
+      if (oneSet + viewport <= track.scrollWidth) break;
+      originals.forEach(function (node) {
+        var clone = node.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        $all("a, button, [tabindex]", clone).forEach(function (f) {
+          f.setAttribute("tabindex", "-1");
+        });
+        track.appendChild(clone);
+      });
+      added = true;
+    }
+    if (added) {
+      var copies = Math.round(track.children.length / origCount);
+      track.setAttribute("data-marquee-copies", String(copies));
+      track.style.setProperty("--marquee-copies", String(copies));
+    }
+    return added;
+  }
+
+  /* 10a. FALLBACK marquee — CSS keyframe loop, paused on hover/focus (CSS).
+     The keyframe translates by -100%/--marquee-copies (= one set) so the loop
+     period matches the enhanced ticker no matter how many sets we cloned. */
   function initMarquee() {
     var track = $("[data-themes-track]");
     if (!track) return;
     if (prefersReduced()) return; // leave static
     duplicateMarqueeChildren(track);
     track.classList.add("is-marquee");
+    // Keep coverage (and --marquee-copies) correct if the viewport later widens.
+    on(window, "resize", rafThrottle(function () {
+      ensureMarqueeCoverage(track);
+    }), { passive: true });
   }
 
   /* 10b. ENHANCED marquee — scroll-velocity reactive, GSAP ticker driven.
-         Continuous calm baseline drift; scroll velocity nudges speed/direction
-         within a bounded clamp, decaying back to baseline. Pauses on hover/
-         focus. Velocity source: Lenis if present, else ScrollTrigger. */
+         Continuous calm baseline drift; scroll velocity (native, via
+         ScrollTrigger.getVelocity) nudges speed/direction within a bounded
+         clamp, decaying back to baseline. Pauses on hover/focus. The per-frame
+         ticker only runs while the marquee is in view (IntersectionObserver),
+         so it isn't doing idle compositor work when the section is off-screen. */
   function initVelocityMarquee() {
     var gsap = window.gsap, ST = window.ScrollTrigger;
     var marquee = $(".themes-marquee");
@@ -598,13 +728,23 @@
 
     duplicateMarqueeChildren(track);
     track.classList.remove("is-marquee"); // GSAP owns it now
-    track.style.willChange = "transform";
 
-    // Measure the one-set width ONCE (children duplicated exactly once) and
-    // recompute only on resize — never per frame (scrollWidth forces a layout
-    // flush; reading it ~60x/s was a perpetual forced reflow, esp. on phones).
-    var half = track.scrollWidth / 2;
-    if (!half) { track.classList.add("is-marquee"); return; } // safety: revert to CSS loop
+    // Measure the TRUE one-set repeat period: the distance from the first
+    // original pill to the first pill of the SECOND set (= one set + one boundary
+    // gap). This is exact regardless of how spacing is implemented and never
+    // relies on scrollWidth/N (which omits the trailing gap and would wrap
+    // ~gap/2 short, leaving a recurring seam). origCount is the ORIGINAL child
+    // count stored by duplicateMarqueeChildren (the track may hold N>=2 sets now,
+    // so children.length/2 is wrong). Recompute only on resize / font settle —
+    // never per frame (offsetLeft forces a layout flush).
+    var origCount = parseInt(track.getAttribute("data-marquee-orig"), 10) ||
+      Math.round(track.children.length / 2);
+    function measurePeriod() {
+      var firstClone = track.children[origCount];
+      return firstClone ? (firstClone.offsetLeft - track.children[0].offsetLeft) : 0;
+    }
+    var half = measurePeriod();
+    if (!half) { track.classList.add("is-marquee"); return; } // safety: CSS loop
     marqueeTrack = track;
 
     var x = 0;
@@ -612,11 +752,32 @@
     var baseSpeed = 0.6;     // px/frame (calm)
     var velFactor = 0;       // extra speed from scroll velocity
     var paused = false;
+    var inView = true;       // gated by IntersectionObserver below
+    var running = false;
+    var primed = false;      // ignore the first velocity reading after start (see below)
 
     on(window, "resize", rafThrottle(function () {
-      var h = track.scrollWidth / 2;
+      // Widening the viewport may need more clones to keep the right edge covered.
+      ensureMarqueeCoverage(track);
+      var h = measurePeriod();
       if (h) half = h;
     }), { passive: true });
+
+    // Web fonts (Fraunces italic / Inter) load AFTER init can run, changing pill
+    // widths and therefore the true period. `half` is measured at init (possibly
+    // with fallback-font metrics); re-measure once fonts settle so the ticker
+    // doesn't wrap early and leave a one-time seam on cold-cache first paint.
+    if (document.fonts && document.fonts.ready && document.fonts.ready.then) {
+      document.fonts.ready.then(function () {
+        var h = measurePeriod();
+        if (h) half = h;
+      }).catch(function () {});
+    } else {
+      on(window, "load", function () {
+        var h = measurePeriod();
+        if (h) half = h;
+      });
+    }
 
     // Pause baseline on hover / focus (keyboard + mouse).
     if (marquee) {
@@ -626,12 +787,17 @@
       on(marquee, "focusout", function () { paused = false; });
     }
 
-    if (lenisInstance) {
-      lenisInstance.on("scroll", function (e) {
-        velFactor = clamp((e.velocity || 0) * 0.25, -18, 18);
-      });
-    } else if (ST) {
+    // Native scroll velocity feeds the marquee (no Lenis). Gate the read on the
+    // same inView flag the ticker uses so it does zero work while off-screen.
+    // `primed` discards the first reading after the ticker (re)starts: scrolling
+    // INTO the section yields a large getVelocity() on the first frame, which
+    // would otherwise yank x ~17px in one frame (a visible jolt on scroll-in).
+    // The sufficient cloning above means there's no gap regardless; this just
+    // removes the cosmetic one-frame jump.
+    if (ST) {
       ST.create({ onUpdate: function (self) {
+        if (!inView) return;
+        if (!primed) { primed = true; return; }
         velFactor = clamp(self.getVelocity() / 300, -18, 18);
       }});
     }
@@ -644,11 +810,37 @@
       if (x > 0)      x -= half;
       track.style.transform = "translate3d(" + x + "px,0,0)";
     };
-    gsap.ticker.add(marqueeTick);
+
+    function startTicker() {
+      if (running) return;
+      running = true;
+      primed = false;       // re-prime so re-entering the section never yanks
+      track.style.willChange = "transform";
+      gsap.ticker.add(marqueeTick);
+    }
+    function stopTicker() {
+      if (!running) return;
+      running = false;
+      gsap.ticker.remove(marqueeTick);
+      track.style.willChange = "";
+    }
+
+    // Only run the per-frame ticker while the marquee is on screen.
+    if (marquee && supportsIO) {
+      var io = new IntersectionObserver(function (entries) {
+        inView = entries[0] && entries[0].isIntersecting;
+        if (inView) startTicker(); else stopTicker();
+      }, { rootMargin: "120px 0px" });
+      io.observe(marquee);
+    } else {
+      startTicker();
+    }
   }
 
   /* ==========================================================================
      11a. POSTER PARALLAX — FALLBACK rAF (writes --shift, ≤24px peak).
+          Caches each poster's offsetTop on resize/load (no per-frame
+          getBoundingClientRect forced reflow); progress from scrollY.
      ========================================================================== */
   function initPosterParallax() {
     if (prefersReduced()) return;
@@ -658,21 +850,33 @@
     var MAX = 24 * pxScale();
     var vh = window.innerHeight || document.documentElement.clientHeight;
 
-    var update = rafThrottle(function () {
+    // Cache layout (top + height) so the scroll handler never reads the DOM.
+    var data = posters.map(function (el) { return { el: el, top: 0, h: 0 }; });
+    var measure = function () {
       vh = window.innerHeight || document.documentElement.clientHeight;
-      posters.forEach(function (el) {
-        var r = el.getBoundingClientRect();
-        if (r.bottom < -200 || r.top > vh + 200) return;
-        var center = r.top + r.height / 2;
-        var prog = (center - vh / 2) / (vh / 2 + r.height / 2);
+      data.forEach(function (d) {
+        var r = d.el.getBoundingClientRect();
+        d.top = r.top + scrollY();
+        d.h = r.height;
+      });
+    };
+
+    var update = rafThrottle(function () {
+      var sy = scrollY();
+      data.forEach(function (d) {
+        var center = d.top + d.h / 2 - sy;          // center relative to viewport
+        if (center < -200 || center > vh + 200) return;
+        var prog = (center - vh / 2) / (vh / 2 + d.h / 2);
         prog = clamp(prog, -1, 1);
-        el.style.setProperty("--shift", (-prog * MAX).toFixed(1) + "px");
+        d.el.style.setProperty("--shift", (-prog * MAX).toFixed(1) + "px");
       });
     });
 
+    measure();
     update();
     on(window, "scroll", update, { passive: true });
-    on(window, "resize", update, { passive: true });
+    on(window, "resize", rafThrottle(function () { measure(); update(); }), { passive: true });
+    on(window, "load", function () { measure(); update(); });
   }
 
   /* ==========================================================================
@@ -694,22 +898,15 @@
   }
 
   /* ==========================================================================
-     12. AURORA SCRUB (ENHANCED) — gentle group parallax as hero scrolls out.
-         Scrubs .hero-bg (no keyframe transform of its own) so it never fights
-         the per-blob CSS drift. Deeper accent on .aurora-3 via --scrubY which
-         composes with that blob's `translate:` (not its keyframe transform).
+     12. AURORA SCRUB (ENHANCED) — gentle depth as the hero scrolls out.
+         SIMPLIFIED per "robust over flashy": we no longer scrub yPercent on the
+         90px-blurred .hero-bg (moving a giant blurred layer per frame was the
+         costliest hero effect). We keep only the cheap --scrubY on the small
+         gold blob (.aurora-3), which composes via `translate:` in the CSS.
      ========================================================================== */
   function gsapAuroraScrub() {
     var gsap = window.gsap;
     var s = pxScale();
-    var hero = document.getElementById("hero");
-    var bg = $(".hero-bg", hero || document);
-    if (bg) {
-      gsap.to(bg, {
-        yPercent: -12 * s, ease: "none",
-        scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: 0.6 }
-      });
-    }
     var a3 = $(".aurora-3");
     if (a3) {
       gsap.fromTo(a3,
@@ -723,7 +920,7 @@
 
   /* ==========================================================================
      13. IMAGE-MASK REVEALS (ENHANCED) — clip-path wipe + scale settle.
-         Targets every [data-mask] (2 posters, 2 gallery imgs, 4 leader photos).
+         Targets every [data-mask] (2 posters, gallery imgs, 4 leader photos).
          Clears the inline transform on complete so the CSS hover scale +
          --shift parallax regain control; leaves clip-path at fully-open.
          NOTE: base CSS does NOT clip the image, so a no-JS page shows it fully.
@@ -775,7 +972,13 @@
     }
     var split;
     try {
-      split = new window.SplitText(title, { type: "lines,words", linesClass: "split-line" });
+      // LINES ONLY (no "words"): word-splitting FLATTENS the nested
+      // .text-gradient span, dropping "excellence," into an unclassed div with a
+      // transparent fill and no gradient (the bug #3 root cause). Splitting by
+      // line keeps the .text-gradient span intact as a child of a .split-line, so
+      // its own background-clip:text emerald->gold fill (styles.css §3) keeps
+      // painting. The line wrapper still gives us the rise-reveal.
+      split = new window.SplitText(title, { type: "lines", linesClass: "split-line" });
     } catch (err) {
       title.classList.add("is-visible");
       return null;
@@ -783,11 +986,13 @@
     splitInstances.push(split);
     gsap.set(split.lines, { overflow: "hidden" });
     gsap.set(title, { opacity: 1 });
-    // Return a function the hero/intro timeline calls to play the words in.
+    // Return a function the hero/intro timeline calls to play the lines in.
+    // The gradient word survives untouched inside its .split-line, so we never
+    // set color/fill here and "excellence" stays visible with its gradient.
     return function play(delay) {
-      gsap.from(split.words, {
-        yPercent: 120, opacity: 0, duration: 0.9, ease: "power4.out",
-        stagger: { each: 0.04, from: "start" },
+      gsap.from(split.lines, {
+        yPercent: 110, opacity: 0, duration: 0.9, ease: "power4.out",
+        stagger: { each: 0.08, from: "start" },
         delay: delay || 0
       });
     };
@@ -849,9 +1054,9 @@
   }
 
   /* ==========================================================================
-     16. INTRO / LOAD-IN (ENHANCED only) — masked YP-mark + forest wipe, ≤1.2s,
-         skippable, first-visit (sessionStorage), never traps (CSS failsafe +
-         JS removal). Hands off to the hero timeline.
+     16. INTRO / LOAD-IN (ENHANCED, desktop only) — masked YP-mark + forest
+         wipe, ≤1.2s, skippable, first-visit (sessionStorage), never traps (CSS
+         failsafe + JS removal). Hands off to the hero timeline.
      ========================================================================== */
   function runIntro(playHeroSplit) {
     var gsap = window.gsap;
@@ -890,31 +1095,35 @@
     intro.appendChild(wipe);
     document.body.insertBefore(intro, document.body.firstChild);
 
-    // Lock scroll during the intro only.
-    if (lenisInstance) { try { lenisInstance.stop(); } catch (e) {} }
-    document.body.style.overflow = "hidden";
+    // Lock scroll during the intro only (ref-counted).
+    var introLocked = true;
+    lockScroll();
 
     var done = false;
     var failsafeTimer = null;
+    var heroStarted = false;
+    function startHero() {
+      if (heroStarted) return;
+      heroStarted = true;
+      heroTL.play(0);
+    }
     function finish() {
       if (done) return;
       done = true;
       if (failsafeTimer) { clearTimeout(failsafeTimer); failsafeTimer = null; }
       if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
-      document.body.style.overflow = "";
-      if (lenisInstance) { try { lenisInstance.start(); } catch (e) {} }
+      if (introLocked) { unlockScroll(); introLocked = false; }
+      startHero();   // guarantee the hero plays even if the timeline callback didn't fire
       refreshST();
     }
 
-    // JS failsafe: always release the scroll-lock + Lenis even if the GSAP
-    // timeline errors or never completes (the CSS failsafe only fades the
-    // overlay; it can't restore body.overflow or restart Lenis). `done` guards
-    // the double-call. 2s comfortably exceeds the ~1.2s intro.
+    // JS failsafe: always release the scroll-lock even if the GSAP timeline
+    // errors or never completes (the CSS failsafe only fades the overlay; it
+    // can't restore body scroll). `done` guards the double-call. 2s comfortably
+    // exceeds the ~1.2s intro.
     failsafeTimer = setTimeout(finish, 2000);
 
-    var introTL = gsap.timeline({
-      onComplete: finish
-    });
+    var introTL = gsap.timeline({ onComplete: finish });
     introTL
       .fromTo(mark,
         { opacity: 0, scale: 0.86 },
@@ -923,13 +1132,15 @@
       .to([wipe, mark], { yPercent: -110, duration: 0.55, ease: "power4.inOut" }, 0.6)
       .to(intro, { opacity: 0, duration: 0.3, ease: "power2.out" }, 0.85)
       // Hand off to the hero as the wipe lifts (overlap for momentum).
-      .add(function () { heroTL.play(0); }, 0.6);
+      .add(startHero, 0.6);
 
-    // Skippable: any input fast-forwards.
+    // Skippable: any input fast-forwards. Guarded so multiple inputs (e.g. a
+    // wheel + a keydown) can't run skip twice, and so heroTL never re-snaps:
+    // progress(1) lets the timeline's own startHero() callback fire, and finish()
+    // is idempotent via `done`.
     function skip() {
-      introTL.progress(1);
-      heroTL.play(0);
-      finish();
+      if (done) return;
+      introTL.progress(1); // fires the .add(startHero) callback + onComplete -> finish
     }
     on(window, "keydown", skip, { once: true });
     on(window, "pointerdown", skip, { once: true });
@@ -939,7 +1150,11 @@
   /* ==========================================================================
      17. CUSTOM CURSOR (ENHANCED + finePointer) — emerald dot + trailing ring.
          Single GSAP ticker loop, interpolated (never per-event style writes).
-         Native cursor stays visible; this is an overlay accent only.
+         While active, the NATIVE OS cursor is hidden via html.yp-has-cursor
+         (CSS gates the hide to fine-pointer). We add the class here, and remove
+         it on window blur (so an alt-tabbed window isn't left cursorless) +
+         on reduced-motion teardown. Touch / reduced-motion / non-enhanced never
+         reach this function, so they always keep the native cursor.
      ========================================================================== */
   function initCursor() {
     var gsap = window.gsap;
@@ -952,6 +1167,9 @@
     document.body.appendChild(dot);
     document.body.appendChild(ring);
     cursorNodes = [dot, ring];
+
+    // Hide the native cursor only now that the custom one is wired (bug #4).
+    docEl.classList.add("yp-has-cursor");
 
     var mx = window.innerWidth / 2, my = window.innerHeight / 2;
     var dx = mx, dy = my, rx = mx, ry = my;
@@ -967,30 +1185,64 @@
       if (e.pointerType && e.pointerType !== "mouse") return;
       mx = e.clientX; my = e.clientY;
       setVisible(true);
+      // Pointer is back inside this window — re-hide the native cursor, but ONLY
+      // while the custom cursor is still mounted. cursorNodes is [dot,ring] while
+      // live and reset to [] on reduced-motion teardown; gating on it (not on
+      // reduced motion) means once the cursor is removed this handler can never
+      // re-assert yp-has-cursor and leave the document claiming a hidden cursor
+      // with nothing to replace it.
+      if (cursorNodes.length && !docEl.classList.contains("yp-has-cursor")) {
+        docEl.classList.add("yp-has-cursor");
+      }
     });
     on(document, "pointerleave", function () { setVisible(false); });
-    on(window, "blur", function () { setVisible(false); });
+    // On blur, hide our cursor AND restore the native one (so an alt-tabbed
+    // or background window never sits with no visible pointer).
+    on(window, "blur", function () {
+      setVisible(false);
+      docEl.classList.remove("yp-has-cursor");
+    });
 
     cursorLoop = function () {
       dx += (mx - dx) * 0.35; dy += (my - dy) * 0.35;  // dot: snappy
-      rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;  // ring: trails
+      rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;  // ring: trails (a touch
+                                                       // snappier so clicks feel
+                                                       // precise now that it's the
+                                                       // only pointer indicator)
       dot.style.transform  = "translate(" + dx + "px," + dy + "px) translate(-50%,-50%)";
       ring.style.transform = "translate(" + rx + "px," + ry + "px) translate(-50%,-50%)";
     };
     gsap.ticker.add(cursorLoop);
 
-    // Grow the ring over interactive elements.
+    // Grow the ring over interactive elements. Track the closest interactive
+    // ancestor and only toggle when it actually CHANGES, so crossing nested
+    // children of one element (e.g. a tile's img + caption) doesn't flicker.
     var sel = 'a, button, [data-magnetic], .gallery-tile, input, [tabindex]:not([tabindex="-1"])';
+    var hoverTarget = null;
     on(document, "pointerover", function (e) {
-      if (e.target && e.target.closest && e.target.closest(sel)) ring.classList.add("is-hovering");
+      var t = e.target && e.target.closest ? e.target.closest(sel) : null;
+      if (t && t !== hoverTarget) {
+        hoverTarget = t;
+        ring.classList.add("is-hovering");
+      }
     });
     on(document, "pointerout", function (e) {
-      if (e.target && e.target.closest && e.target.closest(sel)) ring.classList.remove("is-hovering");
+      if (!hoverTarget) return;
+      // Only drop the hover state once the pointer leaves the tracked element
+      // for something OUTSIDE it (relatedTarget is where the pointer is going).
+      var to = e.relatedTarget;
+      if (!to || !hoverTarget.contains(to)) {
+        hoverTarget = null;
+        ring.classList.remove("is-hovering");
+      }
     });
   }
 
   /* ==========================================================================
      18. MAGNETIC BUTTONS (ENHANCED + finePointer) — transform-only pull.
+         pointermove is rAF-throttled so the per-event getBoundingClientRect read
+         happens at most once per frame; blur resets the offset so keyboard focus
+         never leaves a button visually shifted off its hit area.
      ========================================================================== */
   function initMagnetic() {
     var gsap = window.gsap;
@@ -998,19 +1250,30 @@
       var strength = 0.35, max = 12;
       var qX = gsap.quickTo(btn, "x", { duration: 0.4, ease: "power3" });
       var qY = gsap.quickTo(btn, "y", { duration: 0.4, ease: "power3" });
+      var move = rafThrottle(function (cx, cy) {
+        var r = btn.getBoundingClientRect();
+        qX(clamp((cx - (r.left + r.width / 2)) * strength, -max, max));
+        qY(clamp((cy - (r.top + r.height / 2)) * strength, -max, max));
+      });
       on(btn, "pointermove", function (e) {
         if (e.pointerType && e.pointerType !== "mouse") return;
-        var r = btn.getBoundingClientRect();
-        qX(clamp((e.clientX - (r.left + r.width / 2)) * strength, -max, max));
-        qY(clamp((e.clientY - (r.top + r.height / 2)) * strength, -max, max));
+        move(e.clientX, e.clientY);
       });
-      on(btn, "pointerleave", function () { qX(0); qY(0); });
+      var reset = function () { qX(0); qY(0); };
+      on(btn, "pointerleave", reset);
+      on(btn, "blur", reset);
     });
   }
 
   /* ==========================================================================
      19. GALLERY LIGHTBOX — open/close, focus-trap, ESC, inert background.
          Identical in both paths.
+
+         The dialog is a DIRECT CHILD of <body> (sibling of <main>), so
+         isolateBackground can inert #main + header + footer without inerting the
+         dialog itself. (When the dialog lived inside #main, inert-ing #main made
+         the overlay + X button inert too — only Esc, bound to document, worked.
+         That was the real root cause of bug #2.)
      ========================================================================== */
   function initLightbox() {
     var dialog = $("[data-lightbox-dialog]");
@@ -1020,8 +1283,15 @@
     var imgEl = $("[data-lightbox-image]", dialog);
     var capEl = $("[data-lightbox-caption]", dialog);
     var closers = $all("[data-lightbox-close]", dialog);
+    var overlay = $(".lightbox-overlay", dialog);
+    // The X button — the only FOCUSABLE closer (the overlay is a div). Use it for
+    // open-focus; closers[0] is the overlay and would be a no-op to .focus().
+    var closeBtn = $(".lightbox-close", dialog) ||
+      closers.filter(function (c) { return c !== overlay; })[0] || null;
     var content = $(".lightbox-content", dialog) || dialog;
     var lastFocused = null;
+    var locked = false;
+    var pointerDownTarget = null;
 
     var bgRegions = [
       document.getElementById("main"),
@@ -1046,7 +1316,9 @@
         'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
         dialog
       ).filter(function (el) {
-        return el.offsetParent !== null || el === document.activeElement;
+        // getClientRects is more robust than offsetParent (which returns null
+        // for descendants of a position:fixed ancestor — e.g. the .lightbox).
+        return el.getClientRects().length > 0 || el === document.activeElement;
       });
     }
 
@@ -1056,16 +1328,17 @@
       var caption = trigger.getAttribute("data-caption") || "";
       if (imgEl) {
         imgEl.setAttribute("src", full);
-        imgEl.setAttribute("alt", caption);
+        // Empty alt: the visible .lightbox-caption inside this role="dialog" is the
+        // single accessible description. Mirroring it onto the img's accessible name
+        // would make a screen reader announce the same string twice.
+        imgEl.setAttribute("alt", "");
       }
       if (capEl) capEl.textContent = caption;
 
       dialog.removeAttribute("hidden");
-      document.body.style.overflow = "hidden";
-      if (lenisInstance) { try { lenisInstance.stop(); } catch (e) {} }
+      if (!locked) { lockScroll(); locked = true; }
       isolateBackground(true);
 
-      var closeBtn = closers[0];
       window.requestAnimationFrame(function () {
         if (closeBtn) closeBtn.focus();
         else if (content.focus) { content.setAttribute("tabindex", "-1"); content.focus(); }
@@ -1075,10 +1348,10 @@
     function close() {
       if (dialog.hasAttribute("hidden")) return;
       dialog.setAttribute("hidden", "");
-      document.body.style.overflow = "";
-      if (lenisInstance) { try { lenisInstance.start(); } catch (e) {} }
+      if (locked) { unlockScroll(); locked = false; }
       isolateBackground(false);
       if (imgEl) { imgEl.removeAttribute("src"); imgEl.setAttribute("alt", ""); }
+      if (capEl) capEl.textContent = ""; // no stale caption can flash on next open
       if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
       lastFocused = null;
     }
@@ -1086,7 +1359,26 @@
     triggers.forEach(function (t) {
       on(t, "click", function (e) { e.preventDefault(); open(t); });
     });
-    closers.forEach(function (c) { on(c, "click", close); });
+
+    // X button (and any other [data-lightbox-close] that isn't the backdrop):
+    // unconditional close on click/tap.
+    closers.forEach(function (c) {
+      if (c === overlay) return; // backdrop handled below with a drag guard
+      on(c, "click", function (e) { e.preventDefault(); close(); });
+    });
+
+    // Backdrop: close ONLY when the press both started AND ended on the overlay
+    // itself, so a drag-select that starts on the image/caption and releases on
+    // the backdrop doesn't accidentally close. We anchor pointerDownTarget on a
+    // press ANYWHERE in the dialog (not just the overlay) so the guard state is
+    // always tied to the true press origin regardless of future markup.
+    on(dialog, "pointerdown", function (e) { pointerDownTarget = e.target; });
+    if (overlay) {
+      on(overlay, "click", function (e) {
+        if (e.target === overlay && pointerDownTarget === overlay) close();
+        pointerDownTarget = null;
+      });
+    }
 
     on(document, "keydown", function (e) {
       if (dialog.hasAttribute("hidden")) return;
@@ -1121,39 +1413,6 @@
     });
   }
 
-  /* ==========================================================================
-     21. LENIS SMOOTH SCROLL (ENHANCED + Lenis + non-touch).
-     ========================================================================== */
-  function initLenis() {
-    var gsap = window.gsap;
-    try {
-      lenisInstance = new window.Lenis({
-        duration: 1.05,
-        easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
-        smoothWheel: true,
-        smoothTouch: false,
-        touchMultiplier: 1.2,
-        wheelMultiplier: 1.0,
-        lerp: 0.1
-      });
-    } catch (err) { lenisInstance = null; return; }
-
-    if (LIB.st) {
-      lenisInstance.on("scroll", window.ScrollTrigger.update);
-      // Null-guard: teardown sets lenisInstance = null after destroy; without
-      // this the ticker callback would throw every frame on the dead instance.
-      gsap.ticker.add(function (time) { if (lenisInstance) lenisInstance.raf(time * 1000); });
-      gsap.ticker.lagSmoothing(0);
-    } else {
-      var raf = function (t) {
-        if (!lenisInstance) return;
-        lenisInstance.raf(t);
-        window.requestAnimationFrame(raf);
-      };
-      window.requestAnimationFrame(raf);
-    }
-  }
-
   /* --- ScrollTrigger.refresh helper (after fonts/images/intro) ------------- */
   function refreshST() {
     if (LIB.st && window.ScrollTrigger) {
@@ -1162,16 +1421,14 @@
   }
 
   /* ==========================================================================
-     22. REDUCED-MOTION LIVE TOGGLE — one-way teardown of the enhanced layer.
+     21. REDUCED-MOTION LIVE TOGGLE — one-way teardown of the enhanced layer.
      ========================================================================== */
   function wireReducedMotionToggle() {
     var handler = function () {
       if (!prefersReduced() || !enhancedActive) return;
       enhancedActive = false;
       // Remove the gsap.ticker callbacks FIRST — they live outside globalTimeline
-      // so clearing the timeline does NOT stop them. Left running, the velocity
-      // marquee keeps writing an inline transform (a reduced-motion violation)
-      // and the cursor loop keeps writing to detached nodes.
+      // so clearing the timeline does NOT stop them.
       if (window.gsap && window.gsap.ticker) {
         try { if (marqueeTick) window.gsap.ticker.remove(marqueeTick); } catch (e) {}
         try { if (cursorLoop)  window.gsap.ticker.remove(cursorLoop); } catch (e) {}
@@ -1180,7 +1437,9 @@
       cursorLoop = null;
       // Reset the marquee to a static state (no residual inline transform; we do
       // NOT re-add .is-marquee, since its CSS loop is also unwanted here).
-      if (marqueeTrack) { try { marqueeTrack.style.transform = "none"; } catch (e) {} }
+      if (marqueeTrack) {
+        try { marqueeTrack.style.transform = "none"; marqueeTrack.style.willChange = ""; } catch (e) {}
+      }
       // Kill ScrollTriggers + tweens.
       if (LIB.st && window.ScrollTrigger) {
         try { window.ScrollTrigger.getAll().forEach(function (t) { t.kill(); }); } catch (e) {}
@@ -1188,21 +1447,26 @@
       if (window.gsap) {
         try { window.gsap.globalTimeline.clear(); } catch (e) {}
       }
-      // Destroy Lenis.
-      if (lenisInstance) { try { lenisInstance.destroy(); } catch (e) {} lenisInstance = null; }
       // Revert SplitText so headings read normally.
       splitInstances.forEach(function (s) { try { s.revert(); } catch (e) {} });
       splitInstances = [];
-      // Remove cursor nodes.
+      // Remove cursor nodes + restore the native cursor.
       cursorNodes.forEach(function (n) { if (n && n.parentNode) n.parentNode.removeChild(n); });
       cursorNodes = [];
-      // Remove intro if still present.
+      docEl.classList.remove("yp-has-cursor");
+      // Remove intro if still present + release any intro scroll-lock.
       var intro = $(".yp-intro");
       if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
+      // Hard-reset the scroll lock (no overlays should be open in this state).
+      scrollLocks = 0;
       document.body.style.overflow = "";
-      // Ensure everything is visible + final.
+      // Ensure everything is visible + final. Clear inline opacity/transform with
+      // PLAIN DOM first (so a GSAP throw can't strand content at opacity:0), then
+      // best-effort GSAP clearProps.
       $all("[data-reveal]").forEach(function (el) {
         el.classList.add("is-visible");
+        el.style.opacity = "";
+        el.style.transform = "";
         if (window.gsap) { try { window.gsap.set(el, { clearProps: "all" }); } catch (e) {} }
       });
       $all("[data-split]").forEach(function (el) {
@@ -1214,12 +1478,21 @@
         img.style.webkitClipPath = "none";
         img.style.transform = "none";
         img.style.opacity = "1";
+        img.classList.remove("is-masking");
       });
       $all("[data-magnetic]").forEach(function (b) { b.style.transform = "none"; });
       $all(".leader-card").forEach(function (c) { c.classList.add("in-color"); });
+      // Force Vision count-up stats to their final values: the enhanced count is
+      // driven only by gsapCountUp's ScrollTrigger, which we just killed. Without
+      // this, a stat freezes mid-tween (toggle mid-flight) or stays at the static
+      // "0" if #vision never scrolled into view (once:true never fired).
+      $all("[data-count]").forEach(function (el) {
+        var t = parseInt(el.getAttribute("data-count"), 10);
+        if (!isNaN(t)) el.textContent = String(t);
+      });
       // Drop the enhanced signal so CSS returns to the plain reduced-motion
       // resting state (re-enables the reveal transition; clears the will-change
-      // priming on [data-mask] / [data-magnetic] that lingered after motion off).
+      // priming on [data-mask] / [data-magnetic]).
       docEl.classList.remove("gsap-enhanced");
     };
     if (reduceMQ.addEventListener) reduceMQ.addEventListener("change", handler);
@@ -1236,9 +1509,12 @@
     // --- Always-on (both paths) ---
     tasks.push(initYear);
     tasks.push(initStickyHeader);
+    tasks.push(initHeroBgPause);     // pause aurora/halo loops when hero off-screen
     tasks.push(initNav);
+    tasks.push(initSmoothAnchors);   // native smooth scroll for anchors (both paths)
+    tasks.push(initScrollspy);       // native scroll listener (both paths)
     tasks.push(initLeaderPhotoFallback);
-    tasks.push(initTilt);          // independent of libs; finePointer + !reduced
+    tasks.push(initTilt);            // independent of libs; finePointer + !reduced
     tasks.push(initLightbox);
 
     if (ENHANCED) {
@@ -1250,43 +1526,58 @@
       if (LIB.st) docEl.classList.add("gsap-enhanced");
       enhancedActive = true;
 
-      // Lenis first so anchors/scrollspy/marquee can read it.
-      if (LIB.lenis && !isTouch) tasks.push(initLenis);
-
-      // Anchors + scrollspy (read lenisInstance set above).
-      tasks.push(initSmoothAnchors);
-      tasks.push(initScrollspy);
+      // The heaviest flourishes are desktop-only: on touch we keep native scroll
+      // + cheap reveals and skip the intro / SplitText / mask wipes / scrub
+      // parallax / aurora scrub (calm, fast, fully-revealed phone page).
+      var heavyOK = !isTouch;
 
       // Hero kinetics + intro hand-off.
-      tasks.push(function () {
-        var playHero = LIB.split ? makeHeroSplit() : null;
-        // If SplitText is blocked/failed, makeHeroSplit() returns null and never
-        // adds .is-visible — guarantee the <h1> is shown so it can't stay at
-        // opacity:0 under `.js [data-reveal]:not(.is-visible){opacity:0}`.
-        if (!playHero) {
-          var ht = $(".hero-title");
-          if (ht) ht.classList.add("is-visible");
-        }
-        runIntro(playHero); // builds + plays/holds the hero timeline
-      });
+      if (heavyOK) {
+        tasks.push(function () {
+          var playHero = LIB.split ? makeHeroSplit() : null;
+          // If SplitText is blocked/failed, makeHeroSplit() returns null and
+          // never adds .is-visible — guarantee the <h1> is shown so it can't
+          // stay at opacity:0 under `.js [data-reveal]:not(.is-visible){opacity:0}`.
+          if (!playHero) {
+            var ht = $(".hero-title");
+            if (ht) ht.classList.add("is-visible");
+          }
+          runIntro(playHero); // builds + plays/holds the hero timeline
+        });
+      } else {
+        // Touch: no intro, no SplitText. Just reveal the hero immediately.
+        tasks.push(function () {
+          [".hero-title", ".hero-eyebrow", ".hero-lead", ".hero-actions"].forEach(function (s) {
+            var el = $(s); if (el) el.classList.add("is-visible");
+          });
+        });
+      }
 
       // Scroll-driven modules (each gated on ScrollTrigger).
       if (LIB.st) {
         tasks.push(gsapRevealBatch);
         tasks.push(gsapCountUp);
-        tasks.push(gsapParallax);
-        tasks.push(gsapAuroraScrub);
-        tasks.push(gsapMaskReveals);
-        if (LIB.split) {
-          tasks.push(splitSectionTitles);
+        if (heavyOK) {
+          tasks.push(gsapParallax);
+          tasks.push(gsapAuroraScrub);
+          tasks.push(gsapMaskReveals);
+          if (LIB.split) {
+            tasks.push(splitSectionTitles);
+          } else {
+            tasks.push(function () {
+              $all("[data-split]").forEach(function (el) { el.classList.add("is-visible"); });
+            });
+          }
         } else {
-          // SplitText blocked/failed: reveal the [data-split] titles so they
-          // can't stay at opacity:0 (the gsapRevealBatch excludes titles).
+          // Touch: reveal split titles immediately (no SplitText), and run the
+          // light fallback poster parallax instead of the scrub (it's cheap and
+          // lightened to 0.45x on phones). Mask images show fully (no wipe).
           tasks.push(function () {
             $all("[data-split]").forEach(function (el) { el.classList.add("is-visible"); });
+            $all("[data-mask]").forEach(function (img) { img.style.opacity = "1"; });
           });
         }
-        // Velocity marquee needs ST (and prefers Lenis); else CSS loop.
+        // Velocity marquee (desktop) / CSS loop (touch, handled inside).
         tasks.push(initVelocityMarquee);
       } else {
         // GSAP present but ScrollTrigger blocked: reveals/count/marquee/parallax
@@ -1300,7 +1591,7 @@
         });
       }
 
-      // Hero pointer-parallax + halo (desktop only).
+      // Hero pointer-parallax + halo (desktop fine-pointer only).
       tasks.push(initHeroParallax);
 
       // Desktop pointer sugar.
@@ -1310,17 +1601,12 @@
       }
 
       // Refresh ScrollTrigger after window load (fonts/images settle layout).
-      on(window, "load", function () {
-        // Decode-aware: also refresh once images finish.
-        refreshST();
-      });
+      on(window, "load", function () { refreshST(); });
 
       tasks.push(wireReducedMotionToggle);
 
     } else {
       // ------------------ VANILLA FALLBACK PATH ------------------
-      tasks.push(initSmoothAnchors);
-      tasks.push(initScrollspy);
       tasks.push(initReveal);
       tasks.push(initCountUp);
       tasks.push(initHeroParallax);

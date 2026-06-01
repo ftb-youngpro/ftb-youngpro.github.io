@@ -151,9 +151,10 @@ body {
   background-image:
     radial-gradient(120% 70% at 80% -10%, rgba(31,185,138,0.06) 0%, rgba(0,0,0,0) 55%),
     radial-gradient(120% 80% at 0% 110%, rgba(14,125,116,0.05) 0%, rgba(0,0,0,0) 60%);
-  /* background-attachment:fixed is a known mobile scroll-jank source (the layer
-     repaints per scroll frame). Scope it to large hover-capable screens; phones
-     get a normally-scrolling wash that looks near-identical (see §18). */
+  /* NOTE: do NOT use background-attachment:fixed here — a fixed background layer
+     re-rasterizes the full-viewport gradient on every scroll frame (a confirmed
+     desktop scroll-jank source). These subtle washes scroll with the body at
+     zero per-frame cost and read identically on this dark theme. */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -184,8 +185,7 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
    indicator is always high-contrast against adjacent colors (WCAG 2.4.11). */
 .btn-primary:focus-visible,
 .nav-cta:focus-visible,
-.skip-link:focus-visible,
-.expect-step:focus-visible {
+.skip-link:focus-visible {
   outline: 2px solid var(--gold-glow);
   outline-offset: 2px;
   box-shadow: 0 0 0 5px var(--bg-900);
@@ -295,11 +295,20 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   -webkit-text-fill-color: transparent;
 }
 
-/* Glass / frosted dark surface */
+/* Glass / frosted dark surface (border + inset sheen).
+   NOTE: most cards are `.glass .card`; because `.card` (defined below, equal
+   specificity) sets its own background-color + grad-surface and comes later in
+   source order, the `.card` fill WINS on those elements and this `background`
+   here is overridden — `.glass` then contributes only the border + inset-sheen.
+   The flat `background` below renders ONLY on the single glass-only element
+   (.about-panel). Either way no card uses a live backdrop-filter: a flat
+   semi-opaque fill reads the same on this dark theme and avoids re-blurring
+   scrolling content every frame. Only the sticky nav (.site-header), the mobile
+   nav drawer (.nav-menu, blur only while open and off on desktop), and the
+   .lightbox-overlay keep a real backdrop-filter (at most two active at once,
+   which is cheap). */
 .glass {
-  background: color-mix(in srgb, var(--bg-800) 72%, transparent);
-  -webkit-backdrop-filter: blur(14px) saturate(120%);
-  backdrop-filter: blur(14px) saturate(120%);
+  background: color-mix(in srgb, var(--bg-800) 92%, transparent);
   border: 1px solid var(--hairline);
   box-shadow: var(--inset-sheen);
 }
@@ -320,7 +329,6 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   box-shadow: var(--shadow-md), var(--glow-emerald-soft);
   transform: translateY(-4px);
 }
-.card--accent { border-color: var(--hairline-gold); }
 
 /* ---------------------------------------------------------------------------
    4. BUTTONS
@@ -385,9 +393,11 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   -webkit-backdrop-filter: blur(10px) saturate(120%);
   backdrop-filter: blur(10px) saturate(120%);
   border-bottom: 1px solid transparent;
+  /* Do NOT transition backdrop-filter: animating a blur radius is GPU-expensive
+     for its whole duration. Let the blur snap (imperceptible at this size) and
+     only transition the cheap color/border changes. */
   transition: background-color var(--dur-base) var(--ease-out),
-              border-color var(--dur-base) var(--ease-out),
-              backdrop-filter var(--dur-base) var(--ease-out);
+              border-color var(--dur-base) var(--ease-out);
 }
 .site-header.is-scrolled {
   background: color-mix(in srgb, var(--bg-800) 82%, transparent);
@@ -498,6 +508,14 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
               visibility 0s;
 }
 
+/* Where backdrop-filter is unsupported/disabled, the 94%-opaque frosted fill
+   lets the hero text behind the open drawer show through faintly, hurting menu
+   legibility. Force a solid drawer fill in that case only (the frosted look is
+   preserved everywhere blur works). Only visible once .is-open is applied. */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .nav-menu { background: var(--bg-800); }
+}
+
 .nav-link {
   display: block;
   font-family: var(--font-display);
@@ -540,7 +558,10 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   border-radius: 50%;
   filter: blur(90px);
   opacity: 0.42;
-  will-change: transform;
+  /* No permanent will-change: a standing transform layer on a 60vmax 90px-blur
+     blob is held for the whole page life (even off-screen). The keyframe drift
+     composites fine without it, and dropping it lets the browser reclaim the
+     large blurred layer once the hero scrolls away. */
 }
 .aurora-1 {
   width: 60vmax; height: 60vmax;
@@ -568,18 +589,22 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   z-index: -1;
 }
 
-/* Grain / noise overlay — film/cathedral texture */
+/* Grain / noise overlay — film/cathedral texture.
+   A fixed full-viewport mix-blend layer forces a per-scroll-frame full-screen
+   recomposite (mix-blend is one of the costliest compositing modes). The only
+   .grain node lives inside the hero, so we scope it absolute-to-the-hero and
+   drop mix-blend entirely site-wide: a normal-blended low-opacity grain reads
+   near-identical on this dark theme and costs nothing per scroll frame. */
 .grain {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.05;
-  mix-blend-mode: overlay;
+  opacity: 0.04;
+  mix-blend-mode: normal;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 160px 160px;
 }
-.hero .grain { position: absolute; }
 
 .hero-inner {
   position: relative;
@@ -626,8 +651,8 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-  width: 40px;
-  height: 40px;
+  width: 44px;   /* >=44px touch tap target (it's an anchor to #verse) */
+  height: 44px;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -857,6 +882,11 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   display: grid;
   gap: var(--grid-gap);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  /* Size each cell to its own content instead of stretching to the tall portrait
+     poster (the featured Museum Tour card). Default align-items:stretch left big
+     empty dark bottoms in the shorter Goal Casting / Loob cards in that first
+     row; `start` lets each card take its natural height. */
+  align-items: start;
 }
 .post {
   border-radius: var(--radius-lg);
@@ -875,11 +905,16 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   width: 100%;
   height: auto;
   display: block;
-  transition: transform var(--dur-slow) var(--ease-out);
+  /* Ease the hover via the standalone `scale` longhand, NOT `transform`: the
+     [data-parallax] variant rewrites the transform's --shift every scroll frame,
+     and transitioning transform would make each frame chase ~0.9s behind. Using
+     `scale:` keeps the hover ease while leaving the parallax translate to track
+     scroll 1:1. The non-parallax poster stays consistent here too. */
+  transition: scale var(--dur-slow) var(--ease-out);
   /* No standing will-change: the parallax (--shift) composes the transform and
      primes compositing during the scrub; a permanent layer here is redundant. */
 }
-.post:hover .post-poster { transform: scale(1.03); }
+.post:hover .post-poster { scale: 1.03; }
 
 .post-body {
   padding: var(--space-lg);
@@ -937,9 +972,10 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   top: var(--space-sm);
   left: var(--space-sm);
   color: var(--gold);
-  background: color-mix(in srgb, var(--bg-900) 78%, transparent);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
+  /* Flat opaque fill instead of a backdrop-filter blur: this badge sits over a
+     scrolling poster, so a live blur would recompute per frame. Solid reads the
+     same and keeps blur to only the nav + lightbox. */
+  background: color-mix(in srgb, var(--bg-900) 92%, transparent);
   border: 1px solid var(--hairline-gold);
   box-shadow: var(--glow-gold);
 }
@@ -961,12 +997,20 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
 }
 .themes-track {
   display: flex;
-  gap: var(--space-md);
   width: max-content;
-  padding-inline: var(--space-md);
   list-style: none;
   margin: 0;
-  /* animation (translateX loop) defined in animations.css */
+  /* NOTE: spacing is a per-pill trailing margin (see .theme-pill), NOT a flex
+     `gap`. A flex gap is applied BETWEEN items only, so the last original pill
+     and the first clone would have no gap between them, making the seamless
+     loop period (one set + one boundary gap) differ from scrollWidth/2 and the
+     CSS keyframe's translateX(-50%) by gap/2 -> a recurring ~12px seam. A
+     trailing margin on every pill (including the last) makes spacing symmetric
+     across the original->clone boundary, so scrollWidth/2 and translateX(-50%)
+     land EXACTLY on one set in both the enhanced JS ticker and the CSS loop.
+     padding-inline was removed (it was overridden to 0 by ul[role="list"] and
+     never rendered; the .themes-marquee edge mask provides the visual inset).
+     animation (translateX loop) defined in animations.css */
 }
 .themes-marquee:hover .themes-track,
 .themes-marquee:focus-within .themes-track {
@@ -978,6 +1022,10 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   flex-direction: column;
   gap: 0.1rem;
   padding: 0.7rem 1.3rem;
+  /* Trailing margin (NOT a track flex `gap`) so the gap after the LAST pill of
+     a set matches the gap between pills — keeps the marquee loop period equal
+     to scrollWidth/2 / translateX(-50%) for a seamless wrap. See .themes-track. */
+  margin-inline-end: var(--space-md);
   border-radius: var(--radius-pill);
   border: 1px solid var(--hairline-gold);
   background: color-mix(in srgb, var(--bg-700) 70%, transparent);
@@ -1130,6 +1178,19 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
 .leader-card.in-color .leader-photo[data-leader="pjb"] {
   transform: scale(1.78);
 }
+/* Darcy's source is a full-body gym photo; object-position alone leaves the
+   face at the top edge of the circle. Zoom toward his face so the framing
+   matches the other single-face portraits. Hover/in-color scale bumped
+   proportionally (so the resting->color transition stays smooth). */
+.leader-photo[data-leader="darcy"] {
+  transform: scale(1.6);
+  transform-origin: 50% 18%;
+}
+.leader-card:hover .leader-photo[data-leader="darcy"],
+.leader-card:focus-within .leader-photo[data-leader="darcy"],
+.leader-card.in-color .leader-photo[data-leader="darcy"] {
+  transform: scale(1.68);
+}
 /* Image failed to load -> reveal the initials monogram behind it. */
 .leader-avatar.no-photo .leader-photo { display: none; }
 
@@ -1164,7 +1225,12 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   gap: var(--grid-gap);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
 }
-.gallery-item { border-radius: var(--radius-md); overflow: hidden; }
+/* No `overflow: hidden` here: it would clip the focused .gallery-tile's
+   :focus-visible ring (drawn at outline-offset:2px, outside the box) on all
+   four sides, leaving keyboard focus invisible (WCAG 2.4.7 / 2.4.11). The
+   child .gallery-tile still clips the photo to rounded corners via its own
+   overflow:hidden + border-radius. */
+.gallery-item { border-radius: var(--radius-md); }
 .gallery-tile {
   display: block;
   position: relative;
@@ -1185,7 +1251,10 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
 }
 .gallery-img {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  /* All 12 museum photos are 1280x853 (3:2 landscape). A 4/5 portrait frame
+     center-cropped ~45% off each (decapitating group shots, the facade, the
+     flag). Match the source 3:2 so the grid shows the full uncropped photo. */
+  aspect-ratio: 3 / 2;
   object-fit: cover;
   transition: transform var(--dur-slow) var(--ease-out);
 }
@@ -1202,41 +1271,14 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   text-align: left;
 }
 
-.gallery-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3xs);
-  text-align: center;
-  aspect-ratio: 4 / 5;
-  border-radius: var(--radius-md);
-  border: 1px dashed var(--hairline-strong);
-  padding: var(--space-md);
-  background:
-    var(--grad-surface),
-    repeating-linear-gradient(135deg, rgba(155,183,146,0.04) 0 10px, rgba(0,0,0,0) 10px 20px),
-    var(--bg-750);
-}
-.gallery-placeholder-label {
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.72rem;
-  color: var(--emerald-300);
-}
-.gallery-placeholder-sub {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--ink-faint);
-  font-size: var(--step-0);
-}
-
 /* Lightbox */
 .lightbox {
   position: fixed;
   inset: 0;
-  z-index: 150;
+  /* Above the skip-link (200) so stacking is unambiguous even outside the focus
+     trap; still below the one-shot intro (300) and the pointer-events:none
+     custom-cursor layer (400). */
+  z-index: 250;
   display: grid;
   place-items: center;
   padding: var(--gutter);
@@ -1406,9 +1448,20 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   margin-bottom: var(--space-md);
 }
 .footer-nav ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-2xs); }
-.footer-nav a { color: var(--ink-dim); }
+.footer-nav a { color: var(--ink-dim); display: inline-block; padding-block: 0.25rem; }
 .footer-nav a:hover { color: var(--emerald-300); }
 .footer-contact p { margin-bottom: var(--space-2xs); color: var(--ink-dim); }
+.footer-contact a { display: inline-block; padding-block: 0.25rem; }
+
+/* Phone / coarse-pointer: raise each footer link to a ~44px tap target (WCAG
+   2.5.8 AA needs >=24px; the rest of the site targets 44px). Block-level links
+   with generous vertical padding give full-width, comfortably-spaced hit areas;
+   the desktop footer + headings are untouched. */
+@media (max-width: 991.98px) {
+  .footer-nav ul { gap: 0; }
+  .footer-nav li a,
+  .footer-contact a { display: block; padding-block: 0.6rem; }
+}
 .footer-address { line-height: 1.5; }
 .footer-closing {
   margin-top: var(--space-md);
@@ -1442,7 +1495,8 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
 
 /* ---------------------------------------------------------------------------
    17b. ENHANCED MOTION LAYER — static / resting states
-   GSAP + ScrollTrigger + SplitText + Lenis layer on top of the vanilla baseline.
+   GSAP + ScrollTrigger + SplitText layer on top of the vanilla baseline (scroll
+   is native — no Lenis; no CSS depends on a Lenis wrapper/transform).
    Everything here is purely additive: the JS-injected nodes (intro overlay,
    custom cursor) do NOT exist unless JS runs, so a no-JS / CDN-blocked page never
    sees them. These rules only set the RESTING look so pre-animation reads right;
@@ -1497,9 +1551,12 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   pointer-events: none;
 }
 
-/* --- Custom cursor (JS-injected; desktop fine-pointer ONLY) -------------------
-   Recommendation per spec §14a: keep the native cursor visible; the dot + ring
-   are an overlay accent only. Both are pointer-events:none and high z-index.     */
+/* --- Custom cursor (JS-injected; desktop fine-pointer + ENHANCED ONLY) --------
+   The native OS cursor is HIDDEN while the custom cursor is active (see the
+   `html.yp-has-cursor` rule below). JS adds `html.yp-has-cursor` in initCursor
+   (which only runs when ENHANCED && fine-pointer) and removes it on
+   reduced-motion teardown / window blur, so touch / reduced-motion / non-enhanced
+   keep the native cursor. The dot + ring are pointer-events:none, high z-index. */
 .yp-cursor,
 .yp-cursor-ring {
   position: fixed;
@@ -1534,17 +1591,41 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   border-color: var(--emerald);
 }
 
+/* Hide the native OS cursor only while the custom cursor is active. JS toggles
+   `html.yp-has-cursor` in initCursor (ENHANCED + fine-pointer only) and removes
+   it on reduced-motion teardown / window blur, so the native arrow returns for
+   touch / reduced-motion / non-enhanced and whenever the custom cursor is gone.
+   Gated on fine-pointer as belt-and-suspenders so a coarse pointer never loses
+   its cursor even if the class is mistakenly set. */
+@media (hover: hover) and (pointer: fine) {
+  html.yp-has-cursor,
+  html.yp-has-cursor * {
+    cursor: none !important;
+  }
+}
+
 /* --- Magnetic buttons --------------------------------------------------------
    GSAP translates [data-magnetic] toward the pointer (transform only, so the hit
-   area moves with the visual and clicks always land). Base just primes GPU
-   compositing on desktop fine-pointer; transform itself is JS-owned.            */
+   area moves with the visual and clicks always land). Prime GPU compositing only
+   on hover/focus (not standing, so we don't hold a permanent layer per button);
+   transform itself is JS-owned.                                                 */
 @media (hover: hover) and (pointer: fine) {
-  .gsap-enhanced [data-magnetic] { will-change: transform; }
+  .gsap-enhanced [data-magnetic]:hover,
+  .gsap-enhanced [data-magnetic]:focus-visible { will-change: transform; }
 }
 
 /* ---------------------------------------------------------------------------
    18. RESPONSIVE — min-width queries scale the mobile base up
    --------------------------------------------------------------------------- */
+/* Smallest phones (single-column leader grid): give the avatar more presence
+   and ease the giant stat numbers so they comfortably fit a 2-col cell at 320px. */
+@media (max-width: 479.98px) {
+  .avatar { width: 104px; height: 104px; }
+}
+@media (max-width: 380px) {
+  .stat-num { font-size: clamp(2.6rem, 8vw, 3.2rem); }
+}
+
 @media (min-width: 480px) {
   .hero-actions { flex-direction: row; max-width: none; width: auto; }
   .hero-actions .btn { width: auto; }
@@ -1555,35 +1636,19 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   .about-grid { grid-template-columns: 1.5fr 1fr; align-items: start; }
   .stat-grid { grid-template-columns: repeat(4, 1fr); }
   .join-grid { grid-template-columns: 1.2fr 1fr; align-items: start; }
+  .footer-grid { grid-template-columns: 1.5fr 1fr 1.5fr; align-items: start; }
 }
 
 /* --- MOBILE PERFORMANCE MITIGATIONS (<=768px) ------------------------------
-   Phones pay a heavy compositing bill from the always-animating blurred auroras,
-   the fixed mix-blend grain, and ~31 backdrop-filter glass surfaces scrolling
-   through the viewport. Lighten the worst offenders below the tablet breakpoint
-   without changing the desktop look. */
+   .glass is now a flat fill site-wide and the grain no longer uses mix-blend
+   (both handled in the base rules), so the only remaining phone-specific win is
+   lightening the always-animating blurred auroras (large filter layers). */
 @media (max-width: 768px) {
   /* Smaller, less-blurred auroras and drop the third (gold) blob's fill cost. */
   .aurora-1, .aurora-2 { filter: blur(48px); }
   .aurora-1 { width: 46vmax; height: 46vmax; }
   .aurora-2 { width: 42vmax; height: 42vmax; }
   .aurora-3 { display: none; }
-
-  /* Grain: drop the per-scroll mix-blend composite for a cheap flat overlay. */
-  .grain { mix-blend-mode: normal; opacity: 0.035; }
-
-  /* Glass: backdrop-filter blur repaints per scroll frame; a flat semi-opaque
-     fill reads nearly the same on the dark theme and is far cheaper. */
-  .glass {
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-    background: color-mix(in srgb, var(--bg-800) 92%, transparent);
-  }
-}
-
-/* background-attachment:fixed only where it's safe (large, hover-capable). */
-@media (min-width: 992px) and (hover: hover) {
-  body { background-attachment: fixed; }
 }
 
 /* Inline desktop nav — only once there's room for the brand + 7 items + CTA.
@@ -1642,6 +1707,15 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 }
 
+/* The 5 value cards otherwise auto-fit to 4 columns on wide screens (4*260 + 3
+   gaps fits the 1200px container; 5 don't), orphaning "Leadership" alone with 3
+   empty columns beside it. Force a single even 5-up row once the container has
+   room (>=1180px: ~197-205px/card after gaps); below this the auto-fit minmax
+   keeps graceful 3/2/1-up wrapping. Pure CSS, so the no-JS fallback is fixed too. */
+@media (min-width: 1180px) {
+  .value-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
 /* ---------------------------------------------------------------------------
    19. REDUCED MOTION — full fallback (JS also guards behaviors)
    --------------------------------------------------------------------------- */
@@ -1658,6 +1732,10 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
      A safety net even if JS mis-detects — the page must never hide content. */
   .yp-intro { display: none !important; }                 /* never show the intro overlay */
   .yp-cursor, .yp-cursor-ring { display: none !important; }
+  /* Belt-and-suspenders: even if html.yp-has-cursor were ever set, a
+     reduced-motion user must keep a visible native cursor. */
+  html.yp-has-cursor,
+  html.yp-has-cursor * { cursor: auto !important; }
   [data-split] { opacity: 1 !important; }                 /* headline/titles visible, unsplit */
   .leader-photo { filter: none !important; transform: none !important; }  /* full color, static */
   [data-mask] { clip-path: none !important; opacity: 1 !important; transform: none !important; }

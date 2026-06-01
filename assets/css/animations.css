@@ -90,7 +90,23 @@
     rgba(42, 255, 176, 0) 70%
   );
   animation: halo-breathe 9s var(--ease-in-out) infinite alternate;
-  will-change: opacity, transform;
+  /* No standing will-change: the breathe keyframe (opacity/transform) composites
+     fine without a permanent reserved layer that would persist after the hero
+     scrolls off-screen. */
+}
+
+/* Pause the four large blurred hero layers (3 auroras + halo) while the hero is
+   scrolled off-screen. main.js (initHeroBgPause) toggles .hero-bg-paused on
+   .hero-bg via an IntersectionObserver in BOTH paths. Chrome does NOT auto-pause
+   off-screen compositor animations, so without this the GPU keeps re-compositing
+   these big blurred layers under the scroll for ~90% of the page (scroll jank on
+   mid/low-end devices). No-op while the hero is visible, and under reduced motion
+   these animations are already `none`. */
+.hero-bg-paused .aurora-1,
+.hero-bg-paused .aurora-2,
+.hero-bg-paused .aurora-3,
+.hero-bg-paused .hero-halo {
+  animation-play-state: paused;
 }
 
 /* ---------------------------------------------------------------------------
@@ -122,19 +138,28 @@
 
 /* ---------------------------------------------------------------------------
    6. THEMES MARQUEE TRACK (CSS FALLBACK LOOP)
-   JS duplicates the pill children so the list is exactly 2x wide; translating
-   -50% then loops seamlessly. styles.css already pauses on hover/focus-within.
+   JS (duplicateMarqueeChildren) duplicates the pill children into N copies of
+   the ORIGINAL set so the track is always >= one set + one viewport wide (one
+   clone wasn't enough: the set is narrower than the viewport, so a single -50%
+   loop opened a trailing gap every cycle). JS writes --marquee-copies = total
+   set count; the keyframe must therefore translate by exactly ONE set =
+   -100%/copies (NOT a fixed -50%), so the loop period matches the enhanced
+   ticker no matter how many sets were cloned. With the default 2 copies this is
+   -50% (backward-compatible). styles.css already pauses on hover/focus-within.
    Only run the loop once JS has set up the seamless duplicate (.is-marquee).
    On the ENHANCED path GSAP removes .is-marquee and drives translate3d on the
    track directly (scroll-velocity reactive — main.js §10b).
    --------------------------------------------------------------------------- */
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(calc(-100% / var(--marquee-copies, 2))); }
 }
 .themes-track.is-marquee {
   animation: marquee-scroll var(--marquee-speed, 38s) linear infinite;
-  will-change: transform;
+  /* No standing will-change: the translateX loop composites fine without a
+     permanently reserved layer (the keyframe animates transform only). Dropping
+     it lets the browser reclaim the layer once the themes section scrolls off
+     (the enhanced JS ticker already manages will-change transiently, IO-gated). */
 }
 
 /* ---------------------------------------------------------------------------
@@ -230,10 +255,16 @@
    --------------------------------------------------------------------------- */
 .post-poster[data-parallax] {
   transform: translate3d(0, var(--shift, 0px), 0);
-  transition: transform var(--dur-slow) var(--ease-out);
+  /* Ease ONLY the hover via the standalone `scale` longhand (composes AFTER the
+     translate). Do NOT transition `transform`: both parallax paths rewrite
+     --shift every frame, and with transform in the transition list each per-frame
+     change kicks a fresh 0.9s tween, so the poster perpetually chases the scroll
+     ~0.9s behind (a rubber-band smear). `scale:` keeps the 0.9s hover ease while
+     letting the scrub/rAF translate track scroll 1:1. */
+  transition: scale var(--dur-slow) var(--ease-out);
 }
 .post:hover .post-poster[data-parallax] {
-  transform: translate3d(0, var(--shift, 0px), 0) scale(1.03);
+  scale: 1.03;
 }
 
 /* ---------------------------------------------------------------------------
@@ -250,12 +281,25 @@
   padding-bottom: 0.06em;
 }
 
-/* The gradient word inside the hero headline must keep its clipped fill even
-   after SplitText wraps it in word/line spans. */
-.split-line .text-gradient,
-.split-word .text-gradient {
+/* The gradient word ("excellence") inside the hero headline must keep its
+   clipped emerald->gold fill once SplitText runs. We now split the headline by
+   LINE ONLY (main.js §14), so SplitText preserves the nested .text-gradient span
+   intact inside a .split-line (and, if the word ever wraps across two lines,
+   clones it per line — the clones keep the .text-gradient class). The span thus
+   keeps its own resting gradient fill from styles.css §3 and stays visible. We
+   only need to re-assert that fill in case SplitText itself spans the gradient
+   text into a per-line wrapper that carries the .text-gradient class. The no-JS
+   / no-SplitText path keeps the resting rule on the parent, so it degrades
+   cleanly. (Earlier word/char split classes were removed: word-splitting
+   flattened .text-gradient and made "excellence" render transparent.) */
+.text-gradient.split-line,
+.text-gradient .split-line {
+  background: var(--grad-emerald-gold);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 /* ---------------------------------------------------------------------------
@@ -317,8 +361,9 @@
 
 /* ---------------------------------------------------------------------------
    18. MAGNETIC BUTTON PRIME (ENHANCED + desktop fine-pointer only)
-   styles.css §17b already primes will-change on .gsap-enhanced [data-magnetic]
-   under the fine-pointer query. Nothing else needed — GSAP owns the transform.
+   styles.css §17b primes will-change on .gsap-enhanced [data-magnetic] ONLY on
+   hover/focus (not standing), so no permanent layer is held per button. Nothing
+   else needed here — GSAP owns the transform.
    --------------------------------------------------------------------------- */
 
 /* ---------------------------------------------------------------------------
@@ -364,6 +409,7 @@
   .post-poster[data-parallax],
   .post:hover .post-poster[data-parallax] {
     transform: none !important;
+    scale: 1 !important;
   }
 
   /* Tilt cards rest flat (lift only). */

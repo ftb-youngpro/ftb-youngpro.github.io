@@ -10,3 +10,16 @@ desktop.ini
 .idea/
 *.swp
 *~
+
+# QA / review scaffolding — never published (GitHub Pages serves the repo root).
+# Root-anchored (leading /) so these can NEVER match real assets under assets/
+# (the only real JS is assets/js/main.js, which is unaffected).
+/_qa/
+/_shots/
+/__*.html
+/_*.html
+/_*.mjs
+/_*.js
+/_verify_*.png
+/marquee_*.png
+/marquee_*.html

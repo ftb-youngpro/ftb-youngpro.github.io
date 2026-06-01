@@ -27,9 +27,10 @@
   <!-- Favicon -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-  <!-- Google Fonts (the ONLY external resource) -->
+  <!-- Google Fonts + the GSAP CDN (the only external resources) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
@@ -69,10 +70,15 @@
     GALLERY LIGHTBOX:
       [data-lightbox]            -> each clickable gallery <button> (data-full="path",
                                     data-caption="text")
-      [data-lightbox-dialog]     -> the <dialog>/overlay element (focus-trap, ESC close)
+      [data-lightbox-dialog]     -> the overlay element (focus-trap; closes on ESC,
+                                    backdrop click, and the X button). Lives as a
+                                    DIRECT CHILD of <body> (sibling of <main>) so the
+                                    open-state background-isolation (inert on
+                                    #main/header/footer) never inerts the dialog.
       [data-lightbox-image]      -> <img> inside the dialog to set src
       [data-lightbox-caption]    -> caption element inside the dialog
-      [data-lightbox-close]      -> close button inside the dialog
+      [data-lightbox-close]      -> the backdrop overlay AND the X button (both
+                                    carry data-lightbox-close)
 
     PARALLAX:
       [data-parallax]     -> posters that drift slightly slower than scroll (max ~24px)
@@ -82,11 +88,11 @@
                              (static fallback "2026" is already in the markup)
 
     ----------------------------------------------------------------------------
-    ENHANCED MOTION LAYER  (GSAP + ScrollTrigger + SplitText + Lenis, jsDelivr).
-    All purely additive + feature-detected; the site fully works with zero libs.
-    CDN globals available after the defer scripts load (each may be undefined if
-    a CDN is blocked — main.js MUST feature-detect every one):
-      window.gsap  window.ScrollTrigger  window.SplitText  window.Lenis
+    ENHANCED MOTION LAYER  (GSAP + ScrollTrigger + SplitText, jsDelivr).
+    Scrolling is NATIVE (no Lenis). All purely additive + feature-detected; the
+    site fully works with zero libs. CDN globals available after the defer scripts
+    load (each may be undefined if a CDN is blocked — main.js feature-detects each):
+      window.gsap  window.ScrollTrigger  window.SplitText
 
     NEW STATIC DOM HOOKS (present in this markup — target these):
       [data-split]        -> .hero-title (the <h1>) + every .section-title (<h2>);
@@ -109,6 +115,8 @@
       .no-photo           -> on .leader-avatar: image failed -> show initials.
       .split-line         -> SplitText line wrappers (CSS gives them overflow:hidden).
       .is-hovering        -> on the injected cursor ring over interactive elements.
+      html.yp-has-cursor  -> set by JS while the custom cursor is active (ENHANCED +
+                             fine-pointer); CSS hides the native cursor only then.
 
     NEW JS-INJECTED NODES (never in static HTML, so no-JS pages never see them):
       .yp-intro (+ .yp-intro-mask .yp-intro-mark .yp-intro-wipe) -> intro overlay.
@@ -169,7 +177,7 @@
       <div class="container hero-inner">
         <p class="eyebrow hero-eyebrow" data-reveal>Faith Temple Baptist Church · Young Professionals</p>
         <h1 class="hero-title" data-reveal data-split>
-          Faith and <span class="text-gradient">excellence</span>, lived out in the marketplace.
+          Faith and <span class="text-gradient">excellence,</span> lived out in the marketplace.
         </h1>
         <p class="hero-lead lead" data-reveal>
           We're young professionals chasing Jesus and our callings at the same time — building real
@@ -512,7 +520,7 @@
       </div>
 
       <!-- Marquee track (JS may duplicate children; CSS pauses on hover/focus) -->
-      <div class="themes-marquee" role="presentation">
+      <div class="themes-marquee" role="presentation" aria-hidden="true">
         <ul class="themes-track" data-themes-track role="list">
           <li class="theme-pill"><span class="theme-term">Loob</span><span class="theme-gloss">the inner self, the will</span></li>
           <li class="theme-pill"><span class="theme-term">Kapwa</span><span class="theme-gloss">shared humanity</span></li>
@@ -745,16 +753,6 @@
           </li>
         </ul>
       </div>
-
-      <!-- Lightbox dialog (vanilla JS, focus-trapped, ESC to close) -->
-      <div class="lightbox" data-lightbox-dialog hidden>
-        <div class="lightbox-overlay" data-lightbox-close></div>
-        <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="Image viewer">
-          <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close image viewer">&times;</button>
-          <img class="lightbox-image" data-lightbox-image alt="">
-          <p class="lightbox-caption" data-lightbox-caption></p>
-        </div>
-      </div>
     </section>
 
     <!-- ===================== JOIN / CONTACT ===================== -->
@@ -806,6 +804,21 @@
 
   </main>
 
+  <!-- ===================== GALLERY LIGHTBOX =====================
+       Direct child of <body> (a SIBLING of <main>, the header, and the footer)
+       so that isolating the background — inert-ing #main + header + footer while
+       the lightbox is open — never makes the dialog itself inert. (When this
+       lived INSIDE #main, inert-ing #main disabled the overlay + X button, so
+       only Esc could close it.) Vanilla JS, focus-trapped, ESC + backdrop + X. -->
+  <div class="lightbox" data-lightbox-dialog hidden>
+    <div class="lightbox-overlay" data-lightbox-close></div>
+    <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close image viewer">&times;</button>
+      <img class="lightbox-image" data-lightbox-image alt="">
+      <p class="lightbox-caption" data-lightbox-caption></p>
+    </div>
+  </div>
+
   <!-- ===================== FOOTER ===================== -->
   <footer class="site-footer" id="site-footer">
     <div class="container footer-grid">
@@ -844,12 +857,13 @@
   </footer>
 
   <!-- Motion libs (jsDelivr CDN — graceful degradation: site fully works without them).
-       Dependency order: gsap -> ScrollTrigger + SplitText -> lenis -> main.js.
-       All `defer` so they execute in document order; main.js stays last. No `async`. -->
+       Scrolling is NATIVE (no Lenis — native scroll is snappy and ScrollTrigger
+       runs on it directly). Dependency order: gsap -> ScrollTrigger + SplitText
+       -> main.js. All `defer` so they execute in document order; main.js stays
+       last. No `async`. -->
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>
