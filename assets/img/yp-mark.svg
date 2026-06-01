@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Young Pro Ministry monogram">
+  <title>Young Pro Ministry — YP monogram</title>
+  <defs>
+    <linearGradient id="ypEmerald" x1="12" y1="12" x2="52" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#34E29B"/>
+      <stop offset="1" stop-color="#149B63"/>
+    </linearGradient>
+    <linearGradient id="ypGold" x1="32" y1="6" x2="46" y2="22" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F6CE63"/>
+      <stop offset="1" stop-color="#D99A2B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded forest tile: distinctive, premium, not a plain circle -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="#0A1F17"/>
+  <rect x="2.75" y="2.75" width="58.5" height="58.5" rx="15.25" fill="none" stroke="url(#ypEmerald)" stroke-opacity="0.45" stroke-width="1.5"/>
+
+  <!-- Y (left): left arm + a single rising stem; the right arm extends upward as a sprout into the gold leaf -->
+  <path d="M13.5 18 L21 31 L21 47"
+        fill="none" stroke="url(#ypEmerald)" stroke-width="6"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M28.5 18 L21 31"
+        fill="none" stroke="url(#ypEmerald)" stroke-width="6"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- P (right): clearly separated, own stem + bowl -->
+  <path d="M35 47 L35 18 L44 18 A9.5 9.5 0 0 1 44 37 L35 37"
+        fill="none" stroke="url(#ypEmerald)" stroke-width="6"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Single gold leaf rising off the Y's right arm: a quiet nod to the church's botanical wreath + faith rising upward -->
+  <path d="M28.5 17.5 C28.5 11 33.6 6.8 39.6 6.3 C39.1 12.6 35 17 28.5 17.5 Z" fill="url(#ypGold)"/>
+  <path d="M32.6 14.4 C35.1 12.9 37.6 11.7 39.2 7.4" fill="none" stroke="#0A1F17" stroke-opacity="0.35" stroke-width="1.1" stroke-linecap="round"/>
+</svg>

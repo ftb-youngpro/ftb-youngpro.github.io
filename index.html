@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Young Pro Ministry · Faith Temple Baptist Church</title>
+  <meta name="description" content="The Young Pro Ministry of Faith Temple Baptist Church Inc. — Filipino young professionals chasing Jesus and their callings together. Faith and excellence, lived out in the marketplace.">
+  <meta name="theme-color" content="#060d0a">
+  <meta name="author" content="Young Pro Ministry · Faith Temple Baptist Church Inc.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Young Pro Ministry">
+  <meta property="og:title" content="Young Pro Ministry · Faith Temple Baptist Church">
+  <meta property="og:description" content="Filipino young professionals chasing Jesus and their callings together. Worship God. Make Disciples.">
+  <meta property="og:url" content="https://ftb-youngpro.github.io">
+  <meta property="og:image" content="https://ftb-youngpro.github.io/assets/img/museum-poster-ypgt-05-30-2026.png">
+  <meta property="og:image:alt" content="Young Pro Get-Together — National Museum Tour poster, May 30, 2026.">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Young Pro Ministry · Faith Temple Baptist Church">
+  <meta name="twitter:description" content="Filipino young professionals chasing Jesus and their callings together. Worship God. Make Disciples.">
+  <meta name="twitter:image" content="https://ftb-youngpro.github.io/assets/img/museum-poster-ypgt-05-30-2026.png">
+  <meta name="twitter:image:alt" content="Young Pro Get-Together — National Museum Tour poster, May 30, 2026.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- Google Fonts (the ONLY external resource) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+
+  <!--
+    ============================================================================
+    JS HOOKS REFERENCE  (for the JS engineer — target these, do not guess)
+    ----------------------------------------------------------------------------
+    SECTION IDS (anchors + scrollspy targets):
+      #hero  #verse  #about  #what-we-do  #vision  #happenings  #themes
+      #leaders  #gallery  #join   (footer is <footer id="site-footer">)
+
+    NAV:
+      [data-nav-toggle]   -> the hamburger <button> (aria-controls="primary-nav",
+                             toggle aria-expanded true/false)
+      [data-nav]          -> the <ul> menu / mobile drawer (id="primary-nav")
+      [data-nav] a[href^="#"]   -> nav links for scrollspy; add .is-active to the
+                                   matching link, remove from others
+      [data-site-header]  -> the sticky <header>; add .is-scrolled when scrollY > 24
+
+    SCROLL-REVEAL:
+      [data-reveal]       -> blocks to fade+rise in. Add .is-visible on intersect.
+                             Stagger with inline style="--i:N" already present on
+                             grid children where useful.
+
+    COUNT-UP STATS:
+      [data-count]        -> stat number element; integer target is in the attribute
+                             (e.g. data-count="200"). Count 0 -> target on view.
+      #vision             -> stats section to observe for triggering count-up.
+
+    THEMES MARQUEE:
+      [data-themes-track] -> the marquee wrapper. JS may duplicate its children for a
+                             seamless loop; pause on hover/focus is handled in CSS.
+
+    GALLERY LIGHTBOX:
+      [data-lightbox]            -> each clickable gallery <button> (data-full="path",
+                                    data-caption="text")
+      [data-lightbox-dialog]     -> the <dialog>/overlay element (focus-trap, ESC close)
+      [data-lightbox-image]      -> <img> inside the dialog to set src
+      [data-lightbox-caption]    -> caption element inside the dialog
+      [data-lightbox-close]      -> close button inside the dialog
+
+    PARALLAX:
+      [data-parallax]     -> posters that drift slightly slower than scroll (max ~24px)
+
+    FOOTER:
+      [data-year]         -> element whose textContent JS sets to the current year
+                             (static fallback "2026" is already in the markup)
+    ============================================================================
+  -->
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===================== STICKY NAV ===================== -->
+  <header class="site-header" data-site-header>
+    <div class="container nav-bar">
+      <a class="brand" href="#hero" aria-label="Young Pro Ministry — home">
+        <img class="brand-mark" src="assets/img/yp-mark.svg" alt="" width="40" height="40" aria-hidden="true">
+        <span class="brand-text">
+          <span class="brand-name">Young Pro</span>
+          <span class="brand-sub">Ministry</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" data-nav-toggle type="button"
+              aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu">
+        <span class="nav-toggle-box" aria-hidden="true">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </span>
+      </button>
+
+      <nav class="nav" aria-label="Primary">
+        <ul class="nav-menu" id="primary-nav" data-nav>
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#what-we-do">What We Do</a></li>
+          <li><a class="nav-link" href="#vision">Vision 2026</a></li>
+          <li><a class="nav-link" href="#happenings">Happenings</a></li>
+          <li><a class="nav-link" href="#themes">Themes</a></li>
+          <li><a class="nav-link" href="#leaders">Leaders</a></li>
+          <li class="nav-cta-item"><a class="btn btn-primary nav-cta" href="#join">Join Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="aurora aurora-1"></span>
+        <span class="aurora aurora-2"></span>
+        <span class="aurora aurora-3"></span>
+        <span class="hero-halo"></span>
+      </div>
+      <div class="grain" aria-hidden="true"></div>
+
+      <div class="container hero-inner">
+        <p class="eyebrow hero-eyebrow" data-reveal>Faith Temple Baptist Church · Young Professionals</p>
+        <h1 class="hero-title" data-reveal>
+          Faith and <span class="text-gradient">excellence</span>, lived out in the marketplace.
+        </h1>
+        <p class="hero-lead lead" data-reveal>
+          We're young professionals chasing Jesus and our callings at the same time — building real
+          friendships, growing in the Word, and bringing the gospel into every office, hospital,
+          classroom, and coffee shop we walk into.
+        </p>
+        <div class="hero-actions" data-reveal>
+          <a class="btn btn-primary" href="#join">Join us</a>
+          <a class="btn btn-ghost" href="#happenings">See what's next</a>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#verse" aria-label="Scroll to read more">
+        <span class="scroll-cue-chevron" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- ===================== ANCHOR VERSE ===================== -->
+    <section class="verse-band" id="verse" aria-labelledby="verse-heading">
+      <div class="container container-narrow">
+        <figure class="verse" data-reveal>
+          <span class="verse-quote" aria-hidden="true">&ldquo;</span>
+          <blockquote class="verse-text">
+            <h2 id="verse-heading" class="sr-only">Our anchor verse</h2>
+            <p>Commit your work to the Lord, and your plans will be established.</p>
+          </blockquote>
+          <figcaption class="verse-ref">Proverbs 16:3 <span class="verse-translation">ESV</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section about" id="about" aria-labelledby="about-heading">
+      <div class="container about-grid">
+        <div class="about-copy">
+          <p class="eyebrow" data-reveal>Who we are</p>
+          <h2 class="section-title" id="about-heading" data-reveal>A home for young pros who love God and their work.</h2>
+          <div class="prose" data-reveal>
+            <p>The Young Pro Ministry is the young professionals' department of Faith Temple Baptist
+              Church Inc. We're the nurses on night shift, the devs debugging at 2 AM, the teachers,
+              the freelancers, the fresh grads still figuring it out — all learning to follow Jesus
+              right where we are.</p>
+            <p>We exist to live out our church's heartbeat: <span class="hl-gold">Worship God. Make
+              Disciples.</span> That means we don't separate "church life" from "work life." Sunday
+              faith is meant for Monday meetings, and the same grace that saved us is the grace we
+              carry into every deadline and every kapwa we meet.</p>
+            <p>So we gather — to worship, to open the Word, to talk through the real stuff of being a
+              Filipino Christian in the working world, and to actually enjoy each other over kape and
+              kwentuhan. Bring your questions, your wins, your tiredness. There's a seat here for you.</p>
+          </div>
+        </div>
+
+        <aside class="about-panel glass" data-reveal aria-label="Our church">
+          <img class="about-logo" src="assets/img/ftb-church-logo.png"
+               alt="Faith Temple Baptist Church Inc. botanical wreath logo." width="120" height="120" loading="lazy">
+          <p class="about-panel-name">Faith Temple Baptist Church Inc.</p>
+          <p class="about-panel-tag">Faith &amp; Excellence in the Marketplace</p>
+          <p class="about-panel-purpose">Worship God. Make Disciples.</p>
+        </aside>
+      </div>
+
+      <div class="container">
+        <ul class="value-grid" role="list">
+          <li class="value-card glass card" data-reveal style="--i:0">
+            <h3 class="value-title">Faith First</h3>
+            <p class="value-desc">Jesus over the hustle — our careers serve our calling, not the other way around.</p>
+          </li>
+          <li class="value-card glass card" data-reveal style="--i:1">
+            <h3 class="value-title">Career Growth</h3>
+            <p class="value-desc">We sharpen our skills and integrity so our work itself becomes worship.</p>
+          </li>
+          <li class="value-card glass card" data-reveal style="--i:2">
+            <h3 class="value-title">Community</h3>
+            <p class="value-desc">Real friendships beyond the four walls — kape, kwentuhan, and people who pray for you.</p>
+          </li>
+          <li class="value-card glass card" data-reveal style="--i:3">
+            <h3 class="value-title">Service</h3>
+            <p class="value-desc">We use our gifts and our 9-to-5 to bless the church, the city, and the lost.</p>
+          </li>
+          <li class="value-card glass card" data-reveal style="--i:4">
+            <h3 class="value-title">Leadership</h3>
+            <p class="value-desc">Following Jesus first so we can lead well at work, at home, and in His church.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== WHAT WE DO ===================== -->
+    <section class="section what-we-do" id="what-we-do" aria-labelledby="wwd-heading">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow" data-reveal>What we do</p>
+          <h2 class="section-title" id="wwd-heading" data-reveal>Two ways we gather — and grow.</h2>
+          <p class="section-lead lead" data-reveal>Every month we meet around the Word and around the
+            table. One feeds the soul; the other builds the friendships that make faith stick.</p>
+        </header>
+
+        <div class="pillars">
+          <article class="pillar glass card" id="fellowship" data-reveal style="--i:0">
+            <span class="pillar-chip" aria-hidden="true">YPF</span>
+            <h3 class="pillar-title">YP Fellowship</h3>
+            <p class="pillar-kicker">Worship + the Word + a topic + sharing</p>
+            <p class="pillar-blurb">Our regular gathering at the church — usually 2:30 PM on the 2nd or
+              3rd week of the month. We worship together, sit under the Word, dig into a real topic,
+              then open up and share life with each other.</p>
+            <ul class="pillar-list" role="list">
+              <li>Worship that's heartfelt, not performed</li>
+              <li>A grounded message and a relevant topic for working life</li>
+              <li>Honest sharing and prayer in smaller circles</li>
+              <li>Usually 2:30 PM, 2nd or 3rd week of the month, at FTBCI</li>
+            </ul>
+          </article>
+
+          <article class="pillar glass card" id="ypgt" data-reveal style="--i:1">
+            <span class="pillar-chip" aria-hidden="true">YPGT</span>
+            <h3 class="pillar-title">YPGT — Young Pro Get-Together</h3>
+            <p class="pillar-kicker">Friendships outside the four walls</p>
+            <p class="pillar-blurb">Our monthly outing — because discipleship happens over food and
+              shared adventures too. Coffee runs, swimming, museum tours, hobby and fitness days. Come
+              as you are, invite a friend, make memories.</p>
+            <ul class="pillar-list" role="list">
+              <li>Monthly outings: kape, food, swimming, museum tours</li>
+              <li>Hobby and fitness days that are invite-friendly</li>
+              <li>A low-pressure way to bring a friend into the family</li>
+              <li>Where strangers become barkada and barkada become a faith group</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== VISION 2026 ===================== -->
+    <section class="section vision" id="vision" aria-labelledby="vision-heading">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow" data-reveal>Vision 2026</p>
+          <h2 class="section-title" id="vision-heading" data-reveal>What we're believing God for this year.</h2>
+          <p class="section-lead lead" data-reveal>These aren't just numbers on a poster — they're
+            names, faces, and futures we're praying into. By the end of 2026, by God's grace:</p>
+        </header>
+
+        <ul class="stat-grid" role="list">
+          <li class="stat" data-reveal style="--i:0">
+            <span class="stat-num text-gradient" data-count="200">0</span>
+            <span class="stat-label">individuals reached with the gospel</span>
+          </li>
+          <li class="stat" data-reveal style="--i:1">
+            <span class="stat-num text-gradient" data-count="15">0</span>
+            <span class="stat-label">young pros baptized</span>
+          </li>
+          <li class="stat" data-reveal style="--i:2">
+            <span class="stat-num text-gradient" data-count="5">0</span>
+            <span class="stat-label">new YP Faith Groups planted</span>
+          </li>
+          <li class="stat" data-reveal style="--i:3">
+            <span class="stat-num text-gradient" data-count="50">0</span>
+            <span class="stat-label">average attendance per fellowship</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== HAPPENINGS ===================== -->
+    <section class="section happenings" id="happenings" aria-labelledby="happenings-heading">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow" data-reveal>Happenings</p>
+          <h2 class="section-title" id="happenings-heading" data-reveal>What's been going on — and what's next.</h2>
+          <p class="section-lead lead" data-reveal>Recaps from where we've been and a heads-up on where
+            we're headed. Today's the season of June 2026 — come join us for what's coming.</p>
+        </header>
+
+        <ul class="feed-grid" role="list">
+
+          <!-- Museum Tour (featured / latest, real poster) -->
+          <li class="post card glass post--featured" data-reveal style="--i:0">
+            <div class="post-media">
+              <img class="post-poster" data-parallax loading="lazy"
+                   src="assets/img/museum-poster-ypgt-05-30-2026.png"
+                   alt="Poster for the Young Pro Get-Together Museum Tour at the National Museum of Fine Arts, Saturday May 30, 2026, 9 AM onwards — free entry."
+                   width="1448" height="2048">
+              <span class="badge badge-latest">Latest</span>
+            </div>
+            <div class="post-body">
+              <p class="post-meta"><span class="post-date">May 30, 2026</span><span class="post-tag">YPGT</span></p>
+              <h3 class="post-title">Museum Tour — National Museum of Fine Arts</h3>
+              <p class="post-blurb">Our latest YPGT and a day to remember. We met at 9 AM at the
+                National Museum of Fine Arts in Ermita, wandered through Intramuros, and capped it off
+                with café fellowship inside the old walls. Free entry, full hearts — art, history, and
+                barkada all in one Saturday.</p>
+            </div>
+          </li>
+
+          <!-- Goal Casting (real poster) -->
+          <li class="post card glass" data-reveal style="--i:1">
+            <div class="post-media">
+              <img class="post-poster" data-parallax loading="lazy"
+                   src="assets/img/goal-casting-ypf-01-18-2026.png"
+                   alt="Poster for the Goal Casting 2026 fellowship, January 18, 2026, 2:30 PM — anchored on Proverbs 16:3."
+                   width="1312" height="736">
+            </div>
+            <div class="post-body">
+              <p class="post-meta"><span class="post-date">January 18, 2026</span><span class="post-tag">Fellowship</span></p>
+              <h3 class="post-title">Goal Casting 2026</h3>
+              <p class="post-blurb">We kicked off the year on Proverbs 16:3 — committing our 2026 plans,
+                careers, and dreams to the Lord. The fellowship where we cast our goals and asked God
+                to establish them.</p>
+            </div>
+          </li>
+
+          <!-- Loob (no poster) -->
+          <li class="post card glass post--noimg" data-reveal style="--i:2">
+            <div class="post-body">
+              <p class="post-meta"><span class="post-date">February 2026</span><span class="post-tag">Fellowship</span></p>
+              <h3 class="post-title">Fellowship Topic: &ldquo;Loob&rdquo;</h3>
+              <p class="post-blurb">We looked inward — at the loob, our inner self and will — and asked
+                what it means to let God shape who we are on the inside, not just what we achieve on the
+                outside.</p>
+            </div>
+          </li>
+
+          <!-- Evangelism Workshop (no poster) -->
+          <li class="post card glass post--noimg" data-reveal style="--i:3">
+            <div class="post-body">
+              <p class="post-meta"><span class="post-date">March 2026</span><span class="post-tag">Fellowship</span></p>
+              <h3 class="post-title">Evangelism Workshop</h3>
+              <p class="post-blurb">We got equipped to share the gospel naturally — at our desks, in the
+                breakroom, wherever life puts us — learning to tell the story of Jesus in our own words
+                and our own workplaces.</p>
+            </div>
+          </li>
+
+          <!-- KKK (no poster) -->
+          <li class="post card glass post--noimg" data-reveal style="--i:4">
+            <div class="post-body">
+              <p class="post-meta"><span class="post-date">March 13, 2026</span><span class="post-tag">YPGT</span></p>
+              <h3 class="post-title">KKK — Kape, Kainan, at Kwentuhan</h3>
+              <p class="post-blurb">Coffee, good food, and unhurried conversation. Sometimes the deepest
+                discipleship happens over a cup of kape and a long kwentuhan.</p>
+            </div>
+          </li>
+
+          <!-- Swimming (no poster) -->
+          <li class="post card glass post--noimg" data-reveal style="--i:5">
+            <div class="post-body">
+              <p class="post-meta"><span class="post-date">April 10, 2026</span><span class="post-tag">YPGT</span></p>
+              <h3 class="post-title">Swimming Fellowship</h3>
+              <p class="post-blurb">A summer break with the barkada — sun, water, and a whole lot of
+                laughing. Rest is spiritual too.</p>
+            </div>
+          </li>
+
+          <!-- Malasakit (upcoming) -->
+          <li class="post card glass post--noimg post--upcoming" data-reveal style="--i:6">
+            <div class="post-body">
+              <p class="post-meta"><span class="post-date">June 2026</span><span class="post-tag">Fellowship</span><span class="badge badge-upcoming">Upcoming</span></p>
+              <h3 class="post-title">Fellowship Topic: &ldquo;Malasakit&rdquo;</h3>
+              <p class="post-blurb">This month we sit with malasakit — compassionate care — and what it
+                looks like to genuinely carry one another's burdens the way Christ carries ours.</p>
+            </div>
+          </li>
+
+          <!-- Cooking (upcoming) -->
+          <li class="post card glass post--noimg post--upcoming" data-reveal style="--i:7">
+            <div class="post-body">
+              <p class="post-meta"><span class="post-date">June 19, 2026</span><span class="post-tag">YPGT</span><span class="badge badge-upcoming">Upcoming</span></p>
+              <h3 class="post-title">Cooking Fellowship</h3>
+              <p class="post-blurb">Aprons on, phones down. We're cooking together, eating together, and
+                proving once again that the best conversations happen in the kitchen.</p>
+            </div>
+          </li>
+
+          <!-- Friend Day (upcoming) -->
+          <li class="post card glass post--noimg post--upcoming" data-reveal style="--i:8">
+            <div class="post-body">
+              <p class="post-meta"><span class="post-date">July 17, 2026</span><span class="post-tag">Fellowship</span><span class="badge badge-upcoming">Upcoming</span></p>
+              <h3 class="post-title">Friend Day + Topic &ldquo;Bahala Na&rdquo;</h3>
+              <p class="post-blurb">Our most invite-friendly fellowship of the year — bring a friend who
+                needs to hear the gospel. We'll unpack "Bahala Na" not as fatalism, but as faith-filled
+                trust in a God who holds us.</p>
+            </div>
+          </li>
+
+          <!-- Cybersecurity (upcoming) -->
+          <li class="post card glass post--noimg post--upcoming" data-reveal style="--i:9">
+            <div class="post-body">
+              <p class="post-meta"><span class="post-date">August 21, 2026</span><span class="post-tag">YPGT</span><span class="badge badge-upcoming">Upcoming</span></p>
+              <h3 class="post-title">Cybersecurity Talk</h3>
+              <p class="post-blurb">A YP crowd that's genuinely tech-savvy deserves a real talk on
+                staying safe online. Practical, sharp, and a great one to invite your work friends to.</p>
+            </div>
+          </li>
+
+          <!-- Running (upcoming) -->
+          <li class="post card glass post--noimg post--upcoming" data-reveal style="--i:10">
+            <div class="post-body">
+              <p class="post-meta"><span class="post-date">September 19, 2026</span><span class="post-tag">YPGT</span><span class="badge badge-upcoming">Upcoming</span></p>
+              <h3 class="post-title">Evangelistic Running Fellowship</h3>
+              <p class="post-blurb">Lacing up at Caloocan Sports Complex for a run with a purpose —
+                moving our feet, sharing the gospel, and showing that the body is a gift worth
+                stewarding.</p>
+            </div>
+          </li>
+
+          <!-- Thanksgiving (upcoming) -->
+          <li class="post card glass post--noimg post--upcoming" data-reveal style="--i:11">
+            <div class="post-body">
+              <p class="post-meta"><span class="post-date">November 20, 2026</span><span class="post-tag">Fellowship</span><span class="badge badge-upcoming">Upcoming</span></p>
+              <h3 class="post-title">Thanksgiving Fellowship + Topic &ldquo;Utang na Loob&rdquo;</h3>
+              <p class="post-blurb">A season of gratitude — reflecting on utang na loob and the debt of
+                love we owe the One who gave everything for us. Plus a Stewarding Your Finances seminar
+                to close out the year wisely.</p>
+            </div>
+          </li>
+
+          <!-- Christmas (upcoming) -->
+          <li class="post card glass post--noimg post--upcoming" data-reveal style="--i:12">
+            <div class="post-body">
+              <p class="post-meta"><span class="post-date">December 2026</span><span class="post-tag">Fellowship</span><span class="badge badge-upcoming">Upcoming</span></p>
+              <h3 class="post-title">YP Christmas Fellowship</h3>
+              <p class="post-blurb">We close the year together — worship, food, and celebrating the One
+                whose coming changed everything. The whole family, one more time before 2027.</p>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== THEMES ===================== -->
+    <section class="section themes" id="themes" aria-labelledby="themes-heading">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow" data-reveal>Discipleship themes</p>
+          <h2 class="section-title" id="themes-heading" data-reveal>Our faith, in our own language.</h2>
+          <p class="section-lead lead" data-reveal>These are the real topics we wrestle with at
+            fellowship — Filipino values everyone knows, redeemed and re-rooted in Christ. Not
+            flattened into English, but met where they live.</p>
+        </header>
+      </div>
+
+      <!-- Marquee track (JS may duplicate children; CSS pauses on hover/focus) -->
+      <div class="themes-marquee" role="presentation">
+        <ul class="themes-track" data-themes-track role="list">
+          <li class="theme-pill"><span class="theme-term">Loob</span><span class="theme-gloss">the inner self, the will</span></li>
+          <li class="theme-pill"><span class="theme-term">Kapwa</span><span class="theme-gloss">shared humanity</span></li>
+          <li class="theme-pill"><span class="theme-term">Malasakit</span><span class="theme-gloss">compassionate care</span></li>
+          <li class="theme-pill"><span class="theme-term">Bahala Na</span><span class="theme-gloss">faith-filled trust</span></li>
+          <li class="theme-pill"><span class="theme-term">Utang na Loob</span><span class="theme-gloss">a debt of the heart</span></li>
+        </ul>
+      </div>
+
+      <!-- Accessible full theme list -->
+      <div class="container">
+        <ul class="theme-grid" role="list">
+          <li class="theme-card card glass" data-reveal style="--i:0">
+            <h3 class="theme-card-term">Loob</h3>
+            <p class="theme-card-gloss">the inner self, the will</p>
+            <p class="theme-card-text">Before God transforms our resume, He transforms our loob —
+              renewing the hidden person of the heart until who we are inside finally matches who He's
+              calling us to be.</p>
+          </li>
+          <li class="theme-card card glass" data-reveal style="--i:1">
+            <h3 class="theme-card-term">Kapwa</h3>
+            <p class="theme-card-gloss">shared humanity, one-with-the-other</p>
+            <p class="theme-card-text">To see kapwa is to recognize myself in you — and the gospel
+              deepens it, because at the cross we are all one in our need and one in His grace.</p>
+          </li>
+          <li class="theme-card card glass" data-reveal style="--i:2">
+            <h3 class="theme-card-term">Malasakit</h3>
+            <p class="theme-card-gloss">compassionate care</p>
+            <p class="theme-card-text">Malasakit is love that refuses to look away; it's the same heart
+              that moved Jesus toward the crowds, now beating in us toward every burdened co-worker and
+              stranger.</p>
+          </li>
+          <li class="theme-card card glass" data-reveal style="--i:3">
+            <h3 class="theme-card-term">Bahala Na</h3>
+            <p class="theme-card-gloss">faith-filled trust in God</p>
+            <p class="theme-card-text">Not careless surrender to fate, but "Bathala na" — entrusting
+              outcomes to the God who holds them, doing our part fully and resting in His sovereign,
+              faithful hands.</p>
+          </li>
+          <li class="theme-card card glass" data-reveal style="--i:4">
+            <h3 class="theme-card-term">Utang na Loob</h3>
+            <p class="theme-card-gloss">deep gratitude, a debt of the heart</p>
+            <p class="theme-card-text">We carry the ultimate utang na loob — a debt we could never repay
+              — answered not by guilt but by glad, lifelong gratitude to the Christ who paid it all.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== CORE LEADERS ===================== -->
+    <section class="section leaders" id="leaders" aria-labelledby="leaders-heading">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow" data-reveal>Core leaders</p>
+          <h2 class="section-title" id="leaders-heading" data-reveal>The people serving this family.</h2>
+          <p class="section-lead lead" data-reveal>Our core leaders serve under the pastor to shepherd
+            and care for the family — building one another up in the faith, equipping young pros for
+            real-world relevance, and leading the way in disciple-making through servant, shared
+            leadership.</p>
+        </header>
+
+        <ul class="leader-grid" role="list">
+          <li class="leader-card card glass" data-reveal style="--i:0">
+            <span class="avatar" aria-hidden="true"><span class="avatar-initials">PJB</span></span>
+            <h3 class="leader-name">Pastor Jaymar Bagalacsa</h3>
+            <p class="leader-nick">PJB</p>
+            <p class="leader-role">Young Pro Pastor &amp; Department Head</p>
+          </li>
+          <li class="leader-card card glass" data-reveal style="--i:1">
+            <span class="avatar" aria-hidden="true"><span class="avatar-initials">DS</span></span>
+            <h3 class="leader-name">Darcy Amiel Sudiacal</h3>
+            <p class="leader-nick">Kuya Darcy</p>
+            <p class="leader-role">Core Leader</p>
+          </li>
+          <li class="leader-card card glass" data-reveal style="--i:2">
+            <span class="avatar" aria-hidden="true"><span class="avatar-initials">PL</span></span>
+            <h3 class="leader-name">Princess Jean Laborte</h3>
+            <p class="leader-nick">Cess</p>
+            <p class="leader-role">Core Leader</p>
+          </li>
+          <li class="leader-card card glass" data-reveal style="--i:3">
+            <span class="avatar" aria-hidden="true"><span class="avatar-initials">RI</span></span>
+            <h3 class="leader-name">Ryan James Indangan</h3>
+            <p class="leader-nick">Ryan</p>
+            <p class="leader-role">Core Leader</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== GALLERY ===================== -->
+    <section class="section gallery" id="gallery" aria-labelledby="gallery-heading">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow" data-reveal>Gallery</p>
+          <h2 class="section-title" id="gallery-heading" data-reveal>Moments from the family.</h2>
+          <p class="section-lead lead" data-reveal>A few highlights so far — with more on the way. (Our
+            full National Museum album is coming soon; these tiles are ready to be swapped for the real
+            photos.)</p>
+        </header>
+
+        <ul class="gallery-grid" role="list">
+          <li class="gallery-item" data-reveal style="--i:0">
+            <button class="gallery-tile" type="button" data-lightbox
+                    data-full="assets/img/museum-poster-ypgt-05-30-2026.png"
+                    data-caption="YPGT Museum Tour — National Museum of Fine Arts, May 30, 2026.">
+              <img class="gallery-img" loading="lazy"
+                   src="assets/img/museum-poster-ypgt-05-30-2026.png"
+                   alt="YPGT Museum Tour poster — National Museum of Fine Arts, May 30, 2026."
+                   width="1448" height="2048">
+              <span class="gallery-caption">Museum Tour · May 2026</span>
+            </button>
+          </li>
+          <li class="gallery-item" data-reveal style="--i:1">
+            <button class="gallery-tile" type="button" data-lightbox
+                    data-full="assets/img/goal-casting-ypf-01-18-2026.png"
+                    data-caption="Goal Casting 2026 — January 18, 2026, anchored on Proverbs 16:3.">
+              <img class="gallery-img" loading="lazy"
+                   src="assets/img/goal-casting-ypf-01-18-2026.png"
+                   alt="Goal Casting 2026 fellowship poster — January 18, 2026."
+                   width="1312" height="736">
+              <span class="gallery-caption">Goal Casting · Jan 2026</span>
+            </button>
+          </li>
+          <li class="gallery-item gallery-item--placeholder" data-reveal style="--i:2">
+            <div class="gallery-placeholder" role="img" aria-label="Photo coming soon — KKK coffee fellowship.">
+              <span class="gallery-placeholder-label">Photos coming soon</span>
+              <span class="gallery-placeholder-sub">KKK · Kape &amp; Kwentuhan</span>
+            </div>
+          </li>
+          <li class="gallery-item gallery-item--placeholder" data-reveal style="--i:3">
+            <div class="gallery-placeholder" role="img" aria-label="Photo coming soon — Swimming Fellowship.">
+              <span class="gallery-placeholder-label">Photos coming soon</span>
+              <span class="gallery-placeholder-sub">Swimming Fellowship</span>
+            </div>
+          </li>
+          <li class="gallery-item gallery-item--placeholder" data-reveal style="--i:4">
+            <div class="gallery-placeholder" role="img" aria-label="Photo coming soon — Cooking Fellowship.">
+              <span class="gallery-placeholder-label">Photos coming soon</span>
+              <span class="gallery-placeholder-sub">Cooking Fellowship</span>
+            </div>
+          </li>
+          <li class="gallery-item gallery-item--placeholder" data-reveal style="--i:5">
+            <div class="gallery-placeholder" role="img" aria-label="Photo coming soon — Friend Day.">
+              <span class="gallery-placeholder-label">Photos coming soon</span>
+              <span class="gallery-placeholder-sub">Friend Day</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Lightbox dialog (vanilla JS, focus-trapped, ESC to close) -->
+      <div class="lightbox" data-lightbox-dialog hidden>
+        <div class="lightbox-overlay" data-lightbox-close></div>
+        <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="Image viewer">
+          <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close image viewer">&times;</button>
+          <img class="lightbox-image" data-lightbox-image alt="">
+          <p class="lightbox-caption" data-lightbox-caption></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== JOIN / CONTACT ===================== -->
+    <section class="section join" id="join" aria-labelledby="join-heading">
+      <div class="container join-grid">
+        <div class="join-copy">
+          <p class="eyebrow" data-reveal>Come join us</p>
+          <h2 class="section-title" id="join-heading" data-reveal>There's a seat saved for you.</h2>
+          <p class="join-blurb lead" data-reveal>Whether you're rock-solid in your faith or just
+            curious, fresh out of school or deep into your career — you belong here. Message us, drop by
+            a fellowship, or come hang at the next YPGT. No pressure, just kape, the Word, and a family
+            that's genuinely glad you came.</p>
+
+          <div class="join-actions" data-reveal>
+            <a class="btn btn-primary" href="mailto:ftb.youngpro.ministry@gmail.com">Email us</a>
+            <a class="btn btn-ghost" href="https://maps.google.com/?q=%23206+P.+Orbe+St.,+Blueville+Subdivision,+Novaliches,+Quezon+City,+Philippines+1117"
+               target="_blank" rel="noopener noreferrer">Get directions</a>
+          </div>
+
+          <dl class="join-details" data-reveal>
+            <div class="join-detail">
+              <dt>Email</dt>
+              <dd><a class="link-emerald" href="mailto:ftb.youngpro.ministry@gmail.com">ftb.youngpro.ministry@gmail.com</a></dd>
+            </div>
+            <div class="join-detail">
+              <dt>Where we meet</dt>
+              <dd>#206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City, Philippines 1117</dd>
+            </div>
+          </dl>
+        </div>
+
+        <aside class="join-panel glass card" data-reveal aria-labelledby="expect-heading">
+          <h3 class="join-panel-title" id="expect-heading">What to expect</h3>
+          <ul class="expect-list" role="list">
+            <li><span class="expect-step" aria-hidden="true">1</span>
+              <span><strong>Just show up.</strong> Come to a YP Fellowship (usually 2:30 PM, 2nd or 3rd
+              week) or the next YPGT outing. Come as you are.</span></li>
+            <li><span class="expect-step" aria-hidden="true">2</span>
+              <span><strong>Say hi.</strong> Email us first if you'd like — we'll tell you exactly where
+              and when, and someone will be looking out for you.</span></li>
+            <li><span class="expect-step" aria-hidden="true">3</span>
+              <span><strong>Stay for the kape.</strong> No pressure, no performance. Worship, the Word,
+              and real kwentuhan — that's it.</span></li>
+          </ul>
+          <p class="join-panel-note">Bring a friend. Everyone's welcome here.</p>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer" id="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img class="footer-logo" src="assets/img/ftb-church-logo.png"
+             alt="Faith Temple Baptist Church Inc. botanical wreath logo." width="80" height="80" loading="lazy">
+        <p class="footer-ministry">Young Pro Ministry</p>
+        <p class="footer-church">Faith Temple Baptist Church Inc.</p>
+        <p class="footer-purpose">Worship God. Make Disciples.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer">
+        <h2 class="footer-heading">Explore</h2>
+        <ul role="list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#what-we-do">What We Do</a></li>
+          <li><a href="#vision">Vision 2026</a></li>
+          <li><a href="#happenings">Happenings</a></li>
+          <li><a href="#themes">Themes</a></li>
+          <li><a href="#leaders">Leaders</a></li>
+          <li><a href="#join">Join Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-contact">
+        <h2 class="footer-heading">Reach us</h2>
+        <p><a class="link-emerald" href="mailto:ftb.youngpro.ministry@gmail.com">ftb.youngpro.ministry@gmail.com</a></p>
+        <p class="footer-address">#206 P. Orbe St., Blueville Subdivision,<br>Novaliches, Quezon City, Philippines 1117</p>
+        <p class="footer-closing">Committing our work to the Lord, one young pro at a time.</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span data-year>2026</span> Young Pro Ministry · Faith Temple Baptist Church Inc.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

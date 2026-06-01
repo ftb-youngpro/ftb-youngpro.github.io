@@ -1,0 +1,271 @@
+/* ============================================================================
+   Young Pro Ministry — Faith Temple Baptist Church Inc.
+   animations.css — all @keyframes, the animation utility classes, and the
+   reveal/JS-toggled motion states. styles.css owns resting/static state;
+   this file gives it life. Strictly green / gold / cream / warm-neutral.
+
+   Motion language: immersive + futuristic, but REVERENT and CALM. Nothing
+   bounces or flashes. Slow, soft, intentional — a quiet cathedral lit by
+   emerald and gold.
+
+   Owns (per the handoff):
+     - aurora drift (.aurora-1 / .aurora-2 / .aurora-3)
+     - .text-gradient shimmer (background-position loop)
+     - .themes-track translateX marquee loop
+     - .scroll-cue-chevron bob
+     - reveal entrance polish, count-up/lightbox/tilt state classes JS toggles
+   ============================================================================ */
+
+/* ---------------------------------------------------------------------------
+   1. JS-GATING
+   styles.css ships a `.no-js [data-reveal] { opacity:1 }` safe fallback.
+   main.js swaps <html class="no-js"> -> "js" as early as possible, so the
+   reveal resting state (opacity:0) applies and elements animate in on scroll.
+   These keep things sane if classes ever desync.
+   --------------------------------------------------------------------------- */
+.js [data-reveal]:not(.is-visible) {
+  opacity: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   2. HERO AURORA / MESH DRIFT
+   Large blurred radial blobs drift + scale on a slow loop, alternating so
+   the motion eases back on itself (no hard restart). Pure CSS; JS only adds
+   an optional subtle pointer-parallax offset on desktop via --px / --py.
+   --------------------------------------------------------------------------- */
+@keyframes aurora-drift-1 {
+  0%   { transform: translate3d(0, 0, 0) scale(1)    rotate(0deg); }
+  50%  { transform: translate3d(6%, 4%, 0) scale(1.12) rotate(8deg); }
+  100% { transform: translate3d(-3%, 7%, 0) scale(1.05) rotate(-4deg); }
+}
+@keyframes aurora-drift-2 {
+  0%   { transform: translate3d(0, 0, 0) scale(1.05) rotate(0deg); }
+  50%  { transform: translate3d(-7%, -5%, 0) scale(1) rotate(-9deg); }
+  100% { transform: translate3d(4%, -3%, 0) scale(1.1) rotate(5deg); }
+}
+@keyframes aurora-drift-3 {
+  0%   { transform: translate3d(0, 0, 0) scale(1); opacity: 0.18; }
+  50%  { transform: translate3d(-5%, 6%, 0) scale(1.18); opacity: 0.26; }
+  100% { transform: translate3d(5%, -4%, 0) scale(1.04); opacity: 0.2; }
+}
+
+/* The aurora blobs read --px/--py (set by JS pointer-parallax, default 0)
+   and compose it with their own drift via an outer wrapper transform.
+   We animate the blob itself and let the optional JS offset live on a
+   translate added through a custom-property-driven transform. To keep both
+   composable without JS fighting the keyframes, JS writes to --px/--py and
+   we apply them as a margin-like nudge using translate on a pseudo layer.
+   Simpler + robust: animate transform here; JS nudges via individual
+   left/top offsets is avoided — instead JS sets --px/--py and we add them. */
+.aurora-1 {
+  animation: aurora-drift-1 var(--aurora-speed, 26s) var(--ease-in-out) infinite alternate;
+  translate: var(--px, 0) var(--py, 0);
+}
+.aurora-2 {
+  animation: aurora-drift-2 calc(var(--aurora-speed, 26s) * 1.18) var(--ease-in-out) infinite alternate;
+  translate: calc(var(--px, 0) * 1.6) calc(var(--py, 0) * 1.6);
+}
+.aurora-3 {
+  animation: aurora-drift-3 calc(var(--aurora-speed, 26s) * 0.85) var(--ease-in-out) infinite alternate;
+  translate: calc(var(--px, 0) * -2.2) calc(var(--py, 0) * -2.2);
+}
+
+/* ---------------------------------------------------------------------------
+   3. HERO HALO — gentle breathing glow behind the headline
+   --------------------------------------------------------------------------- */
+@keyframes halo-breathe {
+  0%   { opacity: 0.7;  transform: scale(1); }
+  100% { opacity: 1;    transform: scale(1.06); }
+}
+.hero-halo {
+  animation: halo-breathe 9s var(--ease-in-out) infinite alternate;
+  will-change: opacity, transform;
+}
+
+/* ---------------------------------------------------------------------------
+   4. GRADIENT-TEXT SHIMMER
+   styles.css sets .text-gradient with background-size:200% auto. We slide the
+   background-position for a slow, candlelit sheen. Subtle, ~7s.
+   --------------------------------------------------------------------------- */
+@keyframes text-shimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+.text-gradient {
+  animation: text-shimmer 7s var(--ease-soft) infinite alternate;
+}
+
+/* ---------------------------------------------------------------------------
+   5. SCROLL-CUE CHEVRON BOB
+   The chevron in styles.css is a rotated(45deg) box; bob it down/up gently
+   while preserving the rotation.
+   --------------------------------------------------------------------------- */
+@keyframes chevron-bob {
+  0%, 100% { transform: rotate(45deg) translate(0, 0); }
+  50%      { transform: rotate(45deg) translate(3px, 3px); }
+}
+.scroll-cue-chevron {
+  animation: chevron-bob 1.8s var(--ease-in-out) infinite;
+}
+@keyframes scroll-cue-fade {
+  0%, 100% { opacity: 0.65; }
+  50%      { opacity: 1; }
+}
+.scroll-cue { animation: scroll-cue-fade 2.6s var(--ease-in-out) infinite; }
+
+/* ---------------------------------------------------------------------------
+   6. THEMES MARQUEE TRACK
+   JS duplicates the pill children so the list is exactly 2x wide; translating
+   -50% then loops seamlessly. styles.css already pauses on hover/focus-within.
+   Only run the loop once JS has set up the seamless duplicate (.is-marquee),
+   otherwise the single (un-duplicated) list would jump.
+   --------------------------------------------------------------------------- */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.themes-track.is-marquee {
+  animation: marquee-scroll var(--marquee-speed, 38s) linear infinite;
+  will-change: transform;
+}
+
+/* ---------------------------------------------------------------------------
+   7. REVEAL ENTRANCE (resting + visible states live in styles.css)
+   styles.css handles the opacity/translateY transition + the --i stagger
+   delay. Nothing extra needed here, but expose a class JS can use to fire the
+   transition immediately should it ever need to (kept for completeness).
+   --------------------------------------------------------------------------- */
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------------------------------------------------------------------------
+   8. POINTER TILT — desktop cards. JS toggles inline custom props
+   --tilt-x / --tilt-y (deg) and .is-tilting; we keep the lift glow.
+   The transform composes lift (translateY) + tilt. JS sets --lift while
+   hovering so the resting card translateY(-4px) from styles.css and the tilt
+   don't fight (styles.css .card:hover already lifts; we only add rotation).
+   --------------------------------------------------------------------------- */
+.is-tilting {
+  transform:
+    translateY(-4px)
+    perspective(900px)
+    rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg));
+  transition: transform 120ms var(--ease-soft),
+              box-shadow var(--dur-base) var(--ease-out),
+              border-color var(--dur-base) var(--ease-out);
+  will-change: transform;
+}
+
+/* ---------------------------------------------------------------------------
+   9. GLOW PULSE — reusable soft emerald pulse for key live marks
+   (e.g. the "Upcoming"/"Latest" emphasis if ever toggled). Subtle, optional.
+   --------------------------------------------------------------------------- */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: var(--glow-emerald-soft); }
+  50%      { box-shadow: var(--glow-emerald); }
+}
+.glow-pulse {
+  animation: glow-pulse 3.2s var(--ease-in-out) infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   10. FLOAT — a slow vertical float utility (available for accent marks)
+   --------------------------------------------------------------------------- */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+.float-soft {
+  animation: float-soft 6s var(--ease-in-out) infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   11. LIGHTBOX ENTRANCE
+   styles.css shows/hides via the [hidden] attribute (JS toggles it). When
+   open, fade the overlay and rise+scale the content for a calm entrance.
+   --------------------------------------------------------------------------- */
+@keyframes lightbox-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes lightbox-rise {
+  from { opacity: 0; transform: translateY(14px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.lightbox:not([hidden]) .lightbox-overlay {
+  animation: lightbox-fade var(--dur-fast) var(--ease-out);
+}
+.lightbox:not([hidden]) .lightbox-content {
+  animation: lightbox-rise var(--dur-base) var(--ease-out);
+}
+
+/* ---------------------------------------------------------------------------
+   12. NAV DRAWER LINK STAGGER (mobile)
+   When the drawer opens (.is-open on the mobile nav), let each link rise in
+   with a tiny stagger. Desktop nav is static (overridden below 768 only).
+   --------------------------------------------------------------------------- */
+@keyframes drawer-link-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 991.98px) {
+  .nav-menu.is-open > li {
+    animation: drawer-link-in var(--dur-base) var(--ease-out) backwards;
+  }
+  .nav-menu.is-open > li:nth-child(1) { animation-delay: 0.04s; }
+  .nav-menu.is-open > li:nth-child(2) { animation-delay: 0.08s; }
+  .nav-menu.is-open > li:nth-child(3) { animation-delay: 0.12s; }
+  .nav-menu.is-open > li:nth-child(4) { animation-delay: 0.16s; }
+  .nav-menu.is-open > li:nth-child(5) { animation-delay: 0.20s; }
+  .nav-menu.is-open > li:nth-child(6) { animation-delay: 0.24s; }
+  .nav-menu.is-open > li:nth-child(7) { animation-delay: 0.28s; }
+}
+
+/* ---------------------------------------------------------------------------
+   13. PARALLAX POSTERS
+   styles.css already scales the poster on hover. JS writes a translateY via
+   --shift (px) for the slow drift; we apply it through a CSS var so JS never
+   clobbers the hover scale on the wrapper. The image itself reads --shift.
+   --------------------------------------------------------------------------- */
+.post-poster[data-parallax] {
+  transform: translate3d(0, var(--shift, 0px), 0);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+/* On hover the existing scale rule (.post:hover .post-poster) should win for
+   the "pop"; keep parallax shift composed via translate so scale stays. */
+.post:hover .post-poster[data-parallax] {
+  transform: translate3d(0, var(--shift, 0px), 0) scale(1.03);
+}
+
+/* ---------------------------------------------------------------------------
+   14. REDUCED MOTION — neutralize everything this file introduces.
+   styles.css already has the global guard; we explicitly stop our keyframe
+   loops and the JS-driven transforms so reduced-motion users see a calm,
+   final, static page. JS additionally guards parallax/tilt/marquee/count-up.
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-1, .aurora-2, .aurora-3,
+  .hero-halo,
+  .text-gradient,
+  .scroll-cue, .scroll-cue-chevron,
+  .themes-track.is-marquee,
+  .glow-pulse, .float-soft,
+  .nav-menu.is-open > li {
+    animation: none !important;
+  }
+  .aurora-1, .aurora-2, .aurora-3 { translate: 0 0 !important; }
+  .scroll-cue-chevron { transform: rotate(45deg); }
+  .post-poster[data-parallax],
+  .post:hover .post-poster[data-parallax] {
+    transform: none !important;
+  }
+  .is-tilting { transform: translateY(-4px) !important; }
+  .lightbox:not([hidden]) .lightbox-overlay,
+  .lightbox:not([hidden]) .lightbox-content {
+    animation: none !important;
+  }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+}

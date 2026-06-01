@@ -1,0 +1,12 @@
+# Private working notes — never published to the site/repo
+programming-notes/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.vscode/
+.idea/
+*.swp
+*~
