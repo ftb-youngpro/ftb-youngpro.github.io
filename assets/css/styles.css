@@ -151,7 +151,9 @@ body {
   background-image:
     radial-gradient(120% 70% at 80% -10%, rgba(31,185,138,0.06) 0%, rgba(0,0,0,0) 55%),
     radial-gradient(120% 80% at 0% 110%, rgba(14,125,116,0.05) 0%, rgba(0,0,0,0) 60%);
-  background-attachment: fixed;
+  /* background-attachment:fixed is a known mobile scroll-jank source (the layer
+     repaints per scroll frame). Scope it to large hover-capable screens; phones
+     get a normally-scrolling wash that looks near-identical (see §18). */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -874,7 +876,8 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   height: auto;
   display: block;
   transition: transform var(--dur-slow) var(--ease-out);
-  will-change: transform;
+  /* No standing will-change: the parallax (--shift) composes the transform and
+     primes compositing during the scrub; a permanent layer here is redundant. */
 }
 .post:hover .post-poster { transform: scale(1.03); }
 
@@ -1065,7 +1068,71 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
+  /* sits BEHIND the photo; visible only when the photo is absent / failed (.no-photo) */
+  position: relative;
+  z-index: 0;
 }
+
+/* ----- Leader photo (unified duotone -> color treatment) -----------------
+   The four source photos are mismatched (B&W headshot, full-body gym, group
+   family, couple selfie). A shared grayscale + emerald-tint resting state makes
+   them look intentional and premium; they bloom to full color on hover / focus
+   and when scrolled into view (.in-color, added by JS or the IO fallback).
+   Initials remain a graceful fallback behind the image (.no-photo).            */
+.leader-avatar {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.leader-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* object-position is set inline, per-person (see index.html) */
+  border-radius: 50%;
+  z-index: 1;
+  /* UNIFIED duotone resting state: grayscale + emerald cast, slightly dimmed.
+     sepia gives a ~40deg amber base; +95deg hue-rotate => ~135deg = emerald.
+     This lands the tint firmly in green, far from the forbidden 230-330deg
+     purple/violet band (NEVER purple) — RULE ZERO ok. Do not raise hue-rotate
+     toward ~235-290 or the tint would drift into purple. */
+  filter: grayscale(1) contrast(1.05) brightness(0.92) sepia(0.25)
+          hue-rotate(95deg) saturate(1.6);
+  transition: filter var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+  /* No permanent will-change:filter (costly reserved filter layer x4). On
+     desktop the filter only transitions on hover/focus; prime it then only. */
+}
+@media (hover: hover) and (pointer: fine) {
+  .leader-card:hover .leader-photo,
+  .leader-card:focus-within .leader-photo { will-change: filter; }
+}
+/* Color on hover/focus of the card, AND when scrolled into view (JS adds .in-color) */
+.leader-card:hover .leader-photo,
+.leader-card:focus-within .leader-photo,
+.leader-card.in-color .leader-photo {
+  filter: grayscale(0) contrast(1) brightness(1) saturate(1.05);
+  transform: scale(1.04);
+}
+
+/* Pastor Jaymar's source is a near-square family group photo (755x760), so
+   object-position alone can't crop to his face. Zoom in (transform-origin on
+   his face — he is the man on the LEFT) so the framing matches the other three
+   single-face portraits. The hover/in-color scale is bumped proportionally.    */
+.leader-photo[data-leader="pjb"] {
+  transform: scale(1.7);
+  transform-origin: 52% 26%;
+}
+.leader-card:hover .leader-photo[data-leader="pjb"],
+.leader-card:focus-within .leader-photo[data-leader="pjb"],
+.leader-card.in-color .leader-photo[data-leader="pjb"] {
+  transform: scale(1.78);
+}
+/* Image failed to load -> reveal the initials monogram behind it. */
+.leader-avatar.no-photo .leader-photo { display: none; }
+
 .leader-name {
   font-family: var(--font-display);
   font-weight: 600;
@@ -1374,6 +1441,108 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
 .no-js [data-reveal] { opacity: 1; transform: none; }
 
 /* ---------------------------------------------------------------------------
+   17b. ENHANCED MOTION LAYER — static / resting states
+   GSAP + ScrollTrigger + SplitText + Lenis layer on top of the vanilla baseline.
+   Everything here is purely additive: the JS-injected nodes (intro overlay,
+   custom cursor) do NOT exist unless JS runs, so a no-JS / CDN-blocked page never
+   sees them. These rules only set the RESTING look so pre-animation reads right;
+   keyframes + JS-toggled motion states live in animations.css / main.js.
+   --------------------------------------------------------------------------- */
+
+/* --- gsap-enhanced coordination ----------------------------------------------
+   html.gsap-enhanced is added by JS only when GSAP core is present AND motion is
+   allowed. When set, GSAP owns the reveal entrances, so the CSS reveal transition
+   is disabled to avoid double-animation / flashes (GSAP writes inline opacity/y).
+   If the class is ABSENT, the §17 CSS fallback transition drives reveals.        */
+.gsap-enhanced [data-reveal] { transition: none; }
+
+/* SplitText line wrappers. JS sets overflow inline too, but this guarantees the
+   masking + block layout even for a one-frame window before the tween runs.      */
+.split-line { display: block; overflow: hidden; }
+
+/* Image mask reveal resting state.
+   IMPORTANT: do NOT clip the image in base CSS — a no-JS page must show it fully.
+   The clip-path wipe is applied by JS only (gated on GSAP + ScrollTrigger). The
+   reduced-motion guard in animations.css also force-clears [data-mask].          */
+
+/* --- Intro / preloader overlay (JS-injected; never present without JS) -------
+   .yp-intro is appended to <body> by runIntro() only on the ENHANCED path. These
+   resting styles let it paint instantly without layout work. A CSS failsafe
+   auto-hide lives in animations.css so a JS error after injection can't trap.    */
+.yp-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  background: var(--bg-900);
+  pointer-events: none;       /* never blocks interaction; JS removes the node */
+}
+.yp-intro-mask {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.yp-intro-mark {
+  width: 96px;
+  height: 96px;
+  display: block;
+}
+.yp-intro-wipe {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--bg-850);
+  pointer-events: none;
+}
+
+/* --- Custom cursor (JS-injected; desktop fine-pointer ONLY) -------------------
+   Recommendation per spec §14a: keep the native cursor visible; the dot + ring
+   are an overlay accent only. Both are pointer-events:none and high z-index.     */
+.yp-cursor,
+.yp-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 400;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+.yp-cursor {
+  width: 8px;
+  height: 8px;
+  background: var(--emerald);
+  box-shadow: var(--glow-emerald-soft);
+}
+.yp-cursor-ring {
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid var(--emerald-300);
+  background: transparent;
+  transition: width var(--dur-fast) var(--ease-out),
+              height var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              opacity var(--dur-fast) var(--ease-out);
+}
+/* grows + brightens when JS marks it over an interactive element */
+.yp-cursor-ring.is-hovering {
+  width: 52px;
+  height: 52px;
+  border-color: var(--emerald);
+}
+
+/* --- Magnetic buttons --------------------------------------------------------
+   GSAP translates [data-magnetic] toward the pointer (transform only, so the hit
+   area moves with the visual and clicks always land). Base just primes GPU
+   compositing on desktop fine-pointer; transform itself is JS-owned.            */
+@media (hover: hover) and (pointer: fine) {
+  .gsap-enhanced [data-magnetic] { will-change: transform; }
+}
+
+/* ---------------------------------------------------------------------------
    18. RESPONSIVE — min-width queries scale the mobile base up
    --------------------------------------------------------------------------- */
 @media (min-width: 480px) {
@@ -1386,6 +1555,35 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   .about-grid { grid-template-columns: 1.5fr 1fr; align-items: start; }
   .stat-grid { grid-template-columns: repeat(4, 1fr); }
   .join-grid { grid-template-columns: 1.2fr 1fr; align-items: start; }
+}
+
+/* --- MOBILE PERFORMANCE MITIGATIONS (<=768px) ------------------------------
+   Phones pay a heavy compositing bill from the always-animating blurred auroras,
+   the fixed mix-blend grain, and ~31 backdrop-filter glass surfaces scrolling
+   through the viewport. Lighten the worst offenders below the tablet breakpoint
+   without changing the desktop look. */
+@media (max-width: 768px) {
+  /* Smaller, less-blurred auroras and drop the third (gold) blob's fill cost. */
+  .aurora-1, .aurora-2 { filter: blur(48px); }
+  .aurora-1 { width: 46vmax; height: 46vmax; }
+  .aurora-2 { width: 42vmax; height: 42vmax; }
+  .aurora-3 { display: none; }
+
+  /* Grain: drop the per-scroll mix-blend composite for a cheap flat overlay. */
+  .grain { mix-blend-mode: normal; opacity: 0.035; }
+
+  /* Glass: backdrop-filter blur repaints per scroll frame; a flat semi-opaque
+     fill reads nearly the same on the dark theme and is far cheaper. */
+  .glass {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: color-mix(in srgb, var(--bg-800) 92%, transparent);
+  }
+}
+
+/* background-attachment:fixed only where it's safe (large, hover-capable). */
+@media (min-width: 992px) and (hover: hover) {
+  body { background-attachment: fixed; }
 }
 
 /* Inline desktop nav — only once there's room for the brand + 7 items + CTA.
@@ -1455,4 +1653,13 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
     scroll-behavior: auto !important;
   }
   [data-reveal] { opacity: 1; transform: none; }
+
+  /* Enhanced-motion hooks: force the final, visible, static state.
+     A safety net even if JS mis-detects — the page must never hide content. */
+  .yp-intro { display: none !important; }                 /* never show the intro overlay */
+  .yp-cursor, .yp-cursor-ring { display: none !important; }
+  [data-split] { opacity: 1 !important; }                 /* headline/titles visible, unsplit */
+  .leader-photo { filter: none !important; transform: none !important; }  /* full color, static */
+  [data-mask] { clip-path: none !important; opacity: 1 !important; transform: none !important; }
+  [data-magnetic] { transform: none !important; }
 }

@@ -8,12 +8,15 @@
    bounces or flashes. Slow, soft, intentional — a quiet cathedral lit by
    emerald and gold.
 
-   Owns (per the handoff):
-     - aurora drift (.aurora-1 / .aurora-2 / .aurora-3)
+   Owns (per the handoff + the GSAP upgrade):
+     - aurora drift (.aurora-1 / .aurora-2 / .aurora-3) + scrub var compose
      - .text-gradient shimmer (background-position loop)
-     - .themes-track translateX marquee loop
+     - .themes-track translateX marquee loop (CSS fallback)
      - .scroll-cue-chevron bob
-     - reveal entrance polish, count-up/lightbox/tilt state classes JS toggles
+     - reveal entrance polish + state classes JS toggles
+     - intro overlay wipe + CSS failsafe auto-hide
+     - SplitText line masks, image-mask compose, custom cursor, magnetic prime
+     - reduced-motion neutralization of EVERYTHING above
    ============================================================================ */
 
 /* ---------------------------------------------------------------------------
@@ -21,17 +24,23 @@
    styles.css ships a `.no-js [data-reveal] { opacity:1 }` safe fallback.
    main.js swaps <html class="no-js"> -> "js" as early as possible, so the
    reveal resting state (opacity:0) applies and elements animate in on scroll.
-   These keep things sane if classes ever desync.
    --------------------------------------------------------------------------- */
 .js [data-reveal]:not(.is-visible) {
   opacity: 0;
 }
 
+/* When GSAP owns reveals it writes inline opacity/transform; disable the CSS
+   reveal transition so the two never double-fire / flash. (styles.css §17b
+   already declares this too; kept here for cohesion if files desync.) */
+.gsap-enhanced [data-reveal] { transition: none; }
+
 /* ---------------------------------------------------------------------------
    2. HERO AURORA / MESH DRIFT
-   Large blurred radial blobs drift + scale on a slow loop, alternating so
-   the motion eases back on itself (no hard restart). Pure CSS; JS only adds
-   an optional subtle pointer-parallax offset on desktop via --px / --py.
+   Large blurred radial blobs drift + scale on a slow loop, alternating so the
+   motion eases back on itself (no hard restart). Pure CSS; JS layers an
+   optional pointer-parallax (--px/--py) and a scroll-scrub depth (--scrubY)
+   via `translate:` so they COMPOSE with (never clobber) the `transform`
+   keyframes below.
    --------------------------------------------------------------------------- */
 @keyframes aurora-drift-1 {
   0%   { transform: translate3d(0, 0, 0) scale(1)    rotate(0deg); }
@@ -49,14 +58,6 @@
   100% { transform: translate3d(5%, -4%, 0) scale(1.04); opacity: 0.2; }
 }
 
-/* The aurora blobs read --px/--py (set by JS pointer-parallax, default 0)
-   and compose it with their own drift via an outer wrapper transform.
-   We animate the blob itself and let the optional JS offset live on a
-   translate added through a custom-property-driven transform. To keep both
-   composable without JS fighting the keyframes, JS writes to --px/--py and
-   we apply them as a margin-like nudge using translate on a pseudo layer.
-   Simpler + robust: animate transform here; JS nudges via individual
-   left/top offsets is avoided — instead JS sets --px/--py and we add them. */
 .aurora-1 {
   animation: aurora-drift-1 var(--aurora-speed, 26s) var(--ease-in-out) infinite alternate;
   translate: var(--px, 0) var(--py, 0);
@@ -67,25 +68,33 @@
 }
 .aurora-3 {
   animation: aurora-drift-3 calc(var(--aurora-speed, 26s) * 0.85) var(--ease-in-out) infinite alternate;
-  translate: calc(var(--px, 0) * -2.2) calc(var(--py, 0) * -2.2);
+  /* pointer-parallax (--px/--py, inverted) + scroll-scrub depth (--scrubY).
+     `translate:` composes with the `transform` keyframe so neither fights. */
+  translate: calc(var(--px, 0) * -2.2) calc((var(--py, 0) * -2.2) + var(--scrubY, 0px));
 }
 
 /* ---------------------------------------------------------------------------
-   3. HERO HALO — gentle breathing glow behind the headline
+   3. HERO HALO — gentle breathing glow behind the headline.
+   The halo center can be nudged by the pointer via --hx/--hy (main.js §8).
    --------------------------------------------------------------------------- */
 @keyframes halo-breathe {
   0%   { opacity: 0.7;  transform: scale(1); }
   100% { opacity: 1;    transform: scale(1.06); }
 }
 .hero-halo {
+  /* pointer-reactive center (candlelight, not a spotlight). Overrides the
+     resting --grad-halo from styles.css with a custom-prop-driven center. */
+  background: radial-gradient(
+    60% 60% at calc(50% + var(--hx, 0px)) calc(35% + var(--hy, 0px)),
+    rgba(42, 255, 176, 0.16) 0%,
+    rgba(42, 255, 176, 0) 70%
+  );
   animation: halo-breathe 9s var(--ease-in-out) infinite alternate;
   will-change: opacity, transform;
 }
 
 /* ---------------------------------------------------------------------------
    4. GRADIENT-TEXT SHIMMER
-   styles.css sets .text-gradient with background-size:200% auto. We slide the
-   background-position for a slow, candlelit sheen. Subtle, ~7s.
    --------------------------------------------------------------------------- */
 @keyframes text-shimmer {
   0%   { background-position: 0% center; }
@@ -97,8 +106,6 @@
 
 /* ---------------------------------------------------------------------------
    5. SCROLL-CUE CHEVRON BOB
-   The chevron in styles.css is a rotated(45deg) box; bob it down/up gently
-   while preserving the rotation.
    --------------------------------------------------------------------------- */
 @keyframes chevron-bob {
   0%, 100% { transform: rotate(45deg) translate(0, 0); }
@@ -114,11 +121,12 @@
 .scroll-cue { animation: scroll-cue-fade 2.6s var(--ease-in-out) infinite; }
 
 /* ---------------------------------------------------------------------------
-   6. THEMES MARQUEE TRACK
+   6. THEMES MARQUEE TRACK (CSS FALLBACK LOOP)
    JS duplicates the pill children so the list is exactly 2x wide; translating
    -50% then loops seamlessly. styles.css already pauses on hover/focus-within.
-   Only run the loop once JS has set up the seamless duplicate (.is-marquee),
-   otherwise the single (un-duplicated) list would jump.
+   Only run the loop once JS has set up the seamless duplicate (.is-marquee).
+   On the ENHANCED path GSAP removes .is-marquee and drives translate3d on the
+   track directly (scroll-velocity reactive — main.js §10b).
    --------------------------------------------------------------------------- */
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
@@ -131,9 +139,6 @@
 
 /* ---------------------------------------------------------------------------
    7. REVEAL ENTRANCE (resting + visible states live in styles.css)
-   styles.css handles the opacity/translateY transition + the --i stagger
-   delay. Nothing extra needed here, but expose a class JS can use to fire the
-   transition immediately should it ever need to (kept for completeness).
    --------------------------------------------------------------------------- */
 [data-reveal].is-visible {
   opacity: 1;
@@ -143,9 +148,6 @@
 /* ---------------------------------------------------------------------------
    8. POINTER TILT — desktop cards. JS toggles inline custom props
    --tilt-x / --tilt-y (deg) and .is-tilting; we keep the lift glow.
-   The transform composes lift (translateY) + tilt. JS sets --lift while
-   hovering so the resting card translateY(-4px) from styles.css and the tilt
-   don't fight (styles.css .card:hover already lifts; we only add rotation).
    --------------------------------------------------------------------------- */
 .is-tilting {
   transform:
@@ -160,8 +162,7 @@
 }
 
 /* ---------------------------------------------------------------------------
-   9. GLOW PULSE — reusable soft emerald pulse for key live marks
-   (e.g. the "Upcoming"/"Latest" emphasis if ever toggled). Subtle, optional.
+   9. GLOW PULSE — reusable soft emerald pulse for key live marks.
    --------------------------------------------------------------------------- */
 @keyframes glow-pulse {
   0%, 100% { box-shadow: var(--glow-emerald-soft); }
@@ -172,7 +173,7 @@
 }
 
 /* ---------------------------------------------------------------------------
-   10. FLOAT — a slow vertical float utility (available for accent marks)
+   10. FLOAT — a slow vertical float utility (available for accent marks).
    --------------------------------------------------------------------------- */
 @keyframes float-soft {
   0%, 100% { transform: translateY(0); }
@@ -184,8 +185,6 @@
 
 /* ---------------------------------------------------------------------------
    11. LIGHTBOX ENTRANCE
-   styles.css shows/hides via the [hidden] attribute (JS toggles it). When
-   open, fade the overlay and rise+scale the content for a calm entrance.
    --------------------------------------------------------------------------- */
 @keyframes lightbox-fade {
   from { opacity: 0; }
@@ -204,8 +203,6 @@
 
 /* ---------------------------------------------------------------------------
    12. NAV DRAWER LINK STAGGER (mobile)
-   When the drawer opens (.is-open on the mobile nav), let each link rise in
-   with a tiny stagger. Desktop nav is static (overridden below 768 only).
    --------------------------------------------------------------------------- */
 @keyframes drawer-link-in {
   from { opacity: 0; transform: translateY(8px); }
@@ -226,25 +223,117 @@
 
 /* ---------------------------------------------------------------------------
    13. PARALLAX POSTERS
-   styles.css already scales the poster on hover. JS writes a translateY via
-   --shift (px) for the slow drift; we apply it through a CSS var so JS never
-   clobbers the hover scale on the wrapper. The image itself reads --shift.
+   styles.css scales the poster on hover. JS (both paths) writes a translateY
+   via --shift (px). We apply it through `transform: translate3d` so it
+   composes with the hover scale; the ENHANCED scrub and the FALLBACK rAF both
+   write the same --shift, so this single rule serves both.
    --------------------------------------------------------------------------- */
 .post-poster[data-parallax] {
   transform: translate3d(0, var(--shift, 0px), 0);
   transition: transform var(--dur-slow) var(--ease-out);
 }
-/* On hover the existing scale rule (.post:hover .post-poster) should win for
-   the "pop"; keep parallax shift composed via translate so scale stays. */
 .post:hover .post-poster[data-parallax] {
   transform: translate3d(0, var(--shift, 0px), 0) scale(1.03);
 }
 
 /* ---------------------------------------------------------------------------
-   14. REDUCED MOTION — neutralize everything this file introduces.
-   styles.css already has the global guard; we explicitly stop our keyframe
-   loops and the JS-driven transforms so reduced-motion users see a calm,
-   final, static page. JS additionally guards parallax/tilt/marquee/count-up.
+   14. SPLITTEXT LINE MASKS (kinetic headline + section titles)
+   SplitText wraps each line in a `.split-line`. We mask it so the words rise
+   from a clipped edge. JS sets overflow inline too; this guarantees the mask
+   even for the one-frame window before the tween. The masked rows must allow
+   descenders, so a touch of vertical padding is added on the wrapper.
+   --------------------------------------------------------------------------- */
+.split-line {
+  display: block;
+  overflow: hidden;
+  /* room for descenders inside the clip so 'g/y/p' aren't shaved */
+  padding-bottom: 0.06em;
+}
+
+/* The gradient word inside the hero headline must keep its clipped fill even
+   after SplitText wraps it in word/line spans. */
+.split-line .text-gradient,
+.split-word .text-gradient {
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* ---------------------------------------------------------------------------
+   15. IMAGE-MASK REVEAL ([data-mask])
+   The clip-path wipe + scale settle is driven entirely by GSAP (main.js §13),
+   which CLEARS the inline transform on complete so CSS hover scale / --shift
+   regain control. Base CSS must NOT clip the image (a no-JS page shows it
+   fully). We only prime GPU compositing on the enhanced path so the wipe stays
+   smooth, and clear will-change once revealed.
+   --------------------------------------------------------------------------- */
+.gsap-enhanced [data-mask] {
+  backface-visibility: hidden;
+}
+/* will-change:clip-path is costly (reserved backing layer); apply it ONLY for
+   the brief life of the wipe via a transient class JS adds onStart and removes
+   onComplete, so all 8 [data-mask] elements aren't holding GPU memory forever. */
+.gsap-enhanced [data-mask].is-masking {
+  will-change: clip-path, transform;
+}
+
+/* ---------------------------------------------------------------------------
+   16. INTRO / LOAD-IN OVERLAY (JS-injected; ENHANCED path only)
+   styles.css §17b holds the resting layout of .yp-intro / .yp-intro-mask /
+   .yp-intro-mark / .yp-intro-wipe. GSAP runs the timeline (mark in, wipe lift,
+   fade out) then removes the node. This CSS adds the FAILSAFE auto-hide so a
+   JS error after injection can never trap the user behind the overlay.
+   --------------------------------------------------------------------------- */
+@keyframes yp-intro-failsafe {
+  to { opacity: 0; visibility: hidden; }
+}
+.yp-intro {
+  /* fires only if the node is still in the DOM 2.5s after paint; GSAP removes
+     it well before this (intro total <= 1.2s). forwards holds the hidden end. */
+  animation: yp-intro-failsafe 0s linear 2.5s forwards;
+}
+.yp-intro-mark { will-change: transform, opacity; }
+.yp-intro-wipe { will-change: transform; }
+
+/* ---------------------------------------------------------------------------
+   17. CUSTOM CURSOR (JS-injected; ENHANCED + desktop fine-pointer only)
+   styles.css §17b sets size/color/position. Here we give the dot a soft
+   breathing pulse so it feels alive, and the ring its grow transition (the
+   transition itself is declared in styles.css; .is-hovering target lives
+   there too). Cursor nodes default to opacity 0 until the first pointermove
+   (main.js toggles inline opacity) so they never flash at 0,0 on load.
+   --------------------------------------------------------------------------- */
+.yp-cursor,
+.yp-cursor-ring {
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+@keyframes yp-cursor-pulse {
+  0%, 100% { box-shadow: var(--glow-emerald-soft); }
+  50%      { box-shadow: var(--glow-emerald); }
+}
+.yp-cursor {
+  animation: yp-cursor-pulse 2.8s var(--ease-in-out) infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   18. MAGNETIC BUTTON PRIME (ENHANCED + desktop fine-pointer only)
+   styles.css §17b already primes will-change on .gsap-enhanced [data-magnetic]
+   under the fine-pointer query. Nothing else needed — GSAP owns the transform.
+   --------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+   19. LEADER PHOTO BLOOM
+   styles.css §13 owns the duotone resting filter and the hover/focus/.in-color
+   transition. The light parallax on leader photos (if ever added) would ride
+   --shift the same way posters do; no extra keyframe needed here.
+   --------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+   20. REDUCED MOTION — neutralize EVERYTHING this file (and the enhanced
+   layer) introduces. styles.css §19 has the global guard + the new-hook
+   final-state forcing; we additionally stop our keyframe loops and the
+   JS-driven transforms so reduced-motion users see a calm, final, static
+   page. main.js also skips the enhanced path entirely under reduced motion.
    --------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .aurora-1, .aurora-2, .aurora-3,
@@ -253,19 +342,57 @@
   .scroll-cue, .scroll-cue-chevron,
   .themes-track.is-marquee,
   .glow-pulse, .float-soft,
-  .nav-menu.is-open > li {
+  .nav-menu.is-open > li,
+  .yp-cursor,
+  .yp-intro {
     animation: none !important;
   }
-  .aurora-1, .aurora-2, .aurora-3 { translate: 0 0 !important; }
+
+  /* Auroras: cancel both the keyframe transform residue and the JS translate. */
+  .aurora-1, .aurora-2, .aurora-3 {
+    translate: 0 0 !important;
+  }
   .scroll-cue-chevron { transform: rotate(45deg); }
+
+  /* Themes marquee: the enhanced path drives an inline translate3d via the GSAP
+     ticker (no .is-marquee). If reduced-motion is toggled ON live before JS
+     teardown clears it, override any residual inline transform so the track
+     stops dead. (JS teardown also removes the ticker + resets the transform.) */
+  .themes-track { transform: none !important; }
+
+  /* Posters: no parallax shift, no hover composition drift. */
   .post-poster[data-parallax],
   .post:hover .post-poster[data-parallax] {
     transform: none !important;
   }
+
+  /* Tilt cards rest flat (lift only). */
   .is-tilting { transform: translateY(-4px) !important; }
+
+  /* Lightbox entrance instant. */
   .lightbox:not([hidden]) .lightbox-overlay,
   .lightbox:not([hidden]) .lightbox-content {
     animation: none !important;
   }
+
+  /* Reveals + split text: final, visible, static. */
   [data-reveal] { opacity: 1 !important; transform: none !important; }
+  [data-split]  { opacity: 1 !important; }
+  .split-line   { overflow: visible !important; }
+
+  /* Image masks: fully open, no clip / scale. */
+  [data-mask] {
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Leader photos: full color, static. */
+  .leader-photo { filter: none !important; transform: none !important; }
+
+  /* Magnetic + injected overlays neutralized. */
+  [data-magnetic] { transform: none !important; }
+  .yp-intro { display: none !important; }
+  .yp-cursor, .yp-cursor-ring { display: none !important; }
 }
