@@ -471,6 +471,15 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* Hamburger flush to the right edge on mobile. The .nav drawer wrapper sits in the
+   flex row but is 0-width (its .nav-menu is position:fixed / off-canvas), so with
+   space-between the toggle parked in the middle. Drop the inter-item gap and push
+   the toggle hard-right so it aligns with the container's right padding edge. */
+@media (max-width: 991.98px) {
+  .nav-bar { gap: 0; }
+  .nav-toggle { margin-left: auto; }
+}
+
 /* Mobile drawer (base) */
 .nav-menu {
   list-style: none;
