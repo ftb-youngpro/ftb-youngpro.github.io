@@ -397,6 +397,10 @@
   .aurora-1, .aurora-2, .aurora-3 {
     translate: 0 0 !important;
   }
+  /* Hero photo texture: kill the pointer-parallax translate so it's a perfectly
+     static wash (JS already never sets --px/--py under reduced motion; this is
+     belt-and-suspenders against any residual inline value). */
+  .hero-photo { translate: none !important; }
   .scroll-cue-chevron { transform: rotate(45deg); }
 
   /* Themes marquee: the enhanced path drives an inline translate3d via the GSAP

@@ -1,0 +1,34 @@
+{
+  "name": "Young Pro Ministry — Faith Temple Baptist Church",
+  "short_name": "Young Pro",
+  "description": "The Young Pro Ministry of Faith Temple Baptist Church Inc. — Filipino young professionals chasing Jesus and their callings together. Worship God. Make Disciples.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#060d0a",
+  "background_color": "#07120d",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["lifestyle", "education"],
+  "icons": [
+    {
+      "src": "assets/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

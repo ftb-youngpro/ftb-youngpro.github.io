@@ -11,6 +11,11 @@ desktop.ini
 *.swp
 *~
 
+# Stray tooling installs (image/build tools agents may npm-install) — never published
+node_modules/
+package.json
+package-lock.json
+
 # QA / review scaffolding — never published (GitHub Pages serves the repo root).
 # Root-anchored (leading /) so these can NEVER match real assets under assets/
 # (the only real JS is assets/js/main.js, which is unaffected).

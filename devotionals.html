@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Devotionals · Young Pro Ministry · Faith Temple Baptist Church</title>
+  <meta name="description" content="Short, warm, Christ-centered devotional reads on five Filipino discipleship themes — Loob, Kapwa, Malasakit, Bahala Na, and Utang na Loob — from the Young Pro Ministry of Faith Temple Baptist Church Inc.">
+  <meta name="theme-color" content="#060d0a">
+  <meta name="author" content="Young Pro Ministry · Faith Temple Baptist Church Inc.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://ftb-youngpro.github.io/devotionals.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Young Pro Ministry">
+  <meta property="og:title" content="Devotionals · Young Pro Ministry">
+  <meta property="og:description" content="Five Filipino discipleship themes — Loob, Kapwa, Malasakit, Bahala Na, Utang na Loob — redeemed and re-rooted in Christ. Short, warm devotional reads for young pros.">
+  <meta property="og:url" content="https://ftb-youngpro.github.io/devotionals.html">
+  <meta property="og:locale" content="en_PH">
+  <meta property="og:image" content="https://ftb-youngpro.github.io/assets/img/ftb-church-logo.png">
+  <meta property="og:image:alt" content="Faith Temple Baptist Church Inc. botanical wreath logo.">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Devotionals · Young Pro Ministry">
+  <meta name="twitter:description" content="Five Filipino discipleship themes — Loob, Kapwa, Malasakit, Bahala Na, Utang na Loob — redeemed and re-rooted in Christ. Short, warm devotional reads for young pros.">
+  <meta name="twitter:image" content="https://ftb-youngpro.github.io/assets/img/ftb-church-logo.png">
+  <meta name="twitter:image:alt" content="Faith Temple Baptist Church Inc. botanical wreath logo.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- PWA: installable + offline-capable on GitHub Pages -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Young Pro">
+
+  <!-- Google Fonts + the GSAP CDN (the only external resources) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets (shared design system) -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+
+  <!-- Page-scoped styles: a few small additions layered on the shared design
+       system (tokens/components reused as-is). Zero new colors — emerald, gold,
+       cream on forest-black only. -->
+  <style>
+    /* Devotionals hero — calmer than the home hero (no full-viewport height) */
+    .dev-hero {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      padding-block: calc(var(--nav-h) + var(--space-2xl)) var(--space-2xl);
+      text-align: center;
+    }
+    .dev-hero .container { position: relative; z-index: 2; }
+    .dev-hero-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--step-4);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: var(--space-md);
+      text-wrap: balance;
+    }
+    .dev-hero-lead {
+      max-width: 56ch;
+      margin-inline: auto;
+      color: var(--ink-dim);
+    }
+
+    /* Quick "jump to a theme" chips under the intro */
+    .dev-jump {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-2xs);
+      margin-top: var(--space-xl);
+    }
+    .dev-jump-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--step--1);
+      line-height: 1;
+      padding: 0.55rem 1rem;
+      border-radius: var(--radius-pill);
+      color: var(--gold-soft);
+      border: 1px solid var(--hairline-gold);
+      background: color-mix(in srgb, var(--bg-700) 70%, transparent);
+      transition: border-color var(--dur-fast) var(--ease-out),
+                  color var(--dur-fast) var(--ease-out),
+                  box-shadow var(--dur-fast) var(--ease-out),
+                  transform var(--dur-fast) var(--ease-out);
+    }
+    .dev-jump-link:hover {
+      color: var(--gold-soft);
+      border-color: var(--gold);
+      box-shadow: var(--glow-gold);
+      transform: translateY(-1px);
+    }
+
+    /* The stack of devotional reads */
+    .dev-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--grid-gap);
+    }
+    .devotional {
+      border-radius: var(--radius-lg);
+      border-color: var(--hairline-gold);
+      padding: clamp(1.5rem, 1rem + 3vw, 3rem);
+      /* offset the sticky-nav landing when jumped to via #anchor */
+      scroll-margin-top: calc(var(--nav-h) + var(--space-lg));
+    }
+    .devotional-head {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3xs);
+      padding-bottom: var(--space-md);
+      margin-bottom: var(--space-md);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .devotional-index {
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: var(--step--1);
+      font-weight: 500;
+      color: var(--emerald-300);
+    }
+    .devotional-term {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 600;
+      font-size: var(--step-3);
+      line-height: 1.05;
+      color: var(--gold-soft);
+    }
+    .devotional-gloss {
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+    }
+
+    /* Scripture pull — a calm gold-ruled block, echoing the home anchor verse */
+    .devotional-scripture {
+      position: relative;
+      margin: 0 0 var(--space-md);
+      padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+      border-left: 2px solid var(--hairline-gold);
+    }
+    .devotional-scripture p {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: var(--step-1);
+      line-height: 1.5;
+      color: var(--cream);
+      max-width: 52ch;
+    }
+    .devotional-ref {
+      display: block;
+      margin-top: var(--space-2xs);
+      font-family: var(--font-display);
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: var(--step--1);
+      color: var(--gold);
+    }
+    .devotional-ref .devotional-translation { color: var(--gold-soft); opacity: 0.8; }
+
+    .devotional-body p {
+      margin-top: var(--space-md);
+      max-width: var(--measure);
+      color: var(--ink-dim);
+    }
+    .devotional-body p:first-child { margin-top: 0; }
+
+    /* One-line prayer — emerald-kissed, set apart at the foot of each read */
+    .devotional-prayer {
+      margin-top: var(--space-lg);
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--hairline);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-2xs);
+    }
+    .devotional-prayer-label {
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--emerald-300);
+      flex: none;
+      padding-top: 0.18em;
+    }
+    .devotional-prayer-text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--cream-dim);
+      max-width: 56ch;
+    }
+
+    /* Closing card */
+    .dev-close {
+      margin-top: var(--grid-gap);
+      border-radius: var(--radius-lg);
+      border-color: var(--hairline-gold);
+      padding: clamp(1.5rem, 1rem + 3vw, 3rem);
+      text-align: center;
+    }
+    .dev-close-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--step-2);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: var(--space-sm);
+    }
+    .dev-close p { color: var(--ink-dim); max-width: 56ch; margin-inline: auto; }
+    .dev-close-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-xl);
+    }
+
+    @media (min-width: 768px) {
+      .devotional-head { gap: var(--space-2xs); }
+    }
+  </style>
+
+  <!-- ==========================================================================
+       STRUCTURED DATA — a CollectionPage of 5 short CreativeWork devotionals,
+       authored by the ministry (the Church/Organization node). Mirrors the
+       on-page content (terms + verses). Validate with Google's Rich Results Test.
+       ========================================================================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://ftb-youngpro.github.io/devotionals.html",
+    "url": "https://ftb-youngpro.github.io/devotionals.html",
+    "name": "Devotionals — Young Pro Ministry",
+    "inLanguage": "en-PH",
+    "description": "Short, warm, Christ-centered devotional reads on five Filipino discipleship themes — Loob, Kapwa, Malasakit, Bahala Na, and Utang na Loob.",
+    "isPartOf": { "@id": "https://ftb-youngpro.github.io/#website" },
+    "author": {
+      "@type": "Church",
+      "name": "Young Pro Ministry — Faith Temple Baptist Church Inc.",
+      "url": "https://ftb-youngpro.github.io/"
+    },
+    "publisher": {
+      "@type": "Church",
+      "name": "Faith Temple Baptist Church Inc.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ftb-youngpro.github.io/assets/img/ftb-church-logo.png"
+      }
+    },
+    "hasPart": [
+      {
+        "@type": "CreativeWork",
+        "name": "Loob — God begins on the inside",
+        "url": "https://ftb-youngpro.github.io/devotionals.html#dev-loob",
+        "about": "Loob — the inner self, the will",
+        "citation": "1 Samuel 16:7"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Kapwa — one with the other at the cross",
+        "url": "https://ftb-youngpro.github.io/devotionals.html#dev-kapwa",
+        "about": "Kapwa — shared humanity, one-with-the-other",
+        "citation": "Philippians 2:3-4"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Malasakit — love that refuses to look away",
+        "url": "https://ftb-youngpro.github.io/devotionals.html#dev-malasakit",
+        "about": "Malasakit — compassionate care",
+        "citation": "Matthew 9:36"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Bahala Na — trust, not fate",
+        "url": "https://ftb-youngpro.github.io/devotionals.html#dev-bahala-na",
+        "about": "Bahala Na — faith-filled trust in God",
+        "citation": "Proverbs 3:5-6"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Utang na Loob — a debt answered by joy",
+        "url": "https://ftb-youngpro.github.io/devotionals.html#dev-utang-na-loob",
+        "about": "Utang na Loob — gratitude, a debt of the heart",
+        "citation": "1 Corinthians 6:19-20"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===================== STICKY NAV ===================== -->
+  <header class="site-header" data-site-header>
+    <div class="container nav-bar">
+      <a class="brand" href="index.html" aria-label="Young Pro Ministry — home">
+        <img class="brand-mark" src="assets/img/yp-mark.svg" alt="" width="40" height="40" aria-hidden="true">
+        <span class="brand-text">
+          <span class="brand-name">Young Pro</span>
+          <span class="brand-sub">Ministry</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" data-nav-toggle type="button"
+              aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu">
+        <span class="nav-toggle-box" aria-hidden="true">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </span>
+      </button>
+
+      <nav class="nav" aria-label="Primary">
+        <ul class="nav-menu" id="primary-nav" data-nav>
+          <li><a class="nav-link" href="index.html#about">About</a></li>
+          <li><a class="nav-link" href="index.html#what-we-do">What We Do</a></li>
+          <li><a class="nav-link" href="index.html#themes">Themes</a></li>
+          <li><a class="nav-link is-active" href="devotionals.html" aria-current="page">Devotionals</a></li>
+          <li><a class="nav-link" href="events.html">Events</a></li>
+          <li class="nav-cta-item"><a class="btn btn-primary nav-cta" href="index.html#join" data-magnetic>Join Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="dev-hero" aria-labelledby="dev-hero-heading">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="aurora aurora-1"></span>
+        <span class="aurora aurora-2"></span>
+        <span class="aurora aurora-3"></span>
+        <span class="hero-halo"></span>
+      </div>
+
+      <div class="container container-narrow">
+        <p class="eyebrow" data-reveal>Devotionals · Faith in our own language</p>
+        <h1 class="dev-hero-title" data-reveal data-split>
+          Five Filipino words, <span class="text-gradient">redeemed</span> in Christ.
+        </h1>
+        <p class="dev-hero-lead lead" data-reveal>
+          These are the same heart-words we wrestle with at fellowship — Loob, Kapwa, Malasakit,
+          Bahala Na, Utang na Loob. Here they slow down into short devotional reads: a verse, a
+          reflection, and a prayer to carry into your week.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== INTRO + JUMP NAV ===================== -->
+    <section class="section" aria-labelledby="dev-intro-heading">
+      <div class="container container-narrow">
+        <h2 class="sr-only" id="dev-intro-heading">Introduction</h2>
+        <div class="prose" data-reveal>
+          <p>We're Filipino young pros — nurses, devs, teachers, freelancers, fresh grads — learning to
+            follow Jesus right where we are. And we've found that the gospel doesn't erase our language;
+            it <span class="hl-gold">fills it</span>. The values our lola taught us, the ones baked into
+            how we love and how we work, were never meant to be left at the church door. Christ meets
+            them, heals what's broken in them, and points them home.</p>
+          <p>So take these slow. One read, one verse, one short prayer at a time — sa umaga before the
+            commute, or sa gabi when the day finally quiets down. Let the Word do what only the Word can
+            do: reshape the loob.</p>
+        </div>
+
+        <nav class="dev-jump" aria-label="Jump to a devotional" data-reveal>
+          <a class="dev-jump-link" href="#dev-loob"><span class="yp-leaf-flourish" aria-hidden="true"></span>Loob</a>
+          <a class="dev-jump-link" href="#dev-kapwa"><span class="yp-leaf-flourish" aria-hidden="true"></span>Kapwa</a>
+          <a class="dev-jump-link" href="#dev-malasakit"><span class="yp-leaf-flourish" aria-hidden="true"></span>Malasakit</a>
+          <a class="dev-jump-link" href="#dev-bahala-na"><span class="yp-leaf-flourish" aria-hidden="true"></span>Bahala Na</a>
+          <a class="dev-jump-link" href="#dev-utang-na-loob"><span class="yp-leaf-flourish" aria-hidden="true"></span>Utang na Loob</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ===================== THE 5 DEVOTIONALS ===================== -->
+    <section class="section" aria-labelledby="dev-reads-heading" style="padding-top: 0;">
+      <div class="container container-narrow">
+        <h2 class="sr-only" id="dev-reads-heading">The five devotional reads</h2>
+
+        <div class="dev-list">
+
+          <!-- 1 · LOOB -->
+          <article class="devotional card glass" id="dev-loob" data-reveal
+                   aria-labelledby="dev-loob-term">
+            <header class="devotional-head">
+              <p class="devotional-index">Devotional 01</p>
+              <h3 class="devotional-term" id="dev-loob-term">Loob</h3>
+              <p class="devotional-gloss">the inner self, the will</p>
+            </header>
+
+            <blockquote class="devotional-scripture">
+              <p>&ldquo;The Lord sees not as man sees: man looks on the outward appearance, but the Lord
+                looks on the heart.&rdquo;</p>
+              <cite class="devotional-ref">1 Samuel 16:7 <span class="devotional-translation">ESV</span></cite>
+            </blockquote>
+
+            <div class="devotional-body">
+              <p>Loob is the inside of you — your hidden self, your will, what's really going on behind
+                the &ldquo;okay lang ako.&rdquo; We're so good at managing the labas: the polished resume,
+                the curated feed, the &ldquo;I'm fine&rdquo; at standup. But God isn't impressed by the
+                surface, and He isn't fooled by it either. When Samuel was sizing up the tall, good-looking
+                candidates, God quietly passed over every one of them and chose the boy nobody called in
+                from the field. He was reading a different page — the loob.</p>
+              <p>That's terrifying and freeing at the same time. Terrifying, because He sees the parts we
+                hide. Freeing, because it means we can finally stop performing. You don't have to keep your
+                loob spotless to be loved here; you have to bring it. Sabihin mo na lang sa Kanya — the
+                envy, the burnout, the ambition that's quietly become an idol. He already knows. He's just
+                waiting for you to stop pretending so He can start healing.</p>
+              <p>And He does heal it. The same God who looks on the heart is the God who promised to give
+                us a new one — to write His Word not on a wall but on the inside, where it actually changes
+                us. Before He upgrades your career, let Him renew your loob. Who you are in the unseen is
+                the real you He's building.</p>
+            </div>
+
+            <p class="devotional-prayer">
+              <span class="devotional-prayer-label">Prayer</span>
+              <span class="devotional-prayer-text">Lord, You see my loob — the parts I hide from
+                everyone else. Search it, soften it, and make the inside of me match the calling You've
+                placed on my life. Amen.</span>
+            </p>
+          </article>
+
+          <!-- 2 · KAPWA -->
+          <article class="devotional card glass" id="dev-kapwa" data-reveal
+                   aria-labelledby="dev-kapwa-term">
+            <header class="devotional-head">
+              <p class="devotional-index">Devotional 02</p>
+              <h3 class="devotional-term" id="dev-kapwa-term">Kapwa</h3>
+              <p class="devotional-gloss">shared humanity, one-with-the-other</p>
+            </header>
+
+            <blockquote class="devotional-scripture">
+              <p>&ldquo;Do nothing from selfish ambition or conceit, but in humility count others more
+                significant than yourselves. Let each of you look not only to his own interests, but also
+                to the interests of others.&rdquo;</p>
+              <cite class="devotional-ref">Philippians 2:3&ndash;4 <span class="devotional-translation">ESV</span></cite>
+            </blockquote>
+
+            <div class="devotional-body">
+              <p>Kapwa is one of the most beautiful words we have. It doesn't just mean &ldquo;other
+                person&rdquo; — it means the person who shares your humanity, the one you recognize yourself
+                in. When you treat someone as kapwa, the wall between &ldquo;me&rdquo; and &ldquo;you&rdquo;
+                gets thin. You feel their hunger as a version of your own. That instinct isn't just
+                Filipino culture; it's a fingerprint of the God who made us in His image, all of us, no
+                exceptions.</p>
+              <p>Here's where the gospel deepens it. At the foot of the cross, the ground is level. The
+                boss and the messenger, the topnotcher and the one still job-hunting, the put-together and
+                the barely-holding-on — we are all equally in need of grace, and all equally offered it.
+                Paul says to count others more significant than yourself. That's not low self-esteem; it's
+                the math of a person so secure in Christ's love that they can spend their energy noticing
+                somebody else.</p>
+              <p>So pakikipagkapwa becomes worship. The new officemate eating alone. The kuya guard you
+                walk past every day. The friend who's gone quiet online. To see them as kapwa — truly see
+                them — and to move toward them is to love the way Jesus loved us first, when we were
+                strangers and He made us family.</p>
+            </div>
+
+            <p class="devotional-prayer">
+              <span class="devotional-prayer-label">Prayer</span>
+              <span class="devotional-prayer-text">Jesus, You crossed every distance to call me Yours.
+                Give me eyes to see each person as kapwa, and a heart secure enough to put them first.
+                Amen.</span>
+            </p>
+          </article>
+
+          <!-- 3 · MALASAKIT -->
+          <article class="devotional card glass" id="dev-malasakit" data-reveal
+                   aria-labelledby="dev-malasakit-term">
+            <header class="devotional-head">
+              <p class="devotional-index">Devotional 03</p>
+              <h3 class="devotional-term" id="dev-malasakit-term">Malasakit</h3>
+              <p class="devotional-gloss">compassionate care</p>
+            </header>
+
+            <blockquote class="devotional-scripture">
+              <p>&ldquo;When he saw the crowds, he had compassion for them, because they were harassed and
+                helpless, like sheep without a shepherd.&rdquo;</p>
+              <cite class="devotional-ref">Matthew 9:36 <span class="devotional-translation">ESV</span></cite>
+            </blockquote>
+
+            <div class="devotional-body">
+              <p>Malasakit is care that costs you something. It's the difference between &ldquo;sayang
+                naman&rdquo; said from a distance and the friend who actually shows up — who carries part of
+                the weight as if it were their own. It's love that refuses to look away. And that is exactly
+                the word the Gospels reach for when they describe Jesus looking at a crowd. He didn't see a
+                problem to manage; He saw tired, scattered people, and something moved in Him.</p>
+              <p>The Greek word there is visceral — it means He felt it in His gut. The Lord of glory was
+                not professionally polite about our suffering; He was wrecked by it, enough to do something
+                about it that cost Him everything. The cross is malasakit taken to its furthest end: He
+                entered our helplessness and carried what we could never carry ourselves.</p>
+              <p>Which means our malasakit isn't something we manufacture by trying harder to be nice. It
+                overflows from being on the receiving end of His. We notice the burned-out workmate because
+                Someone first noticed us. We carry a friend's burden because Christ first carried ours all
+                the way to Calvary. Today, let His compassion become contagious through you — one small,
+                costly act of showing up.</p>
+            </div>
+
+            <p class="devotional-prayer">
+              <span class="devotional-prayer-label">Prayer</span>
+              <span class="devotional-prayer-text">Father, You had malasakit on me when I was helpless.
+                Let that same compassion move me toward the tired and the unseen around me today. Amen.</span>
+            </p>
+          </article>
+
+          <!-- 4 · BAHALA NA -->
+          <article class="devotional card glass" id="dev-bahala-na" data-reveal
+                   aria-labelledby="dev-bahala-na-term">
+            <header class="devotional-head">
+              <p class="devotional-index">Devotional 04</p>
+              <h3 class="devotional-term" id="dev-bahala-na-term">Bahala Na</h3>
+              <p class="devotional-gloss">faith-filled trust in God</p>
+            </header>
+
+            <blockquote class="devotional-scripture">
+              <p>&ldquo;Trust in the Lord with all your heart, and do not lean on your own understanding.
+                In all your ways acknowledge him, and he will make straight your paths.&rdquo;</p>
+              <cite class="devotional-ref">Proverbs 3:5&ndash;6 <span class="devotional-translation">ESV</span></cite>
+            </blockquote>
+
+            <div class="devotional-body">
+              <p>&ldquo;Bahala na&rdquo; gets a bad rap — like it's just shrugging and leaving everything to
+                luck. But listen to the older heart of the phrase: many trace it to &ldquo;Bathala na&rdquo;
+                — <em>God will take care of it</em>. That's not fatalism. That's faith. The difference is
+                everything: fatalism gives up because no one's in control; faith lets go because Someone is.</p>
+              <p>Young-pro life hands you a hundred things you can't control. The job offer that's still
+                &ldquo;under review.&rdquo; The result that's out of your hands. The future you can't see past
+                this quarter. Proverbs doesn't tell you to stop thinking — it tells you to stop
+                <em>leaning</em> your whole weight on your own understanding, as if your spreadsheet could
+                hold up your life. Do your part fully, with excellence, as unto the Lord. Then release the
+                outcome to the God who actually holds it.</p>
+              <p>That's the redeemed bahala na: not lazy surrender, but restful trust. You prepare like it
+                depends on you and you rest like it depends on Him — because it does. He has never once lost
+                control of a single life entrusted to Him, and He isn't about to start with yours. You can
+                breathe. Bathala na — and He is good.</p>
+            </div>
+
+            <p class="devotional-prayer">
+              <span class="devotional-prayer-label">Prayer</span>
+              <span class="devotional-prayer-text">Lord, I've done my part — now I entrust the rest to You.
+                Bathala na: take care of what I cannot control, and help me rest in Your faithful hands.
+                Amen.</span>
+            </p>
+          </article>
+
+          <!-- 5 · UTANG NA LOOB -->
+          <article class="devotional card glass" id="dev-utang-na-loob" data-reveal
+                   aria-labelledby="dev-utang-na-loob-term">
+            <header class="devotional-head">
+              <p class="devotional-index">Devotional 05</p>
+              <h3 class="devotional-term" id="dev-utang-na-loob-term">Utang na Loob</h3>
+              <p class="devotional-gloss">deep gratitude, a debt of the heart</p>
+            </header>
+
+            <blockquote class="devotional-scripture">
+              <p>&ldquo;You are not your own, for you were bought with a price. So glorify God in your
+                body.&rdquo;</p>
+              <cite class="devotional-ref">1 Corinthians 6:19&ndash;20 <span class="devotional-translation">ESV</span></cite>
+            </blockquote>
+
+            <div class="devotional-body">
+              <p>Utang na loob is a debt of the heart — not the kind you pay off at the bank, but the kind
+                you carry because someone did something for you that you could never fully repay. Filipinos
+                understand this deeply: when somebody saves you, you remember. You honor it. Your whole life
+                bends a little toward gratitude. And Scripture says that is exactly the right response to
+                what Jesus has done — only the debt is infinite.</p>
+              <p>&ldquo;You were bought with a price.&rdquo; Not with pesos, not with effort, but with the
+                blood of Christ. We were sold under sin, unable to buy ourselves back, and He paid in full
+                what we owed. That is the ultimate utang na loob — a debt we could never settle, settled
+                forever by Someone else.</p>
+              <p>But here's the gospel turn: He doesn't hold it over you. Christ doesn't keep score or make
+                you grovel to work it off. The debt is already marked <em>paid</em>. So our gratitude isn't
+                anxious repayment — it's glad, lifelong thanksgiving. We glorify God in our bodies, our jobs,
+                our friendships, our money, not to earn what's already ours, but because we're loved that
+                much. Let your whole life say salamat to the One who paid it all.</p>
+            </div>
+
+            <p class="devotional-prayer">
+              <span class="devotional-prayer-label">Prayer</span>
+              <span class="devotional-prayer-text">Jesus, You paid a debt I could never repay and called it
+                finished. Let my whole life be a glad salamat — Yours in body, work, and heart. Amen.</span>
+            </p>
+          </article>
+
+        </div>
+
+        <!-- ===================== CLOSING ===================== -->
+        <aside class="dev-close card glass" data-reveal aria-labelledby="dev-close-heading">
+          <h2 class="dev-close-title" id="dev-close-heading">Carry it into the week.</h2>
+          <p>These aren't just nice ideas — they're the topics we actually open up about at fellowship,
+            over kape and kwentuhan. If something here stirred your loob, don't carry it alone. There's a
+            seat saved for you, and a family genuinely glad you came.</p>
+          <div class="dev-close-actions">
+            <a class="btn btn-primary" href="index.html#join" data-magnetic>Join us</a>
+            <a class="btn btn-ghost" href="events.html">See what's next</a>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer" id="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img class="footer-logo" src="assets/img/ftb-church-logo.png"
+             alt="Faith Temple Baptist Church Inc. botanical wreath logo." width="80" height="80" loading="lazy">
+        <p class="footer-ministry">Young Pro Ministry</p>
+        <p class="footer-church">Faith Temple Baptist Church Inc.</p>
+        <p class="footer-purpose">Worship God. Make Disciples.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer">
+        <h2 class="footer-heading">Explore</h2>
+        <ul role="list">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#what-we-do">What We Do</a></li>
+          <li><a href="index.html#themes">Themes</a></li>
+          <li><a href="devotionals.html" aria-current="page">Devotionals</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="index.html#join">Join Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-contact">
+        <h2 class="footer-heading">Reach us</h2>
+        <p><a class="link-emerald" href="mailto:ftb.youngpro.ministry@gmail.com">ftb.youngpro.ministry@gmail.com</a></p>
+        <p class="footer-address">#206 P. Orbe St., Blueville Subdivision,<br>Novaliches, Quezon City, Philippines 1117</p>
+        <p class="footer-closing">Committing our work to the Lord, one young pro at a time.</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span data-year>2026</span> Young Pro Ministry · Faith Temple Baptist Church Inc.</p>
+    </div>
+  </footer>
+
+  <!-- Motion libs (jsDelivr CDN — graceful degradation: page fully works without them).
+       Same dependency order + defer pattern as the home page; main.js feature-detects
+       each global and guards missing hooks, so it is safe on this page. -->
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -33,6 +33,13 @@
   <!-- Favicon -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
+  <!-- PWA: installable + offline-capable on GitHub Pages -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Young Pro">
+
   <!-- Google Fonts + the GSAP CDN (the only external resources) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -320,6 +327,8 @@
           <li><a class="nav-link" href="#happenings">Happenings</a></li>
           <li><a class="nav-link" href="#themes">Themes</a></li>
           <li><a class="nav-link" href="#leaders">Leaders</a></li>
+          <li><a class="nav-link" href="events.html">Events</a></li>
+          <li><a class="nav-link" href="devotionals.html">Devotionals</a></li>
           <li class="nav-cta-item"><a class="btn btn-primary nav-cta" href="#join" data-magnetic>Join Us</a></li>
         </ul>
       </nav>
@@ -331,6 +340,15 @@
     <!-- ===================== HERO ===================== -->
     <section class="hero" id="hero">
       <div class="hero-bg" aria-hidden="true">
+        <!-- Duotone ministry-photo TEXTURE layer (depth, not a literal photo):
+             a real on-disk image (the museum facade) crushed dark + emerald via
+             CSS filters with a heavy forest scrim on top, sitting BEHIND the
+             aurora/halo. Decorative only (aria-hidden via the parent, pointer-
+             events:none). Pointer-parallax rides the same --px/--py the auroras
+             use (desktop fine-pointer only; JS never sets them on touch / reduced
+             motion, so it's a static texture there). Hidden under reduced motion. -->
+        <span class="hero-photo"></span>
+        <span class="hero-photo-scrim"></span>
         <span class="aurora aurora-1"></span>
         <span class="aurora aurora-2"></span>
         <span class="aurora aurora-3"></span>
@@ -555,6 +573,14 @@
                 <button class="btn-event" type="button" data-event-share aria-label="Share this event">
                   <span class="yp-leaf-flourish" aria-hidden="true"></span>Share
                 </button>
+                <!-- RSVP: static mailto only (no backend). The team can later swap this href
+                     for a Google Form URL (e.g. https://forms.gle/XXXX) to get a live going-count;
+                     keep the .btn-event class + data-event-rsvp hook so styling/scripting stays put. -->
+                <a class="btn-event btn-event--rsvp" data-event-rsvp
+                   href="mailto:ftb.youngpro.ministry@gmail.com?subject=RSVP%3A%20YP%20Fellowship%20-%20Malasakit%20(June%2014)&amp;body=Hi%20Young%20Pro%20Ministry%2C%0A%0AI'm%20going%20to%20YP%20Fellowship%20%E2%80%94%20Malasakit%20on%20Sunday%2C%20June%2014%20at%202%3A30%20PM%20(FTB%20Auditorium).%0A%0AName%3A%20%0ABringing%20a%20friend%3F%3A%20%0A%0ASee%20you%20there!"
+                   aria-label="RSVP by email — I am going to YP Fellowship Malasakit on June 14">
+                  <span class="yp-leaf-flourish" aria-hidden="true"></span>RSVP &middot; I&rsquo;m going
+                </a>
               </div>
             </div>
           </li>
@@ -1067,6 +1093,8 @@
           <li><a href="#happenings">Happenings</a></li>
           <li><a href="#themes">Themes</a></li>
           <li><a href="#leaders">Leaders</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="devotionals.html">Devotionals</a></li>
           <li><a href="#join">Join Us</a></li>
         </ul>
       </nav>
@@ -1093,5 +1121,34 @@
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
   <script src="assets/js/main.js" defer></script>
+
+  <!-- PWA service worker registration. Guarded + deferred to window load so it never
+       blocks first paint and is a no-op on browsers without service worker support. -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/sw.js").catch(function () {
+          /* Registration failures are non-fatal: the site works fine without the SW. */
+        });
+      });
+    }
+  </script>
+
+  <!-- ==========================================================================
+       ANALYTICS — GoatCounter (cookieless, privacy-friendly, GDPR-friendly).
+       INTENTIONALLY DISABLED: while commented out it loads NOTHING and makes ZERO
+       network requests. To activate:
+         1. Create a free account at https://www.goatcounter.com/ (pick a code, e.g.
+            "ftb-youngpro"); your dashboard becomes https://ftb-youngpro.goatcounter.com/
+         2. Uncomment the two lines below.
+         3. Set data-goatcounter to YOUR full count URL:
+            data-goatcounter="https://YOURCODE.goatcounter.com/count"
+       No cookies, no consent banner required. Add the same snippet to events.html /
+       devotionals.html to count those pages too.
+       ======================================================================== -->
+  <!--
+  <script data-goatcounter="https://YOURCODE.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+  -->
 </body>
 </html>

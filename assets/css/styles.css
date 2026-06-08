@@ -43,10 +43,15 @@
   --cream:    #f3ecd9;
   --cream-dim:#d8cfb6;
 
-  /* ---------- Text on dark ---------- */
-  --ink:      #eaf3ee;
-  --ink-dim:  #9db3a7;
-  --ink-faint:#86a294; /* >=4.5:1 on the darkest surface it sits on (bg-700) for small-text AA */
+  /* ---------- Text on dark ----------
+     AAA pass: --ink-dim and --ink-faint were nudged a touch lighter (same
+     emerald-neutral hue ~149deg — zero purple) so EVERY surface they land on,
+     including the lightest card fill (bg-700), clears WCAG AAA 7:1 for small
+     text. Measured minima: --ink (>=13.6), --ink-dim (>=7.76 on bg-700),
+     --ink-faint (>=7.59 on bg-700). The look is essentially unchanged. */
+  --ink:      #eaf3ee; /* >=13.6:1 on every surface */
+  --ink-dim:  #a8bdb2; /* secondary/body copy — >=7.76:1 (AAA) on bg-700..bg-900 */
+  --ink-faint:#a6bbb0; /* smallest glosses/captions — >=7.59:1 (AAA) on bg-700..bg-900 */
 
   /* ---------- Lines / borders ---------- */
   --hairline:        rgba(155, 183, 146, 0.16);
@@ -561,6 +566,55 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   overflow: hidden;
 }
 
+/* --- Duotone ministry-photo TEXTURE layer (richer hero depth) ---------------
+   A real on-disk image (the neoclassical museum facade — architectural,
+   faceless, lots of negative sky exactly where the headline sits) crushed to a
+   dark emerald DUOTONE via CSS filters so it reads as depth/texture, never as a
+   literal photo. It sits at the very BACK of .hero-bg (behind the halo and the
+   auroras), so the elegant emerald aurora is unchanged and still the star.
+   Decorative: aria-hidden (parent) + pointer-events:none. The pointer-parallax
+   rides the SAME --px/--py the auroras consume (main.js §8, desktop fine-pointer
+   only; never set on touch / reduced motion), so this is a static texture on
+   phones and for reduced-motion users. Kept subtle by design; bump opacity here
+   to taste. --------------------------------------------------------------------- */
+.hero-photo {
+  position: absolute;
+  /* Slightly oversize + center so the parallax translate never reveals an edge. */
+  inset: -6%;
+  z-index: -3;
+  background-image: url("../img/museum-03.jpg");
+  background-size: cover;
+  background-position: 60% 30%;
+  /* Crush to a dark EMERALD duotone: kill the original color (grayscale), tint
+     green via sepia->hue-rotate(95deg) (lands ~135deg = emerald, far from the
+     forbidden 230-330deg purple band — RULE ZERO ok), and drop brightness hard
+     so it's texture, not picture. */
+  filter: grayscale(1) sepia(0.5) hue-rotate(95deg) saturate(1.3)
+          brightness(0.34) contrast(1.05);
+  opacity: 0.16;
+  /* Compose the pointer-parallax with NO base transform; auroras already own
+     --px/--py. A gentle inverse drift (smaller than the auroras) adds depth
+     separation. */
+  translate: calc(var(--px, 0px) * -0.6) calc(var(--py, 0px) * -0.6);
+  /* Feather the edges so the texture melts into the forest-black rather than
+     ending on a hard rectangle. */
+  -webkit-mask-image: radial-gradient(120% 120% at 50% 38%, #000 38%, transparent 86%);
+          mask-image: radial-gradient(120% 120% at 50% 38%, #000 38%, transparent 86%);
+}
+
+/* Forest scrim OVER the photo (still behind the auroras/halo): guarantees the
+   centered hero text keeps AA+ (measured >=8.8:1 for --ink even over the
+   brightest photo patch) and deepens the duotone toward the page's forest-black.
+   A vertical gradient (darker top+bottom) plus a soft center vignette. */
+.hero-photo-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(90% 70% at 50% 42%, rgba(6,13,10,0.55) 0%, rgba(6,13,10,0.86) 78%),
+    linear-gradient(180deg, rgba(6,13,10,0.78) 0%, rgba(6,13,10,0.30) 40%, rgba(6,13,10,0.92) 100%);
+}
+
 /* Aurora blobs — static resting positions; @keyframes drift in animations.css */
 .aurora {
   position: absolute;
@@ -1048,6 +1102,33 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
 .btn-event:focus-visible {
   outline: 2px solid var(--gold-glow);
   outline-offset: 2px;
+  /* Dark offset halo so the gold ring stays high-contrast against BOTH the dark
+     card and the emerald border (and the filled RSVP variant). Matches the
+     .btn-primary / .nav-cta focus treatment for a consistent indicator. */
+  box-shadow: 0 0 0 5px var(--bg-900);
+}
+
+/* RSVP — the primary "I'm going" action on the featured card. A solid emerald
+   fill (vs the ghost calendar/share/.ics siblings) makes the main action read as
+   primary while staying fully on-system. Mirrors .btn-primary's color logic;
+   the gold focus ring + dark halo above already cover it (emerald ring would
+   vanish on an emerald fill — WCAG 2.4.11). */
+.btn-event--rsvp {
+  background: var(--emerald);
+  color: var(--bg-900);
+  border-color: var(--emerald);
+}
+.btn-event--rsvp:hover {
+  background: var(--emerald-400);
+  color: var(--bg-900);
+  border-color: var(--emerald-400);
+  box-shadow: var(--glow-emerald);
+}
+.btn-event--rsvp:active { background: var(--emerald-700); }
+/* The leaf flourish is a gold gradient mask; on the filled emerald button keep
+   it but deepen it so it reads against the bright fill. */
+.btn-event--rsvp .yp-leaf-flourish {
+  background: linear-gradient(135deg, var(--bg-850) 0%, var(--emerald-700) 100%);
 }
 
 /* --- YP leaf signature flourish — a recurring decorative gold-leaf mark that
@@ -1762,6 +1843,10 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   .aurora-1 { width: 46vmax; height: 46vmax; }
   .aurora-2 { width: 42vmax; height: 42vmax; }
   .aurora-3 { display: none; }
+  /* Hero photo texture: even more restrained on phones (smaller text area, the
+     scrim must keep contrast generous), and the pointer-parallax never runs on
+     touch — so it's a calm static wash here. */
+  .hero-photo { opacity: 0.1; translate: none; }
 }
 
 /* Inline desktop nav — only once there's room for the brand + 7 items + CTA.
@@ -1773,7 +1858,10 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
     inset: auto;
     flex-direction: row;
     align-items: center;
-    gap: var(--space-md);
+    /* 8 nav links + the CTA now share the row with the brand. A clamped gap keeps
+       them comfortably on ONE line from the 992px breakpoint up: tighter where
+       space is scarce, opening to the roomy --space-md only once there's room. */
+    gap: clamp(0.85rem, 0.2rem + 1vw, var(--space-md));
     padding: 0;
     background: transparent;
     -webkit-backdrop-filter: none;
@@ -1788,7 +1876,8 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
     transform: none;
     transition: none;
   }
-  .nav-link { padding: 0.4rem 0; font-size: 0.95rem; }
+  /* Keep labels on one line each (no mid-label wrap like "Vision / 2026"). */
+  .nav-link { padding: 0.4rem 0; font-size: 0.9rem; white-space: nowrap; }
   /* Animated scrollspy underline */
   .nav-link::after {
     content: "";
