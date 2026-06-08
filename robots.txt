@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ftb-youngpro.github.io/sitemap.xml

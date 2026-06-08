@@ -992,7 +992,111 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   color: var(--emerald-300);
   border: 1px solid var(--hairline-strong);
 }
-.post--featured { border-color: var(--hairline-gold); }
+.post--featured {
+  border-color: var(--hairline-gold);
+  box-shadow: var(--shadow-md), var(--glow-gold);
+}
+
+/* --- Featured-card "next event" moment: live countdown + add-to-cal / share ---
+   The countdown line is a calm gold kicker; main.js swaps its text to a live
+   "Starts in N days" string (a static date/time line is the no-JS fallback). */
+.post-countdown {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--gold-soft);
+}
+
+.event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-top: var(--space-2xs);
+}
+
+/* Shared add-to-calendar / share affordance — emerald-ghost, on-brand, with a
+   YP leaf flourish and a focus-visible gold ring (matches .btn-primary focus). */
+.btn-event {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--step--1);
+  line-height: 1;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--emerald-300);
+  border: 1px solid var(--hairline-strong);
+  transition: border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out);
+}
+.btn-event:hover {
+  border-color: var(--emerald);
+  color: var(--emerald-300);
+  box-shadow: var(--glow-emerald-soft);
+  transform: translateY(-1px);
+}
+.btn-event:active { transform: translateY(0); }
+.btn-event:focus-visible {
+  outline: 2px solid var(--gold-glow);
+  outline-offset: 2px;
+}
+
+/* --- YP leaf signature flourish — a recurring decorative gold-leaf mark that
+   ties the brand mark (yp-mark.svg), the posters' wreath motif, and the page
+   together. Pure CSS mask of the church's botanical leaf; aria-hidden + static
+   (no motion), so it never affects a11y or reduced-motion. ------------------- */
+.yp-leaf-flourish {
+  flex: none;
+  width: 0.95em;
+  height: 0.95em;
+  background: linear-gradient(135deg, var(--gold-soft) 0%, var(--gold) 60%, var(--gold-700) 100%);
+  -webkit-mask: var(--yp-leaf-mask) center / contain no-repeat;
+          mask: var(--yp-leaf-mask) center / contain no-repeat;
+}
+:root {
+  /* A single botanical leaf (echoes the gold leaf in yp-mark.svg). */
+  --yp-leaf-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 3C9 3 3 9.5 3 21c0 0 7-1 11-5 3-3 4-7 4-7s-4 1-7 4c0 0 3-7 10-10z'/%3E%3C/svg%3E");
+}
+
+/* --- Share/copy toast (JS-injected, aria-live=polite). A small, fixed,
+   bottom-center pill that confirms "Link copied" when Web Share is unavailable.
+   Hidden by default; .is-visible fades it in. ------------------------------- */
+.yp-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + var(--space-lg));
+  transform: translateX(-50%) translateY(8px);
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  max-width: min(90vw, 30rem);
+  padding: 0.7rem 1.1rem;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--bg-900);
+  background: var(--emerald-300);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-lg), var(--glow-emerald-soft);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out);
+}
+.yp-toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
 
 /* ---------------------------------------------------------------------------
    12. THEMES — MARQUEE + GRID

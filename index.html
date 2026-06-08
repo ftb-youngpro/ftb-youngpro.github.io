@@ -8,21 +8,27 @@
   <meta name="theme-color" content="#060d0a">
   <meta name="author" content="Young Pro Ministry · Faith Temple Baptist Church Inc.">
 
-  <!-- Open Graph -->
+  <!-- Canonical -->
+  <link rel="canonical" href="https://ftb-youngpro.github.io/">
+
+  <!-- Open Graph. Share card leads with the nearest upcoming event poster. -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Young Pro Ministry">
   <meta property="og:title" content="Young Pro Ministry · Faith Temple Baptist Church">
   <meta property="og:description" content="Filipino young professionals chasing Jesus and their callings together. Worship God. Make Disciples.">
-  <meta property="og:url" content="https://ftb-youngpro.github.io">
-  <meta property="og:image" content="https://ftb-youngpro.github.io/assets/img/museum-poster-ypgt-05-30-2026.jpg">
-  <meta property="og:image:alt" content="Young Pro Get-Together — National Museum Tour poster, May 30, 2026.">
+  <meta property="og:url" content="https://ftb-youngpro.github.io/">
+  <meta property="og:locale" content="en_PH">
+  <meta property="og:image" content="https://ftb-youngpro.github.io/assets/img/ypf-malasakit-06-14-2026.jpg">
+  <meta property="og:image:width" content="1080">
+  <meta property="og:image:height" content="1350">
+  <meta property="og:image:alt" content="YP Fellowship — Malasakit, Sunday June 14, 2026, 2:30 PM at the FTB Auditorium.">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Young Pro Ministry · Faith Temple Baptist Church">
   <meta name="twitter:description" content="Filipino young professionals chasing Jesus and their callings together. Worship God. Make Disciples.">
-  <meta name="twitter:image" content="https://ftb-youngpro.github.io/assets/img/museum-poster-ypgt-05-30-2026.jpg">
-  <meta name="twitter:image:alt" content="Young Pro Get-Together — National Museum Tour poster, May 30, 2026.">
+  <meta name="twitter:image" content="https://ftb-youngpro.github.io/assets/img/ypf-malasakit-06-14-2026.jpg">
+  <meta name="twitter:image:alt" content="YP Fellowship — Malasakit, Sunday June 14, 2026, 2:30 PM at the FTB Auditorium.">
 
   <!-- Favicon -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -123,6 +129,164 @@
       .yp-cursor + .yp-cursor-ring -> custom cursor (desktop fine-pointer only).
     ============================================================================
   -->
+
+  <!-- ==========================================================================
+       STRUCTURED DATA (schema.org JSON-LD @graph)
+       One Church/Organization node + the upcoming Event nodes. Dates carry the
+       PH +08:00 offset; events are free (offers price 0), offline, and scheduled.
+       The Malasakit Event mirrors the [data-event] featured card in the markup
+       (same title / ISO start+end / location) so the page + share + calendar +
+       this graph all agree. Validate with Google's Rich Results Test.
+       ========================================================================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Church",
+        "@id": "https://ftb-youngpro.github.io/#organization",
+        "name": "Young Pro Ministry — Faith Temple Baptist Church Inc.",
+        "alternateName": "YP Ministry",
+        "url": "https://ftb-youngpro.github.io/",
+        "logo": "https://ftb-youngpro.github.io/assets/img/ftb-church-logo.png",
+        "image": "https://ftb-youngpro.github.io/assets/img/ypf-malasakit-06-14-2026.jpg",
+        "email": "ftb.youngpro.ministry@gmail.com",
+        "slogan": "Worship God. Make Disciples.",
+        "description": "The Young Pro Ministry of Faith Temple Baptist Church Inc. — Filipino young professionals chasing Jesus and their callings together.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "#206 P. Orbe St., Blueville Subdivision, Novaliches",
+          "addressLocality": "Quezon City",
+          "addressRegion": "Metro Manila",
+          "postalCode": "1117",
+          "addressCountry": "PH"
+        }
+      },
+      {
+        "@type": "Event",
+        "@id": "https://ftb-youngpro.github.io/#event-malasakit",
+        "name": "YP Fellowship — Malasakit",
+        "startDate": "2026-06-14T14:30:00+08:00",
+        "endDate": "2026-06-14T16:30:00+08:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "description": "Our next YP Fellowship — Malasakit. We sit with malasakit, compassionate care, and what it looks like to carry one another's burdens the way Christ carries ours. Everyone's welcome — bring a friend.",
+        "image": "https://ftb-youngpro.github.io/assets/img/ypf-malasakit-06-14-2026.jpg",
+        "url": "https://ftb-youngpro.github.io/#happenings",
+        "location": {
+          "@type": "Place",
+          "name": "FTB Auditorium",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "#206 P. Orbe St., Blueville Subdivision, Novaliches",
+            "addressLocality": "Quezon City",
+            "addressRegion": "Metro Manila",
+            "postalCode": "1117",
+            "addressCountry": "PH"
+          }
+        },
+        "organizer": { "@id": "https://ftb-youngpro.github.io/#organization" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "PHP",
+          "availability": "https://schema.org/InStock",
+          "url": "https://ftb-youngpro.github.io/#happenings"
+        }
+      },
+      {
+        "@type": "Event",
+        "@id": "https://ftb-youngpro.github.io/#event-cooking",
+        "name": "YPGT — Cooking Fellowship",
+        "startDate": "2026-06-20T10:00:00+08:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "description": "Aprons on, phones down — we cook, eat, and kwentuhan together. The best conversations happen in the kitchen. Bring a friend.",
+        "image": "https://ftb-youngpro.github.io/assets/img/ypgt-cooking-06-20-2026.jpg",
+        "url": "https://ftb-youngpro.github.io/#happenings",
+        "location": {
+          "@type": "Place",
+          "name": "Venue to be announced",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Quezon City",
+            "addressRegion": "Metro Manila",
+            "addressCountry": "PH"
+          }
+        },
+        "organizer": { "@id": "https://ftb-youngpro.github.io/#organization" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "PHP",
+          "availability": "https://schema.org/InStock",
+          "url": "https://ftb-youngpro.github.io/#happenings"
+        }
+      },
+      {
+        "@type": "Event",
+        "@id": "https://ftb-youngpro.github.io/#event-bahala-na",
+        "name": "Friend Day — Bahala Na",
+        "startDate": "2026-07-12T14:30:00+08:00",
+        "endDate": "2026-07-12T16:30:00+08:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "description": "Our most invite-friendly fellowship — bring a friend who needs to hear the gospel. We unpack “Bahala Na” not as fatalism, but as faith-filled trust in the God who holds us.",
+        "image": "https://ftb-youngpro.github.io/assets/img/ypf-bahala-na-07-12-2026.jpg",
+        "url": "https://ftb-youngpro.github.io/#happenings",
+        "location": {
+          "@type": "Place",
+          "name": "FTB Auditorium",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "#206 P. Orbe St., Blueville Subdivision, Novaliches",
+            "addressLocality": "Quezon City",
+            "addressRegion": "Metro Manila",
+            "postalCode": "1117",
+            "addressCountry": "PH"
+          }
+        },
+        "organizer": { "@id": "https://ftb-youngpro.github.io/#organization" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "PHP",
+          "availability": "https://schema.org/InStock",
+          "url": "https://ftb-youngpro.github.io/#happenings"
+        }
+      },
+      {
+        "@type": "Event",
+        "@id": "https://ftb-youngpro.github.io/#event-hobby-fitness",
+        "name": "YPGT — Hobby & Fitness",
+        "startDate": "2026-07-18T09:00:00+08:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "description": "Fitness in the morning, hobbies in the afternoon. Come sweat, create, and hang out. Invite-friendly, so bring a friend along.",
+        "image": "https://ftb-youngpro.github.io/assets/img/ypgt-hobby-fitness-07-18-2026.jpg",
+        "url": "https://ftb-youngpro.github.io/#happenings",
+        "location": {
+          "@type": "Place",
+          "name": "Venue to be announced",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Quezon City",
+            "addressRegion": "Metro Manila",
+            "addressCountry": "PH"
+          }
+        },
+        "organizer": { "@id": "https://ftb-youngpro.github.io/#organization" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "PHP",
+          "availability": "https://schema.org/InStock",
+          "url": "https://ftb-youngpro.github.io/#happenings"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -346,14 +510,57 @@
         <header class="section-head">
           <p class="eyebrow" data-reveal>Happenings</p>
           <h2 class="section-title" id="happenings-heading" data-reveal data-split>What's been going on — and what's next.</h2>
-          <p class="section-lead lead" data-reveal>Recaps from where we've been and a heads-up on where
-            we're headed. Today's the season of June 2026 — come join us for what's coming.</p>
+          <p class="section-lead lead" data-reveal>Up next is YP Fellowship &mdash; &ldquo;Malasakit&rdquo;
+            on Sunday, June 14. Below it: recaps from where we've been and a heads-up on everything else
+            we're headed toward this season. Come join us for what's coming.</p>
         </header>
 
         <ul class="feed-grid" role="list">
 
-          <!-- Museum Tour (featured / latest, real poster) -->
-          <li class="post card glass post--featured" data-reveal style="--i:0">
+          <!-- Malasakit · YP Fellowship (June 14) — FEATURED next event.
+               This is the single source of truth in the markup for the nearest
+               upcoming event; main.js reads it (and the Event JSON-LD mirrors it)
+               to drive the live countdown, Add-to-Calendar (.ics + Google), and
+               Web Share. The static .post-countdown line is a no-JS fallback the
+               script replaces with a live "starts in N days" string. -->
+          <li class="post card glass post--featured post--upcoming" data-reveal style="--i:0"
+              data-event
+              data-event-title="YP Fellowship — Malasakit"
+              data-event-start="2026-06-14T14:30:00+08:00"
+              data-event-end="2026-06-14T16:30:00+08:00"
+              data-event-location="FTB Auditorium, #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City, Philippines 1117"
+              data-event-url="https://ftb-youngpro.github.io/#happenings">
+            <div class="post-media">
+              <img class="post-poster" data-parallax data-mask loading="lazy"
+                   src="assets/img/ypf-malasakit-06-14-2026.jpg"
+                   alt="YP Fellowship poster — Malasakit, Sunday June 14, 2026, 2:30 PM at the FTB Auditorium."
+                   width="1080" height="1350">
+              <span class="badge badge-upcoming">Next up</span>
+            </div>
+            <div class="post-body">
+              <p class="post-meta"><span class="post-date">June 14, 2026</span><span class="post-tag">Fellowship</span></p>
+              <h3 class="post-title">YP Fellowship — &ldquo;Malasakit&rdquo;</h3>
+              <p class="post-countdown" data-event-countdown>
+                <span class="yp-leaf-flourish" aria-hidden="true"></span>
+                Sunday, June 14 · 2:30 PM · FTB Auditorium
+              </p>
+              <p class="post-blurb">Our next gathering — Sunday, June 14 at 2:30 PM in the FTB Auditorium.
+                We sit with malasakit, compassionate care, and what it looks like to carry one another's
+                burdens the way Christ carries ours. Everyone's welcome — bring a friend.</p>
+              <div class="event-actions" data-event-actions>
+                <a class="btn-event" data-event-cal-google target="_blank" rel="noopener noreferrer"
+                   href="https://www.google.com/calendar/render?action=TEMPLATE&amp;text=YP%20Fellowship%20%E2%80%94%20Malasakit&amp;dates=20260614T063000Z/20260614T083000Z&amp;details=Our%20next%20YP%20Fellowship%20%E2%80%94%20Malasakit.%20Everyone%27s%20welcome%20%E2%80%94%20bring%20a%20friend.&amp;location=FTB%20Auditorium%2C%20%23206%20P.%20Orbe%20St.%2C%20Novaliches%2C%20Quezon%20City">
+                  <span class="yp-leaf-flourish" aria-hidden="true"></span>Add to calendar
+                </a>
+                <button class="btn-event" type="button" data-event-share aria-label="Share this event">
+                  <span class="yp-leaf-flourish" aria-hidden="true"></span>Share
+                </button>
+              </div>
+            </div>
+          </li>
+
+          <!-- Museum Tour (latest recap, real poster) -->
+          <li class="post card glass" data-reveal style="--i:1">
             <div class="post-media">
               <img class="post-poster" data-parallax data-mask loading="lazy"
                    src="assets/img/museum-poster-ypgt-05-30-2026.jpg"
@@ -372,7 +579,7 @@
           </li>
 
           <!-- Goal Casting (real poster) -->
-          <li class="post card glass" data-reveal style="--i:1">
+          <li class="post card glass" data-reveal style="--i:2">
             <div class="post-media">
               <img class="post-poster" data-parallax data-mask loading="lazy"
                    src="assets/img/goal-casting-ypf-01-18-2026.jpg"
@@ -389,7 +596,7 @@
           </li>
 
           <!-- Loob (no poster) -->
-          <li class="post card glass post--noimg" data-reveal style="--i:2">
+          <li class="post card glass post--noimg" data-reveal style="--i:3">
             <div class="post-body">
               <p class="post-meta"><span class="post-date">February 2026</span><span class="post-tag">Fellowship</span></p>
               <h3 class="post-title">Fellowship Topic: &ldquo;Loob&rdquo;</h3>
@@ -400,7 +607,7 @@
           </li>
 
           <!-- Evangelism Workshop (no poster) -->
-          <li class="post card glass post--noimg" data-reveal style="--i:3">
+          <li class="post card glass post--noimg" data-reveal style="--i:4">
             <div class="post-body">
               <p class="post-meta"><span class="post-date">March 2026</span><span class="post-tag">Fellowship</span></p>
               <h3 class="post-title">Evangelism Workshop</h3>
@@ -411,7 +618,7 @@
           </li>
 
           <!-- KKK (no poster) -->
-          <li class="post card glass post--noimg" data-reveal style="--i:4">
+          <li class="post card glass post--noimg" data-reveal style="--i:5">
             <div class="post-body">
               <p class="post-meta"><span class="post-date">March 13, 2026</span><span class="post-tag">YPGT</span></p>
               <h3 class="post-title">KKK — Kape, Kainan, at Kwentuhan</h3>
@@ -421,30 +628,12 @@
           </li>
 
           <!-- Swimming (no poster) -->
-          <li class="post card glass post--noimg" data-reveal style="--i:5">
+          <li class="post card glass post--noimg" data-reveal style="--i:6">
             <div class="post-body">
               <p class="post-meta"><span class="post-date">April 10, 2026</span><span class="post-tag">YPGT</span></p>
               <h3 class="post-title">Swimming Fellowship</h3>
               <p class="post-blurb">A summer break with the barkada — sun, water, and a whole lot of
                 laughing. Rest is spiritual too.</p>
-            </div>
-          </li>
-
-          <!-- Malasakit · YP Fellowship (June 14, poster) -->
-          <li class="post card glass post--upcoming" data-reveal style="--i:6">
-            <div class="post-media">
-              <img class="post-poster" data-parallax data-mask loading="lazy"
-                   src="assets/img/ypf-malasakit-06-14-2026.jpg"
-                   alt="YP Fellowship poster — Malasakit, Sunday June 14, 2026, 2:30 PM at the FTB Auditorium."
-                   width="1080" height="1350">
-              <span class="badge badge-upcoming">Next up</span>
-            </div>
-            <div class="post-body">
-              <p class="post-meta"><span class="post-date">June 14, 2026</span><span class="post-tag">Fellowship</span></p>
-              <h3 class="post-title">YP Fellowship — &ldquo;Malasakit&rdquo;</h3>
-              <p class="post-blurb">Our next gathering — Sunday, June 14 at 2:30 PM in the FTB Auditorium.
-                We sit with malasakit, compassionate care, and what it looks like to carry one another's
-                burdens the way Christ carries ours. Everyone's welcome — bring a friend.</p>
             </div>
           </li>
 
@@ -501,7 +690,7 @@
           </li>
 
           <!-- Cybersecurity (upcoming) -->
-          <li class="post card glass post--noimg post--upcoming" data-reveal style="--i:9">
+          <li class="post card glass post--noimg post--upcoming" data-reveal style="--i:10">
             <div class="post-body">
               <p class="post-meta"><span class="post-date">August 21, 2026</span><span class="post-tag">YPGT</span><span class="badge badge-upcoming">Upcoming</span></p>
               <h3 class="post-title">Cybersecurity Talk</h3>
@@ -511,7 +700,7 @@
           </li>
 
           <!-- Running (upcoming) -->
-          <li class="post card glass post--noimg post--upcoming" data-reveal style="--i:10">
+          <li class="post card glass post--noimg post--upcoming" data-reveal style="--i:11">
             <div class="post-body">
               <p class="post-meta"><span class="post-date">September 19, 2026</span><span class="post-tag">YPGT</span><span class="badge badge-upcoming">Upcoming</span></p>
               <h3 class="post-title">Evangelistic Running Fellowship</h3>
@@ -522,7 +711,7 @@
           </li>
 
           <!-- Thanksgiving (upcoming) -->
-          <li class="post card glass post--noimg post--upcoming" data-reveal style="--i:11">
+          <li class="post card glass post--noimg post--upcoming" data-reveal style="--i:12">
             <div class="post-body">
               <p class="post-meta"><span class="post-date">November 20, 2026</span><span class="post-tag">Fellowship</span><span class="badge badge-upcoming">Upcoming</span></p>
               <h3 class="post-title">Thanksgiving Fellowship + Topic &ldquo;Utang na Loob&rdquo;</h3>
@@ -533,7 +722,7 @@
           </li>
 
           <!-- Christmas (upcoming) -->
-          <li class="post card glass post--noimg post--upcoming" data-reveal style="--i:12">
+          <li class="post card glass post--noimg post--upcoming" data-reveal style="--i:13">
             <div class="post-body">
               <p class="post-meta"><span class="post-date">December 2026</span><span class="post-tag">Fellowship</span><span class="badge badge-upcoming">Upcoming</span></p>
               <h3 class="post-title">YP Christmas Fellowship</h3>

@@ -1413,6 +1413,208 @@
     });
   }
 
+  /* ==========================================================================
+     20b. FEATURED EVENT CARD — live countdown + Add-to-Calendar (.ics) + Share.
+          Runs in BOTH paths (no GSAP dependency). One [data-event] element is
+          the source of truth (its data-* attrs mirror the Event JSON-LD). Every
+          piece degrades: countdown has a static fallback line in the markup; the
+          Google-calendar anchor works with zero JS; share falls back from
+          navigator.share -> clipboard -> a visible mailto-less toast. Each branch
+          is self-guarded so a failure never breaks the card or the page.
+     ========================================================================== */
+  function initEventCard() {
+    var card = $("[data-event]");
+    if (!card) return;
+
+    var title = card.getAttribute("data-event-title") || "Young Pro event";
+    var startISO = card.getAttribute("data-event-start") || "";
+    var endISO = card.getAttribute("data-event-end") || "";
+    var location = card.getAttribute("data-event-location") || "";
+    var url = card.getAttribute("data-event-url") ||
+      (window.location ? window.location.href : "");
+    var start = startISO ? new Date(startISO) : null;
+    var end = endISO ? new Date(endISO) : null;
+    var validStart = start && !isNaN(start.getTime());
+
+    /* --- Live countdown: replace the static line's text with "Starts in N days"
+       (or "Happening today" / "Starting soon"). Date() IS used here intentionally
+       (unlike the footer year) because a countdown is inherently time-relative;
+       if the event has passed we simply leave the static date/time line. ------ */
+    (function countdown() {
+      var line = $("[data-event-countdown]", card);
+      if (!line || !validStart) return;
+      var leaf = $(".yp-leaf-flourish", line); // keep the decorative mark
+      var now = new Date();
+      var ms = start.getTime() - now.getTime();
+      var label = null;
+      if (ms <= 0) {
+        // Event today or already started — keep the static "date · time · venue"
+        // line as-is (no misleading negative countdown).
+        return;
+      }
+      var dayMs = 86400000;
+      var days = Math.ceil(ms / dayMs);
+      if (ms < dayMs) label = "Happening soon · today";
+      else if (days === 1) label = "Starts tomorrow";
+      else label = "Starts in " + days + " days";
+      // Rebuild the line: leaf flourish (if present) + live label.
+      line.textContent = "";
+      if (leaf) line.appendChild(leaf);
+      line.appendChild(document.createTextNode(label));
+    })();
+
+    /* --- Toast (aria-live=polite) for the clipboard-copy share fallback. ----- */
+    var toast = null, toastTimer = null;
+    function showToast(msg) {
+      if (!toast) {
+        toast = document.createElement("div");
+        toast.className = "yp-toast";
+        toast.setAttribute("role", "status");
+        toast.setAttribute("aria-live", "polite");
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      // force reflow so the transition runs even on a freshly-appended node
+      void toast.offsetWidth;
+      toast.classList.add("is-visible");
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () {
+        if (toast) toast.classList.remove("is-visible");
+      }, 2600);
+    }
+
+    /* --- Add-to-Calendar: in-JS .ics Blob download (the markup's Google anchor
+       is the no-JS path). We intercept the Google anchor's click ONLY to offer a
+       native .ics as well is overkill; instead we add a sibling behavior: if the
+       browser supports Blob + URL, the anchor still goes to Google (universal),
+       and we keep the .ics generator available for the Share menu / future use.
+       Here we leave the Google anchor untouched (it just works) — no hijack. --- */
+    function pad(n) { return n < 10 ? "0" + n : "" + n; }
+    function toICSDate(d) {
+      // UTC basic format: YYYYMMDDTHHMMSSZ
+      return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) +
+        "T" + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + pad(d.getUTCSeconds()) + "Z";
+    }
+    function buildICS() {
+      if (!validStart) return null;
+      var dtEnd = (end && !isNaN(end.getTime()))
+        ? end
+        : new Date(start.getTime() + 2 * 3600000); // default 2h
+      var esc = function (s) {
+        return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;")
+          .replace(/,/g, "\\,").replace(/\n/g, "\\n");
+      };
+      return [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Young Pro Ministry//Happenings//EN",
+        "CALSCALE:GREGORIAN",
+        "BEGIN:VEVENT",
+        "UID:" + toICSDate(start) + "-yp@ftb-youngpro.github.io",
+        "DTSTAMP:" + toICSDate(new Date()),
+        "DTSTART:" + toICSDate(start),
+        "DTEND:" + toICSDate(dtEnd),
+        "SUMMARY:" + esc(title),
+        "DESCRIPTION:" + esc("A Young Pro Ministry gathering. Everyone's welcome — bring a friend. " + url),
+        "LOCATION:" + esc(location),
+        "URL:" + esc(url),
+        "STATUS:CONFIRMED",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+    }
+
+    // Offer the .ics download alongside the Google anchor: on a modifier-free
+    // click we keep the universal Google link, but also expose a native .ics via
+    // a long-press/right-click is non-discoverable, so instead we attach the .ics
+    // to the Share flow below. (Anchor stays a plain, robust hyperlink.)
+
+    /* --- Web Share with clipboard + toast fallback. ------------------------- */
+    var shareBtn = $("[data-event-share]", card);
+    if (shareBtn) {
+      var shareData = {
+        title: title,
+        text: title + " — a Young Pro Ministry gathering. Everyone's welcome!",
+        url: url
+      };
+      on(shareBtn, "click", function () {
+        // 1) Native share sheet (mobile / supported desktop).
+        if (navigator.share &&
+            (!navigator.canShare || navigator.canShare(shareData))) {
+          navigator.share(shareData).catch(function () { /* user cancelled — fine */ });
+          return;
+        }
+        // 2) Clipboard copy + polite toast.
+        var copyText = shareData.text + " " + url;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(copyText).then(function () {
+            showToast("Link copied — share it with a friend!");
+          }).catch(function () {
+            legacyCopy(copyText);
+          });
+        } else {
+          legacyCopy(copyText);
+        }
+      });
+    }
+
+    function legacyCopy(text) {
+      try {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "absolute";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = document.execCommand && document.execCommand("copy");
+        document.body.removeChild(ta);
+        showToast(ok ? "Link copied — share it with a friend!" : "Copy the link from the address bar to share.");
+      } catch (e) {
+        showToast("Copy the link from the address bar to share.");
+      }
+    }
+
+    /* --- Add a native .ics download next to the Google anchor (progressive
+       enhancement): inject a second small link so users on Apple/Outlook get a
+       proper calendar file. Only when Blob is supported. ---------------------- */
+    var actions = $("[data-event-actions]", card);
+    var googleAnchor = $("[data-event-cal-google]", card);
+    if (actions && googleAnchor && validStart &&
+        typeof window.Blob === "function" && window.URL && window.URL.createObjectURL) {
+      var icsLink = document.createElement("a");
+      icsLink.className = "btn-event";
+      icsLink.setAttribute("download", "yp-malasakit.ics");
+      icsLink.setAttribute("aria-label", "Download calendar file (.ics) for " + title);
+      var leafSpan = document.createElement("span");
+      leafSpan.className = "yp-leaf-flourish";
+      leafSpan.setAttribute("aria-hidden", "true");
+      icsLink.appendChild(leafSpan);
+      icsLink.appendChild(document.createTextNode(".ics file"));
+      // Lazily build the blob on click so we don't hold a URL we never use.
+      on(icsLink, "click", function (e) {
+        var ics = buildICS();
+        if (!ics) return;
+        try {
+          var blob = new window.Blob([ics], { type: "text/calendar;charset=utf-8" });
+          var href = window.URL.createObjectURL(blob);
+          icsLink.setAttribute("href", href);
+          // Revoke shortly after the download starts.
+          setTimeout(function () { window.URL.revokeObjectURL(href); }, 4000);
+        } catch (err) {
+          e.preventDefault();
+          showToast("Could not generate the calendar file — use “Add to calendar” instead.");
+        }
+      });
+      // Insert the .ics link right after the Google anchor.
+      if (googleAnchor.nextSibling) {
+        actions.insertBefore(icsLink, googleAnchor.nextSibling);
+      } else {
+        actions.appendChild(icsLink);
+      }
+    }
+  }
+
   /* --- ScrollTrigger.refresh helper (after fonts/images/intro) ------------- */
   function refreshST() {
     if (LIB.st && window.ScrollTrigger) {
@@ -1514,6 +1716,7 @@
     tasks.push(initSmoothAnchors);   // native smooth scroll for anchors (both paths)
     tasks.push(initScrollspy);       // native scroll listener (both paths)
     tasks.push(initLeaderPhotoFallback);
+    tasks.push(initEventCard);       // featured-event countdown + add-to-cal + share (both paths)
     tasks.push(initTilt);            // independent of libs; finePointer + !reduced
     tasks.push(initLightbox);
 
