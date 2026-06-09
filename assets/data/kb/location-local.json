@@ -1,0 +1,102 @@
+[
+  {
+    "id": "full-address",
+    "topic": "location-local",
+    "keywords": ["address", "full address", "complete address", "where are you located", "where is the church", "saan", "saan kayo", "saan po kayo", "saan matatagpuan", "ano address niyo", "anong address", "anong address niyo", "address ng simbahan", "p. orbe", "p orbe", "orbe street", "blueville", "blueville subdivision", "novaliches", "quezon city", "qc", "1117", "ftb auditorium", "ftb church", "faith temple baptist", "lokasyon", "location", "venue", "saan dadaan", "exact location"],
+    "q": ["What is the full address?", "Where are you located?", "Saan po ang address niyo?", "Saan matatagpuan ang FTB Young Pro?", "What's the complete address of the church?", "Anong address ng FTB Auditorium?", "Saan kayo nagmi-meet?"],
+    "a_en": "We meet at the FTB Auditorium of Faith Temple Baptist Church Inc. — #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City, Philippines 1117. You're always welcome to drop by!",
+    "a_tl": "Nagtitipon kami sa FTB Auditorium ng Faith Temple Baptist Church Inc. — #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City, Philippines 1117. Welcome ka lagi, dumayo ka lang!",
+    "links": [{"label": "Open in Google Maps", "href": "https://www.google.com/maps/search/?api=1&query=Faith+Temple+Baptist+Church+%23206+P.+Orbe+St.+Blueville+Subdivision+Novaliches+Quezon+City+1117"}],
+    "priority": 1
+  },
+  {
+    "id": "google-maps-directions",
+    "topic": "location-local",
+    "keywords": ["google maps", "maps", "map", "directions", "get directions", "pin", "location pin", "google map link", "waze", "navigate", "pano pumunta", "paano pumunta", "papunta", "directions sa simbahan", "map link", "share location", "send location", "paturo", "paano makarating", "makarating", "punta sa church"],
+    "q": ["Can you share a Google Maps link?", "How do I get directions?", "Pwede ka bang magbigay ng Google Maps?", "Paano pumunta sa church?", "May map link ba kayo?", "Paano ako makakarating diyan?"],
+    "a_en": "Yes! Here's a Google Maps link straight to the FTB Auditorium — #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City. Tap it for turn-by-turn directions from wherever you are.",
+    "a_tl": "Oo naman! Eto ang Google Maps link papunta mismo sa FTB Auditorium — #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City. I-tap mo lang para sa directions mula kung saan ka man ngayon.",
+    "links": [{"label": "Get directions on Google Maps", "href": "https://www.google.com/maps/dir/?api=1&destination=Faith+Temple+Baptist+Church+%23206+P.+Orbe+St.+Blueville+Subdivision+Novaliches+Quezon+City+1117"}],
+    "priority": 1
+  },
+  {
+    "id": "near-me-novaliches",
+    "topic": "location-local",
+    "keywords": ["near me", "malapit sa akin", "malapit", "malapit ba", "near novaliches", "sa novaliches", "novaliches area", "nova", "malapit sa novaliches", "near quezon city", "sa qc", "near caloocan", "near fairview", "near lagro", "near bayan", "is it near me", "malapit ba sa akin", "close by", "nearby", "saang lugar", "saang banda"],
+    "q": ["Is there a meetup near me?", "Are you near Novaliches?", "Malapit ba kayo sa akin?", "Malapit ba sa Novaliches?", "Do you have anything near Quezon City?", "Saang banda kayo malapit?"],
+    "a_en": "We're based right in Novaliches, Quezon City — at the FTB Auditorium on P. Orbe St., Blueville Subdivision. If you tell us where you're coming from, we'd love to help you find the easiest way over — just message us!",
+    "a_tl": "Nasa Novaliches, Quezon City mismo kami — sa FTB Auditorium sa P. Orbe St., Blueville Subdivision. Kung sasabihin mo kung saan ka manggagaling, gusto naming tulungan kang makahanap ng pinakamadaling daan — mag-message ka lang sa amin!",
+    "links": [{"label": "See us on the map", "href": "https://www.google.com/maps/search/?api=1&query=Faith+Temple+Baptist+Church+%23206+P.+Orbe+St.+Blueville+Subdivision+Novaliches+Quezon+City+1117"}, {"label": "Message us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 1
+  },
+  {
+    "id": "metro-manila-reach",
+    "topic": "location-local",
+    "keywords": ["metro manila", "manila", "ncr", "national capital region", "from manila", "taga manila", "outside qc", "malayo ba", "is it far", "ang layo", "from makati", "from pasig", "from caloocan", "from bulacan", "commute from", "papuntang manila", "how far", "gaano kalayo", "accessible ba"],
+    "q": ["Are you accessible from Metro Manila?", "I'm coming from another part of Manila — is it far?", "Taga-Makati ako, malayo ba?", "Accessible ba kayo from NCR?", "Gaano kalayo from QC proper?", "Pwede ba akong dumayo from Bulacan?"],
+    "a_en": "We're in Novaliches, Quezon City — reachable from across Metro Manila and nearby provinces. Distance varies by where you start, so message us your starting point and we'll gladly help you plan the trip.",
+    "a_tl": "Nasa Novaliches, Quezon City kami — kayang puntahan mula sa iba't ibang parte ng Metro Manila at kalapit na probinsya. Depende sa pinagmumulan mo ang layo, kaya i-message mo lang kung saan ka galing at tutulungan ka naming mag-plano ng biyahe.",
+    "links": [{"label": "Open in Google Maps", "href": "https://www.google.com/maps/search/?api=1&query=Faith+Temple+Baptist+Church+%23206+P.+Orbe+St.+Blueville+Subdivision+Novaliches+Quezon+City+1117"}, {"label": "Ask us for directions", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 2
+  },
+  {
+    "id": "how-to-commute",
+    "topic": "location-local",
+    "keywords": ["how to commute", "commute", "paano mag-commute", "pano mag commute", "jeep", "jeepney", "bus", "tricycle", "uv express", "grab", "public transport", "byahe", "sasakyan", "ruta", "route", "saang jeep", "anong sasakyan", "transpo", "papuntang church", "saang sakay", "magkano pamasahe"],
+    "q": ["How do I commute there?", "What ride do I take?", "Paano mag-commute papunta sa inyo?", "Anong jeep o bus ang sasakyan ko?", "Saang sakayan ako papunta?", "Pwede mo ba akong turuan ng ruta?"],
+    "a_en": "Commute routes depend a lot on where you're starting from, so we don't want to give you the wrong directions. Message us at ftb.youngpro.ministry@gmail.com with your starting point and a leader will walk you through the best way to get here.",
+    "a_tl": "Iba-iba ang ruta depende sa kung saan ka magmumula, kaya ayaw naming mabigyan ka ng maling direksyon. I-message mo lang kami sa ftb.youngpro.ministry@gmail.com kung saan ka galing, at gigiyahan ka ng isang leader sa pinakamadaling daan papunta dito.",
+    "links": [{"label": "Message us for directions", "href": "mailto:ftb.youngpro.ministry@gmail.com"}, {"label": "Open in Google Maps", "href": "https://www.google.com/maps/search/?api=1&query=Faith+Temple+Baptist+Church+%23206+P.+Orbe+St.+Blueville+Subdivision+Novaliches+Quezon+City+1117"}],
+    "priority": 2
+  },
+  {
+    "id": "driving-parking",
+    "topic": "location-local",
+    "keywords": ["driving", "drive", "parking", "park", "may parking ba", "saan magpark", "by car", "kotse", "sasakyan ko", "magdadrive ako", "may paradahan ba", "pwede magpark", "garahe", "where to park", "car", "private vehicle"],
+    "q": ["Is there parking?", "Can I drive there?", "May parking ba kayo?", "Saan ako pwede magpark kung magdadrive ako?", "Pwede ba akong magkotse papunta diyan?"],
+    "a_en": "If you're driving, just use the Google Maps pin to FTB Auditorium on P. Orbe St., Blueville Subdivision. For parking specifics on the day, message us at ftb.youngpro.ministry@gmail.com and a leader will help you sort it out.",
+    "a_tl": "Kung magdadrive ka, gamitin mo lang ang Google Maps pin papunta sa FTB Auditorium sa P. Orbe St., Blueville Subdivision. Para sa detalye ng parking sa mismong araw, i-message mo kami sa ftb.youngpro.ministry@gmail.com at tutulungan ka ng isang leader.",
+    "links": [{"label": "Navigate with Google Maps", "href": "https://www.google.com/maps/dir/?api=1&destination=Faith+Temple+Baptist+Church+%23206+P.+Orbe+St.+Blueville+Subdivision+Novaliches+Quezon+City+1117"}, {"label": "Message us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 3
+  },
+  {
+    "id": "first-time-visit",
+    "topic": "location-local",
+    "keywords": ["first time", "first visit", "bisita", "visit", "visiting", "pupunta ako", "gusto kong dumayo", "gusto kong sumama", "first timer", "bagong dating", "how to visit", "paano dumalo", "dadalo", "can i visit", "pwede ba akong pumunta", "pwede bumisita", "drop by", "dadayo", "magpapakita"],
+    "q": ["I want to visit for the first time — where do I go?", "How do I find you when I arrive?", "First time ko pa lang, paano ako pupunta?", "Pwede ba akong dumayo?", "Saan ako pupunta pagdating ko?", "Paano kita mahahanap pagdating ko diyan?"],
+    "a_en": "We'd love to have you! Head to the FTB Auditorium at #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City — just look for Faith Temple Baptist Church. Message us before you come and we'll make sure someone's there to welcome you.",
+    "a_tl": "Gustong-gusto ka naming makita! Punta ka lang sa FTB Auditorium sa #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City — hanapin mo lang ang Faith Temple Baptist Church. Mag-message ka muna bago ka pumunta at sisiguraduhin naming may sasalubong sa'yo.",
+    "links": [{"label": "Open in Google Maps", "href": "https://www.google.com/maps/search/?api=1&query=Faith+Temple+Baptist+Church+%23206+P.+Orbe+St.+Blueville+Subdivision+Novaliches+Quezon+City+1117"}, {"label": "Message us first", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 1
+  },
+  {
+    "id": "landmarks-finding-us",
+    "topic": "location-local",
+    "keywords": ["landmark", "landmarks", "tapat", "katabi", "near what", "ano katabi", "anong malapit", "how to spot", "paano hahanapin", "saang tabi", "what's nearby", "reference point", "tanda", "paano makikita", "hard to find", "mahirap hanapin", "lost", "naliligaw"],
+    "q": ["What landmarks are near you?", "How will I know I'm there?", "Anong landmark ang malapit sa inyo?", "Paano ko malalaman na nasa tama akong lugar?", "May tanda ba para madaling mahanap?", "Baka maligaw ako — paano ko kayo mahahanap?"],
+    "a_en": "Just navigate to Faith Temple Baptist Church / FTB Auditorium on P. Orbe St. in Blueville Subdivision, Novaliches — the Google Maps pin takes you right to the spot. If anything's unclear on the day, message us and we'll guide you in.",
+    "a_tl": "I-navigate mo lang papunta sa Faith Temple Baptist Church / FTB Auditorium sa P. Orbe St. sa Blueville Subdivision, Novaliches — diretso ka dadalhin ng Google Maps pin sa mismong lugar. Kung may hindi malinaw sa mismong araw, mag-message ka lang at gagabayan ka namin papasok.",
+    "links": [{"label": "Pin on Google Maps", "href": "https://www.google.com/maps/search/?api=1&query=Faith+Temple+Baptist+Church+%23206+P.+Orbe+St.+Blueville+Subdivision+Novaliches+Quezon+City+1117"}, {"label": "Message us if you're lost", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 2
+  },
+  {
+    "id": "venue-name",
+    "topic": "location-local",
+    "keywords": ["ftb auditorium", "auditorium", "venue", "saang venue", "anong venue", "where exactly", "what venue", "saang building", "anong lugar sa church", "meeting place", "saan exactly", "tipanan", "gathering place", "anong room", "saang part ng church"],
+    "q": ["What's the venue called?", "Where exactly in the church do you meet?", "Anong tawag sa venue niyo?", "Saang parte ng church kayo nagtitipon?", "Anong venue ng fellowship?"],
+    "a_en": "Our gatherings are held at the FTB Auditorium inside Faith Temple Baptist Church, at #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City. When you arrive, just ask for the Young Pro fellowship and someone will point you the right way.",
+    "a_tl": "Sa FTB Auditorium ginaganap ang mga tipon namin, sa loob ng Faith Temple Baptist Church, sa #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City. Pagdating mo, itanong mo lang ang Young Pro fellowship at may magtuturo sa'yo ng tamang daan.",
+    "links": [{"label": "Open in Google Maps", "href": "https://www.google.com/maps/search/?api=1&query=Faith+Temple+Baptist+Church+%23206+P.+Orbe+St.+Blueville+Subdivision+Novaliches+Quezon+City+1117"}],
+    "priority": 2
+  },
+  {
+    "id": "online-or-in-person",
+    "topic": "location-local",
+    "keywords": ["online", "in person", "in-person", "personal", "harap-harapan", "face to face", "zoom", "stream", "livestream", "online ba", "virtual", "remote", "kailangan ba pumunta", "do i have to come", "can i join online", "pwede online", "physical", "onsite"],
+    "q": ["Is it online or in person?", "Do I have to go physically?", "Online ba o personal?", "Kailangan ko bang pumunta mismo?", "Pwede ba akong sumali online?"],
+    "a_en": "Our fellowships are held in person at the FTB Auditorium in Novaliches, Quezon City — that face-to-face kwentuhan is a big part of it! For any other options, message us at ftb.youngpro.ministry@gmail.com and we'll let you know.",
+    "a_tl": "In-person ang mga fellowship namin sa FTB Auditorium sa Novaliches, Quezon City — malaking parte ang harap-harapang kwentuhan! Para sa iba pang options, i-message mo lang kami sa ftb.youngpro.ministry@gmail.com at sasabihin namin sa'yo.",
+    "links": [{"label": "Where to find us", "href": "https://www.google.com/maps/search/?api=1&query=Faith+Temple+Baptist+Church+%23206+P.+Orbe+St.+Blueville+Subdivision+Novaliches+Quezon+City+1117"}, {"label": "Message us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 3
+  }
+]

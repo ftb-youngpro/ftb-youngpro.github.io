@@ -1,0 +1,162 @@
+[
+  {
+    "id": "yp-fellowship-when",
+    "topic": "schedule",
+    "keywords": ["when", "kailan", "anong oras", "what time", "schedule", "iskedyul", "sked", "meeting", "meet", "magkikita", "fellowship time", "yp fellowship", "young pro fellowship", "regular gathering", "service time", "ano oras", "kailan kayo nagkikita", "kelan", "next meeting", "regular meeting"],
+    "q": [
+      "When is YP Fellowship?",
+      "What time does the Young Pro Fellowship start?",
+      "Kailan po ang YP Fellowship?",
+      "Anong oras kayo nagkikita?",
+      "When do you usually meet?"
+    ],
+    "a_en": "Our regular YP Fellowship is usually at 2:30 PM, on the 2nd or 3rd week of the month, at the FTB Auditorium. The exact date can shift month to month, so check our Events page or message us to be sure.",
+    "a_tl": "Ang regular naming YP Fellowship ay kadalasang 2:30 PM, tuwing 2nd o 3rd week ng buwan, sa FTB Auditorium. Minsan nagbabago ang exact na petsa kada buwan, kaya tingnan mo lang ang Events page namin o mag-message ka para sigurado.",
+    "links": [{"label": "See Events", "href": "events.html"}],
+    "priority": 1
+  },
+  {
+    "id": "where-do-you-meet",
+    "topic": "schedule",
+    "keywords": ["where", "saan", "venue", "location", "lugar", "address", "place", "where to go", "saan kayo nagkikita", "saan po", "meeting place", "auditorium", "ftb auditorium", "church", "simbahan", "ftbci", "saan banda", "venue ng fellowship", "directions"],
+    "q": [
+      "Where do you meet?",
+      "Where is the YP Fellowship held?",
+      "Saan po kayo nagkikita?",
+      "Saan ang venue ng fellowship?",
+      "What's the location of your gatherings?"
+    ],
+    "a_en": "Our regular YP Fellowship happens at the FTB Auditorium — #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City, Philippines 1117. Some YPGT outings happen elsewhere, so check the Events page for each one's venue.",
+    "a_tl": "Sa FTB Auditorium ginagawa ang regular naming YP Fellowship — #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City, Philippines 1117. May ilang YPGT outings na nasa ibang lugar, kaya tingnan mo lang ang Events page para sa venue ng bawat isa.",
+    "links": [{"label": "See Events", "href": "events.html"}],
+    "priority": 1
+  },
+  {
+    "id": "how-often-meet",
+    "topic": "schedule",
+    "keywords": ["how often", "gaano kadalas", "frequency", "every month", "monthly", "buwan-buwan", "kada buwan", "weekly", "lingguhan", "how many times", "ilang beses", "regular", "recurring", "every week", "tuwing kailan", "gaano katagal", "schedule pattern"],
+    "q": [
+      "How often do you meet?",
+      "Is it every week or every month?",
+      "Gaano kayo kadalas magkita?",
+      "Buwan-buwan ba ang fellowship niyo?",
+      "How many times a month do you gather?"
+    ],
+    "a_en": "We have two regular things each month: the YP Fellowship (usually 2:30 PM, 2nd or 3rd week of the month) and a YPGT outing — so roughly twice a month, one at church and one out and about.",
+    "a_tl": "May dalawang regular kami kada buwan: ang YP Fellowship (kadalasang 2:30 PM, 2nd o 3rd week ng buwan) at isang YPGT outing — kaya mga dalawang beses kada buwan, isa sa church at isa sa labas.",
+    "links": [{"label": "See Events", "href": "events.html"}],
+    "priority": 1
+  },
+  {
+    "id": "exact-date-this-month",
+    "topic": "schedule",
+    "keywords": ["exact date", "this month", "exact day", "specific date", "ngayong buwan", "anong petsa", "what date", "next fellowship date", "kailan exactly", "exact na petsa", "this week", "kelan exactly", "when exactly", "petsa ng fellowship", "schedule this month", "ano na ang next"],
+    "q": [
+      "What's the exact date of the next fellowship?",
+      "When exactly is it this month?",
+      "Anong petsa po ng susunod na fellowship?",
+      "Kailan exactly ang fellowship ngayong buwan?",
+      "What's the date for this month's gathering?"
+    ],
+    "a_en": "The exact date moves between the 2nd and 3rd week each month, so the surest way is to check our Events page for the dated poster — or just message us at ftb.youngpro.ministry@gmail.com and we'll tell you.",
+    "a_tl": "Nag-iiba ang exact na petsa sa pagitan ng 2nd at 3rd week kada buwan, kaya pinakasiguradong paraan ay tingnan ang Events page namin para sa may petsang poster — o mag-message ka lang sa ftb.youngpro.ministry@gmail.com at sasabihin namin sa'yo.",
+    "links": [{"label": "See Events", "href": "events.html"}, {"label": "Email us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 1
+  },
+  {
+    "id": "what-is-ypgt",
+    "topic": "schedule",
+    "keywords": ["ypgt", "young pro get-together", "get together", "outing", "lakad", "gala", "lakwatsa", "activity", "labas", "monthly outing", "what is ypgt", "ano ang ypgt", "get-together", "hangout", "fun activity", "non-church activity", "outdoor"],
+    "q": [
+      "What is YPGT?",
+      "What's a Young Pro Get-Together?",
+      "Ano po ang YPGT?",
+      "Ano yung outing niyo every month?",
+      "Tell me about the get-togethers."
+    ],
+    "a_en": "YPGT stands for Young Pro Get-Together — our monthly outing where we build real friendships outside the four walls: coffee, swimming, museum tours, food, hobby and fitness, and more. Each month is different — check the Events page for what's next.",
+    "a_tl": "Ang YPGT ay Young Pro Get-Together — ito yung buwanang lakad namin kung saan nagpapalakas kami ng tunay na pagkakaibigan sa labas ng church: kape, swimming, museum tours, kainan, hobby at fitness, at marami pang iba. Iba-iba kada buwan — tingnan mo ang Events page para sa susunod.",
+    "links": [{"label": "See Events", "href": "events.html"}],
+    "priority": 1
+  },
+  {
+    "id": "fellowship-vs-ypgt",
+    "topic": "schedule",
+    "keywords": ["difference", "pagkakaiba", "fellowship vs ypgt", "two programs", "two types", "dalawang klase", "vs", "compare", "ano pinagkaiba", "regular vs outing", "which one", "alin", "kaibahan", "what's the difference", "types of gathering"],
+    "q": [
+      "What's the difference between YP Fellowship and YPGT?",
+      "Are the fellowship and the get-together the same thing?",
+      "Ano po ang pagkakaiba ng YP Fellowship at YPGT?",
+      "Magkaiba ba ang fellowship at outing niyo?",
+      "Which one is at the church?"
+    ],
+    "a_en": "YP Fellowship is our regular gathering at the church — worship, the Word, a topic, and sharing (usually 2:30 PM, 2nd or 3rd week of the month). YPGT is our monthly outing outside the church for friendship and fun. We do both each month.",
+    "a_tl": "Ang YP Fellowship ay yung regular naming pagtitipon sa church — worship, Salita ng Diyos, isang topic, at sharing (kadalasang 2:30 PM, 2nd o 3rd week ng buwan). Ang YPGT naman ay yung buwanang lakad sa labas para sa pagkakaibigan at saya. Ginagawa namin pareho kada buwan.",
+    "links": [{"label": "See Events", "href": "events.html"}],
+    "priority": 1
+  },
+  {
+    "id": "how-to-know-schedule",
+    "topic": "schedule",
+    "keywords": ["how to know", "paano malalaman", "where to check", "saan makikita", "updates", "find out", "stay updated", "announcement", "anunsyo", "how do i know", "paano ako makakaalam", "calendar", "kalendaryo", "schedule list", "upcoming events", "next events", "events page", "saan tingin"],
+    "q": [
+      "How do I know when the next fellowship is?",
+      "Where can I check the schedule?",
+      "Paano ko malalaman ang schedule?",
+      "Saan ko makikita ang mga susunod na event?",
+      "How do I stay updated on dates?"
+    ],
+    "a_en": "The easiest way is our Events page — it lists what's coming up with dates and posters. If you can't find what you need there, message us at ftb.youngpro.ministry@gmail.com and we'll fill you in.",
+    "a_tl": "Pinakamadali ay ang Events page namin — naka-list doon ang mga paparating na event na may petsa at poster. Kung wala kang makita doon, mag-message ka lang sa ftb.youngpro.ministry@gmail.com at ikukwento namin sa'yo.",
+    "links": [{"label": "See Events", "href": "events.html"}, {"label": "Email us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 1
+  },
+  {
+    "id": "what-happens-at-fellowship",
+    "topic": "schedule",
+    "keywords": ["what happens", "ano ginagawa", "what to expect", "ano mangyayari", "program", "agenda", "flow", "anong meron", "what do you do", "what's it like", "ano ang nangyayari", "ano laman", "worship", "teaching", "sharing", "ano ang programa"],
+    "q": [
+      "What happens at a YP Fellowship?",
+      "What can I expect at the gathering?",
+      "Ano po ang ginagawa sa YP Fellowship?",
+      "Anong meron sa fellowship niyo?",
+      "What's the program like?"
+    ],
+    "a_en": "A YP Fellowship is worship, the Word, a topic or teaching, and time to share with each other — warm, real, and welcoming. It usually runs from 2:30 PM at the FTB Auditorium. Everyone's welcome, and you can always bring a friend.",
+    "a_tl": "Ang YP Fellowship ay worship, Salita ng Diyos, isang topic o teaching, at oras para mag-share sa isa't isa — warm, totoo, at welcoming. Kadalasang nagsisimula ng 2:30 PM sa FTB Auditorium. Welcome ang lahat, at pwede kang magdala ng kaibigan.",
+    "links": [{"label": "See Events", "href": "events.html"}, {"label": "Join us", "href": "index.html#join"}],
+    "priority": 2
+  },
+  {
+    "id": "weekend-or-weekday",
+    "topic": "schedule",
+    "keywords": ["weekend", "weekday", "sunday", "saturday", "linggo", "sabado", "araw", "what day", "anong araw", "day of week", "is it sunday", "is it weekend", "araw ng fellowship", "ypgt day", "saturday outing", "sunday fellowship"],
+    "q": [
+      "Is the fellowship on a weekend?",
+      "What day of the week do you usually meet?",
+      "Anong araw po kayo nagkikita?",
+      "Sa Linggo ba ang fellowship?",
+      "Are gatherings on Saturdays or Sundays?"
+    ],
+    "a_en": "Our gatherings usually land on a weekend, but the exact day can vary by month and by activity — YPGT outings sometimes fall on different days than the Fellowship. Check the Events page for the dated poster of each one, or message us to confirm.",
+    "a_tl": "Kadalasang weekend ang mga pagtitipon namin, pero nag-iiba ang exact na araw depende sa buwan at sa activity — minsan iba ang araw ng YPGT outings kaysa sa Fellowship. Tingnan mo ang Events page para sa may petsang poster ng bawat isa, o mag-message ka para makumpirma.",
+    "links": [{"label": "See Events", "href": "events.html"}, {"label": "Email us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 2
+  },
+  {
+    "id": "can-i-just-show-up",
+    "topic": "schedule",
+    "keywords": ["just show up", "drop in", "pwede ba pumunta", "first time", "walk in", "register", "kailangan ba magparehistro", "sign up", "rsvp", "can i come", "pwede sumali", "do i need to register", "first timer", "bisita", "guest", "visitor", "pwede ba dumalo"],
+    "q": [
+      "Can I just show up to a fellowship?",
+      "Do I need to register before coming?",
+      "Pwede ba ako basta pumunta?",
+      "Kailangan ko bang magparehistro muna?",
+      "Can I come as a first-timer?"
+    ],
+    "a_en": "Yes — you're welcome to just come, no registration needed, and bringing a friend is always encouraged. If you'd like a heads-up on the next date and venue, check the Events page or message us at ftb.youngpro.ministry@gmail.com.",
+    "a_tl": "Oo — welcome ka lang pumunta, walang kailangang registration, at lagi naming hinihikayat na magdala ka ng kaibigan. Kung gusto mong malaman ang susunod na petsa at venue, tingnan ang Events page o mag-message sa ftb.youngpro.ministry@gmail.com.",
+    "links": [{"label": "Join us", "href": "index.html#join"}, {"label": "See Events", "href": "events.html"}],
+    "priority": 2
+  }
+]

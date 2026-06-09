@@ -1,0 +1,102 @@
+[
+  {
+    "id": "themes-overview",
+    "topic": "themes",
+    "keywords": ["themes", "filipino themes", "discipleship themes", "5 themes", "five themes", "fellowship topics", "loob", "kapwa", "malasakit", "bahala na", "utang na loob", "filipino values", "values", "halaga", "mga tema", "limang tema", "anong themes", "what are the themes", "ano ang themes", "cultural themes", "redeemed values", "christ-centered values"],
+    "q": ["What are the 5 Filipino discipleship themes?", "Tell me about the themes you teach", "What are Loob, Kapwa, Malasakit, Bahala Na, and Utang na Loob?", "Ano ang limang themes ninyo?", "Anong mga Filipino values ang tinuturo niyo?", "What are the fellowship topics this year?"],
+    "a_en": "We disciple around five beautiful Filipino heart-words and re-root each one in Christ: Loob (the inner self), Kapwa (shared humanity), Malasakit (compassionate care), Bahala Na (faith-filled trust in God), and Utang na Loob (deep gratitude). Each gets a short, warm devotional — read them all on our Devotionals page.",
+    "a_tl": "Limang magagandang Filipino heart-words ang ginagamit namin sa discipleship, at bawat isa ay iniuugat namin kay Cristo: Loob (ang kalooban), Kapwa (ang pagkakapareho ng pagkatao), Malasakit (mapagmalasakit na pag-aaruga), Bahala Na (pananalig sa Diyos), at Utang na Loob (taos na pasasalamat). May maikli't mainit na devotional para sa bawat isa — basahin mo lahat sa aming Devotionals page.",
+    "links": [{"label": "Read the devotionals", "href": "devotionals.html"}],
+    "priority": 1
+  },
+  {
+    "id": "themes-why-filipino",
+    "topic": "themes",
+    "keywords": ["why filipino themes", "bakit filipino", "why these themes", "bakit ganito", "filipino culture", "kultura", "cultural depth", "redeem culture", "redeem values", "christian lens", "why not english", "purpose of themes", "meaning of themes", "why use filipino values"],
+    "q": ["Why do you use Filipino values as themes?", "Bakit Filipino values ang ginagamit niyo?", "What's the point of teaching Loob, Kapwa, and the rest?", "Why redeem Filipino culture through these themes?", "Bakit ganito ang topics niyo sa fellowship?"],
+    "a_en": "Because these heart-words carry who we really are as Filipinos — and we don't want to flatten that into generic English. Each value already echoes something true about the God who made us; we just trace it back to Him and let the gospel deepen and redeem it. It gives our discipleship real cultural depth, hindi plastic.",
+    "a_tl": "Kasi ang mga salitang ito ang bumubuhat sa tunay nating pagka-Pilipino — ayaw naming gawing generic English na lang yan. Bawat halaga ay may tunay na bakas ng Diyos na lumikha sa atin; iniuugat lang namin pabalik sa Kanya at hinahayaan ang ebanghelyo na palalimin at tubusin ito. Nagbibigay ito ng tunay na lalim sa discipleship namin, hindi plastik.",
+    "links": [{"label": "See the devotionals", "href": "devotionals.html"}],
+    "priority": 2
+  },
+  {
+    "id": "theme-loob",
+    "topic": "themes",
+    "keywords": ["loob", "kalooban", "inner self", "the will", "kalooban ng tao", "inner life", "heart", "puso", "hidden self", "okay lang ako", "labas", "1 samuel 16:7", "samuel", "god looks at the heart", "tunay na sarili", "what is loob", "ano ang loob", "meaning of loob"],
+    "q": ["What does Loob mean?", "Ano ang ibig sabihin ng Loob?", "Tell me about the Loob devotional", "How is Loob redeemed in Christ?", "Paano nauugnay ang Loob kay Cristo?"],
+    "a_en": "Loob is the inside of you — your hidden self and will, what's really behind the 'okay lang ako.' God isn't fooled by the labas; like with young David, 'the Lord looks on the heart' (1 Samuel 16:7). The freeing part: you don't have to keep your loob spotless to be loved — you just have to bring it, and He renews it from the inside out.",
+    "a_tl": "Ang Loob ay ang nasa loob mo — ang tagong sarili at kalooban, ang tunay na nasa likod ng 'okay lang ako.' Hindi nalilinlang ang Diyos sa labas; gaya kay batang David, 'tinitingnan ng Panginoon ang puso' (1 Samuel 16:7). Ang nakakaginhawa: hindi mo kailangang malinis ang loob mo para mahalin — dalhin mo lang ito, at Siya na ang magbabago nito mula sa loob.",
+    "links": [{"label": "Read the Loob devotional", "href": "devotionals.html#dev-loob"}],
+    "priority": 1
+  },
+  {
+    "id": "theme-kapwa",
+    "topic": "themes",
+    "keywords": ["kapwa", "pakikipagkapwa", "shared humanity", "one with the other", "fellow", "others", "kapwa tao", "neighbor", "image of god", "philippians 2", "philippians 2:3", "count others significant", "level ground", "foot of the cross", "what is kapwa", "ano ang kapwa", "meaning of kapwa"],
+    "q": ["What does Kapwa mean?", "Ano ang ibig sabihin ng Kapwa?", "Tell me about Pakikipagkapwa", "How does the gospel deepen Kapwa?", "Paano tinutubos ang Kapwa kay Cristo?"],
+    "a_en": "Kapwa is more than 'other person' — it's the one who shares your humanity, the one you recognize yourself in. That instinct is a fingerprint of the God who made everyone in His image. At the foot of the cross the ground is level: we all equally need grace, so to truly see and move toward your kapwa becomes a way of worship (Philippians 2:3-4).",
+    "a_tl": "Ang Kapwa ay higit pa sa 'ibang tao' — siya ang kapareho mo sa pagkatao, ang kinikilala mo na parang sarili mo. Ang hilig na ito ay bakas ng Diyos na lumikha sa lahat ayon sa Kanyang larawan. Sa paanan ng krus, pantay ang lupa: lahat tayo'y pantay na nangangailangan ng biyaya, kaya ang tunay na pagtingin at paglapit sa kapwa mo ay nagiging pagsamba (Filipos 2:3-4).",
+    "links": [{"label": "Read the Kapwa devotional", "href": "devotionals.html#dev-kapwa"}],
+    "priority": 1
+  },
+  {
+    "id": "theme-malasakit",
+    "topic": "themes",
+    "keywords": ["malasakit", "compassion", "compassionate care", "care", "pagmamalasakit", "showing up", "sayang naman", "burden", "matthew 9:36", "jesus compassion", "had compassion", "sheep without a shepherd", "costly care", "what is malasakit", "ano ang malasakit", "meaning of malasakit"],
+    "q": ["What does Malasakit mean?", "Ano ang ibig sabihin ng Malasakit?", "Tell me about the Malasakit devotional", "How is Malasakit like Jesus' compassion?", "Paano ipinapakita ni Cristo ang malasakit?"],
+    "a_en": "Malasakit is care that costs you something — love that refuses to look away and actually shows up to carry the weight. It's the very word the Gospels reach for when Jesus saw the crowds and 'had compassion' (Matthew 9:36) — He felt it in His gut, all the way to the cross. Our malasakit isn't manufactured; it overflows from being on the receiving end of His.",
+    "a_tl": "Ang Malasakit ay pag-aaruga na may halaga — pag-ibig na ayaw lumingon palayo, kundi lumalapit talaga para pasanin ang bigat. Ito mismo ang salita sa Ebanghelyo nang makita ni Hesus ang mga tao at 'nahabag' (Mateo 9:36) — naramdaman Niya ito hanggang sa kaibuturan, hanggang krus. Ang malasakit natin ay hindi pilit; umaapaw ito dahil tayo muna ang tumanggap ng malasakit Niya.",
+    "links": [{"label": "Read the Malasakit devotional", "href": "devotionals.html#dev-malasakit"}],
+    "priority": 1
+  },
+  {
+    "id": "theme-bahala-na",
+    "topic": "themes",
+    "keywords": ["bahala na", "bathala na", "trust", "faith", "tiwala", "pananalig", "surrender", "let go", "fatalism", "luck", "god will take care", "proverbs 3:5", "proverbs 3:6", "lean not on your own understanding", "restful trust", "what is bahala na", "ano ang bahala na", "meaning of bahala na"],
+    "q": ["What does Bahala Na mean here?", "Ano ang ibig sabihin ng Bahala Na?", "Isn't Bahala Na just fatalism?", "How is Bahala Na redeemed as faith?", "Paano nagiging tiwala sa Diyos ang Bahala Na?"],
+    "a_en": "We redeem 'bahala na': many trace it to 'Bathala na' — God will take care of it. That's not fatalism, it's faith. Fatalism gives up because no one's in control; faith lets go because Someone is. So you prepare like it depends on you and rest like it depends on Him — 'Trust in the Lord with all your heart' (Proverbs 3:5-6).",
+    "a_tl": "Tinutubos namin ang 'bahala na': marami ang nag-uugnay nito sa 'Bathala na' — ang Diyos na ang bahala. Hindi 'yan fatalism, pananampalataya 'yan. Ang fatalism sumusuko kasi walang may hawak; ang pananampalataya bumibitaw kasi may May-hawak. Kaya maghanda ka na parang nakasalalay sa'yo, at magpahinga na parang nakasalalay sa Kanya — 'Magtiwala ka sa Panginoon nang buong puso' (Kawikaan 3:5-6).",
+    "links": [{"label": "Read the Bahala Na devotional", "href": "devotionals.html#dev-bahala-na"}],
+    "priority": 1
+  },
+  {
+    "id": "theme-utang-na-loob",
+    "topic": "themes",
+    "keywords": ["utang na loob", "gratitude", "thanksgiving", "pasasalamat", "debt of the heart", "debt", "utang", "salamat", "bought with a price", "1 corinthians 6:19", "1 corinthians 6:20", "you are not your own", "redemption", "paid in full", "what is utang na loob", "ano ang utang na loob", "meaning of utang na loob"],
+    "q": ["What does Utang na Loob mean?", "Ano ang ibig sabihin ng Utang na Loob?", "Tell me about the Utang na Loob devotional", "How does the gospel reframe Utang na Loob?", "Paano nauugnay ang Utang na Loob sa ginawa ni Cristo?"],
+    "a_en": "Utang na loob is a debt of the heart — the kind you carry because someone did something for you that you could never fully repay. Scripture says that's the right response to Jesus, only the debt is infinite: 'you were bought with a price' (1 Corinthians 6:19-20). The gospel turn? He marks it paid in full, so our gratitude isn't anxious repayment but a glad, lifelong salamat.",
+    "a_tl": "Ang Utang na loob ay utang ng puso — ang dala mo dahil may gumawa ng bagay para sa'yo na 'di mo kayang ganti nang buo. Ayon sa Kasulatan, ito mismo ang tamang tugon kay Hesus, ngunit walang-hanggan ang utang: 'binili kayo sa isang halaga' (1 Corinto 6:19-20). Ang twist ng ebanghelyo? Minarkahan na Niyang 'bayad' ito, kaya ang pasasalamat natin ay hindi balisang pagbabayad kundi masayang habambuhay na salamat.",
+    "links": [{"label": "Read the Utang na Loob devotional", "href": "devotionals.html#dev-utang-na-loob"}],
+    "priority": 1
+  },
+  {
+    "id": "themes-redemption",
+    "topic": "themes",
+    "keywords": ["redeem", "redemption", "christ-centered", "redeemed", "gospel", "ebanghelyo", "through christ", "in christ", "christian lens", "how are themes redeemed", "paano tinutubos", "biblical basis", "redeem filipino values", "transform values", "renew"],
+    "q": ["How are these Filipino themes redeemed in Christ?", "Paano tinutubos ng ebanghelyo ang mga Filipino values?", "What makes the themes Christ-centered?", "Why do you say the values are 'redeemed'?", "Anong koneksyon ng mga tema sa ebanghelyo?"],
+    "a_en": "Each value already echoes something true about God — and the gospel takes it to its fullest, truest end. Loob points to the heart God renews; Kapwa to the level ground at the cross; Malasakit to Christ's gut-level compassion; Bahala Na to restful trust in a sovereign God; Utang na Loob to a debt He paid in full. We don't replace the culture — we let Jesus deepen it.",
+    "a_tl": "Bawat halaga ay may bakas na ng katotohanan tungkol sa Diyos — at dinadala ito ng ebanghelyo sa pinakaganap at pinakatotoong wakas nito. Ang Loob ay tumutukoy sa pusong binabago ng Diyos; ang Kapwa sa pantay na lupa sa krus; ang Malasakit sa habag ni Cristo hanggang kaibuturan; ang Bahala Na sa mapagpahingang tiwala sa Diyos; ang Utang na Loob sa utang na binayaran Niya nang buo. Hindi namin pinapalitan ang kultura — hinahayaan naming palalimin ito ni Hesus.",
+    "links": [{"label": "Read all five devotionals", "href": "devotionals.html"}],
+    "priority": 2
+  },
+  {
+    "id": "themes-where-to-read",
+    "topic": "themes",
+    "keywords": ["read devotionals", "devotional", "devotionals", "where to read", "saan basahin", "basahin", "scripture", "verse", "talata", "prayer", "panalangin", "reflection", "quiet time", "devo", "where are the devotionals", "saan ang devotionals", "online devotional"],
+    "q": ["Where can I read the devotionals on these themes?", "Saan ko mababasa ang mga devotional?", "Do you have devotionals for each theme?", "May devotional ba kayo para sa bawat tema?", "Where do I find the theme reflections?"],
+    "a_en": "Yes! Each of the five themes has its own short devotional — a verse, a real-life reflection, and a prayer — all on our Devotionals page. They're the same heart-words we open up about at fellowship over kape and kwentuhan, just slowed down for your quiet time.",
+    "a_tl": "Oo! May sariling maikling devotional ang bawat isa sa limang tema — may talata, totoong-buhay na repleksyon, at panalangin — nasa aming Devotionals page lahat. Ito rin ang mga heart-words na pinag-uusapan namin sa fellowship habang may kape at kwentuhan, pinabagal lang para sa quiet time mo.",
+    "links": [{"label": "Open the Devotionals page", "href": "devotionals.html"}],
+    "priority": 2
+  },
+  {
+    "id": "themes-in-fellowship",
+    "topic": "themes",
+    "keywords": ["themes at fellowship", "fellowship topics", "topics", "topic", "tinatalakay", "tinuturo", "teaching", "discussion", "do you discuss themes", "pinag-uusapan", "kwentuhan", "sharing", "are themes part of fellowship", "ginagamit sa fellowship", "fellowship teaching"],
+    "q": ["Do you discuss these themes at fellowship?", "Pinag-uusapan ba ang mga tema sa fellowship?", "Are the themes part of your gatherings?", "Tinatalakay ba ito sa YP Fellowship?", "How do the themes show up in your meetups?"],
+    "a_en": "Definitely — these are the same heart-words we actually open up about at fellowship, over kape and kwentuhan. The devotionals slow them down into personal reads, but at YP Fellowship we wrestle with them together as a family. There's a seat saved for you anytime.",
+    "a_tl": "Oo naman — ito mismo ang mga heart-words na pinag-uusapan namin sa fellowship, habang may kape at kwentuhan. Pinapabagal ng devotionals ang mga ito bilang personal na pagbabasa, pero sa YP Fellowship, sabay-sabay naming pinagninilayan bilang isang pamilya. May nakalaang upuan para sa'yo anumang oras.",
+    "links": [{"label": "Join us", "href": "index.html#join"}, {"label": "See what's next", "href": "events.html"}],
+    "priority": 2
+  }
+]

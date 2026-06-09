@@ -1,0 +1,102 @@
+[
+  {
+    "id": "who-can-join-overview",
+    "topic": "who-can-join",
+    "keywords": ["who can join", "who can come", "who is it for", "sino pwede sumali", "sino pwede pumunta", "para kanino", "pwede ba ako", "can i join", "can i come", "am i welcome", "sino pwede mag join", "qualifications", "requirements to join", "miyembro requirement", "pwede ba sumali", "open to who", "target audience", "young professionals", "young pros", "yp"],
+    "q": ["Who can join the Young Pro Ministry?", "Who is this ministry for?", "Can I join?", "Sino pwede sumali sa Young Pro?", "Para kanino ba 'tong ministry na 'to?", "Pwede ba ako pumunta?"],
+    "a_en": "Everyone is welcome — there's a seat saved for you. We're the young professionals (and fresh grads, and folks still figuring life out) of Faith Temple Baptist Church. Whether you're rock-solid in your faith or just curious, fresh out of school or deep into your career, you belong here. Just show up to a fellowship or YPGT, or email us first at ftb.youngpro.ministry@gmail.com.",
+    "a_tl": "Welcome ang lahat — may nakareserbang upuan para sa'yo dito. Kami ang young professionals (kasama na ang mga fresh grad at yung mga kababalik-balikan pa lang sa buhay) ng Faith Temple Baptist Church. Matibay man ang faith mo o curious ka lang, kaka-graduate ka man o matagal nang nagtatrabaho — belong ka dito. Sumipot ka lang sa fellowship o YPGT, o mag-email muna sa amin sa ftb.youngpro.ministry@gmail.com.",
+    "links": [{"label": "Join us", "href": "index.html#join"}],
+    "priority": 1
+  },
+  {
+    "id": "who-can-join-age-range",
+    "topic": "who-can-join",
+    "keywords": ["age", "how old", "ilang taon", "edad", "anong age", "age range", "age limit", "young professional ba ako", "am i too old", "too young", "matanda na ba ako", "bata pa ako", "20s", "30s", "fresh grad age", "working age", "ano ang young pro", "kahulugan ng young pro", "definition young professional"],
+    "q": ["What age is the Young Pro Ministry for?", "Is there an age limit?", "Am I too old to join?", "Ilang taon ba dapat para sumali?", "May age limit ba?", "Young pro ba talaga ang dating ko?"],
+    "a_en": "We're a community for young professionals — generally young adults who are working, fresh out of school, or just starting their careers. We don't gatekeep with a strict age cutoff, so if 'young professional' feels like you, you're in the right place. Not sure if you fit? Message us at ftb.youngpro.ministry@gmail.com and we'll happily welcome you.",
+    "a_tl": "Para kami sa young professionals — kadalasan mga young adults na nagtatrabaho, kaka-graduate, o nagsisimula pa lang sa career. Wala kaming mahigpit na age cutoff, kaya kung pakiramdam mo 'young professional' ka, tamang-tama ka dito. Hindi sigurado kung kasya ka? Mag-message ka lang sa ftb.youngpro.ministry@gmail.com at masaya naming tatanggapin.",
+    "links": [{"label": "Join us", "href": "index.html#join"}],
+    "priority": 2
+  },
+  {
+    "id": "who-can-join-fresh-grads-students",
+    "topic": "who-can-join",
+    "keywords": ["fresh grad", "fresh graduate", "new grad", "kakagraduate", "bagong graduate", "student", "estudyante", "still figuring it out", "no job yet", "walang trabaho pa", "between jobs", "jobless", "unemployed", "looking for work", "naghahanap ng trabaho", "career shift", "starting out", "first job", "ojt", "intern", "incoming professional", "di pa nakakapagtrabaho"],
+    "q": ["I'm a fresh grad — can I still join?", "I'm a student still figuring things out, is that okay?", "I don't have a job yet, can I come?", "Fresh grad lang ako, pwede pa rin ba?", "Estudyante pa ako, okay lang ba?", "Wala pa akong trabaho, pwede ba?"],
+    "a_en": "Absolutely — fresh grads, students still figuring it out, people between jobs or just starting their careers are all welcome. You don't need a job title or a settled life to belong here; you just need to show up as you are. Come to a fellowship or email us at ftb.youngpro.ministry@gmail.com.",
+    "a_tl": "Syempre — welcome ang mga fresh grad, estudyanteng nag-iisip pa kung saan papunta, mga nasa pagitan ng trabaho, o nagsisimula pa lang. Hindi mo kailangan ng job title o ayos na buhay para mabilang dito; kailangan mo lang sumipot as you are. Punta ka sa fellowship o mag-email sa amin sa ftb.youngpro.ministry@gmail.com.",
+    "links": [{"label": "Join us", "href": "index.html#join"}],
+    "priority": 2
+  },
+  {
+    "id": "who-can-join-non-ftb-members",
+    "topic": "who-can-join",
+    "keywords": ["ftb member", "church member", "not a member", "di ako member", "hindi member", "iba ang simbahan", "different church", "ibang church", "do i need to be a member", "members only", "ftb lang ba", "another church", "visitor", "bisita", "non member", "outsider", "ibang denominasyon", "kailangan ba member ako", "exclusive ba"],
+    "q": ["Is the Young Pro Ministry only for FTB members?", "Do I need to be a member of Faith Temple Baptist Church?", "I go to a different church — can I still join?", "Para lang ba 'to sa members ng FTB?", "Kailangan ko bang maging member ng FTB?", "Iba ang simbahan ko, pwede pa rin ba?"],
+    "a_en": "Not at all — you don't need to be an FTB member to join. We welcome visitors, friends, and people from other churches too. Whether you call FTB home or you're just dropping by, there's a seat for you. Reach out anytime at ftb.youngpro.ministry@gmail.com.",
+    "a_tl": "Hinding-hindi — hindi mo kailangang maging member ng FTB para makasali. Welcome ang mga bisita, mga kaibigan, at maging yung galing sa ibang simbahan. FTB man ang tawag mo sa 'home' mo o dumadaan ka lang, may upuan para sa'yo. I-message mo lang kami anytime sa ftb.youngpro.ministry@gmail.com.",
+    "links": [{"label": "Join us", "href": "index.html#join"}],
+    "priority": 1
+  },
+  {
+    "id": "who-can-join-non-christian",
+    "topic": "who-can-join",
+    "keywords": ["do i need to be christian", "not a christian", "non christian", "di ako christian", "hindi ako kristiyano", "unbeliever", "agnostic", "atheist", "different religion", "ibang relihiyon", "still searching", "naghahanap pa", "not religious", "di relihiyoso", "questioning faith", "doubts", "nagdududa", "curious about god", "exploring faith", "skeptic", "kailangan ba kristiyano ako", "saved", "born again ba kailangan"],
+    "q": ["Do I need to be a Christian to join?", "I'm not a Christian — am I still welcome?", "Can non-Christians join?", "Kailangan ko bang maging Christian para sumali?", "Hindi ako kristiyano, welcome pa rin ba ako?", "Pwede ba ang hindi pa sumasampalataya?"],
+    "a_en": "No, you don't need to be a Christian to come — you're genuinely welcome whether you're rock-solid in your faith or just curious and exploring. We're not here to pressure you; we're here for real conversations, the Word, kape, and friendship. Come as you are, and bring your questions.",
+    "a_tl": "Hindi, hindi mo kailangang maging Christian para makasali — totoong welcome ka, matibay man ang faith mo o curious ka lang at nag-eexplore. Wala kaming pino-pressure; nandito kami para sa totoong kwentuhan, sa Salita ng Diyos, kape, at pagkakaibigan. Halika as you are, at dalhin mo na rin ang mga tanong mo.",
+    "links": [{"label": "Join us", "href": "index.html#join"}],
+    "priority": 1
+  },
+  {
+    "id": "who-can-join-first-timers",
+    "topic": "who-can-join",
+    "keywords": ["first time", "first timer", "new here", "unang punta", "first visit", "bagong dating", "never been", "nervous to come", "kabado", "shy", "mahiyain", "what if i don't know anyone", "walang kakilala", "alone", "mag-isa", "awkward", "scared to join", "natatakot", "newcomer", "bago dito", "first time pumunta"],
+    "q": ["I've never been before — is it okay to just show up?", "I'm nervous about coming as a first-timer.", "What if I don't know anyone there?", "First time ko, okay lang bang sumipot lang?", "Kabado ako kasi first timer, ano gagawin ko?", "Paano kung walang akong kakilala doon?"],
+    "a_en": "First-timers are some of our favorite people — just show up, come as you are, no performance needed. If you'd like, email us first and we'll tell you exactly where and when, and someone will be looking out for you so you're never left standing alone. Reach us at ftb.youngpro.ministry@gmail.com.",
+    "a_tl": "Paborito namin ang mga first-timer — sumipot ka lang, halika as you are, walang kailangang i-perform. Kung gusto mo, mag-email ka muna sa amin at sasabihin namin kung saan at kelan eksakto, at may maghahanap sa'yo para hindi ka kailanman maiwang mag-isa. I-reach mo kami sa ftb.youngpro.ministry@gmail.com.",
+    "links": [{"label": "What to expect", "href": "index.html#join"}],
+    "priority": 2
+  },
+  {
+    "id": "who-can-join-bring-friends",
+    "topic": "who-can-join",
+    "keywords": ["bring a friend", "bring friends", "can i invite", "magdala ng kaibigan", "magsama ng kaibigan", "invite someone", "mag-invite", "barkada", "magsama ako", "bring my partner", "boyfriend girlfriend", "isama ko ba", "plus one", "friend day", "magdadala ako", "can i bring", "magsama ng tropa", "pwede ba magyaya"],
+    "q": ["Can I bring a friend?", "Can I invite people who aren't part of the ministry?", "Is it okay to bring my barkada?", "Pwede ba akong magdala ng kaibigan?", "Pwede ko bang isama ang barkada ko?", "Okay lang bang mag-invite ng iba?"],
+    "a_en": "Yes, please do — bring a friend, bring your whole barkada! Everyone's welcome here, and some of our gatherings (like Friend Day and the YPGT outings) are built exactly for inviting friends along. The more, the merrier.",
+    "a_tl": "Oo, sige lang — magdala ka ng kaibigan, isama mo na ang buong barkada! Welcome ang lahat dito, at may mga gathering kami (gaya ng Friend Day at ang mga YPGT outing) na talagang para sa pag-imbita ng mga kaibigan. Mas marami, mas masaya.",
+    "links": [{"label": "See what's happening", "href": "index.html#happenings"}],
+    "priority": 2
+  },
+  {
+    "id": "who-can-join-curious-exploring",
+    "topic": "who-can-join",
+    "keywords": ["just curious", "curious lang", "checking it out", "trying it out", "exploring", "nag-eexplore", "not sure if i belong", "di sigurado", "just want to see", "tingin lang muna", "no commitment", "walang pressure", "try lang", "lurker", "observe muna", "sneak peek", "feeler", "subok lang", "gusto ko lang malaman"],
+    "q": ["I'm just curious and want to check it out — is that allowed?", "Can I come without committing to anything?", "I just want to see what it's like first.", "Curious lang ako, pwede bang tingnan muna?", "Pwede bang pumunta ng walang commitment?", "Gusto ko lang munang makita kung anong meron."],
+    "a_en": "Of course — curiosity is more than welcome, no commitment required. Come check us out, sit in on a fellowship, hang at a YPGT, and see if it feels like home. There's zero pressure here — just kape, the Word, and a family that's genuinely glad you came.",
+    "a_tl": "Syempre — welcong-welcome ang pagiging curious, walang kailangang i-commit. Halika, tingnan mo kami, umupo ka sa isang fellowship, mag-hang ka sa YPGT, at tingnan kung para kang nasa bahay. Zero pressure dito — kape, ang Salita ng Diyos, at isang pamilyang totoong natutuwang dumating ka.",
+    "links": [{"label": "Join us", "href": "index.html#join"}],
+    "priority": 2
+  },
+  {
+    "id": "who-can-join-anyone-welcome",
+    "topic": "who-can-join",
+    "keywords": ["everyone welcome", "all welcome", "is everyone welcome", "welcome ba lahat", "para sa lahat ba", "open to everyone", "exclusive ba", "selective ba", "anyone can join", "kahit sino", "open to all", "bukas sa lahat", "is it open", "do you accept everyone", "tanggap ba kayo ng kahit sino"],
+    "q": ["Is everyone really welcome?", "Is this open to anyone?", "Are you selective about who joins?", "Welcome ba talaga lahat?", "Bukas ba 'to sa kahit sino?", "Para ba talaga sa lahat 'to?"],
+    "a_en": "Yes — everyone's genuinely welcome here, and we mean it. Believer or seeker, member or visitor, settled or still figuring it out — there's a seat saved for you. No pressure, no performance, just a family that's glad you came.",
+    "a_tl": "Oo — totoong welcome ang lahat dito, at seryoso kami diyan. Mananampalataya ka man o naghahanap pa, member o bisita, ayos na ang buhay o nag-iisip pa — may nakareserbang upuan para sa'yo. Walang pressure, walang pa-perform, isang pamilya lang na natutuwang dumating ka.",
+    "links": [{"label": "Join us", "href": "index.html#join"}],
+    "priority": 1
+  },
+  {
+    "id": "who-can-join-non-quezon-city",
+    "topic": "who-can-join",
+    "keywords": ["i live far", "malayo ako", "not from quezon city", "hindi taga qc", "out of town", "taga probinsya", "different city", "ibang lugar", "is it only for qc", "qc lang ba", "near novaliches", "malapit ba", "far from novaliches", "commute", "saan ba kayo", "location based ba", "pwede ba kahit malayo"],
+    "q": ["I don't live in Quezon City — can I still join?", "Is the ministry only for people near Novaliches?", "I live pretty far, is that okay?", "Hindi ako taga-QC, pwede pa rin ba?", "Para lang ba 'to sa malapit sa Novaliches?", "Medyo malayo ako, okay lang ba?"],
+    "a_en": "You're welcome no matter where you're coming from — we don't limit it to one area. Our fellowships and YPGTs gather at the church in Novaliches, Quezon City (and outings happen at different spots), so if you can make it out, we'd love to have you. Email us at ftb.youngpro.ministry@gmail.com and we'll help you plan.",
+    "a_tl": "Welcome ka saan ka man galing — hindi namin nililimita sa isang lugar lang. Ang mga fellowship at YPGT namin ay sa church sa Novaliches, Quezon City (at iba-iba ang lugar ng mga outing), kaya kung kaya mong makarating, gustung-gusto ka naming makasama. Mag-email ka lang sa ftb.youngpro.ministry@gmail.com at tutulungan ka naming mag-plano.",
+    "links": [{"label": "Get directions", "href": "index.html#join"}],
+    "priority": 3
+  }
+]

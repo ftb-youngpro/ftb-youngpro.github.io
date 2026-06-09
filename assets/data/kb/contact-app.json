@@ -1,0 +1,102 @@
+[
+  {
+    "id": "contact-email-how",
+    "topic": "contact-app",
+    "keywords": ["contact", "how to contact", "reach you", "reach out", "email", "email address", "your email", "email you", "send message", "message you", "get in touch", "paano kayo i-contact", "paano makipag-ugnayan", "saan kayo magmessage", "saan ako magtatanong", "may tanong ako", "pano kita ma-contact", "gmail", "email nyo", "contact details", "contact info", "ano email niyo"],
+    "q": ["How do I contact the Young Pro Ministry?", "What's your email address?", "How can I reach you?", "Paano ko kayo macocontact?", "Saan ako magmessage kung may tanong ako?", "Ano po ang email ninyo?"],
+    "a_en": "The fastest way to reach us is by email: ftb.youngpro.ministry@gmail.com. Send us your question, prayer request, or just say hi — a leader will get back to you. We'd love to hear from you!",
+    "a_tl": "Pinakamabilis kaming maabot sa email: ftb.youngpro.ministry@gmail.com. I-send mo lang ang tanong mo, prayer request, o kahit hi lang — may leader na sasagot sa'yo. Excited kaming marinig ka!",
+    "links": [{"label": "Email us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 1
+  },
+  {
+    "id": "contact-find-online",
+    "topic": "contact-app",
+    "keywords": ["online", "find you online", "website", "official site", "web", "url", "link", "social media", "socials", "facebook", "fb", "page", "follow you", "follow", "where to follow", "saan kayo online", "anong website niyo", "may fb ba kayo", "may page ba kayo", "saan kayo sa social media", "online presence", "official page", "website link"],
+    "q": ["Where can I find you online?", "Do you have a website or Facebook page?", "How do I follow the ministry?", "Saan ko kayo mahahanap online?", "May Facebook page ba kayo?", "Paano ko kayo masusundan online?"],
+    "a_en": "Our official home is this website — https://ftb-youngpro.github.io — bookmark it for events, devotionals, and updates. For anything else, message us at ftb.youngpro.ministry@gmail.com and a leader can point you to the latest.",
+    "a_tl": "Ang official na tahanan namin ay itong website — https://ftb-youngpro.github.io — i-bookmark mo para sa events, devotionals, at updates. Para sa kahit ano pa, mag-message ka lang sa ftb.youngpro.ministry@gmail.com at may leader na gagabay sa'yo sa pinakabago.",
+    "links": [{"label": "Our website", "href": "index.html"}, {"label": "Email us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 2
+  },
+  {
+    "id": "contact-install-app-android",
+    "topic": "contact-app",
+    "keywords": ["install", "install app", "app", "download app", "download", "add to home screen", "home screen", "pwa", "install on phone", "android", "chrome install", "make it an app", "save as app", "i-install", "paano i-install", "app ba ito", "may app ba kayo", "i-add sa home screen", "gawing app", "i-download sa phone", "shortcut sa home screen"],
+    "q": ["Can I install this site as an app?", "How do I add it to my home screen on Android?", "Do you have an app I can download?", "Paano ko ito i-install bilang app?", "Pwede ko bang gawing app ito sa phone ko?", "May app ba kayong pwedeng i-download?"],
+    "a_en": "Yes! This site is installable as an app — no app store needed. On Android (Chrome), tap the three-dot menu, then \"Install app\" or \"Add to Home screen.\" It'll open like a real app and even work offline.",
+    "a_tl": "Oo! Pwede mong i-install ang site na ito bilang app — walang app store na kailangan. Sa Android (Chrome), i-tap ang three-dot menu, tapos \"Install app\" o \"Add to Home screen.\" Bubukas siya parang totoong app, at gagana kahit offline.",
+    "links": [{"label": "Open the site to install", "href": "index.html"}],
+    "priority": 2
+  },
+  {
+    "id": "contact-install-app-ios",
+    "topic": "contact-app",
+    "keywords": ["install on iphone", "iphone", "ios", "safari", "add to home screen iphone", "ipad", "apple", "install ios", "share button", "i-install sa iphone", "paano sa iphone", "safari install", "iphone app", "apple phone", "ios pwa"],
+    "q": ["How do I install the site on my iPhone?", "How do I add it to my home screen on iOS?", "Does it work on iPhone or iPad?", "Paano ko ito i-install sa iPhone?", "Pwede ba ito sa Apple devices?", "Paano i-add sa home screen sa iOS?"],
+    "a_en": "On iPhone or iPad, open the site in Safari, tap the Share button (the square with an arrow), then choose \"Add to Home Screen.\" It'll sit on your home screen like an app and load fast every time.",
+    "a_tl": "Sa iPhone o iPad, buksan mo ang site sa Safari, i-tap ang Share button (yung kahon na may pataas na arrow), tapos piliin ang \"Add to Home Screen.\" Mapupunta siya sa home screen mo parang app, at mabilis mag-load tuwing bubuksan.",
+    "links": [{"label": "Open the site in Safari", "href": "index.html"}],
+    "priority": 3
+  },
+  {
+    "id": "contact-app-offline",
+    "topic": "contact-app",
+    "keywords": ["offline", "works offline", "no internet", "without internet", "save data", "gumagana ba offline", "kahit walang internet", "kahit walang wifi", "offline mode", "pwede ba offline", "no signal", "walang load"],
+    "q": ["Does the app work offline?", "Can I open the site without internet?", "Gumagana ba ito kahit walang internet?", "Pwede ko bang buksan offline?"],
+    "a_en": "Once you've visited the site, the main pages are saved on your device, so they'll still open even with a weak or no connection. Install it to your home screen for the smoothest offline experience.",
+    "a_tl": "Pag nabisita mo na ang site, naka-save na sa device mo ang mga main pages, kaya bubukas pa rin kahit mahina o walang signal. I-install mo sa home screen para mas smooth ang offline experience.",
+    "links": [{"label": "Open the site", "href": "index.html"}],
+    "priority": 4
+  },
+  {
+    "id": "contact-partnership",
+    "topic": "contact-app",
+    "keywords": ["partnership", "partner", "collaborate", "collaboration", "work together", "support the ministry", "sponsor", "donate", "give", "ministry partner", "makipag-partner", "tulong", "suporta", "magbigay", "mag-donate", "paano makatulong", "support kayo", "magpartner", "ministry collaboration", "join hands"],
+    "q": ["Can my church or organization partner with you?", "How can I support the ministry?", "We'd like to collaborate — who do we talk to?", "Paano kami makakatulong sa ministry?", "Pwede ba kaming makipag-partner sa inyo?", "Gusto naming sumuporta — kanino kami magmemessage?"],
+    "a_en": "We'd be honored to explore a partnership or how you can support the ministry. Email us at ftb.youngpro.ministry@gmail.com with a few details, and a leader will personally connect with you.",
+    "a_tl": "Karangalan namin pag-usapan ang partnership o kung paano ka makakatulong sa ministry. Mag-email ka lang sa ftb.youngpro.ministry@gmail.com kasama ang ilang detalye, at may leader na personal na makikipag-ugnayan sa'yo.",
+    "links": [{"label": "Email us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 3
+  },
+  {
+    "id": "contact-invite-speaker",
+    "topic": "contact-app",
+    "keywords": ["invite a speaker", "speaker", "guest speaker", "invite", "book a speaker", "have someone speak", "preacher", "share a talk", "host a talk", "mag-imbita ng speaker", "mag-invite ng speaker", "magpa-talk", "guest", "magpasalita", "mag-host", "invite leader to speak", "request speaker"],
+    "q": ["Can we invite one of your leaders to speak at our event?", "How do we book a guest speaker from the ministry?", "Pwede ba naming i-invite ang isa sa inyo para mag-speak?", "Paano kami makakapag-pa-talk sa isa sa inyong leaders?"],
+    "a_en": "Yes — we love sharing what God's doing among young professionals. Email ftb.youngpro.ministry@gmail.com with your event details (date, audience, theme), and a leader will follow up to see how we can serve.",
+    "a_tl": "Oo — gustong-gusto naming ibahagi ang ginagawa ng Diyos sa gitna ng mga young professionals. Mag-email sa ftb.youngpro.ministry@gmail.com kasama ang detalye ng event mo (petsa, audience, tema), at may leader na magfo-follow up kung paano kami makakatulong.",
+    "links": [{"label": "Email us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 3
+  },
+  {
+    "id": "contact-prayer-request",
+    "topic": "contact-app",
+    "keywords": ["prayer", "prayer request", "pray for me", "please pray", "need prayer", "ipagdasal", "ipanalangin", "may hinihiling ako", "pakidasal", "magpadasal", "request prayer", "panalangin", "pray for", "ipagdasal niyo ako"],
+    "q": ["Can you pray for me?", "How do I send a prayer request?", "Pwede niyo ba akong ipagdasal?", "Paano ako magpapadala ng prayer request?"],
+    "a_en": "Of course — it would be our joy to pray with you. Send your prayer request to ftb.youngpro.ministry@gmail.com (as private as you'd like), and our leaders will lift it up. You're not alone in this.",
+    "a_tl": "Syempre — kagalakan namin na ipanalangin ka. I-send mo ang prayer request mo sa ftb.youngpro.ministry@gmail.com (kahit gaano kapribado), at ipagdarasal ito ng mga leader namin. Hindi ka nag-iisa dito.",
+    "links": [{"label": "Email us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 3
+  },
+  {
+    "id": "contact-volunteer-serve",
+    "topic": "contact-app",
+    "keywords": ["volunteer", "serve", "help out", "join the team", "be a leader", "serve in the ministry", "magvolunteer", "tumulong", "maglingkod", "sumali sa team", "paano maglingkod", "gusto kong tumulong", "serving", "ministry team", "be part of the team"],
+    "q": ["How can I volunteer or serve in the ministry?", "I'd like to help out — where do I start?", "Paano ako makakapaglingkod sa ministry?", "Gusto kong tumulong, saan ako magsisimula?"],
+    "a_en": "We'd love to have you serve! The best first step is to come and connect, then email ftb.youngpro.ministry@gmail.com to tell us you'd like to help — a leader will walk you through the next steps.",
+    "a_tl": "Gustong-gusto naming makasama ka sa paglilingkod! Pinakamagandang unang hakbang ay sumama at mag-connect, tapos mag-email sa ftb.youngpro.ministry@gmail.com para sabihing gusto mong tumulong — gagabayan ka ng leader sa mga susunod na hakbang.",
+    "links": [{"label": "Join us", "href": "index.html#join"}, {"label": "Email us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 3
+  },
+  {
+    "id": "contact-fallback",
+    "topic": "contact-app",
+    "keywords": ["other question", "something else", "not sure", "anything else", "help", "i have a question", "more info", "iba pang tanong", "may iba akong tanong", "hindi ko alam", "pwede ba magtanong", "wala dito", "di ko makita", "tulong", "more details", "follow up question"],
+    "q": ["I have a different question — who can help?", "My question isn't covered here, what do I do?", "May iba akong tanong — sino ang makakatulong?", "Wala dito ang tanong ko, anong gagawin ko?"],
+    "a_en": "No worries — if you can't find it here, just message us at ftb.youngpro.ministry@gmail.com and a real person from the team will gladly help. No question is too small, promise!",
+    "a_tl": "Walang problema — kung wala dito ang hinahanap mo, mag-message ka lang sa ftb.youngpro.ministry@gmail.com at may totoong tao sa team na masayang tutulong. Walang tanong na masyadong maliit, promise!",
+    "links": [{"label": "Email us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 1
+  }
+]

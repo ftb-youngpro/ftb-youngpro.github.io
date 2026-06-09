@@ -1,0 +1,178 @@
+[
+  {
+    "id": "what-to-expect-fellowship",
+    "topic": "first-visit",
+    "keywords": ["what to expect", "first time", "first visit", "ano ang aasahan", "una kong punta", "ano gagawin", "anong mangyayari", "what happens", "how does it go", "ano ginagawa", "newbie", "first timer", "first-timer", "bago", "schedule", "flow", "agenda", "what's it like", "ano ba yan", "ano meron", "para saan", "what to expect at fellowship", "ypf"],
+    "q": [
+      "What should I expect at my first YP Fellowship?",
+      "I'm coming for the first time — what happens at a fellowship?",
+      "Ano ang aasahan ko sa first visit ko?",
+      "First time ko pupunta, ano ba ang gagawin namin?",
+      "Anong nangyayari sa YP Fellowship?"
+    ],
+    "a_en": "At a YP Fellowship you can expect heartfelt worship, a grounded message with a topic relevant to working life, and honest sharing and prayer in smaller circles — then we stay for kape and kwentuhan. No pressure, no performance. Just come as you are and someone will be looking out for you.",
+    "a_tl": "Sa YP Fellowship, may worship na tunay (hindi pa-perform lang), isang message at topic na bagay sa buhay-trabaho, at honest sharing at panalangin sa mas maliit na grupo — tapos kape at kwentuhan tayo. Walang pressure, walang pa-impress. Come as you are lang, at may maghihintay at mag-aabang sa'yo.",
+    "links": [{"label": "What to expect", "href": "index.html#join"}],
+    "priority": 1
+  },
+  {
+    "id": "what-to-wear",
+    "topic": "first-visit",
+    "keywords": ["what to wear", "dress code", "anong suot", "ano isusuot", "isuot", "damit", "attire", "outfit", "formal ba", "casual", "kailangan ba mag-formal", "how to dress", "ootd", "come as you are", "pananamit", "suot", "barong", "is there a dress code", "naka-ano dapat"],
+    "q": [
+      "What should I wear to a fellowship?",
+      "Is there a dress code?",
+      "Anong isusuot ko sa fellowship?",
+      "Kailangan ba mag-formal?",
+      "Casual lang ba pwede?"
+    ],
+    "a_en": "Come as you are — there's no dress code. Wear whatever you're comfortable in, whether that's office clothes straight from work or your weekend casual. We care that you came, not what you wore.",
+    "a_tl": "Come as you are — walang dress code dito. Kahit ano ka komportable, pwede na — galing-trabaho man na office clothes o casual na pang-weekend. Ang importante, nandito ka — hindi ang suot mo.",
+    "links": [{"label": "Come join us", "href": "index.html#join"}],
+    "priority": 1
+  },
+  {
+    "id": "is-it-free",
+    "topic": "first-visit",
+    "keywords": ["free", "libre", "bayad", "magkano", "may bayad ba", "fee", "cost", "price", "may charge ba", "do i pay", "kailangan bang magbayad", "registration fee", "entrance", "presyo", "is it free", "libre ba", "is it free to attend", "ticket"],
+    "q": [
+      "Is it free to attend?",
+      "Do I need to pay anything?",
+      "Libre ba ang fellowship?",
+      "May bayad ba pag pumunta ako?",
+      "Magkano ang fellowship?"
+    ],
+    "a_en": "Yes, it's completely free — there's no fee to attend a YP Fellowship. Some YPGT outings may have a small personal cost (like your own food or entrance to a venue), but the fellowships themselves are always free and open to everyone.",
+    "a_tl": "Oo, libreng-libre — walang bayad ang pagpunta sa YP Fellowship. May ilang YPGT outing na baka may konting personal na gastos (tulad ng sariling pagkain o entrance sa venue), pero ang fellowship mismo, palaging libre at bukas para sa lahat.",
+    "links": [{"label": "See our events", "href": "events.html"}],
+    "priority": 1
+  },
+  {
+    "id": "do-i-need-to-rsvp",
+    "topic": "first-visit",
+    "keywords": ["rsvp", "sign up", "signup", "register", "registration", "magparehistro", "kailangan bang magpasabi", "do i need to register", "magpalista", "reserve", "reservation", "confirm", "magpa-reserve", "advance notice", "magpaalam muna", "need to rsvp", "is rsvp required", "kailangan ba mag-rsvp", "book"],
+    "q": [
+      "Do I need to RSVP or sign up first?",
+      "Is registration required?",
+      "Kailangan ba akong magparehistro muna?",
+      "May RSVP ba o pwede na lang pumunta?",
+      "Kailangan ko bang magpasabi bago pumunta?"
+    ],
+    "a_en": "No sign-up is required — you can just show up to a YP Fellowship or YPGT. That said, it's nice to message us first so we know to look out for you and can tell you exactly where and when. For featured events you'll also see a quick RSVP button you can use.",
+    "a_tl": "Hindi kailangan mag-sign up — pwede kang basta dumating sa YP Fellowship o YPGT. Pero mas maganda kung mag-message ka muna para alam naming aabangan ka at masasabi namin kung saan at kailan exactly. Para sa featured events, may mabilis na RSVP button ka ring makikita.",
+    "links": [{"label": "Email us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}, {"label": "Upcoming events", "href": "events.html"}],
+    "priority": 2
+  },
+  {
+    "id": "can-i-bring-a-friend",
+    "topic": "first-visit",
+    "keywords": ["bring a friend", "magdala ng kaibigan", "isama", "pwede ba isama", "invite", "imbitahan", "magdala", "barkada", "kaibigan", "tropa", "can i invite someone", "bring someone", "isama ko ba", "pwede magdala ng friend", "guest", "friend day", "invite-friendly", "isasama"],
+    "q": [
+      "Can I bring a friend?",
+      "Is it okay to invite someone with me?",
+      "Pwede ba akong magdala ng kaibigan?",
+      "Okay lang bang isama ko yung barkada ko?",
+      "Pwede ko bang imbitahan yung tropa ko?"
+    ],
+    "a_en": "Yes — please do! Bringing a friend is one of our favorite things. Everyone's welcome here, and some events (like Friend Day and our hobby/fitness YPGTs) are made to be especially invite-friendly. The more, the merrier.",
+    "a_tl": "Oo — sige, dalhin mo sila! Isa yan sa paborito naming mangyari. Welcome ang lahat dito, at may mga event pa nga (tulad ng Friend Day at mga hobby/fitness YPGT) na talagang ginawa para mainvite-friendly. Mas marami, mas saya.",
+    "links": [{"label": "Invite-friendly events", "href": "events.html"}],
+    "priority": 1
+  },
+  {
+    "id": "how-to-join-get-connected",
+    "topic": "first-visit",
+    "keywords": ["how to join", "paano sumali", "get connected", "join", "sumali", "maging member", "paano maka-connect", "how do i get involved", "be part", "maging part", "magpa-connect", "connect", "how to be a member", "paano maging sangkot", "get plugged in", "paano makasali", "sali"],
+    "q": [
+      "How do I join or get connected?",
+      "How can I be part of the Young Pro Ministry?",
+      "Paano ako sasali sa Young Pro?",
+      "Paano ako maka-connect sa ministry?",
+      "Gusto kong maging part — saan ako magsisimula?"
+    ],
+    "a_en": "Getting connected is simple: message us, then drop by a YP Fellowship (usually 2:30 PM, 2nd or 3rd week of the month) or come hang at the next YPGT outing. From there, conversations turn into friendships, and friendships into a faith group — there's a seat saved for you.",
+    "a_tl": "Madali lang maka-connect: mag-message ka muna, tapos dumalaw sa isang YP Fellowship (kadalasan 2:30 PM, 2nd o 3rd week ng buwan) o sumama sa susunod na YPGT outing. Doon, magiging kaibigan ang usapan, at magiging faith group ang barkada — may upuang nakalaan para sa'yo.",
+    "links": [{"label": "Come join us", "href": "index.html#join"}, {"label": "Email us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 1
+  },
+  {
+    "id": "can-i-serve-volunteer",
+    "topic": "first-visit",
+    "keywords": ["serve", "volunteer", "maglingkod", "paano maglingkod", "magvolunteer", "tumulong", "help out", "can i serve", "ministry roles", "tulong", "magserve", "be a volunteer", "join the team", "gusto kong tumulong", "how can i help", "paano makatulong", "serving"],
+    "q": [
+      "Can I serve or volunteer?",
+      "How can I help out or get involved in serving?",
+      "Pwede ba akong maglingkod?",
+      "Paano ako makakatulong sa ministry?",
+      "Gusto kong mag-volunteer — saan ako lalapit?"
+    ],
+    "a_en": "Yes — we'd love that! There's room to serve as you settle in and get to know the family. The best first step is to come, build real friendships, and let us know you're interested — message us and a leader will help you find a place to serve.",
+    "a_tl": "Oo — gusto namin yan! May puwang para maglingkod habang nasasanay ka at nakikilala ang pamilya. Ang pinakamagandang unang hakbang: pumunta ka, magkaroon ng tunay na kaibigan, at sabihin mong interesado ka — mag-message ka at tutulungan ka ng isang leader na makahanap ng puwang para maglingkod.",
+    "links": [{"label": "Message a leader", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 2
+  },
+  {
+    "id": "do-i-have-to-be-christian",
+    "topic": "first-visit",
+    "keywords": ["do i have to be christian", "kailangan ba christian", "non-christian", "hindi pa believer", "curious", "not religious", "exploring", "born again ba", "kailangan ba member ng church", "naghahanap pa", "spiritual but not", "skeptic", "just curious", "curious lang", "hindi ako relihiyoso", "open ba sa lahat", "non believer"],
+    "q": [
+      "Do I have to be a Christian to come?",
+      "I'm just curious about faith — is that okay?",
+      "Kailangan ba akong maging Christian para makapunta?",
+      "Hindi pa ako believer, okay lang ba?",
+      "Curious lang ako — pwede ba akong pumunta?"
+    ],
+    "a_en": "Not at all — you're welcome whether you're rock-solid in your faith or just curious. Plenty of people come while they're still figuring things out, and that's exactly the kind of honest space we want this to be. No pressure, just kape, the Word, and a family that's glad you came.",
+    "a_tl": "Hindi naman — welcome ka, matatag man ang pananampalataya mo o nag-uusisa ka lang. Marami ang pumupunta habang inaalam pa nila ang mga bagay-bagay, at iyon mismo ang klaseng honest na espasyo na gusto naming maranasan mo. Walang pressure, kape, ang Salita ng Diyos, at pamilyang natutuwang dumating ka.",
+    "links": [{"label": "There's a seat saved for you", "href": "index.html#join"}],
+    "priority": 2
+  },
+  {
+    "id": "where-when-meet",
+    "topic": "first-visit",
+    "keywords": ["where do you meet", "saan kayo", "saan nagkikita", "address", "location", "venue", "anong oras", "what time", "kailan", "schedule", "saan punta", "where is it", "directions", "papunta", "lugar", "where and when", "saan at kailan", "ftb auditorium", "map", "papuntang fellowship"],
+    "q": [
+      "Where and when do you meet?",
+      "What's the address and time of the fellowship?",
+      "Saan at anong oras kayo nagkikita?",
+      "Saan ba ang fellowship at kailan?",
+      "Anong oras nagsisimula ang YP Fellowship?"
+    ],
+    "a_en": "We meet at the FTB Auditorium, #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City 1117. YP Fellowships are usually 2:30 PM on the 2nd or 3rd week of the month, and YPGT outings vary — message us and we'll tell you exactly where and when for the next one.",
+    "a_tl": "Nagkikita kami sa FTB Auditorium, #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City 1117. Ang YP Fellowship, kadalasan 2:30 PM tuwing 2nd o 3rd week ng buwan, at iba-iba ang oras ng YPGT outings — mag-message ka at sasabihin namin kung saan at kailan exactly ang susunod.",
+    "links": [{"label": "Get directions", "href": "https://maps.google.com/?q=%23206+P.+Orbe+St.,+Blueville+Subdivision,+Novaliches,+Quezon+City,+Philippines+1117"}, {"label": "Upcoming events", "href": "events.html"}],
+    "priority": 1
+  },
+  {
+    "id": "first-visit-who-is-this-for",
+    "topic": "first-visit",
+    "keywords": ["who is this for", "para kanino", "age range", "edad", "young professionals", "fresh grad", "student ba pwede", "working", "freelancer", "para saan klaseng tao", "is this for me", "para ba ito sa akin", "para kanino ba ito", "qualifications", "sino pwede", "ilang taong gulang", "young pro meaning"],
+    "q": [
+      "Who is the Young Pro Ministry for?",
+      "Is this only for working professionals?",
+      "Para kanino ba ang Young Pro Ministry?",
+      "Pwede ba kahit fresh grad lang ako?",
+      "Para ba ito sa akin?"
+    ],
+    "a_en": "This is for young professionals — the working pros, the freelancers, and the fresh grads still figuring it out — all learning to follow Jesus in real working life. If you're somewhere in that season (or close to it) and want a faith community that gets it, you belong here.",
+    "a_tl": "Para ito sa young professionals — ang mga nagtatrabaho, ang mga freelancer, at ang mga fresh grad na nag-aaral pa ng buhay — lahat natututong sumunod kay Jesus sa totoong buhay-trabaho. Kung nasa ganitong panahon ka (o malapit na), at gusto mo ng faith community na nakakaintindi, dito ka talaga belong.",
+    "links": [{"label": "About us", "href": "index.html#about"}],
+    "priority": 2
+  },
+  {
+    "id": "coming-alone-nervous",
+    "topic": "first-visit",
+    "keywords": ["coming alone", "mag-isa", "nervous", "kinakabahan", "wala akong kasama", "shy", "mahiyain", "by myself", "will i know anyone", "may makikilala ba ako", "intimidated", "natatakot", "awkward", "feel out of place", "going solo", "solo", "mahihiya ba ako", "nahihiya"],
+    "q": [
+      "I'm nervous about coming alone — is that okay?",
+      "What if I don't know anyone there?",
+      "Kinakabahan ako kasi mag-isa ako pupunta, okay lang ba?",
+      "Paano kung walang kakilala ako doon?",
+      "Mahiyain ako — okay lang bang sumama mag-isa?"
+    ],
+    "a_en": "Totally okay — most people come not knowing anyone, and that's the whole point of fellowship. If you message us first, someone will be looking out for you so you're not standing around alone. Strangers become barkada here faster than you'd think.",
+    "a_tl": "Okay na okay lang — karamihan, walang kakilala pagdating, at iyon mismo ang punto ng fellowship. Kung mag-message ka muna, may mag-aabang sa'yo para hindi ka mapag-isa. Mabilis dito maging barkada ang mga estranghero — mas mabilis kaysa inaakala mo.",
+    "links": [{"label": "Message us first", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 2
+  }
+]

@@ -1,0 +1,505 @@
+/* ============================================================================
+   Young Pro Ministry — Bilingual FAQ chatbot widget
+   Faith Temple Baptist Church Inc.
+
+   Styles for the floating launcher + accessible chat panel injected by
+   assets/js/chatbot.js. Uses the existing design tokens from styles.css
+   (--emerald*, --gold*, --cream*, --bg-*, --ink*). STRICTLY emerald + gold +
+   cream on forest-black — ZERO purple/violet/indigo anywhere.
+
+   Everything is scoped under .yp-chat* class names so it can't collide with the
+   rest of the site. Progressive: if this file (or the JS) fails to load, nothing
+   renders and the pages are unaffected. Reduced-motion + mobile rules at the end.
+   ============================================================================ */
+
+/* ---------------------------------------------------------------------------
+   Local fallbacks: if loaded on a page WITHOUT styles.css (e.g. the headless
+   test harness), these keep the widget on-brand. On the real site the global
+   :root tokens win because they're identical names — these are just a safety net.
+   --------------------------------------------------------------------------- */
+.yp-chat-root {
+  --ypc-bg-panel:    var(--bg-850, #08120d);
+  --ypc-bg-header:   var(--bg-800, #0b1812);
+  --ypc-bg-bot:      var(--bg-750, #0f2018);
+  --ypc-bg-input:    var(--bg-900, #060d0a);
+  --ypc-emerald:     var(--emerald, #1fb98a);
+  --ypc-emerald-600: var(--emerald-600, #169a72);
+  --ypc-emerald-400: var(--emerald-400, #34d8a4);
+  --ypc-gold:        var(--gold, #e8b13a);
+  --ypc-gold-glow:   var(--gold-glow, #ffd56b);
+  --ypc-cream:       var(--cream, #f3ecd9);
+  --ypc-ink:         var(--ink, #eaf3ee);
+  --ypc-ink-dim:     var(--ink-dim, #a8bdb2);
+  --ypc-hairline:    var(--hairline, rgba(155, 183, 146, 0.16));
+  --ypc-hairline-strong: var(--hairline-strong, rgba(155, 183, 146, 0.30));
+
+  --ypc-font-display: var(--font-display, "Space Grotesk", system-ui, sans-serif);
+  --ypc-font-body:    var(--font-body, "Inter", system-ui, sans-serif);
+
+  --ypc-radius:   var(--radius-lg, 24px);
+  --ypc-radius-sm: var(--radius-sm, 10px);
+  --ypc-shadow:   var(--shadow-lg, 0 24px 60px -20px rgba(0, 0, 0, 0.65));
+  --ypc-glow:     var(--glow-emerald, 0 0 0 1px rgba(42, 255, 176, 0.20), 0 0 28px -4px rgba(42, 255, 176, 0.45));
+
+  position: fixed;
+  z-index: 2147483000; /* above site chrome + lightbox, below nothing of ours */
+  inset: auto;
+  font-family: var(--ypc-font-body);
+  -webkit-text-size-adjust: 100%;
+}
+
+/* The root is a non-interactive layer; only its children take pointer events. */
+.yp-chat-root {
+  pointer-events: none;
+}
+.yp-chat-root > * {
+  pointer-events: auto;
+}
+
+/* ---------------------------------------------------------------------------
+   LAUNCHER BUTTON (bottom-right, emerald, YP glyph)
+   --------------------------------------------------------------------------- */
+.yp-chat-launcher {
+  position: fixed;
+  right: clamp(0.9rem, 2.5vw, 1.5rem);
+  bottom: clamp(0.9rem, 2.5vw, 1.5rem);
+  width: 60px;
+  height: 60px;
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--ypc-hairline-strong);
+  border-radius: var(--radius-pill, 999px);
+  background:
+    radial-gradient(120% 120% at 30% 25%, var(--ypc-emerald-400) 0%, var(--ypc-emerald) 45%, var(--ypc-emerald-600) 100%);
+  color: var(--bg-900, #060d0a);
+  box-shadow: var(--ypc-shadow), var(--ypc-glow);
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.yp-chat-launcher:hover {
+  transform: translateY(-2px) scale(1.04);
+  filter: brightness(1.05);
+}
+.yp-chat-launcher:active {
+  transform: translateY(0) scale(0.98);
+}
+.yp-chat-launcher:focus-visible {
+  outline: 2px solid var(--ypc-gold-glow);
+  outline-offset: 3px;
+  box-shadow: var(--ypc-shadow), 0 0 0 5px var(--bg-900, #060d0a);
+}
+.yp-chat-launcher svg {
+  width: 30px;
+  height: 30px;
+  display: block;
+  pointer-events: none;
+}
+/* small "ask me" pulse dot on the launcher */
+.yp-chat-launcher__dot {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--ypc-gold);
+  border: 2px solid var(--bg-900, #060d0a);
+  box-shadow: 0 0 0 0 rgba(232, 177, 58, 0.55);
+  animation: ypcPulse 2.4s ease-out infinite;
+}
+@keyframes ypcPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(232, 177, 58, 0.55); }
+  70%  { box-shadow: 0 0 0 8px rgba(232, 177, 58, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(232, 177, 58, 0); }
+}
+/* Hide the launcher while the panel is open (panel has its own close button). */
+.yp-chat-root[data-open="true"] .yp-chat-launcher {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.7);
+}
+
+/* ---------------------------------------------------------------------------
+   PANEL (role=dialog)
+   --------------------------------------------------------------------------- */
+.yp-chat-panel {
+  position: fixed;
+  right: clamp(0.9rem, 2.5vw, 1.5rem);
+  bottom: clamp(0.9rem, 2.5vw, 1.5rem);
+  width: min(calc(100vw - 2rem), 384px);
+  height: min(calc(100dvh - 2rem), 600px);
+  max-height: calc(100dvh - 2rem);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--ypc-hairline-strong);
+  border-radius: var(--ypc-radius);
+  background: var(--ypc-bg-panel);
+  color: var(--ypc-ink);
+  box-shadow: var(--ypc-shadow);
+  /* hidden state */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.98);
+  transform-origin: bottom right;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+}
+.yp-chat-root[data-open="true"] .yp-chat-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s;
+}
+
+/* Header */
+.yp-chat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 0.9rem;
+  background: var(--ypc-bg-header);
+  border-bottom: 1px solid var(--ypc-hairline);
+}
+.yp-chat-header__mark {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  border-radius: 9px;
+  display: block;
+}
+.yp-chat-header__titles {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  min-width: 0;
+  margin-right: auto;
+}
+.yp-chat-header__title {
+  font-family: var(--ypc-font-display);
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--ypc-cream);
+}
+.yp-chat-header__sub {
+  font-size: 0.72rem;
+  color: var(--ypc-ink-dim);
+}
+.yp-chat-header__sub b {
+  color: var(--ypc-emerald-400);
+  font-weight: 600;
+}
+
+/* EN | TL language toggle */
+.yp-chat-lang {
+  display: inline-flex;
+  align-items: stretch;
+  padding: 2px;
+  border: 1px solid var(--ypc-hairline-strong);
+  border-radius: var(--radius-pill, 999px);
+  background: var(--ypc-bg-input);
+}
+.yp-chat-lang__btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--ypc-ink-dim);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.5rem;
+  min-width: 30px;
+  border-radius: var(--radius-pill, 999px);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.yp-chat-lang__btn[aria-pressed="true"] {
+  background: var(--ypc-emerald);
+  color: var(--bg-900, #060d0a);
+}
+.yp-chat-lang__btn:focus-visible {
+  outline: 2px solid var(--ypc-gold-glow);
+  outline-offset: 1px;
+}
+
+/* Close button */
+.yp-chat-close {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--ypc-hairline);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ypc-ink-dim);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.yp-chat-close:hover {
+  color: var(--ypc-cream);
+  border-color: var(--ypc-hairline-strong);
+  background: rgba(255, 255, 255, 0.04);
+}
+.yp-chat-close:focus-visible {
+  outline: 2px solid var(--ypc-gold-glow);
+  outline-offset: 2px;
+}
+.yp-chat-close svg {
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   MESSAGE LOG
+   --------------------------------------------------------------------------- */
+.yp-chat-log {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.9rem 0.9rem 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ypc-emerald-600) transparent;
+  overscroll-behavior: contain;
+}
+.yp-chat-log::-webkit-scrollbar { width: 8px; }
+.yp-chat-log::-webkit-scrollbar-thumb {
+  background: var(--ypc-emerald-600);
+  border-radius: 8px;
+}
+
+.yp-chat-msg {
+  max-width: 86%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 14px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+.yp-chat-msg--bot {
+  align-self: flex-start;
+  background: var(--ypc-bg-bot);
+  border: 1px solid var(--ypc-hairline);
+  border-bottom-left-radius: 5px;
+  color: var(--ypc-ink);
+}
+.yp-chat-msg--user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--ypc-emerald) 0%, var(--ypc-emerald-600) 100%);
+  border-bottom-right-radius: 5px;
+  color: var(--bg-900, #060d0a);
+  font-weight: 500;
+}
+
+/* answer links rendered under a bot bubble */
+.yp-chat-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+.yp-chat-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--ypc-gold-glow);
+  border: 1px solid var(--ypc-hairline-gold, rgba(232, 177, 58, 0.28));
+  border-radius: var(--radius-pill, 999px);
+  background: rgba(232, 177, 58, 0.06);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.yp-chat-link:hover {
+  background: rgba(232, 177, 58, 0.14);
+  border-color: var(--ypc-gold);
+}
+.yp-chat-link:focus-visible {
+  outline: 2px solid var(--ypc-gold-glow);
+  outline-offset: 2px;
+}
+
+/* typing indicator */
+.yp-chat-typing {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.7rem 0.85rem;
+  background: var(--ypc-bg-bot);
+  border: 1px solid var(--ypc-hairline);
+  border-radius: 14px;
+  border-bottom-left-radius: 5px;
+}
+.yp-chat-typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ypc-emerald-400);
+  opacity: 0.5;
+  animation: ypcBlink 1.2s infinite ease-in-out both;
+}
+.yp-chat-typing span:nth-child(2) { animation-delay: 0.18s; }
+.yp-chat-typing span:nth-child(3) { animation-delay: 0.36s; }
+@keyframes ypcBlink {
+  0%, 80%, 100% { opacity: 0.3; transform: translateY(0); }
+  40%           { opacity: 1;   transform: translateY(-3px); }
+}
+
+/* ---------------------------------------------------------------------------
+   QUICK-QUESTION CHIPS
+   --------------------------------------------------------------------------- */
+.yp-chat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.2rem 0.9rem 0.7rem;
+}
+.yp-chat-chip {
+  appearance: none;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ypc-emerald-400);
+  background: rgba(31, 185, 138, 0.08);
+  border: 1px solid var(--ypc-hairline-strong);
+  border-radius: var(--radius-pill, 999px);
+  padding: 0.4rem 0.7rem;
+  min-height: 32px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  text-align: left;
+}
+.yp-chat-chip:hover {
+  background: rgba(31, 185, 138, 0.16);
+  border-color: var(--ypc-emerald);
+  color: var(--ypc-emerald-300, #6ff0c4);
+}
+.yp-chat-chip:focus-visible {
+  outline: 2px solid var(--ypc-gold-glow);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   INPUT ROW
+   --------------------------------------------------------------------------- */
+.yp-chat-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding: 0.6rem 0.7rem calc(0.6rem + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--ypc-hairline);
+  background: var(--ypc-bg-header);
+}
+.yp-chat-input {
+  flex: 1 1 auto;
+  resize: none;
+  min-height: 44px;
+  max-height: 110px;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--ypc-ink);
+  background: var(--ypc-bg-input);
+  border: 1px solid var(--ypc-hairline-strong);
+  border-radius: var(--ypc-radius-sm);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.yp-chat-input::placeholder { color: var(--ypc-ink-dim); }
+.yp-chat-input:focus {
+  outline: none;
+  border-color: var(--ypc-emerald);
+  box-shadow: 0 0 0 2px rgba(31, 185, 138, 0.25);
+}
+.yp-chat-send {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: var(--ypc-radius-sm);
+  background: linear-gradient(135deg, var(--ypc-emerald) 0%, var(--ypc-emerald-600) 100%);
+  color: var(--bg-900, #060d0a);
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.12s ease;
+}
+.yp-chat-send:hover { filter: brightness(1.08); }
+.yp-chat-send:active { transform: scale(0.94); }
+.yp-chat-send:disabled { opacity: 0.45; cursor: not-allowed; }
+.yp-chat-send:focus-visible {
+  outline: 2px solid var(--ypc-gold-glow);
+  outline-offset: 2px;
+}
+.yp-chat-send svg { width: 20px; height: 20px; pointer-events: none; }
+
+/* Visually-hidden helper (labels for SR) */
+.yp-chat-sr {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   MOBILE — near-fullscreen panel on small screens
+   --------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .yp-chat-panel {
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  .yp-chat-msg { max-width: 90%; }
+}
+
+/* ---------------------------------------------------------------------------
+   REDUCED MOTION — kill all transitions/animations, keep states instant
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .yp-chat-launcher,
+  .yp-chat-panel,
+  .yp-chat-close,
+  .yp-chat-chip,
+  .yp-chat-link,
+  .yp-chat-send,
+  .yp-chat-input,
+  .yp-chat-lang__btn {
+    transition: none !important;
+  }
+  .yp-chat-launcher__dot,
+  .yp-chat-typing span {
+    animation: none !important;
+  }
+  .yp-chat-launcher:hover,
+  .yp-chat-launcher:active { transform: none; }
+  .yp-chat-panel {
+    transform: none;
+    transition: opacity 0.001s linear, visibility 0s !important;
+  }
+  .yp-chat-root[data-open="true"] .yp-chat-panel { transform: none; }
+}

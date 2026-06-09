@@ -1,0 +1,226 @@
+[
+  {
+    "id": "events-upcoming-overview",
+    "topic": "events",
+    "keywords": ["events", "event", "upcoming events", "upcoming", "ano ang mga events", "anong events", "schedule", "iskedyul", "calendar", "kalendaryo", "what's next", "whats next", "anong susunod", "susunod na event", "next events", "this season", "mga aktibidad", "activities", "gatherings", "ano ginagawa nyo", "list of events", "all events"],
+    "q": [
+      "What events are coming up?",
+      "What's next this season?",
+      "Anong mga susunod na events ninyo?",
+      "May schedule ba kayo ng mga events?",
+      "Can I see your upcoming activities?"
+    ],
+    "a_en": "Lots coming up! Next is our YP Fellowship — \"Malasakit\" on Sunday, June 14 (2:30 PM, FTB Auditorium), then the Cooking YPGT on June 20, Friend Day — \"Bahala Na\" on July 12, and the Hobby & Fitness YPGT on July 18. Later this year: Cybersecurity Talk (Aug 21), Running Fellowship (Sep 19), Thanksgiving (Nov 20), and our Christmas Fellowship in December. See it all — with posters and Add-to-Calendar — on our Events page.",
+    "a_tl": "Marami, kapatid! Sunod ang YP Fellowship — \"Malasakit\" sa Linggo, June 14 (2:30 PM, FTB Auditorium), tapos Cooking YPGT sa June 20, Friend Day — \"Bahala Na\" sa July 12, at Hobby & Fitness YPGT sa July 18. Mamaya sa taon: Cybersecurity Talk (Aug 21), Running Fellowship (Sep 19), Thanksgiving (Nov 20), at YP Christmas Fellowship sa December. Tingnan mo lahat — may posters at Add-to-Calendar — sa Events page namin.",
+    "links": [{"label": "See all events", "href": "events.html#upcoming"}],
+    "priority": 1
+  },
+  {
+    "id": "events-next-event",
+    "topic": "events",
+    "keywords": ["next event", "next", "susunod", "susunod na event", "kailan ang susunod", "nearest event", "soonest", "pinakamalapit", "what is the next", "ano ang susunod", "next na", "next up", "next gathering", "next fellowship", "next one", "anong sunod"],
+    "q": [
+      "What's the very next event?",
+      "When is your next event?",
+      "Ano ang pinakamalapit na event?",
+      "Kailan ang susunod ninyong gathering?",
+      "What's coming up next?"
+    ],
+    "a_en": "Our very next gathering is YP Fellowship — \"Malasakit\" this Sunday, June 14, at 2:30 PM in the FTB Auditorium. We'll sit with malasakit — compassionate care — and what it looks like to carry one another's burdens the way Christ carries ours. Everyone's welcome; bring a friend!",
+    "a_tl": "Ang pinakamalapit naming gathering ay YP Fellowship — \"Malasakit\" ngayong Linggo, June 14, 2:30 PM sa FTB Auditorium. Pag-uusapan namin ang malasakit — ang tunay na pagmamalasakit — at kung paano natin pasanin ang isa't isa gaya ng pagdadala ni Cristo sa atin. Welcome ang lahat; magdala ka ng kaibigan!",
+    "links": [{"label": "See the next event", "href": "events.html#upcoming"}],
+    "priority": 1
+  },
+  {
+    "id": "events-malasakit-jun-14",
+    "topic": "events",
+    "keywords": ["malasakit", "june 14", "jun 14", "june 14 2026", "malasakit fellowship", " yp fellowship malasakit", "compassionate care", "june fellowship", "fellowship sa june", "malasakit topic", "what is malasakit", "malasakit event", "kailan ang malasakit", "linggo june 14"],
+    "q": [
+      "Tell me about the Malasakit fellowship.",
+      "What's happening on June 14?",
+      "Kailan ang Malasakit fellowship?",
+      "Anong oras ang Malasakit sa June 14?",
+      "What is the Malasakit topic about?"
+    ],
+    "a_en": "YP Fellowship — \"Malasakit\" is on Sunday, June 14, 2026 at 2:30 PM in the FTB Auditorium (#206 P. Orbe St., Novaliches, Quezon City). We unpack malasakit — compassionate care — and what it means to carry one another's burdens the way Christ carries ours. It's free and everyone's welcome. Bring a friend, and you can add it to your calendar from the Events page.",
+    "a_tl": "Ang YP Fellowship — \"Malasakit\" ay sa Linggo, June 14, 2026, 2:30 PM sa FTB Auditorium (#206 P. Orbe St., Novaliches, Quezon City). Pag-uusapan namin ang malasakit — ang tunay na pagmamalasakit — at kung ano ang ibig sabihin ng pagpasan sa isa't isa gaya ng ginagawa ni Cristo sa atin. Libre ito at welcome ang lahat. Magdala ka ng kaibigan, at pwede mo itong i-add sa calendar mo galing sa Events page.",
+    "links": [{"label": "Malasakit — June 14", "href": "events.html#upcoming"}],
+    "priority": 1
+  },
+  {
+    "id": "events-cooking-jun-20",
+    "topic": "events",
+    "keywords": ["cooking", "cooking fellowship", "cooking ypgt", "june 20", "jun 20", "luto", "magluto", "kusina", "cook", "ypgt cooking", "cooking event", "kailan ang cooking", "saturday june 20", "food event", "kainan", "aprons"],
+    "q": [
+      "What's the Cooking YPGT?",
+      "Tell me about the cooking event on June 20.",
+      "Kailan ang Cooking Fellowship?",
+      "May luto-luto ba kayo?",
+      "Anong oras ang Cooking YPGT?"
+    ],
+    "a_en": "The Cooking Fellowship YPGT is on Saturday, June 20, 2026 at 10:00 AM (venue to be announced). Aprons on, phones down — we cook, eat, and kwentuhan together, because the best conversations happen in the kitchen. Bring a friend! Watch the Events page for the venue, or message us at ftb.youngpro.ministry@gmail.com.",
+    "a_tl": "Ang Cooking Fellowship YPGT ay sa Sabado, June 20, 2026, 10:00 AM (ia-announce pa ang venue). Suot na ang apron, baba muna ang phone — magluluto, kakain, at magkukwentuhan tayo, kasi ang pinakamasayang usapan ay nasa kusina. Magdala ka ng kaibigan! Abangan ang venue sa Events page, o mag-message sa amin sa ftb.youngpro.ministry@gmail.com.",
+    "links": [{"label": "Cooking YPGT — June 20", "href": "events.html#upcoming"}],
+    "priority": 1
+  },
+  {
+    "id": "events-bahala-na-friend-day-jul-12",
+    "topic": "events",
+    "keywords": ["bahala na", "friend day", "july 12", "jul 12", "friend day bahala na", "invite a friend", "evangelistic", "magdala ng kaibigan", "bring a friend", "friend day event", "kailan ang friend day", "bahala na topic", "july fellowship", "invite friendly", "evangelism event"],
+    "q": [
+      "What is Friend Day?",
+      "Tell me about Bahala Na on July 12.",
+      "Kailan ang Friend Day?",
+      "Pwede ba akong magdala ng kaibigan sa Friend Day?",
+      "Anong meaning ng Bahala Na topic?"
+    ],
+    "a_en": "Friend Day — \"Bahala Na\" is on Sunday, July 12, 2026 at 2:30 PM in the FTB Auditorium. It's our most invite-friendly fellowship — the perfect day to bring a friend who needs to hear the gospel. We unpack \"Bahala Na\" not as fatalism, but as faith-filled trust in the God who holds us. Free and open to all.",
+    "a_tl": "Ang Friend Day — \"Bahala Na\" ay sa Linggo, July 12, 2026, 2:30 PM sa FTB Auditorium. Ito ang pinaka-invite-friendly naming fellowship — perfect na araw para mag-imbita ng kaibigan na kailangang makarinig ng ebanghelyo. Tatalakayin namin ang \"Bahala Na\" hindi bilang pagpapabaya, kundi bilang tiwala na puno ng pananampalataya sa Diyos na humahawak sa atin. Libre at bukas sa lahat.",
+    "links": [{"label": "Friend Day — July 12", "href": "events.html#upcoming"}],
+    "priority": 1
+  },
+  {
+    "id": "events-hobby-fitness-jul-18",
+    "topic": "events",
+    "keywords": ["hobby and fitness", "hobby & fitness", "hobby fitness", "fitness", "july 18", "jul 18", "ypgt hobby", "exercise", "workout", "sports", "hobbies", "fitness event", "kailan ang hobby fitness", "saturday july 18", "ehersisyo", "libangan"],
+    "q": [
+      "What's the Hobby & Fitness YPGT?",
+      "Tell me about the July 18 event.",
+      "Kailan ang Hobby and Fitness?",
+      "May fitness o sports ba kayong event?",
+      "Anong gagawin sa Hobby & Fitness YPGT?"
+    ],
+    "a_en": "The Hobby & Fitness YPGT is on Saturday, July 18, 2026 (morning + afternoon, venue to be announced). Fitness in the morning, hobbies in the afternoon — come sweat, create, and hang out. It's invite-friendly, so bring a friend along! Check the Events page for the venue once it's set.",
+    "a_tl": "Ang Hobby & Fitness YPGT ay sa Sabado, July 18, 2026 (umaga + hapon, ia-announce pa ang venue). Fitness sa umaga, hobbies sa hapon — pumunta ka, magpawis, gumawa, at mag-hang out. Invite-friendly ito, kaya magdala ka ng kaibigan! Tingnan ang venue sa Events page pag na-set na.",
+    "links": [{"label": "Hobby & Fitness — July 18", "href": "events.html#upcoming"}],
+    "priority": 1
+  },
+  {
+    "id": "events-later-2026",
+    "topic": "events",
+    "keywords": ["cybersecurity", "cyber security", "august 21", "aug 21", "running", "running fellowship", "september 19", "sep 19", "caloocan", "thanksgiving", "utang na loob", "november 20", "nov 20", "christmas", "december", "stewarding finances", "finance seminar", "later events", "rest of the year", "second half", "later this year"],
+    "q": [
+      "What events do you have later this year?",
+      "When is the Cybersecurity talk / Running Fellowship?",
+      "Anong events nyo sa Aug, Sep, Nov, Dec?",
+      "May Christmas event ba kayo?",
+      "Kailan ang Thanksgiving fellowship?"
+    ],
+    "a_en": "Later in 2026 we have: a Cybersecurity Talk YPGT (Aug 21), an Evangelistic Running Fellowship at Caloocan Sports Complex (Sep 19), a Thanksgiving Fellowship on \"Utang na Loob\" with a Stewarding Your Finances seminar (Nov 20), and our YP Christmas Fellowship in December. Dates and details get firmed up on the Events page as they get closer.",
+    "a_tl": "Sa huling bahagi ng 2026: Cybersecurity Talk YPGT (Aug 21), Evangelistic Running Fellowship sa Caloocan Sports Complex (Sep 19), Thanksgiving Fellowship sa \"Utang na Loob\" na may Stewarding Your Finances seminar (Nov 20), at YP Christmas Fellowship sa December. Lumalabas ang mga detalye sa Events page habang papalapit na ang mga ito.",
+    "links": [{"label": "All upcoming events", "href": "events.html#upcoming"}],
+    "priority": 2
+  },
+  {
+    "id": "events-recap-museum-may-30",
+    "topic": "events",
+    "keywords": ["museum", "museum tour", "national museum", "fine arts", "may 30", "intramuros", "ermita", "manila", "latest event", "recent event", "nakaraang event", "past event", "recap", "museum ypgt", "art tour", "pinakahuling event", "last event"],
+    "q": [
+      "What was your latest event?",
+      "Tell me about the Museum Tour.",
+      "Ano ang pinakahuling event ninyo?",
+      "Saan kayo nagpunta sa Museum Tour?",
+      "Anong nangyari noong May 30?"
+    ],
+    "a_en": "Our latest YPGT was the Museum Tour on Saturday, May 30, 2026 — we met at 9 AM at the National Museum of Fine Arts in Ermita, wandered through Intramuros, and capped it off with café fellowship inside the old walls. Free entry, full hearts — art, history, and barkada all in one Saturday. You can see the recap on the Events page.",
+    "a_tl": "Ang pinakahuling YPGT namin ay ang Museum Tour noong Sabado, May 30, 2026 — nagkita kami nang 9 AM sa National Museum of Fine Arts sa Ermita, naglibot sa Intramuros, at tinapos sa café fellowship sa loob ng makasaysayang pader. Libreng entrance, puno ang puso — art, kasaysayan, at barkada sa iisang Sabado. Makikita mo ang recap sa Events page.",
+    "links": [{"label": "Museum Tour recap", "href": "events.html#past"}],
+    "priority": 2
+  },
+  {
+    "id": "events-recap-goal-casting-jan-18",
+    "topic": "events",
+    "keywords": ["goal casting", "goal casting 2026", "january 18", "jan 18", "proverbs 16:3", "proverbs 16 3", "goals", "first event", "unang event", "kickoff", "new year event", "casting goals", "2026 goals", "anchor verse event"],
+    "q": [
+      "What was Goal Casting?",
+      "Tell me about the January 18 event.",
+      "Ano ang Goal Casting?",
+      "Anong event ang ginawa nyo sa simula ng taon?",
+      "Kailan ang Goal Casting 2026?"
+    ],
+    "a_en": "Goal Casting 2026 was our year-opener on Sunday, January 18 at 2:30 PM — anchored on Proverbs 16:3, \"Commit your work to the Lord, and your plans will be established.\" We committed our 2026 plans, careers, and dreams to the Lord and asked Him to establish them. It set the tone for the whole year.",
+    "a_tl": "Ang Goal Casting 2026 ang pampasimula naming event noong Linggo, January 18, 2:30 PM — naka-angkla sa Proverbs 16:3, \"Italaga mo sa Panginoon ang iyong mga gawa, at matatatag ang iyong mga plano.\" Inialay namin sa Panginoon ang aming mga plano, karera, at pangarap para sa 2026 at hiniling na patatagin Niya ang mga ito. Ito ang nagtakda ng tono para sa buong taon.",
+    "links": [{"label": "Goal Casting recap", "href": "events.html#past"}],
+    "priority": 2
+  },
+  {
+    "id": "events-fellowship-vs-ypgt",
+    "topic": "events",
+    "keywords": ["fellowship vs ypgt", "what is ypgt", "ano ang ypgt", "young pro get-together", "young pro get together", "difference", "pagkakaiba", "what is a fellowship", "ano ang fellowship", "ypf", "yp fellowship", "two types", "uri ng event", "gathering types", "outing", "ano ibig sabihin ng ypgt"],
+    "q": [
+      "What's the difference between a Fellowship and a YPGT?",
+      "What is a YPGT?",
+      "Ano ang pagkakaiba ng Fellowship at YPGT?",
+      "Ano ang ibig sabihin ng YPGT?",
+      "What kind of events do you have?"
+    ],
+    "a_en": "We have two kinds of gatherings. A YP Fellowship is our regular meet — worship, the Word, a topic or teaching, and sharing — usually 2:30 PM on the 2nd or 3rd week of the month at the church. A YPGT (Young Pro Get-Together) is our monthly outing — coffee, swimming, museum tours, food, hobby/fitness — building real friendships outside the four walls. Both are open to everyone!",
+    "a_tl": "May dalawang uri kami ng gathering. Ang YP Fellowship ay ang regular naming pagkikita — worship, ang Salita ng Diyos, isang topic o aral, at sharing — kadalasan 2:30 PM tuwing 2nd o 3rd week ng buwan sa church. Ang YPGT (Young Pro Get-Together) naman ay ang buwanang lakad namin — kape, swimming, museum tour, pagkain, hobby/fitness — para bumuo ng tunay na pagkakaibigan sa labas ng simbahan. Bukas ang dalawa sa lahat!",
+    "links": [{"label": "See both on the Events page", "href": "events.html#upcoming"}],
+    "priority": 1
+  },
+  {
+    "id": "events-rsvp-attend",
+    "topic": "events",
+    "keywords": ["rsvp", "register", "sign up", "magparehistro", "magpa-rehistro", "how to join event", "how to attend", "paano sumali", "paano dumalo", "do i need to register", "kailangan ba magparegister", "confirm attendance", "reserve", "slot", "sumama", "papunta", "how to come", "attend"],
+    "q": [
+      "How do I RSVP for an event?",
+      "Do I need to register to attend?",
+      "Paano ako mag-RSVP?",
+      "Kailangan ba akong magparehistro para sumama?",
+      "How do I join the next fellowship?"
+    ],
+    "a_en": "No formal registration needed — you're welcome to just come! If you'd like to let us know you're coming (or you're bringing friends), message us at ftb.youngpro.ministry@gmail.com and we'll save you a seat. You can also tap \"Add to calendar\" on any event so you don't miss it.",
+    "a_tl": "Walang kailangang pormal na registration — pwede kang dumating lang! Kung gusto mong ipaalam na sasama ka (o may dadalhin kang kaibigan), mag-message sa amin sa ftb.youngpro.ministry@gmail.com at ipagtatabi ka namin ng upuan. Pwede mo ring i-tap ang \"Add to calendar\" sa kahit anong event para hindi mo ito makalimutan.",
+    "links": [{"label": "Email us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}, {"label": "See events", "href": "events.html#upcoming"}],
+    "priority": 1
+  },
+  {
+    "id": "events-add-to-calendar",
+    "topic": "events",
+    "keywords": ["add to calendar", "calendar", "google calendar", "save the date", "reminder", "i-save sa calendar", "ilagay sa calendar", "paalala", "remind me", "set reminder", "isave ang date", "i-add sa calendar", "save event", "calendar invite"],
+    "q": [
+      "How do I add an event to my calendar?",
+      "Can I get a calendar reminder?",
+      "Paano ko mai-save sa calendar ang event?",
+      "May Add to Calendar ba kayo?",
+      "How do I save the date?"
+    ],
+    "a_en": "Easy — on the Events page, each upcoming event has an \"Add to calendar\" button that drops it straight into your Google Calendar with the date, time, and venue already filled in. The featured next event also has a \"Share\" button so you can send it to your barkada. Just head to the Events page and tap away.",
+    "a_tl": "Madali lang — sa Events page, bawat upcoming event ay may \"Add to calendar\" button na direktang maglalagay nito sa Google Calendar mo, kompleto na ang petsa, oras, at venue. Ang featured na susunod na event ay may \"Share\" button din para maipadala mo sa barkada mo. Pumunta lang sa Events page at i-tap ang button.",
+    "links": [{"label": "Open the Events page", "href": "events.html#upcoming"}],
+    "priority": 1
+  },
+  {
+    "id": "events-where-when-default",
+    "topic": "events",
+    "keywords": ["where are events", "saan ang events", "venue", "lokasyon", "location", "what time", "anong oras", "kailan", "when are fellowships", "usual time", "regular time", "default time", "saan gaganapin", "address ng event", "fellowship time", "anong araw"],
+    "q": [
+      "Where and when are your events usually held?",
+      "What time do fellowships start?",
+      "Saan at kailan kayo nag-fellowship?",
+      "Anong oras karaniwang nagsisimula ang fellowship?",
+      "Saan ginagawa ang mga events?"
+    ],
+    "a_en": "YP Fellowships are usually at 2:30 PM, around the 2nd or 3rd week of the month, at the FTB Auditorium (#206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City, 1117). YPGT outings happen at different venues — each event's spot is posted on the Events page (some say \"venue TBA\" until confirmed). If you're unsure how to get there, just message us at ftb.youngpro.ministry@gmail.com.",
+    "a_tl": "Ang YP Fellowship ay kadalasan 2:30 PM, sa paligid ng 2nd o 3rd week ng buwan, sa FTB Auditorium (#206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City, 1117). Ang YPGT outings naman ay nasa iba't ibang venue — nakapost ang lugar ng bawat event sa Events page (may \"venue TBA\" hangga't di pa kumpirmado). Kung di ka sigurado kung paano pumunta, mag-message lang sa amin sa ftb.youngpro.ministry@gmail.com.",
+    "links": [{"label": "See event details", "href": "events.html#upcoming"}, {"label": "Email us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 1
+  },
+  {
+    "id": "events-cost-bring-a-friend",
+    "topic": "events",
+    "keywords": ["cost", "how much", "magkano", "bayad", "fee", "libre ba", "is it free", "free", "can i bring a friend", "magdala ng kaibigan", "bring friends", "pwede ba magdala", "guest", "first time", "first timer", "newcomer", "bago", "open to all", "bukas ba sa lahat"],
+    "q": [
+      "How much does it cost to attend?",
+      "Are the events free?",
+      "Magkano ang bayad sa events?",
+      "Pwede ba akong magdala ng kaibigan?",
+      "Okay lang ba kahit first time ko?"
+    ],
+    "a_en": "Our fellowships and Friend Days are free and open to everyone — and yes, please bring a friend! Some YPGT outings may have small shared costs (like food or entrance), and we'll always say so ahead of time. Whether you're rock-solid in faith or just curious, there's a seat saved for you. Questions? ftb.youngpro.ministry@gmail.com.",
+    "a_tl": "Libre at bukas sa lahat ang aming mga fellowship at Friend Day — at oo, magdala ka ng kaibigan! May ilang YPGT outing na pwedeng may konting hatian sa gastos (gaya ng pagkain o entrance), at lagi namin itong sasabihin nang maaga. Solid ka man sa pananampalataya o curious lang, may nakareserbang upuan para sa'yo. May tanong? ftb.youngpro.ministry@gmail.com.",
+    "links": [{"label": "Come join us", "href": "events.html#upcoming"}, {"label": "Email us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}],
+    "priority": 2
+  }
+]

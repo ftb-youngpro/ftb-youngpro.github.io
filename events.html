@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Events · FTB Young Pro Ministry (YP) · Faith Temple Baptist Church</title>
-  <meta name="description" content="Upcoming fellowships, Friend Days, and YPGT outings of the Young Pro Ministry — Faith Temple Baptist Church Inc., plus recaps from where we've been this year. Bring a friend.">
+  <title>Events · FTB Young Pro Ministry (YP) · Quezon City · Faith Temple Baptist Church</title>
+  <meta name="description" content="Upcoming fellowships, Friend Days, and YPGT outings of the FTB Young Pro Ministry — young professionals fellowship and YPGT outings in Novaliches, Quezon City — plus recaps from where we've been this year. Bring a friend.">
   <meta name="theme-color" content="#060d0a">
   <meta name="author" content="Young Pro Ministry · Faith Temple Baptist Church Inc.">
 
@@ -49,6 +49,9 @@
   <!-- Stylesheets (the SAME design system as the home page) -->
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="assets/css/animations.css">
+  <!-- Bilingual FAQ chat helper (progressive: pure vanilla, no library dependency;
+       lazy-loads its knowledge base on first open; the page works fully without it). -->
+  <link rel="stylesheet" href="assets/css/chatbot.css">
 
   <!-- ==========================================================================
        STRUCTURED DATA (schema.org JSON-LD @graph)
@@ -65,8 +68,8 @@
       {
         "@type": "Church",
         "@id": "https://ftb-youngpro.github.io/#organization",
-        "name": "Young Pro Ministry — Faith Temple Baptist Church Inc.",
-        "alternateName": "YP Ministry",
+        "name": "FTB Young Pro Ministry — Faith Temple Baptist Church Inc.",
+        "alternateName": ["FTB YP", "FTB Young Pro", "FTB Young Pro Ministry", "FTB Young Professionals", "Young Pro Ministry", "YP Ministry", "YP"],
         "url": "https://ftb-youngpro.github.io/",
         "logo": "https://ftb-youngpro.github.io/assets/img/ftb-church-logo.png",
         "image": "https://ftb-youngpro.github.io/assets/img/ypf-malasakit-06-14-2026.jpg",
@@ -242,6 +245,7 @@
           <li><a class="nav-link" href="index.html#vision">Vision 2026</a></li>
           <li><a class="nav-link is-active" href="events.html" aria-current="page">Events</a></li>
           <li><a class="nav-link" href="devotionals.html">Devotionals</a></li>
+          <li><a class="nav-link" href="faq.html">FAQ</a></li>
           <li class="nav-cta-item"><a class="btn btn-primary nav-cta" href="index.html#join" data-magnetic>Join Us</a></li>
         </ul>
       </nav>
@@ -591,6 +595,7 @@
           <li><a href="index.html#vision">Vision 2026</a></li>
           <li><a href="events.html" aria-current="page">Events</a></li>
           <li><a href="devotionals.html">Devotionals</a></li>
+          <li><a href="faq.html">FAQ</a></li>
           <li><a href="index.html#join">Join Us</a></li>
         </ul>
       </nav>
@@ -707,5 +712,11 @@
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
   <script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
   <script src="assets/js/main.js" defer></script>
+
+  <!-- Bilingual FAQ chat helper (progressive enhancement: self-booting vanilla IIFE,
+       no library dependency, lazy-loads its KB on first open). Loaded AFTER main.js;
+       the launcher button is injected by JS, so no-JS users never see it and lose
+       nothing — the static FAQ page carries the same knowledge. -->
+  <script src="assets/js/chatbot.js" defer></script>
 </body>
 </html>

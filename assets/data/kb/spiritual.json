@@ -1,0 +1,197 @@
+[
+  {
+    "id": "know-jesus-get-saved",
+    "topic": "spiritual",
+    "keywords": ["know jesus", "how to know jesus", "get saved", "be saved", "salvation", "saved", "born again", "accept jesus", "follow jesus", "give my life to jesus", "become a christian", "gospel", "good news", "paano makilala si jesus", "paano maligtas", "maligtas", "kaligtasan", "magbagong buhay", "sumampalataya", "manalig kay jesus", "paano maging kristiyano", "tanggapin si jesus", "ano ang ebanghelyo"],
+    "q": [
+      "How can I know Jesus?",
+      "How do I get saved?",
+      "What does it mean to be born again?",
+      "I want to follow Jesus, where do I start?",
+      "Paano ko makikilala si Jesus?",
+      "Paano po ako maliligtas?",
+      "Gusto ko nang sumunod kay Jesus, saan ako magsisimula?"
+    ],
+    "a_en": "That's the most beautiful question you could ask, and we'd love to walk through it with you personally. Knowing Jesus isn't about being good enough first — it's about grace, the same grace that saved us. Let a leader sit with you over kape and unhurried kwentuhan: just email ftb.youngpro.ministry@gmail.com or come to a YP Fellowship and we'll make sure someone's there for you.",
+    "a_tl": "Iyan na siguro ang pinakamagandang tanong na maitatanong mo, at gusto talaga naming samahan ka diyan nang personal. Hindi naman kailangan na maging perpekto ka muna — biyaya ito, ang parehong biyayang nagligtas sa amin. Hayaan mong may kuya o ate na makasama mo sa kape at tahimik na kwentuhan: mag-email ka lang sa ftb.youngpro.ministry@gmail.com o pumunta sa isang YP Fellowship at sisiguraduhin naming may maghihintay sa iyo.",
+    "links": [
+      {"label": "Message us", "href": "mailto:ftb.youngpro.ministry@gmail.com"},
+      {"label": "Come to a fellowship", "href": "index.html#join"}
+    ],
+    "priority": 3
+  },
+  {
+    "id": "questions-about-faith",
+    "topic": "spiritual",
+    "keywords": ["questions about faith", "doubts", "doubting", "spiritual questions", "ask about god", "is god real", "i have questions", "skeptical", "not sure i believe", "exploring faith", "seeking", "seeker", "curious about jesus", "may tanong ako sa pananampalataya", "may pagdududa", "nagdududa ako", "totoo ba ang diyos", "hindi ako sigurado", "nag-iisip pa ako", "naghahanap", "usisa", "curious lang"],
+    "q": [
+      "I have questions about faith, is that okay?",
+      "Can I ask hard questions about God here?",
+      "I'm not sure I even believe — am I welcome?",
+      "May mga tanong ako tungkol sa pananampalataya, okay lang ba?",
+      "Pwede ba akong magtanong ng mahihirap na tanong tungkol sa Diyos?",
+      "Hindi pa ako sigurado kung naniniwala ako — welcome pa rin ba ako?"
+    ],
+    "a_en": "Absolutely okay — questions are welcome here, not frowned upon. Whether you're rock-solid in your faith or just curious, you belong, and nobody's going to pressure you. The best place to dig into the real questions is face to face: email ftb.youngpro.ministry@gmail.com or drop by a fellowship, and a leader will gladly think through it with you, no judgment.",
+    "a_tl": "Sobrang okay — bukas kami sa mga tanong, hindi iyan ikinakahiya dito. Kahit matatag ka na sa pananampalataya o usisero ka lang, may lugar ka rito, at walang magpipilit sa iyo. Pinakamaganda ang harapang usap para sa totoong mga tanong: mag-email sa ftb.youngpro.ministry@gmail.com o dumaan sa fellowship, at may kuya o ate na maluwag sa loob na pag-isipan ito kasama mo, walang husga.",
+    "links": [
+      {"label": "Ask us anything", "href": "mailto:ftb.youngpro.ministry@gmail.com"},
+      {"label": "Join a fellowship", "href": "index.html#join"}
+    ],
+    "priority": 2
+  },
+  {
+    "id": "prayer-request",
+    "topic": "spiritual",
+    "keywords": ["prayer request", "pray for me", "can you pray", "ask for prayer", "need prayer", "request prayer", "intercession", "ipanalangin", "ipagdasal", "ipanalangin mo ako", "pakidasal", "hihingi ng panalangin", "kailangan ko ng dasal", "ipagdasal mo ako", "pwede bang ipanalangin", "may dasal sana ako"],
+    "q": [
+      "Can I share a prayer request?",
+      "Can you pray for me?",
+      "I have something I'd like the team to pray for.",
+      "Pwede po ba akong magpadasal?",
+      "Pwede bang ipanalangin niyo ako?",
+      "May ipapadasal sana ako sa inyo."
+    ],
+    "a_en": "Yes, please — it would be our joy to pray for you. Send whatever you're carrying to ftb.youngpro.ministry@gmail.com (as private as you want, even just a few words), and a leader will lift it up and check in on you. You're not a burden here; you're family.",
+    "a_tl": "Opo, sige lang — kagalakan po namin na ipanalangin kayo. I-send mo lang kung ano man ang bitbit mo sa ftb.youngpro.ministry@gmail.com (kahit pribado lang, kahit ilang salita lang), at may kuya o ate na magdadasal para diyan at magtatanong kung kumusta ka na. Hindi ka pabigat dito; pamilya ka.",
+    "links": [
+      {"label": "Send a prayer request", "href": "mailto:ftb.youngpro.ministry@gmail.com"}
+    ],
+    "priority": 3
+  },
+  {
+    "id": "going-through-something-hard",
+    "topic": "spiritual",
+    "keywords": ["going through something", "hard time", "struggling", "having a hard time", "stressed", "burnt out", "burnout", "anxious", "anxiety", "overwhelmed", "sad", "lonely", "lost", "hopeless", "tired", "i need help", "i need someone to talk to", "talk to someone", "nahihirapan ako", "may pinagdadaanan ako", "stressed ako", "pagod na pagod", "nababalisa", "malungkot", "nag-iisa", "ligaw na ligaw", "kailangan ko ng makakausap", "may makakausap ba ako", "kailangan ko ng tulong"],
+    "q": [
+      "I'm going through something and I don't know who to talk to.",
+      "I'm really struggling right now, can someone listen?",
+      "I'm burnt out and overwhelmed — is anyone there?",
+      "May pinagdadaanan ako ngayon, wala akong makausap.",
+      "Nahihirapan po ako ngayon, may makikinig kaya?",
+      "Pagod na pagod na ako, may makakausap ba ako?"
+    ],
+    "a_en": "I'm really glad you said something — you don't have to carry it alone. We can't fix everything, but we can listen, pray with you, and walk beside you, no performance needed. Reach a leader at ftb.youngpro.ministry@gmail.com and someone will gently reach back; if it's urgent or about your safety, please also contact a trusted person or local help near you right away.",
+    "a_tl": "Mabuti at nagsalita ka — hindi mo kailangang pasanin ito mag-isa. Hindi namin kayang ayusin ang lahat, pero kaya naming makinig, manalangin kasama mo, at samahan ka, walang kailangang ipakita o ipalabas. Abutin mo ang isang leader sa ftb.youngpro.ministry@gmail.com at may dahan-dahang sasagot sa iyo; kung urgent ito o tungkol sa kaligtasan mo, paki-abot din agad ang isang taong pinagkakatiwalaan mo o ang pinakamalapit na tulong sa inyong lugar.",
+    "links": [
+      {"label": "Reach out to us", "href": "mailto:ftb.youngpro.ministry@gmail.com"},
+      {"label": "Come sit with us", "href": "index.html#join"}
+    ],
+    "priority": 3
+  },
+  {
+    "id": "is-everyone-welcome-spiritual",
+    "topic": "spiritual",
+    "keywords": ["am i welcome", "do i need to be christian", "non-christian", "not religious", "different faith", "different religion", "backslidden", "haven't been to church", "feel unworthy", "too messed up", "judged", "will i be judged", "welcome ba ako", "kailangan ba kristiyano muna", "hindi ako relihiyoso", "iba ang relihiyon ko", "matagal na akong di nagsisimba", "di ako karapat-dapat", "huhusgahan ba ako", "baka husgahan ako"],
+    "q": [
+      "Do I have to be a Christian to come?",
+      "I haven't been to church in years — will I be judged?",
+      "I feel like I'm too messed up to belong here.",
+      "Kailangan ba akong maging Kristiyano muna bago pumunta?",
+      "Matagal na akong hindi nagsisimba — huhusgahan ba ako?",
+      "Pakiramdam ko di ako karapat-dapat sumama dito."
+    ],
+    "a_en": "You don't need to have your life together to belong here — come exactly as you are. Whether you're solid in your faith or just curious, there's a seat saved for you, and there's no judgment waiting, just kape, the Word, and people genuinely glad you came. Email ftb.youngpro.ministry@gmail.com or join the next fellowship whenever you're ready.",
+    "a_tl": "Hindi mo kailangang ayos na lahat sa buhay mo para mabilang dito — pumunta ka lang kung ano ka. Matatag ka man sa pananampalataya o usisero lang, may nakalaang upuan para sa iyo, at walang husgang naghihintay, kape lang, ang Salita, at mga taong tuwang-tuwa na dumating ka. Mag-email sa ftb.youngpro.ministry@gmail.com o sumama sa susunod na fellowship kahit kailan ka handa.",
+    "links": [
+      {"label": "There's a seat for you", "href": "index.html#join"},
+      {"label": "Message us first", "href": "mailto:ftb.youngpro.ministry@gmail.com"}
+    ],
+    "priority": 2
+  },
+  {
+    "id": "want-to-be-baptized",
+    "topic": "spiritual",
+    "keywords": ["baptism", "baptized", "get baptized", "water baptism", "i want to be baptized", "binyag", "magpabinyag", "mabautismuhan", "magpabautismo", "bautismo", "gusto kong magpabinyag", "pano magpabautismo"],
+    "q": [
+      "I'd like to get baptized, how does that work?",
+      "What's the process for water baptism?",
+      "Gusto ko sanang magpabautismo, paano po?",
+      "Ano po ang proseso para magpabinyag?"
+    ],
+    "a_en": "That's a wonderful next step, and we'd love to help you take it well. We don't want to give you wrong details on dates or how it's done, so the best move is to talk with a leader directly — email ftb.youngpro.ministry@gmail.com and we'll connect you with the right person to walk you through baptism.",
+    "a_tl": "Magandang hakbang iyan, at gusto naming matulungan kang gawin ito nang maayos. Ayaw naming magbigay ng maling detalye tungkol sa petsa o sa paraan, kaya pinakamaganda ay makausap mo nang diretso ang isang leader — mag-email sa ftb.youngpro.ministry@gmail.com at ikokonekta ka namin sa tamang tao na gagabay sa iyo sa bautismo.",
+    "links": [
+      {"label": "Talk to a leader", "href": "mailto:ftb.youngpro.ministry@gmail.com"}
+    ],
+    "priority": 2
+  },
+  {
+    "id": "how-to-grow-in-faith",
+    "topic": "spiritual",
+    "keywords": ["grow in faith", "grow spiritually", "spiritual growth", "read the bible", "how to read the bible", "discipleship", "be discipled", "mentor", "bible study", "study the word", "devotions", "quiet time", "lumago sa pananampalataya", "lumago espiritwal", "paano magbasa ng bibliya", "pag-aaral ng salita", "discipulo", "ma-disciple", "gabay espiritwal", "magkaroon ng quiet time", "devotion"],
+    "q": [
+      "How can I grow in my faith?",
+      "I want to learn to read the Bible — can someone help?",
+      "Can someone disciple or mentor me?",
+      "Paano ako lalago sa pananampalataya?",
+      "Gusto kong matutong magbasa ng Bibliya — may tutulong kaya?",
+      "May pwede bang mag-disciple o mag-mentor sa akin?"
+    ],
+    "a_en": "Love this — growing together is literally why we exist (\"Worship God. Make Disciples.\"). We've got fellowships in the Word, honest sharing in smaller circles, and leaders who'd be glad to walk with you one-on-one. Check out our devotionals to start, and email ftb.youngpro.ministry@gmail.com so we can point you to the next step.",
+    "a_tl": "Gustong-gusto namin ito — ang lumago nang magkakasama ang mismong dahilan kung bakit kami nandito (\"Worship God. Make Disciples.\"). May mga fellowship sa Salita, tapat na sharing sa mas maliliit na grupo, at mga leader na maluwag sa loob na sumama sa iyo nang one-on-one. Simulan mo sa aming devotionals, at mag-email sa ftb.youngpro.ministry@gmail.com para maituro namin ang susunod na hakbang.",
+    "links": [
+      {"label": "Read the devotionals", "href": "devotionals.html"},
+      {"label": "Ask about discipleship", "href": "mailto:ftb.youngpro.ministry@gmail.com"}
+    ],
+    "priority": 2
+  },
+  {
+    "id": "talk-to-a-leader-or-pastor",
+    "topic": "spiritual",
+    "keywords": ["talk to a pastor", "talk to a leader", "speak to pastor", "counseling", "counsel", "guidance", "advice", "spiritual advice", "confide", "someone to confide in", "private conversation", "makausap ang pastor", "makausap ang leader", "magpa-counsel", "humingi ng payo", "espiritwal na payo", "may maikukumpisal", "pribadong usapan", "gabay sa buhay"],
+    "q": [
+      "Can I talk to a pastor or leader privately?",
+      "I need some spiritual guidance, who can I speak with?",
+      "Is there someone I can confide in?",
+      "Pwede ba akong makausap ng pastor o leader nang pribado?",
+      "Kailangan ko ng espiritwal na gabay, sino ang pwede kong kausapin?",
+      "May pwede ba akong pagkatiwalaan ng problema ko?"
+    ],
+    "a_en": "Yes — our core leaders are here to listen and care, with no judgment and full discretion. You can reach Pastor Jaymar (PJB), Kuya Darcy, Cess, or Ryan through ftb.youngpro.ministry@gmail.com, and we'll set up a real, unhurried conversation over kape whenever you're ready.",
+    "a_tl": "Opo — andito ang aming core leaders para makinig at mag-alaga, walang husga at may respeto sa pagkapribado. Maaabot mo si Pastor Jaymar (PJB), si Kuya Darcy, si Cess, o si Ryan sa pamamagitan ng ftb.youngpro.ministry@gmail.com, at mag-aayos kami ng totoo at hindi minamadaling usapan sa kape kahit kailan ka handa.",
+    "links": [
+      {"label": "Message a leader", "href": "mailto:ftb.youngpro.ministry@gmail.com"},
+      {"label": "Meet the leaders", "href": "index.html#leaders"}
+    ],
+    "priority": 2
+  },
+  {
+    "id": "what-do-you-believe",
+    "topic": "spiritual",
+    "keywords": ["what do you believe", "your beliefs", "doctrine", "statement of faith", "denomination", "baptist", "what church", "what religion", "ano ang pinaniniwalaan niyo", "paniniwala niyo", "doktrina", "anong simbahan", "anong relihiyon", "baptist ba", "denominasyon"],
+    "q": [
+      "What does your ministry believe?",
+      "What church or denomination are you part of?",
+      "Ano ang pinaniniwalaan ng ministry niyo?",
+      "Anong simbahan o denominasyon kayo?"
+    ],
+    "a_en": "We're the Young Pro Ministry of Faith Temple Baptist Church Inc., and our whole heartbeat is our church's purpose: \"Worship God. Make Disciples.\" Our anchor verse is Proverbs 16:3 — committing our work and plans to the Lord. For the deeper doctrinal specifics, we'd rather a leader explain them properly than have us get it wrong here, so email ftb.youngpro.ministry@gmail.com anytime.",
+    "a_tl": "Kami ang Young Pro Ministry ng Faith Temple Baptist Church Inc., at ang buong puso namin ay ang layunin ng aming simbahan: \"Worship God. Make Disciples.\" Ang aming anchor verse ay Proverbs 16:3 — ipinagkakatiwala sa Panginoon ang aming gawa at mga plano. Para sa mas malalim na detalye ng doktrina, mas gusto naming may leader na magpaliwanag nito nang maayos kaysa magkamali kami rito, kaya mag-email lang sa ftb.youngpro.ministry@gmail.com kahit kailan.",
+    "links": [
+      {"label": "Ask a leader", "href": "mailto:ftb.youngpro.ministry@gmail.com"},
+      {"label": "About the ministry", "href": "index.html#about"}
+    ],
+    "priority": 1
+  },
+  {
+    "id": "feeling-far-from-god",
+    "topic": "spiritual",
+    "keywords": ["far from god", "drifted", "lost my faith", "backslidden", "backslide", "fell away", "want to come back", "return to god", "renew my faith", "cold heart", "spiritually dry", "malayo sa diyos", "lumayo ako sa diyos", "nawalan ng pananampalataya", "tumigil sa pananampalataya", "gusto kong bumalik", "manumbalik sa diyos", "tuyot na espiritwal", "lumamig na puso"],
+    "q": [
+      "I've drifted far from God and want to come back.",
+      "I feel spiritually dry and distant from God.",
+      "Can I return even after falling away?",
+      "Lumayo na ako sa Diyos at gusto kong bumalik.",
+      "Pakiramdam ko malayo na ako sa Diyos at tuyot na ako.",
+      "Pwede pa ba akong bumalik kahit lumihis ako?"
+    ],
+    "a_en": "You can always come back — the same grace that saved us is still wide open for you, no shame, no scolding. Coming home doesn't start with feeling worthy; it starts with one honest step. Email ftb.youngpro.ministry@gmail.com or just show up at a fellowship, and a leader will gladly meet you right where you are.",
+    "a_tl": "Pwede ka laging bumalik — ang parehong biyayang nagligtas sa amin ay bukas pa rin para sa iyo, walang hiya, walang pagalitan. Ang pag-uwi ay hindi nagsisimula sa pakiramdam na karapat-dapat ka na; nagsisimula ito sa isang tapat na hakbang. Mag-email sa ftb.youngpro.ministry@gmail.com o dumating ka lang sa isang fellowship, at may leader na maluwag sa loob na sasalubong sa iyo kung nasaan ka man ngayon.",
+    "links": [
+      {"label": "Come home", "href": "index.html#join"},
+      {"label": "Message us", "href": "mailto:ftb.youngpro.ministry@gmail.com"}
+    ],
+    "priority": 2
+  }
+]

@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQ · FTB Young Pro Ministry (YP) · Faith Temple Baptist Church</title>
+  <meta name="description" content="Frequently asked questions about the FTB Young Pro Ministry (YP) — a Christian community for young professionals at Faith Temple Baptist Church Inc., Novaliches, Quezon City. How to join, when and where we meet, our events, and more. Mga sagot din sa Tagalog.">
+  <meta name="keywords" content="Christian community for young professionals, young professionals fellowship Quezon City, young professionals ministry Novaliches, Faith Temple Baptist Church, FTB Young Pro, grupo para sa mga young professionals, fellowship ng mga propesyonal, paano sumali, how to join young pro fellowship">
+  <meta name="theme-color" content="#060d0a">
+  <meta name="author" content="Young Pro Ministry · Faith Temple Baptist Church Inc.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://ftb-youngpro.github.io/faq.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Young Pro Ministry">
+  <meta property="og:title" content="FAQ · Young Pro Ministry · Christian Community for Young Professionals (Quezon City)">
+  <meta property="og:description" content="Answers for young professionals: who we are, who can join, where & when we meet in Novaliches, Quezon City, our events, and how to get connected. English at Tagalog.">
+  <meta property="og:url" content="https://ftb-youngpro.github.io/faq.html">
+  <meta property="og:locale" content="en_PH">
+  <meta property="og:image" content="https://ftb-youngpro.github.io/assets/img/ypf-malasakit-06-14-2026.jpg">
+  <meta property="og:image:width" content="1080">
+  <meta property="og:image:height" content="1350">
+  <meta property="og:image:alt" content="YP Fellowship — Malasakit, Sunday June 14, 2026, 2:30 PM at the FTB Auditorium.">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FAQ · Young Pro Ministry · Christian Community for Young Professionals (Quezon City)">
+  <meta name="twitter:description" content="Answers for young professionals: who we are, who can join, where & when we meet in Novaliches, Quezon City, our events, and how to get connected. English at Tagalog.">
+  <meta name="twitter:image" content="https://ftb-youngpro.github.io/assets/img/ypf-malasakit-06-14-2026.jpg">
+  <meta name="twitter:image:alt" content="YP Fellowship — Malasakit, Sunday June 14, 2026, 2:30 PM at the FTB Auditorium.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- PWA: installable + offline-capable on GitHub Pages -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Young Pro">
+
+  <!-- Google Fonts + the GSAP CDN (the only external resources) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets (shared design system) -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <!-- Bilingual FAQ chat helper (progressive: pure vanilla, no library dependency;
+       lazy-loads its knowledge base on first open; the page works fully without it). -->
+  <link rel="stylesheet" href="assets/css/chatbot.css">
+
+  <!-- Page-scoped styles: a few small additions layered on the shared design
+       system (tokens/components reused as-is). Zero new colors — emerald, gold,
+       cream on forest-black only. The Q&A accordion is <details>/<summary>, so
+       it is fully readable and operable with NO JavaScript (open by default). -->
+  <style>
+    /* FAQ hero — calm, not full-viewport (mirrors the Devotionals hero) */
+    .faq-hero {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      padding-block: calc(var(--nav-h) + var(--space-2xl)) var(--space-2xl);
+      text-align: center;
+    }
+    .faq-hero .container { position: relative; z-index: 2; }
+    .faq-hero-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--step-4);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: var(--space-md);
+      text-wrap: balance;
+    }
+    .faq-hero-lead {
+      max-width: 58ch;
+      margin-inline: auto;
+      color: var(--ink-dim);
+    }
+
+    /* Quick "jump to a section" chips under the intro */
+    .faq-jump {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-2xs);
+      margin-top: var(--space-xl);
+    }
+    .faq-jump-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--step--1);
+      line-height: 1;
+      padding: 0.55rem 1rem;
+      border-radius: var(--radius-pill);
+      color: var(--gold-soft);
+      border: 1px solid var(--hairline-gold);
+      background: color-mix(in srgb, var(--bg-700) 70%, transparent);
+      transition: border-color var(--dur-fast) var(--ease-out),
+                  color var(--dur-fast) var(--ease-out),
+                  box-shadow var(--dur-fast) var(--ease-out),
+                  transform var(--dur-fast) var(--ease-out);
+    }
+    .faq-jump-link:hover {
+      color: var(--gold-soft);
+      border-color: var(--gold);
+      box-shadow: var(--glow-gold);
+      transform: translateY(-1px);
+    }
+
+    /* A labelled group of Q&As */
+    .faq-group {
+      /* offset the sticky-nav landing when jumped to via #anchor */
+      scroll-margin-top: calc(var(--nav-h) + var(--space-lg));
+    }
+    .faq-group + .faq-group { margin-top: var(--space-2xl); }
+    .faq-group-head {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3xs);
+      margin-bottom: var(--space-lg);
+    }
+    .faq-group-eyebrow {
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: var(--step--1);
+      font-weight: 500;
+      color: var(--emerald-300);
+    }
+    .faq-group-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--step-2);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-wrap: balance;
+    }
+
+    /* The stack of Q&A disclosures */
+    .faq-list { display: flex; flex-direction: column; gap: var(--space-sm); }
+
+    .faq-item {
+      border-radius: var(--radius-lg);
+      border-color: var(--hairline-gold);
+      padding: 0;
+      overflow: hidden;
+      scroll-margin-top: calc(var(--nav-h) + var(--space-lg));
+    }
+
+    .faq-q {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      padding: clamp(1.1rem, 0.9rem + 1.6vw, 1.6rem) clamp(1.2rem, 1rem + 2vw, 2rem);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--step-0);
+      line-height: 1.3;
+      color: var(--ink);
+      transition: color var(--dur-fast) var(--ease-out);
+    }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-q:hover { color: var(--gold-soft); }
+    .faq-item[open] > .faq-q { color: var(--gold-soft); }
+
+    /* Caret built from a token border, rotates on open — reduced-motion safe */
+    .faq-q-icon {
+      flex: none;
+      width: 0.7em;
+      height: 0.7em;
+      margin-top: 0.42em;
+      border-right: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+      transform: rotate(45deg);
+      transition: transform var(--dur) var(--ease-out);
+    }
+    .faq-item[open] > .faq-q .faq-q-icon { transform: rotate(225deg); }
+    .faq-q-text { flex: 1 1 auto; }
+
+    .faq-a {
+      padding: 0 clamp(1.2rem, 1rem + 2vw, 2rem) clamp(1.2rem, 1rem + 2vw, 1.8rem);
+    }
+    .faq-a > p { max-width: var(--measure); color: var(--ink-dim); }
+    .faq-a > p + p { margin-top: var(--space-sm); }
+    .faq-a a { color: var(--emerald-300); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    .faq-a a:hover { color: var(--emerald-400); }
+
+    /* The short Tagalog echo under each English answer */
+    .faq-a-tl {
+      margin-top: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--hairline);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-2xs);
+    }
+    .faq-a-tl-label {
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--emerald-300);
+      flex: none;
+      padding-top: 0.18em;
+    }
+    .faq-a-tl-text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--cream-dim);
+      max-width: 58ch;
+    }
+
+    /* Closing card (echoes the Devotionals closing) */
+    .faq-close {
+      margin-top: var(--space-2xl);
+      border-radius: var(--radius-lg);
+      border-color: var(--hairline-gold);
+      padding: clamp(1.5rem, 1rem + 3vw, 3rem);
+      text-align: center;
+    }
+    .faq-close-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--step-2);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: var(--space-sm);
+    }
+    .faq-close p { color: var(--ink-dim); max-width: 58ch; margin-inline: auto; }
+    .faq-close-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-xl);
+    }
+
+    /* Open the caret animation only when motion is welcome */
+    @media (prefers-reduced-motion: reduce) {
+      .faq-q-icon { transition: none; }
+    }
+  </style>
+
+  <!-- ==========================================================================
+       STRUCTURED DATA — FAQPage. Each Question mirrors a visible <summary> on the
+       page; acceptedAnswer.text carries the ENGLISH answer only (clean single-
+       language indexing). The Tagalog line lives in the visible HTML, not here.
+       Validate with Google's Rich Results Test.
+       ========================================================================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://ftb-youngpro.github.io/faq.html",
+    "url": "https://ftb-youngpro.github.io/faq.html",
+    "name": "Frequently Asked Questions — FTB Young Pro Ministry",
+    "inLanguage": "en-PH",
+    "isPartOf": { "@id": "https://ftb-youngpro.github.io/#website" },
+    "about": "FTB Young Pro Ministry — a Christian community for young professionals at Faith Temple Baptist Church Inc., Novaliches, Quezon City.",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the FTB Young Pro Ministry?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "FTB Young Pro (YP) is the Young Professionals Ministry of Faith Temple Baptist Church Inc. — a warm, faith-centered community of Filipino young professionals who worship God and make disciples together. We meet for YP Fellowship and monthly Young Pro Get-Together (YPGT) hangouts, so faith and real friendships grow side by side."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this a community or group for young professionals?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We're a Christian community and fellowship for young professionals — a group of working Filipinos chasing Jesus and their callings at the same time. Whether you're fresh out of school, navigating your first job, or already deep into your field, there's a seat for you here."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a Christian community for young professionals in Quezon City or Novaliches?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — we're a Christian fellowship for young professionals based in Novaliches, Quezon City. We meet at the FTB Auditorium, #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City. Everyone's welcome, so come as you are."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where can young professionals find faith friends and a Christian barkada?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Right here. A big part of what we do is help strangers become barkada and barkada become a faith group — through fellowships, coffee, and our monthly hangouts. If you've been looking for real, God-honoring friendships as a young professional, you're welcome to join us."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who can join the Young Pro Ministry?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Everyone is welcome — there's a seat saved for you. We're the young professionals (plus fresh grads and folks still figuring life out) of Faith Temple Baptist Church. Whether you're rock-solid in your faith or just curious, fresh out of school or deep into your career, you belong here. Just show up to a fellowship or YPGT, or email us first at ftb.youngpro.ministry@gmail.com."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to be a church member or a Christian to join?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. You don't need to be a member of Faith Temple Baptist Church, and you don't need to be a Christian yet either. We welcome visitors, friends, and people from other churches — and plenty of people come while they're still exploring faith. Come as you are, and bring your questions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "I'm a fresh grad (or still job-hunting) — can I still join?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. Fresh grads, students still figuring it out, people between jobs, and those just starting their careers are all welcome. You don't need a job title or a settled life to belong here — you just need to show up as you are. Come to a fellowship or email us at ftb.youngpro.ministry@gmail.com."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Pwede ba akong sumali kahit hindi pa ako Christian?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — you don't need to be a Christian to come. You're genuinely welcome whether you're rock-solid in your faith or just curious and exploring. We're not here to pressure you; we're here for real conversations, the Word, kape, and friendship. Come as you are."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I join or get connected to the young pro fellowship?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Getting connected is simple: message us at ftb.youngpro.ministry@gmail.com, then drop by a YP Fellowship (usually 2:30 PM, 2nd or 3rd week of the month) or come hang out at the next YPGT outing. From there, conversations turn into friendships, and friendships into a faith group — there's a seat saved for you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it free to attend, and is it a safe space?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, it's free — there's no fee to attend a YP Fellowship, and it's a warm, no-judgment space. Some YPGT outings may have a small personal cost (like your own food or a venue entrance), and we'll always say so ahead of time. Come exactly as you are, wherever you are with God or your career."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to RSVP or register first?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No sign-up is required — you can just show up to a YP Fellowship or YPGT. That said, it's nice to message us first at ftb.youngpro.ministry@gmail.com so we know to look out for you and can tell you exactly where and when. For featured events you'll also see a quick RSVP button on the Events page."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I bring a friend?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, please do — bring a friend, bring your whole barkada! Everyone's welcome here, and some of our gatherings (like Friend Day and the YPGT outings) are built exactly for inviting friends along. The more, the merrier."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where do you meet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We meet at the FTB Auditorium of Faith Temple Baptist Church Inc. — #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City, Philippines 1117. Some YPGT outings happen elsewhere, so check the Events page for each one's venue. You're always welcome to drop by."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Saan kayo matatagpuan? (Where exactly are you located?)",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We're based right in Novaliches, Quezon City — at the FTB Auditorium, #206 P. Orbe St., Blueville Subdivision. It's reachable from across Metro Manila. If you tell us where you're coming from, we'd love to help you find the easiest way over — just message us at ftb.youngpro.ministry@gmail.com."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When is the YP Fellowship?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our regular YP Fellowship is usually at 2:30 PM, on the 2nd or 3rd week of the month, at the FTB Auditorium. The exact date can shift month to month, so check our Events page for the dated poster or message us to be sure."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How often do you meet, and what's the difference between YP Fellowship and YPGT?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We have two regular things each month. YP Fellowship is our gathering at the church — worship, the Word, a topic, and sharing (usually 2:30 PM, 2nd or 3rd week of the month). YPGT (Young Pro Get-Together) is our monthly outing outside the church — coffee, swimming, museum tours, food, hobby and fitness — for friendship and fun. So roughly twice a month, one at church and one out and about."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ano ang isusuot ko? Is there a dress code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Come as you are — there's no dress code. Wear whatever you're comfortable in, whether that's office clothes straight from work or your weekend casual. We care that you came, not what you wore."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the next event?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our calendar is full this year. Next up is YP Fellowship — Malasakit on Sunday, June 14 (2:30 PM, FTB Auditorium), then the Cooking YPGT on June 20, Friend Day — Bahala Na on July 12, and the Hobby & Fitness YPGT on July 18. Later in 2026: a Cybersecurity Talk (Aug 21), a Running Fellowship (Sep 19), Thanksgiving (Nov 20), and our Christmas Fellowship in December. See it all — with posters and Add-to-Calendar — on the Events page."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the five Filipino discipleship themes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We disciple around five Filipino heart-words and re-root each one in Christ: Loob (the inner self), Kapwa (shared humanity), Malasakit (compassionate care), Bahala Na (faith-filled trust in God), and Utang na Loob (deep gratitude). Each one has a short, warm devotional you can read on our Devotionals page."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who leads the Young Pro Ministry?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Young Pro is led by Pastor Jaymar Bagalacsa (PJB), our Young Pro Pastor and Department Head, together with core leaders Kuya Darcy (Darcy Amiel Sudiacal), Cess (Princess Jean Laborte), and Ryan (Ryan James Indangan). They shepherd, teach, and serve the ministry together."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What church is this, and what does Baptist mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Young Pro is the young professionals' department of Faith Temple Baptist Church Inc. (FTBCI) in Novaliches, Quezon City — a Bible-believing, Christ-centered Baptist church. Our heartbeat follows the church's purpose: Worship God. Make Disciples. For a fuller explanation of what we hold to, our pastor and leaders would love to walk you through it — email ftb.youngpro.ministry@gmail.com."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the Sunday service times?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For the church's exact Sunday service schedule, the most accurate thing is to ask us directly so we can give you the current times — email ftb.youngpro.ministry@gmail.com or message a leader and we'll happily guide you. (For YP gatherings specifically, fellowships are usually 2:30 PM on the 2nd or 3rd week of the month.)"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I reach a leader or get in touch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The easiest way is to email us at ftb.youngpro.ministry@gmail.com — a core leader will get back to you. You can also just come to the next YP Fellowship and say hi in person; we'd love to meet you."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===================== STICKY NAV ===================== -->
+  <header class="site-header" data-site-header>
+    <div class="container nav-bar">
+      <a class="brand" href="index.html" aria-label="Young Pro Ministry — home">
+        <img class="brand-mark" src="assets/img/yp-mark.svg" alt="" width="40" height="40" aria-hidden="true">
+        <span class="brand-text">
+          <span class="brand-name">Young Pro</span>
+          <span class="brand-sub">Ministry</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" data-nav-toggle type="button"
+              aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu">
+        <span class="nav-toggle-box" aria-hidden="true">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </span>
+      </button>
+
+      <nav class="nav" aria-label="Primary">
+        <ul class="nav-menu" id="primary-nav" data-nav>
+          <li><a class="nav-link" href="index.html#about">About</a></li>
+          <li><a class="nav-link" href="index.html#what-we-do">What We Do</a></li>
+          <li><a class="nav-link" href="devotionals.html">Devotionals</a></li>
+          <li><a class="nav-link" href="events.html">Events</a></li>
+          <li><a class="nav-link is-active" href="faq.html" aria-current="page">FAQ</a></li>
+          <li class="nav-cta-item"><a class="btn btn-primary nav-cta" href="index.html#join" data-magnetic>Join Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="faq-hero" aria-labelledby="faq-hero-heading">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="aurora aurora-1"></span>
+        <span class="aurora aurora-2"></span>
+        <span class="aurora aurora-3"></span>
+        <span class="hero-halo"></span>
+      </div>
+
+      <div class="container container-narrow">
+        <p class="eyebrow" data-reveal>FAQ · A Christian community for young professionals</p>
+        <h1 class="faq-hero-title" id="faq-hero-heading" data-reveal data-split>
+          Frequently Asked <span class="text-gradient">Questions</span>
+        </h1>
+        <p class="faq-hero-lead lead" data-reveal>
+          Everything a young professional might want to know about FTB Young Pro — who we are,
+          who can join, where and when we meet here in Novaliches, Quezon City, our events, and
+          how to get connected. English ang sagot, may maikling Tagalog din sa ilalim.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== INTRO + JUMP NAV ===================== -->
+    <section class="section" aria-labelledby="faq-intro-heading">
+      <div class="container container-narrow">
+        <h2 class="sr-only" id="faq-intro-heading">Introduction</h2>
+        <div class="prose" data-reveal>
+          <p>We're the <span class="hl-gold">Young Pro Ministry</span> — the young professionals'
+            department of Faith Temple Baptist Church Inc. here in Novaliches, Quezon City. If you're
+            a Filipino young pro looking for a Christian community where faith, friendship, and your
+            career grow side by side, you're in the right place. Below are the questions we get asked
+            the most.</p>
+          <p lang="tl"><strong>Para sa mga young pro na naghahanap ng tahanan:</strong> kung gusto mong
+            lumago sa pananampalataya habang hinahabol ang career mo — nurse, teacher, dev, freelancer,
+            o fresh grad pa lang — may upuan para sa'yo dito. Hanapin mo lang ang sagot sa tanong mo,
+            o mag-email sa amin kung wala dito.</p>
+        </div>
+
+        <nav class="faq-jump" aria-label="Jump to a section" data-reveal>
+          <a class="faq-jump-link" href="#faq-about"><span class="yp-leaf-flourish" aria-hidden="true"></span>About YP</a>
+          <a class="faq-jump-link" href="#faq-join"><span class="yp-leaf-flourish" aria-hidden="true"></span>Joining &amp; Who Can Come</a>
+          <a class="faq-jump-link" href="#faq-meet"><span class="yp-leaf-flourish" aria-hidden="true"></span>Where &amp; When</a>
+          <a class="faq-jump-link" href="#faq-more"><span class="yp-leaf-flourish" aria-hidden="true"></span>Events, Themes &amp; Church</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ===================== THE FAQ GROUPS ===================== -->
+    <section class="section" aria-labelledby="faq-main-heading" style="padding-top: 0;">
+      <div class="container container-narrow">
+        <h2 class="sr-only" id="faq-main-heading">Questions and answers</h2>
+
+        <!-- ====== GROUP 1 · ABOUT YP (generic + community intent) ====== -->
+        <div class="faq-group" id="faq-about" aria-labelledby="faq-about-title">
+          <header class="faq-group-head" data-reveal>
+            <p class="faq-group-eyebrow">01 · The basics</p>
+            <h3 class="faq-group-title" id="faq-about-title">About the Young Pro Ministry</h3>
+          </header>
+
+          <div class="faq-list">
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">What is the FTB Young Pro Ministry?</span></summary>
+              <div class="faq-a">
+                <p>FTB Young Pro (YP) is the Young Professionals Ministry of <strong>Faith Temple Baptist
+                  Church Inc.</strong> — a warm, faith-centered community of Filipino young professionals
+                  who worship God and make disciples together. We meet for <strong>YP Fellowship</strong>
+                  and monthly <strong>Young Pro Get-Together (YPGT)</strong> hangouts, so faith and real
+                  friendships grow side by side.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Ang FTB Young Pro ay ang Young Professionals
+                    Ministry ng Faith Temple Baptist Church Inc. — isang warm at faith-centered na community
+                    ng mga Pinoy young pro. May YP Fellowship at monthly YPGT, para magkasabay lumago ang
+                    faith at totoong pagkakaibigan.</span>
+                </p>
+                <p><a href="index.html#about">More about us</a> · <a href="index.html#join">Join us</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">Is this a community or group for young professionals?</span></summary>
+              <div class="faq-a">
+                <p>Yes! We're a <strong>Christian community and fellowship for young professionals</strong> —
+                  a group of working Filipinos chasing Jesus and their callings at the same time. Whether
+                  you're fresh out of school, navigating your first job, or already deep into your field,
+                  there's a seat for you here.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Oo! Isa kaming komunidad at fellowship para sa mga
+                    young professionals — para sa mga nagtatrabahong Pinoy na gustong lumago sa faith kasabay
+                    ng career. Fresh grad ka man o malalim na sa field mo, may upuan ka rito.</span>
+                </p>
+                <p><a href="index.html#what-we-do">What we do</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">Is there a Christian community for young professionals in Quezon City or Novaliches?</span></summary>
+              <div class="faq-a">
+                <p>Yes — we're a <strong>Christian fellowship for young professionals based in Novaliches,
+                  Quezon City</strong>. We meet at the FTB Auditorium, #206 P. Orbe St., Blueville
+                  Subdivision, Novaliches, Quezon City. Everyone's welcome, so come as you are.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Oo — isa kaming Christian fellowship para sa mga
+                    young pro dito sa Novaliches, Quezon City. Nagtitipon kami sa FTB Auditorium sa Blueville
+                    Subdivision. Welcome ang lahat.</span>
+                </p>
+                <p><a href="index.html#about">See where we meet</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">Where can young professionals find faith friends and a Christian barkada?</span></summary>
+              <div class="faq-a">
+                <p>Right here. A big part of what we do is help <strong>strangers become barkada and barkada
+                  become a faith group</strong> — through fellowships, coffee, and our monthly hangouts. If
+                  you've been looking for real, God-honoring friendships as a young professional, you're
+                  welcome to join us.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Dito mismo. Malaking bahagi ng ginagawa namin ay
+                    tulungan ang mga estranghero na maging barkada, at ang barkada na maging faith group.
+                    Kung naghahanap ka ng totoong pagkakaibigan, welcome ka sa amin.</span>
+                </p>
+                <p><a href="index.html#join">Join the barkada</a></p>
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+        <!-- ====== GROUP 2 · JOINING + WHO CAN COME (conversion intent) ====== -->
+        <div class="faq-group" id="faq-join" aria-labelledby="faq-join-title">
+          <header class="faq-group-head" data-reveal>
+            <p class="faq-group-eyebrow">02 · Joining</p>
+            <h3 class="faq-group-title" id="faq-join-title">Joining &amp; who can come</h3>
+          </header>
+
+          <div class="faq-list">
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">Who can join the Young Pro Ministry?</span></summary>
+              <div class="faq-a">
+                <p><strong>Everyone is welcome</strong> — there's a seat saved for you. We're the young
+                  professionals (plus fresh grads and folks still figuring life out) of Faith Temple Baptist
+                  Church. Whether you're rock-solid in your faith or just curious, fresh out of school or
+                  deep into your career, you belong here. Just show up to a fellowship or YPGT, or email us
+                  first at <a href="mailto:ftb.youngpro.ministry@gmail.com">ftb.youngpro.ministry@gmail.com</a>.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Welcome ang lahat — may nakareserbang upuan para
+                    sa'yo. Matibay man ang faith mo o curious ka lang, kaka-graduate ka man o matagal nang
+                    nagtatrabaho, belong ka dito. Sumipot ka lang, o mag-email muna sa amin.</span>
+                </p>
+                <p><a href="index.html#join">How to join</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">Do I need to be a church member or a Christian to join?</span></summary>
+              <div class="faq-a">
+                <p>No. You <strong>don't</strong> need to be a member of Faith Temple Baptist Church, and you
+                  don't need to be a Christian yet either. We welcome visitors, friends, and people from
+                  other churches — and plenty of people come while they're still exploring faith. Come as
+                  you are, and bring your questions.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Hindi. Hindi mo kailangang maging member ng FTB, at
+                    hindi mo rin kailangang maging Christian. Welcome ang mga bisita at galing sa ibang
+                    simbahan. Come as you are, at dalhin mo na rin ang mga tanong mo.</span>
+                </p>
+                <p><a href="index.html#join">There's a seat saved for you</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">I'm a fresh grad (or still job-hunting) — can I still join?</span></summary>
+              <div class="faq-a">
+                <p>Absolutely. Fresh grads, students still figuring it out, people between jobs, and those
+                  just starting their careers are all welcome. You don't need a job title or a settled life
+                  to belong here — you just need to show up as you are. Come to a fellowship or email us at
+                  <a href="mailto:ftb.youngpro.ministry@gmail.com">ftb.youngpro.ministry@gmail.com</a>.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Syempre. Welcome ang mga fresh grad, estudyante,
+                    mga nasa pagitan ng trabaho, o nagsisimula pa lang. Hindi mo kailangan ng job title o
+                    ayos na buhay para mabilang dito.</span>
+                </p>
+                <p><a href="index.html#join">Join us</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">Pwede ba akong sumali kahit hindi pa ako Christian?</span></summary>
+              <div class="faq-a">
+                <p>Yes — you don't need to be a Christian to come. You're genuinely welcome whether you're
+                  rock-solid in your faith or just curious and exploring. We're not here to pressure you;
+                  we're here for real conversations, the Word, kape, and friendship. Come as you are.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Oo — hindi mo kailangang maging Christian para
+                    makasali. Totoong welcome ka, matibay man ang faith mo o curious ka lang. Walang
+                    pino-pressure; kwentuhan, Salita ng Diyos, kape, at pagkakaibigan lang.</span>
+                </p>
+                <p><a href="index.html#join">Come as you are</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">How do I join or get connected to the young pro fellowship?</span></summary>
+              <div class="faq-a">
+                <p>Getting connected is simple: <strong>message us</strong> at
+                  <a href="mailto:ftb.youngpro.ministry@gmail.com">ftb.youngpro.ministry@gmail.com</a>, then
+                  drop by a YP Fellowship (usually 2:30 PM, 2nd or 3rd week of the month) or come hang out at
+                  the next YPGT outing. From there, conversations turn into friendships, and friendships into
+                  a faith group — there's a seat saved for you.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Madali lang: mag-message ka muna, tapos dumalaw sa
+                    isang YP Fellowship (kadalasan 2:30 PM, 2nd o 3rd week ng buwan) o sumama sa susunod na
+                    YPGT. May upuang nakalaan para sa'yo.</span>
+                </p>
+                <p><a href="index.html#join">Come join us</a> · <a href="mailto:ftb.youngpro.ministry@gmail.com">Email us</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">Is it free to attend, and is it a safe space?</span></summary>
+              <div class="faq-a">
+                <p>Yes, it's <strong>free</strong> — there's no fee to attend a YP Fellowship, and it's a
+                  warm, no-judgment space. Some YPGT outings may have a small personal cost (like your own
+                  food or a venue entrance), and we'll always say so ahead of time. Come exactly as you are,
+                  wherever you are with God or your career.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Oo, libre — walang bayad ang pagpunta sa YP
+                    Fellowship, at walang panghuhusga dito. May ilang YPGT na baka may konting personal na
+                    gastos (pagkain o entrance), pero sasabihin namin nang maaga. Halika kung ano ka man.</span>
+                </p>
+                <p><a href="mailto:ftb.youngpro.ministry@gmail.com">Email us first</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">Do I need to RSVP or register first?</span></summary>
+              <div class="faq-a">
+                <p>No sign-up is required — you can just show up to a YP Fellowship or YPGT. That said, it's
+                  nice to message us first at
+                  <a href="mailto:ftb.youngpro.ministry@gmail.com">ftb.youngpro.ministry@gmail.com</a> so we
+                  know to look out for you and can tell you exactly where and when. For featured events you'll
+                  also see a quick RSVP button on the Events page.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Hindi kailangan mag-sign up — pwede kang basta
+                    dumating. Pero mas maganda kung mag-message ka muna para alam naming aabangan ka. May RSVP
+                    button din sa Events page para sa featured events.</span>
+                </p>
+                <p><a href="events.html">See upcoming events</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">Can I bring a friend?</span></summary>
+              <div class="faq-a">
+                <p>Yes, please do — <strong>bring a friend, bring your whole barkada!</strong> Everyone's
+                  welcome here, and some of our gatherings (like Friend Day and the YPGT outings) are built
+                  exactly for inviting friends along. The more, the merrier.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Oo, sige lang — magdala ka ng kaibigan, isama mo na
+                    ang buong barkada! May mga gathering pa nga kami (gaya ng Friend Day) na talagang para sa
+                    pag-imbita ng mga kaibigan. Mas marami, mas masaya.</span>
+                </p>
+                <p><a href="events.html">Invite-friendly events</a></p>
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+        <!-- ====== GROUP 3 · WHERE + WHEN (local + schedule intent) ====== -->
+        <div class="faq-group" id="faq-meet" aria-labelledby="faq-meet-title">
+          <header class="faq-group-head" data-reveal>
+            <p class="faq-group-eyebrow">03 · Where &amp; when</p>
+            <h3 class="faq-group-title" id="faq-meet-title">Where &amp; when we meet</h3>
+          </header>
+
+          <div class="faq-list">
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">Where do you meet?</span></summary>
+              <div class="faq-a">
+                <p>We meet at the <strong>FTB Auditorium</strong> of Faith Temple Baptist Church Inc. —
+                  <strong>#206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City, Philippines
+                  1117</strong>. Some YPGT outings happen elsewhere, so check the Events page for each one's
+                  venue. You're always welcome to drop by.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Nagtitipon kami sa FTB Auditorium — #206 P. Orbe
+                    St., Blueville Subdivision, Novaliches, Quezon City 1117. May ilang YPGT na nasa ibang
+                    lugar, kaya tingnan ang Events page. Welcome ka lagi.</span>
+                </p>
+                <p><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Faith+Temple+Baptist+Church+%23206+P.+Orbe+St.+Blueville+Subdivision+Novaliches+Quezon+City+1117" rel="noopener noreferrer" target="_blank">Get directions on Google Maps</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">Saan kayo matatagpuan? (Where exactly are you located?)</span></summary>
+              <div class="faq-a">
+                <p>We're based right in <strong>Novaliches, Quezon City</strong> — at the FTB Auditorium,
+                  #206 P. Orbe St., Blueville Subdivision. It's reachable from across Metro Manila. If you
+                  tell us where you're coming from, we'd love to help you find the easiest way over — just
+                  message us at <a href="mailto:ftb.youngpro.ministry@gmail.com">ftb.youngpro.ministry@gmail.com</a>.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Nasa Novaliches, Quezon City mismo kami — sa FTB
+                    Auditorium sa P. Orbe St., Blueville Subdivision. Kung sasabihin mo kung saan ka galing,
+                    tutulungan ka naming makahanap ng pinakamadaling daan.</span>
+                </p>
+                <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Faith+Temple+Baptist+Church+%23206+P.+Orbe+St.+Blueville+Subdivision+Novaliches+Quezon+City+1117" rel="noopener noreferrer" target="_blank">See us on the map</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">When is the YP Fellowship?</span></summary>
+              <div class="faq-a">
+                <p>Our regular YP Fellowship is usually at <strong>2:30 PM, on the 2nd or 3rd week of the
+                  month</strong>, at the FTB Auditorium. The exact date can shift month to month, so check
+                  our Events page for the dated poster or message us to be sure.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Ang regular naming YP Fellowship ay kadalasang 2:30
+                    PM, tuwing 2nd o 3rd week ng buwan. Minsan nagbabago ang exact na petsa, kaya tingnan ang
+                    Events page o mag-message para sigurado.</span>
+                </p>
+                <p><a href="events.html">See the schedule</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">How often do you meet, and what's the difference between YP Fellowship and YPGT?</span></summary>
+              <div class="faq-a">
+                <p>We have two regular things each month. <strong>YP Fellowship</strong> is our gathering at
+                  the church — worship, the Word, a topic, and sharing (usually 2:30 PM, 2nd or 3rd week of
+                  the month). <strong>YPGT</strong> (Young Pro Get-Together) is our monthly outing outside the
+                  church — coffee, swimming, museum tours, food, hobby and fitness — for friendship and fun.
+                  So roughly twice a month, one at church and one out and about.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">May dalawang regular kami kada buwan: ang YP
+                    Fellowship (worship + Salita ng Diyos sa church) at ang YPGT (buwanang lakad sa labas —
+                    kape, swimming, museum). Mga dalawang beses kada buwan.</span>
+                </p>
+                <p><a href="events.html">See both on the Events page</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">Ano ang isusuot ko? Is there a dress code?</span></summary>
+              <div class="faq-a">
+                <p>Come as you are — <strong>there's no dress code</strong>. Wear whatever you're comfortable
+                  in, whether that's office clothes straight from work or your weekend casual. We care that
+                  you came, not what you wore.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Come as you are — walang dress code. Kahit ano ka
+                    komportable, pwede na — galing-trabaho man o casual na pang-weekend. Ang importante,
+                    nandito ka.</span>
+                </p>
+                <p><a href="index.html#join">Come join us</a></p>
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+        <!-- ====== GROUP 4 · EVENTS, THEMES + CHURCH ====== -->
+        <div class="faq-group" id="faq-more" aria-labelledby="faq-more-title">
+          <header class="faq-group-head" data-reveal>
+            <p class="faq-group-eyebrow">04 · Events, themes &amp; church</p>
+            <h3 class="faq-group-title" id="faq-more-title">Events, themes &amp; the church</h3>
+          </header>
+
+          <div class="faq-list">
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">What's the next event?</span></summary>
+              <div class="faq-a">
+                <p>Our calendar is full this year. Next up is <strong>YP Fellowship — Malasakit</strong> on
+                  Sunday, June 14 (2:30 PM, FTB Auditorium), then the Cooking YPGT on June 20, Friend Day —
+                  Bahala Na on July 12, and the Hobby &amp; Fitness YPGT on July 18. Later in 2026: a
+                  Cybersecurity Talk (Aug 21), a Running Fellowship (Sep 19), Thanksgiving (Nov 20), and our
+                  Christmas Fellowship in December. See it all — with posters and Add-to-Calendar — on the
+                  Events page.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Marami! Sunod ang YP Fellowship — Malasakit sa
+                    Linggo, June 14 (2:30 PM), tapos Cooking YPGT (June 20), Friend Day — Bahala Na (July 12),
+                    at Hobby &amp; Fitness YPGT (July 18). Tingnan lahat sa Events page.</span>
+                </p>
+                <p><a href="events.html#upcoming">See all events</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">What are the five Filipino discipleship themes?</span></summary>
+              <div class="faq-a">
+                <p>We disciple around five Filipino heart-words and re-root each one in Christ:
+                  <strong>Loob</strong> (the inner self), <strong>Kapwa</strong> (shared humanity),
+                  <strong>Malasakit</strong> (compassionate care), <strong>Bahala Na</strong> (faith-filled
+                  trust in God), and <strong>Utang na Loob</strong> (deep gratitude). Each one has a short,
+                  warm devotional you can read on our Devotionals page.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Limang Filipino heart-words ang ginagamit namin,
+                    bawat isa iniuugat kay Cristo: Loob, Kapwa, Malasakit, Bahala Na, at Utang na Loob. May
+                    maikling devotional para sa bawat isa.</span>
+                </p>
+                <p><a href="devotionals.html">Read the devotionals</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">Who leads the Young Pro Ministry?</span></summary>
+              <div class="faq-a">
+                <p>Young Pro is led by <strong>Pastor Jaymar Bagalacsa (PJB)</strong>, our Young Pro Pastor
+                  and Department Head, together with core leaders <strong>Kuya Darcy</strong> (Darcy Amiel
+                  Sudiacal), <strong>Cess</strong> (Princess Jean Laborte), and <strong>Ryan</strong> (Ryan
+                  James Indangan). They shepherd, teach, and serve the ministry together.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Pinamumunuan ng Young Pro ni Pastor Jaymar Bagalacsa
+                    (PJB), kasama ang core leaders na sina Kuya Darcy, Cess, at Ryan. Sila ang nag-aalaga,
+                    nagtuturo, at naglilingkod.</span>
+                </p>
+                <p><a href="index.html#leaders">Meet the leaders</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">What church is this, and what does Baptist mean?</span></summary>
+              <div class="faq-a">
+                <p>Young Pro is the young professionals' department of <strong>Faith Temple Baptist Church
+                  Inc. (FTBCI)</strong> in Novaliches, Quezon City — a Bible-believing, Christ-centered
+                  Baptist church. Our heartbeat follows the church's purpose: <em>Worship God. Make
+                  Disciples.</em> For a fuller explanation of what we hold to, our pastor and leaders would
+                  love to walk you through it — email
+                  <a href="mailto:ftb.youngpro.ministry@gmail.com">ftb.youngpro.ministry@gmail.com</a>.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Ang YP ay department ng Faith Temple Baptist Church
+                    Inc. (FTBCI) sa Novaliches, Quezon City — isang Bible-believing, Christ-centered na
+                    Baptist church. Ang purpose namin: Worship God. Make Disciples.</span>
+                </p>
+                <p><a href="index.html#about">About us</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">What are the Sunday service times?</span></summary>
+              <div class="faq-a">
+                <p>For the church's exact Sunday service schedule, the most accurate thing is to
+                  <strong>ask us directly</strong> so we can give you the current times — email
+                  <a href="mailto:ftb.youngpro.ministry@gmail.com">ftb.youngpro.ministry@gmail.com</a> or
+                  message a leader and we'll happily guide you. (For YP gatherings specifically, fellowships
+                  are usually 2:30 PM on the 2nd or 3rd week of the month.)</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Para sa eksaktong Sunday service schedule ng church,
+                    mas sigurado kung itatanong mo sa amin nang diretso — mag-email o mag-message sa isang
+                    leader at masaya kaming gabayan ka.</span>
+                </p>
+                <p><a href="mailto:ftb.youngpro.ministry@gmail.com">Email us</a></p>
+              </div>
+            </details>
+
+            <details class="faq-item card glass" open data-reveal>
+              <summary class="faq-q"><span class="faq-q-icon" aria-hidden="true"></span><span class="faq-q-text">How can I reach a leader or get in touch?</span></summary>
+              <div class="faq-a">
+                <p>The easiest way is to email us at
+                  <a href="mailto:ftb.youngpro.ministry@gmail.com">ftb.youngpro.ministry@gmail.com</a> — a
+                  core leader will get back to you. You can also just come to the next YP Fellowship and say
+                  hi in person; we'd love to meet you.</p>
+                <p class="faq-a-tl">
+                  <span class="faq-a-tl-label" aria-hidden="true">Tagalog</span>
+                  <span class="faq-a-tl-text" lang="tl">Pinakamadali, mag-email ka lang sa
+                    ftb.youngpro.ministry@gmail.com — may core leader na sasagot. Pwede ka rin pumunta sa
+                    fellowship at magpakilala nang personal.</span>
+                </p>
+                <p><a href="index.html#join">Join us</a> · <a href="mailto:ftb.youngpro.ministry@gmail.com">Email the team</a></p>
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+        <!-- ===================== CLOSING ===================== -->
+        <aside class="faq-close card glass" data-reveal aria-labelledby="faq-close-heading">
+          <h2 class="faq-close-title" id="faq-close-heading">Still have a question?</h2>
+          <p>If your question isn't here, don't carry it alone — message us and a leader will get back to
+            you, or just come to the next fellowship and say hi. There's a seat saved for you, and a family
+            genuinely glad you came.</p>
+          <div class="faq-close-actions">
+            <a class="btn btn-primary" href="index.html#join" data-magnetic>Join us</a>
+            <a class="btn btn-ghost" href="mailto:ftb.youngpro.ministry@gmail.com">Email the team</a>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer" id="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img class="footer-logo" src="assets/img/ftb-church-logo.png"
+             alt="Faith Temple Baptist Church Inc. botanical wreath logo." width="80" height="80" loading="lazy">
+        <p class="footer-ministry">Young Pro Ministry</p>
+        <p class="footer-church">Faith Temple Baptist Church Inc.</p>
+        <p class="footer-purpose">Worship God. Make Disciples.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer">
+        <h2 class="footer-heading">Explore</h2>
+        <ul role="list">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#what-we-do">What We Do</a></li>
+          <li><a href="index.html#themes">Themes</a></li>
+          <li><a href="devotionals.html">Devotionals</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="faq.html" aria-current="page">FAQ</a></li>
+          <li><a href="index.html#join">Join Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-contact">
+        <h2 class="footer-heading">Reach us</h2>
+        <p><a class="link-emerald" href="mailto:ftb.youngpro.ministry@gmail.com">ftb.youngpro.ministry@gmail.com</a></p>
+        <p class="footer-address">#206 P. Orbe St., Blueville Subdivision,<br>Novaliches, Quezon City, Philippines 1117</p>
+        <p class="footer-closing">Committing our work to the Lord, one young pro at a time.</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span data-year>2026</span> Young Pro Ministry · Faith Temple Baptist Church Inc.</p>
+    </div>
+  </footer>
+
+  <!-- Motion libs (jsDelivr CDN — graceful degradation: page fully works without them).
+       Same dependency order + defer pattern as the other pages; main.js feature-detects
+       each global and guards missing hooks, so it is safe on this page. -->
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+  <script src="assets/js/main.js" defer></script>
+
+  <!-- Bilingual FAQ chat helper (progressive enhancement: self-booting vanilla IIFE,
+       no library dependency, lazy-loads its KB on first open). Loaded AFTER main.js;
+       the launcher button is injected by JS, so no-JS users never see it and lose
+       nothing — this static FAQ page carries the same knowledge. -->
+  <script src="assets/js/chatbot.js" defer></script>
+</body>
+</html>

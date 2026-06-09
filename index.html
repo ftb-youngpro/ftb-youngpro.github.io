@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FTB Young Pro Ministry (YP) · Faith Temple Baptist Church</title>
-  <meta name="description" content="FTB Young Pro Ministry (YP) — the young professionals of Faith Temple Baptist Church Inc. (FTB), Quezon City. Filipino young pros chasing Jesus and their callings together: faith and excellence, lived out in the marketplace.">
-  <meta name="keywords" content="FTB YP, FTB Young Pro, FTB Young Professionals, Young Pro Ministry, Faith Temple Baptist Church, YP Ministry, young professionals Quezon City">
+  <title>FTB Young Pro Ministry (YP) — Christian Community for Young Professionals · Quezon City</title>
+  <meta name="description" content="FTB Young Pro Ministry (YP) — a Christian community for young professionals at Faith Temple Baptist Church Inc., Novaliches, Quezon City. Filipino young pros chasing Jesus and their callings together — faith, fellowship, at tunay na barkada. Worship God. Make Disciples.">
+  <meta name="keywords" content="FTB YP, FTB Young Pro, FTB Young Professionals, Young Pro Ministry, Faith Temple Baptist Church, YP Ministry, Christian community for young professionals, young professionals fellowship Quezon City, young professionals ministry Novaliches, grupo para sa mga young professionals, fellowship ng mga propesyonal">
   <meta name="theme-color" content="#060d0a">
   <meta name="author" content="FTB Young Pro Ministry · Faith Temple Baptist Church Inc.">
 
@@ -50,6 +50,9 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="assets/css/animations.css">
+  <!-- Bilingual FAQ chat helper (progressive: pure vanilla, no library dependency;
+       lazy-loads its knowledge base on first open; the page works fully without it). -->
+  <link rel="stylesheet" href="assets/css/chatbot.css">
 
   <!--
     ============================================================================
@@ -168,7 +171,19 @@
           "addressRegion": "Metro Manila",
           "postalCode": "1117",
           "addressCountry": "PH"
-        }
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 14.73,
+          "longitude": 121.03,
+          "description": "APPROXIMATE coordinates for Novaliches, Quezon City — placeholder only; refine to the exact FTB Auditorium pin from Google Maps before treating as precise."
+        },
+        "areaServed": [
+          { "@type": "Place", "name": "Novaliches" },
+          { "@type": "City", "name": "Quezon City" },
+          { "@type": "AdministrativeArea", "name": "Metro Manila" },
+          { "@type": "Country", "name": "Philippines" }
+        ]
       },
       {
         "@type": "Event",
@@ -330,6 +345,7 @@
           <li><a class="nav-link" href="#leaders">Leaders</a></li>
           <li><a class="nav-link" href="events.html">Events</a></li>
           <li><a class="nav-link" href="devotionals.html">Devotionals</a></li>
+          <li><a class="nav-link" href="faq.html">FAQ</a></li>
           <li class="nav-cta-item"><a class="btn btn-primary nav-cta" href="#join" data-magnetic>Join Us</a></li>
         </ul>
       </nav>
@@ -363,9 +379,9 @@
           Faith and <span class="text-gradient">excellence,</span> lived out in the marketplace.
         </h1>
         <p class="hero-lead lead" data-reveal>
-          We're young professionals chasing Jesus and our callings at the same time — building real
-          friendships, growing in the Word, and bringing the gospel into every office, hospital,
-          classroom, and coffee shop we walk into.
+          We're a Christian community for young professionals in Quezon City — chasing Jesus and our
+          callings at the same time, building real friendships, growing in the Word, and bringing the
+          gospel into every office, hospital, classroom, and coffee shop we walk into.
         </p>
         <div class="hero-actions" data-reveal>
           <a class="btn btn-primary" href="#join" data-magnetic>Join us</a>
@@ -400,9 +416,10 @@
           <h2 class="section-title" id="about-heading" data-reveal data-split>A home for young pros who love God and their work.</h2>
           <div class="prose" data-reveal>
             <p>The Young Pro Ministry is the young professionals' department of Faith Temple Baptist
-              Church Inc. We're the nurses on night shift, the devs debugging at 2 AM, the teachers,
-              the freelancers, the fresh grads still figuring it out — all learning to follow Jesus
-              right where we are.</p>
+              Church Inc. here in Novaliches, Quezon City — a Christian community for young
+              professionals across Metro Manila. We're the nurses on night shift, the devs debugging
+              at 2 AM, the teachers, the freelancers, the fresh grads still figuring it out — all
+              learning to follow Jesus right where we are.</p>
             <p>We exist to live out our church's heartbeat: <span class="hl-gold">Worship God. Make
               Disciples.</span> That means we don't separate "church life" from "work life." Sunday
               faith is meant for Monday meetings, and the same grace that saved us is the grace we
@@ -410,6 +427,12 @@
             <p>So we gather — to worship, to open the Word, to talk through the real stuff of being a
               Filipino Christian in the working world, and to actually enjoy each other over kape and
               kwentuhan. Bring your questions, your wins, your tiredness. There's a seat here for you.</p>
+            <p lang="tl"><span class="hl-gold">Para sa mga young pro na naghahanap ng tahanan:</span>
+              kung ikaw ay isang young professional na gustong lumago sa pananampalataya habang
+              hinahabol ang career mo — nurse, teacher, dev, freelancer, o fresh grad pa lang — may
+              upuan para sa'yo dito. Isa kaming Christian community ng mga propesyonal dito sa
+              Novaliches, Quezon City, magkakasama sa pagsunod kay Hesus, sa kape, at sa kwentuhan.
+              Welcome ang lahat — sumama ka.</p>
           </div>
         </div>
 
@@ -1017,9 +1040,11 @@
           <p class="eyebrow" data-reveal>Come join us</p>
           <h2 class="section-title" id="join-heading" data-reveal data-split>There's a seat saved for you.</h2>
           <p class="join-blurb lead" data-reveal>Whether you're rock-solid in your faith or just
-            curious, fresh out of school or deep into your career — you belong here. Message us, drop by
-            a fellowship, or come hang at the next YPGT. No pressure, just kape, the Word, and a family
-            that's genuinely glad you came.</p>
+            curious, fresh out of school or deep into your career — you belong here. We're a Christian
+            community for young professionals here in Novaliches, Quezon City. Message us, drop by a
+            fellowship, or come hang at the next YPGT. No pressure, just kape, the Word, and a family
+            that's genuinely glad you came. New here? <a class="link-emerald" href="faq.html">Read the
+            FAQ</a>.</p>
 
           <div class="join-actions" data-reveal>
             <a class="btn btn-primary" href="mailto:ftb.youngpro.ministry@gmail.com" data-magnetic>Email us</a>
@@ -1033,8 +1058,10 @@
               <dd><a class="link-emerald" href="mailto:ftb.youngpro.ministry@gmail.com">ftb.youngpro.ministry@gmail.com</a></dd>
             </div>
             <div class="join-detail">
-              <dt>Where we meet</dt>
-              <dd>#206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City, Philippines 1117</dd>
+              <dt>Find us</dt>
+              <dd>FTB Auditorium · #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City,
+                Philippines 1117 — a Christian community for young professionals in Novaliches /
+                Metro Manila. <span lang="tl">Bisitahin kami.</span></dd>
             </div>
           </dl>
         </div>
@@ -1096,6 +1123,7 @@
           <li><a href="#leaders">Leaders</a></li>
           <li><a href="events.html">Events</a></li>
           <li><a href="devotionals.html">Devotionals</a></li>
+          <li><a href="faq.html">FAQ</a></li>
           <li><a href="#join">Join Us</a></li>
         </ul>
       </nav>
@@ -1122,6 +1150,12 @@
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
   <script src="assets/js/main.js" defer></script>
+
+  <!-- Bilingual FAQ chat helper (progressive enhancement: self-booting vanilla IIFE,
+       no GSAP/library dependency, lazy-loads its KB on first open). Loaded AFTER
+       main.js; the launcher button is injected by JS, so no-JS users never see it
+       and lose nothing — the static FAQ page carries the same knowledge. -->
+  <script src="assets/js/chatbot.js" defer></script>
 
   <!-- PWA service worker registration. Guarded + deferred to window load so it never
        blocks first paint and is a no-op on browsers without service worker support. -->

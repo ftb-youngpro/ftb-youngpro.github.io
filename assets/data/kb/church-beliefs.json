@@ -1,0 +1,194 @@
+[
+  {
+    "id": "what-is-faith-temple-baptist-church",
+    "topic": "church-beliefs",
+    "keywords": ["faith temple baptist church", "ftb", "ftbci", "ftb church", "what church", "anong church", "what is ftb", "ano ang ftb", "tungkol sa church", "about the church", "mother church", "home church", "baptist church", "church inc", "faith temple", "anong simbahan", "young pro church"],
+    "q": [
+      "What church is Young Pro a part of?",
+      "What is Faith Temple Baptist Church?",
+      "Anong church ba ang FTB?",
+      "Tell me about the church.",
+      "Saan church naka-base ang YP?"
+    ],
+    "a_en": "Young Pro (YP) is the young-professionals ministry of Faith Temple Baptist Church Inc. (FTB) here in Novaliches, Quezon City. It's a Christ-centered Baptist church, and YP is simply one of its ministries reaching young pros. Want to learn more? Email us at ftb.youngpro.ministry@gmail.com.",
+    "a_tl": "Ang Young Pro (YP) ay ang ministry para sa young professionals ng Faith Temple Baptist Church Inc. (FTB) dito sa Novaliches, Quezon City. Isa itong Christ-centered na Baptist church, at ang YP ay isa lang sa mga ministry nito para sa mga young pro. Gusto mong malaman pa? Mag-email lang sa ftb.youngpro.ministry@gmail.com.",
+    "links": [{"label": "About YP", "href": "index.html#about"}],
+    "priority": 1
+  },
+  {
+    "id": "church-purpose-statement",
+    "topic": "church-beliefs",
+    "keywords": ["purpose", "mission", "vision", "purpose statement", "worship god make disciples", "worship god", "make disciples", "ano ang layunin", "layunin", "mithiin", "misyon", "bisyon", "why does the church exist", "bakit may church", "heartbeat", "tagline", "motto", "goal ng church"],
+    "q": [
+      "What is the purpose of the church?",
+      "What does Worship God, Make Disciples mean?",
+      "Ano ang layunin ng church?",
+      "Anong mission ng FTB?",
+      "Why does the church exist?"
+    ],
+    "a_en": "The heartbeat of our church is simple: \"Worship God. Make Disciples.\" That means loving God with our whole lives and helping others follow Jesus too. YP lives this out among young professionals — faith and excellence in the marketplace.",
+    "a_tl": "Simple lang ang heartbeat ng church namin: \"Worship God. Make Disciples.\" Ibig sabihin, sambahin ang Diyos nang buong buhay natin at tulungan din ang iba na sumunod kay Jesus. Ito ang ginagawang buhay ng YP sa mga young professionals — faith at excellence sa marketplace.",
+    "links": [{"label": "Our heartbeat", "href": "index.html#about"}],
+    "priority": 1
+  },
+  {
+    "id": "what-does-yp-believe",
+    "topic": "church-beliefs",
+    "keywords": ["beliefs", "what do you believe", "ano ang pinaniniwalaan", "paniniwala", "doctrine", "faith", "christian", "kristiyano", "christ-centered", "gospel", "jesus", "bible", "biblia", "what is yp about spiritually", "ano ang pananampalataya", "evangelical", "born again"],
+    "q": [
+      "What does Young Pro believe?",
+      "Are you Christian?",
+      "Ano ang pinaniniwalaan ninyo?",
+      "Kristiyano ba kayo?",
+      "What's your faith about?"
+    ],
+    "a_en": "We're a Christ-centered Baptist community — our life and faith are built on Jesus and the Bible. Our anchor as a ministry is Proverbs 16:3: \"Commit your work to the Lord, and your plans will be established.\" For deeper questions about specific beliefs, we'd love to talk — email ftb.youngpro.ministry@gmail.com or message a leader.",
+    "a_tl": "Christ-centered Baptist community kami — naka-anchor ang buhay at pananampalataya namin kay Jesus at sa Bibliya. Ang anchor verse ng ministry ay Proverbs 16:3: \"Commit your work to the Lord, and your plans will be established.\" Kung may mas malalim kang tanong tungkol sa paniniwala, masaya kaming makausap ka — mag-email sa ftb.youngpro.ministry@gmail.com o mag-message sa isang leader.",
+    "links": [{"label": "About YP", "href": "index.html#about"}],
+    "priority": 1
+  },
+  {
+    "id": "ftb-is-baptist-meaning",
+    "topic": "church-beliefs",
+    "keywords": ["baptist", "what is baptist", "ano ang baptist", "baptist ibig sabihin", "denomination", "what denomination", "anong denomination", "baptist meaning", "type of church", "klase ng church", "is it catholic", "catholic ba", "protestant"],
+    "q": [
+      "What does it mean that you're Baptist?",
+      "Is FTB Catholic or Baptist?",
+      "Ano ang ibig sabihin ng Baptist?",
+      "Anong denomination ang church?",
+      "Baptist ba kayo o Catholic?"
+    ],
+    "a_en": "Faith Temple Baptist Church Inc. is a Baptist church — a Bible-believing, Christ-centered Christian church. If you'd like a fuller explanation of what we hold to, the best people to walk you through it are our pastor and leaders — just email ftb.youngpro.ministry@gmail.com.",
+    "a_tl": "Ang Faith Temple Baptist Church Inc. ay isang Baptist church — Bible-believing at Christ-centered na Christian church. Kung gusto mo ng mas detalyadong paliwanag kung ano ang pinaninindigan namin, ang pinakamagandang makausap ay ang pastor at mga leader namin — mag-email lang sa ftb.youngpro.ministry@gmail.com.",
+    "links": [{"label": "Contact us", "href": "index.html#join"}],
+    "priority": 2
+  },
+  {
+    "id": "yp-relationship-to-church",
+    "topic": "church-beliefs",
+    "keywords": ["young pro department", "yp is a ministry", "ministry of the church", "department", "relationship to church", "part of church", "bahagi ng church", "is yp a church", "yp ba ay church", "ministry vs church", "naka-ugnay sa church", "under what church", "saan kabilang ang yp", "young professionals department"],
+    "q": [
+      "Is Young Pro its own church?",
+      "How is YP related to Faith Temple Baptist Church?",
+      "Church ba ang YP o ministry lang?",
+      "Saan kabilang ang Young Pro?",
+      "Is YP a separate group from FTB?"
+    ],
+    "a_en": "YP isn't a separate church — it's the young-professionals' department within Faith Temple Baptist Church Inc. Think of it as your home base in the church for the young-pro season of life: same faith, same family, just gathered around the realities of work and adulting.",
+    "a_tl": "Hindi hiwalay na church ang YP — ito ang department para sa young professionals sa loob ng Faith Temple Baptist Church Inc. Isipin mo na 'to bilang home base mo sa church para sa young-pro season ng buhay: iisang pananampalataya, iisang pamilya, nagtitipon lang sa mga realidad ng trabaho at adulting.",
+    "links": [{"label": "About YP", "href": "index.html#about"}],
+    "priority": 2
+  },
+  {
+    "id": "church-location-address",
+    "topic": "church-beliefs",
+    "keywords": ["where is the church", "saan ang church", "address", "lokasyon", "location", "saan matatagpuan", "church address", "ftb auditorium", "novaliches", "quezon city", "p orbe", "blueville", "saan kayo", "where do you meet", "saan kayo nagtitipon", "directions", "venue"],
+    "q": [
+      "Where is the church located?",
+      "What's the church address?",
+      "Saan matatagpuan ang FTB?",
+      "Saan ang church ninyo?",
+      "Where do you meet?"
+    ],
+    "a_en": "Faith Temple Baptist Church Inc. is at #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City, 1117 — that's the FTB Auditorium where most YP gatherings happen. Need directions? Message us at ftb.youngpro.ministry@gmail.com.",
+    "a_tl": "Ang Faith Temple Baptist Church Inc. ay nasa #206 P. Orbe St., Blueville Subdivision, Novaliches, Quezon City, 1117 — doon sa FTB Auditorium karaniwang ginaganap ang YP gatherings. Kailangan mo ng direksyon? Mag-message sa amin sa ftb.youngpro.ministry@gmail.com.",
+    "links": [{"label": "Find us", "href": "index.html#join"}],
+    "priority": 2
+  },
+  {
+    "id": "sunday-service-times",
+    "topic": "church-beliefs",
+    "keywords": ["service time", "service times", "sunday service", "worship service", "anong oras ang service", "oras ng simba", "schedule ng church", "church schedule", "what time is service", "mass time", "worship schedule", "anong oras kayo nagsisimba", "sunday schedule", "service hours"],
+    "q": [
+      "What time is the Sunday service?",
+      "When does the church meet for worship?",
+      "Anong oras ang service ng church?",
+      "Oras ng simba sa FTB?",
+      "What's the worship schedule?"
+    ],
+    "a_en": "For the church's exact Sunday service schedule, the most accurate thing is to ask us directly so we can give you the current times — email ftb.youngpro.ministry@gmail.com or message a leader and we'll happily guide you. (For YP gatherings specifically, fellowships are usually 2:30 PM on the 2nd or 3rd week of the month.)",
+    "a_tl": "Para sa eksaktong Sunday service schedule ng church, mas sigurado kung itatanong mo sa amin nang diretso para mabigay namin ang updated na oras — mag-email sa ftb.youngpro.ministry@gmail.com o mag-message sa isang leader at masaya kaming gabayan ka. (Sa YP gatherings naman, karaniwang 2:30 PM sa 2nd o 3rd week ng buwan ang fellowship.)",
+    "links": [{"label": "Message us", "href": "index.html#join"}],
+    "priority": 1
+  },
+  {
+    "id": "baptism-questions",
+    "topic": "church-beliefs",
+    "keywords": ["baptism", "binyag", "bautismo", "magpabinyag", "get baptized", "baptized", "pabinyag", "how to be baptized", "paano magpabinyag", "water baptism", "baptism schedule", "schedule ng binyag", "dedicate my life", "follow jesus", "salvation"],
+    "q": [
+      "How can I get baptized?",
+      "When is the next baptism?",
+      "Paano ako magpapabinyag?",
+      "May schedule ba ng binyag?",
+      "I want to follow Jesus — what's next?"
+    ],
+    "a_en": "We'd be honored to walk with you on baptism and following Jesus — it's one of our prayers as a ministry (we're praying for 15 YP baptisms in 2026!). The schedule and prep are handled with our pastor, so the best next step is to reach out: email ftb.youngpro.ministry@gmail.com or talk to a leader and we'll guide you personally.",
+    "a_tl": "Karangalan namin na samahan ka sa binyag at sa pagsunod kay Jesus — isa 'yan sa mga panalangin namin bilang ministry (nananalangin kami para sa 15 YP baptisms ngayong 2026!). Ang schedule at preparasyon ay kasama ng pastor namin, kaya ang pinakamagandang susunod na hakbang ay mag-abot ka sa amin: mag-email sa ftb.youngpro.ministry@gmail.com o makipag-usap sa isang leader at personal ka naming gagabayan.",
+    "links": [{"label": "Talk to a leader", "href": "index.html#join"}],
+    "priority": 1
+  },
+  {
+    "id": "who-leads-the-church",
+    "topic": "church-beliefs",
+    "keywords": ["pastor", "who is the pastor", "sino ang pastor", "church leader", "sino namumuno", "pjb", "jaymar bagalacsa", "pastor jaymar", "leadership", "who leads", "department head", "yp pastor", "sino ang nangunguna", "spiritual leader"],
+    "q": [
+      "Who is the pastor?",
+      "Who leads Young Pro?",
+      "Sino ang pastor ng YP?",
+      "Sino ang namumuno sa Young Pro?",
+      "Who's in charge of the ministry?"
+    ],
+    "a_en": "Our Young Pro Pastor and Department Head is Pastor Jaymar Bagalacsa (PJB), supported by core leaders Kuya Darcy, Cess, and Ryan. They shepherd, teach, and care for the YP family. Want to connect with a leader? Email ftb.youngpro.ministry@gmail.com.",
+    "a_tl": "Ang Young Pro Pastor at Department Head namin ay si Pastor Jaymar Bagalacsa (PJB), katulong ang core leaders na sina Kuya Darcy, Cess, at Ryan. Sila ang nag-aalaga, nagtuturo, at nagmamalasakit sa YP family. Gusto mong makausap ang isang leader? Mag-email sa ftb.youngpro.ministry@gmail.com.",
+    "links": [{"label": "Meet the leaders", "href": "index.html#leaders"}],
+    "priority": 2
+  },
+  {
+    "id": "is-church-welcoming-non-believers",
+    "topic": "church-beliefs",
+    "keywords": ["am i welcome", "can i come", "pwede ba ako", "non-believer", "not religious", "hindi ako religious", "first time", "first timer", "bago lang", "exploring faith", "curious about god", "seeker", "tatanong lang", "pwede bang sumama", "open to visitors", "judgmental ba", "hindi pa kristiyano"],
+    "q": [
+      "Can I come even if I'm not religious?",
+      "Am I welcome if I'm still figuring out faith?",
+      "Pwede ba ako sumama kahit hindi pa ako Kristiyano?",
+      "First time ko, okay lang ba?",
+      "Welcome ba kahit nag-eexplore pa lang ako?"
+    ],
+    "a_en": "Absolutely — you're welcome exactly as you are, questions and all. YP is full of young pros figuring out faith, work, and life together, and we love kwentuhan over kape with no pressure. Come as a friend; email ftb.youngpro.ministry@gmail.com and we'll save you a seat.",
+    "a_tl": "Oo naman — welcome ka kung sino ka man ngayon, kasama na ang mga tanong mo. Puno ang YP ng young pros na sabay-sabay na umiintindi ng faith, trabaho, at buhay, at mahilig kami sa kwentuhan habang nagkakape — walang pressure. Sumama ka bilang kaibigan; mag-email sa ftb.youngpro.ministry@gmail.com at ipagre-reserve ka namin ng upuan.",
+    "links": [{"label": "Join us", "href": "index.html#join"}],
+    "priority": 1
+  },
+  {
+    "id": "filipino-discipleship-themes-faith",
+    "topic": "church-beliefs",
+    "keywords": ["loob", "kapwa", "malasakit", "bahala na", "utang na loob", "filipino themes", "discipleship themes", "kultura at faith", "filipino values", "kahulugan ng loob", "why filipino themes", "bakit filipino", "values", "discipleship", "christian lens", "redeem culture"],
+    "q": [
+      "Why does YP use Filipino themes like Loob and Malasakit?",
+      "What do the discipleship themes have to do with faith?",
+      "Bakit Filipino values ang ginagamit ninyo sa fellowship?",
+      "Ano ang koneksyon ng Bahala Na sa pananampalataya?",
+      "What are the five themes about?"
+    ],
+    "a_en": "We teach through five Filipino values — Loob, Kapwa, Malasakit, Bahala Na, and Utang na Loob — and look at each one through a Christ-centered lens. It's our way of letting the gospel speak deeply into how we Filipinos actually live, love, and follow Jesus. You'll see these in our devotionals and fellowships.",
+    "a_tl": "Nagtuturo kami gamit ang limang Filipino values — Loob, Kapwa, Malasakit, Bahala Na, at Utang na Loob — at tinitingnan ang bawat isa sa Christ-centered na paraan. Ito ang paraan namin para hayaan ang gospel na magsalita nang malalim sa kung paano talaga tayong mga Pinoy nabubuhay, nagmamahal, at sumusunod kay Jesus. Makikita mo ito sa mga devotional at fellowship namin.",
+    "links": [{"label": "Read devotionals", "href": "devotionals.html"}],
+    "priority": 2
+  },
+  {
+    "id": "deeper-doctrinal-questions",
+    "topic": "church-beliefs",
+    "keywords": ["deep question", "theology", "theological", "doctrine question", "specific belief", "malalim na tanong", "tanong tungkol sa paniniwala", "what about", "where do you stand on", "ano ang paninindigan", "doctrinal", "hard question", "spiritual question", "talk to pastor", "kausapin ang pastor"],
+    "q": [
+      "I have a deep theological question — who can answer?",
+      "Where does the church stand on a specific belief?",
+      "May malalim akong tanong sa doktrina, sino ang puwedeng sumagot?",
+      "Saan kayo naninindigan tungkol sa isang paniniwala?",
+      "Can I talk to someone about a hard faith question?"
+    ],
+    "a_en": "Great question — and the kind we'd rather answer carefully and personally than guess at here. For specific doctrinal or theological questions, our pastor and leaders would love to sit down with you. Email ftb.youngpro.ministry@gmail.com and we'll connect you.",
+    "a_tl": "Magandang tanong — at ito ang uri ng tanong na mas gusto naming sagutin nang maingat at personal kaysa manghula dito. Para sa mga partikular na tanong sa doktrina o teolohiya, masaya ang pastor at mga leader namin na makausap ka. Mag-email sa ftb.youngpro.ministry@gmail.com at iko-connect ka namin.",
+    "links": [{"label": "Reach a leader", "href": "index.html#join"}],
+    "priority": 1
+  }
+]

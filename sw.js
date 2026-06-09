@@ -16,7 +16,7 @@
   Bump CACHE_VERSION whenever the shell assets change so clients pick up fresh files.
 */
 
-const CACHE_VERSION = "yp-cache-v1";
+const CACHE_VERSION = "yp-cache-v2";
 
 /*
   Core shell that must be present for the precache to succeed. Every entry here is a
@@ -29,7 +29,12 @@ const CORE_ASSETS = [
   "/manifest.webmanifest",
   "/assets/css/styles.css",
   "/assets/css/animations.css",
+  "/assets/css/chatbot.css",
   "/assets/js/main.js",
+  "/assets/js/chatbot.js",
+  // The chatbot manifest: loaded lazily on first chat-open, but precaching it
+  // makes the FAQ helper work offline from the very first interaction.
+  "/assets/data/kb/index.json",
   "/assets/img/yp-mark.svg",
   "/assets/img/yp-logo.svg",
   "/favicon.svg",
@@ -50,6 +55,22 @@ const CORE_ASSETS = [
 const OPTIONAL_ASSETS = [
   "/events.html",
   "/devotionals.html",
+  "/faq.html",
+  // Chatbot knowledge-base segments — fetched lazily per query, but best-effort
+  // precached here so the bilingual FAQ helper answers fully offline. A missing
+  // file is tolerated individually (the engine degrades to its email fallback).
+  "/assets/data/kb/identity.json",
+  "/assets/data/kb/who-can-join.json",
+  "/assets/data/kb/first-visit.json",
+  "/assets/data/kb/schedule.json",
+  "/assets/data/kb/events.json",
+  "/assets/data/kb/themes.json",
+  "/assets/data/kb/leaders.json",
+  "/assets/data/kb/church-beliefs.json",
+  "/assets/data/kb/spiritual.json",
+  "/assets/data/kb/location-local.json",
+  "/assets/data/kb/contact-app.json",
+  "/assets/data/kb/professionals-seo.json",
 ];
 
 // The page we fall back to when a navigation request can't be served from network or cache.
