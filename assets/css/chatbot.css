@@ -98,11 +98,13 @@
   display: block;
   pointer-events: none;
 }
-/* small "ask me" pulse dot on the launcher */
+/* small "ask me" pulse dot on the launcher — sits on the circle's top-right
+   arc (nudged in from the bounding-box corner so it reads as an on-button badge,
+   not a chip hanging off the edge) */
 .yp-chat-launcher__dot {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 7px;
+  right: 7px;
   width: 11px;
   height: 11px;
   border-radius: 50%;
@@ -475,6 +477,23 @@
     border-bottom: 0;
   }
   .yp-chat-msg { max-width: 90%; }
+  /* Launcher is noticeably smaller on phones — 60px reads as huge on a small
+     screen. 50px keeps it a comfortable tap target (>44px min) without dominating. */
+  .yp-chat-launcher {
+    width: 50px;
+    height: 50px;
+  }
+  .yp-chat-launcher svg {
+    width: 25px;
+    height: 25px;
+  }
+  .yp-chat-launcher__dot {
+    top: 6px;
+    right: 6px;
+    width: 9px;
+    height: 9px;
+    border-width: 1.5px;
+  }
 }
 
 /* ---------------------------------------------------------------------------
