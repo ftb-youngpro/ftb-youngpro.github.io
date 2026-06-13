@@ -492,10 +492,14 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   padding: 0;
   position: fixed;
   inset: var(--nav-h) 0 auto 0;
-  background: color-mix(in srgb, var(--bg-800) 94%, transparent);
-  -webkit-backdrop-filter: blur(18px) saturate(130%);
-  backdrop-filter: blur(18px) saturate(130%);
-  border-bottom: 1px solid var(--hairline);
+  /* Solid, fully opaque drawer by default. The previous build painted the fill
+     with color-mix() + a backdrop blur, but older mobile Chrome / MIUI support
+     NEITHER (and worse, report backdrop-filter as supported while not actually
+     painting it) — so the drawer rendered see-through and the hero text bled
+     straight through the menu. A literal solid gradient needs no color-mix or
+     backdrop support and stays readable on every browser. */
+  background: linear-gradient(180deg, var(--bg-800) 0%, var(--bg-900) 100%);
+  border-bottom: 1px solid var(--hairline-strong);
   box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
@@ -522,12 +526,17 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
               visibility 0s;
 }
 
-/* Where backdrop-filter is unsupported/disabled, the 94%-opaque frosted fill
-   lets the hero text behind the open drawer show through faintly, hurting menu
-   legibility. Force a solid drawer fill in that case only (the frosted look is
-   preserved everywhere blur works). Only visible once .is-open is applied. */
-@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .nav-menu { background: var(--bg-800); }
+/* Frosted-glass UPGRADE — applied ONLY where backdrop-filter genuinely paints.
+   Uses rgba() (not color-mix) so it never depends on color-mix support either.
+   The solid gradient above is the floor: any browser that can't do this keeps a
+   fully opaque, readable drawer. The desktop media query below resets all of
+   this to a transparent inline row, so this only affects the mobile drawer. */
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .nav-menu {
+    background: linear-gradient(180deg, rgba(11, 24, 18, 0.90) 0%, rgba(6, 13, 10, 0.95) 100%);
+    -webkit-backdrop-filter: blur(20px) saturate(135%);
+    backdrop-filter: blur(20px) saturate(135%);
+  }
 }
 
 .nav-link {
