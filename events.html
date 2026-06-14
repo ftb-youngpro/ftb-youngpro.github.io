@@ -93,9 +93,13 @@
         "endDate": "2026-06-14T16:30:00+08:00",
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "description": "Our next YP Fellowship — Malasakit. We sit with malasakit, compassionate care, and what it looks like to carry one another's burdens the way Christ carries ours. Everyone's welcome — bring a friend.",
-        "image": "https://ftb-youngpro.github.io/assets/img/ypf-malasakit-06-14-2026.jpg",
-        "url": "https://ftb-youngpro.github.io/events.html",
+        "description": "Our YP Fellowship — Malasakit. We sat with malasakit, compassionate care, and what it looks like to carry one another's burdens the way Christ carries ours.",
+        "image": [
+          "https://ftb-youngpro.github.io/assets/img/ypf-malasakit-06-14-2026.jpg",
+          "https://ftb-youngpro.github.io/assets/img/recap-malasakit-01.jpg",
+          "https://ftb-youngpro.github.io/assets/img/recap-malasakit-02.jpg"
+        ],
+        "url": "https://ftb-youngpro.github.io/events.html#recap-malasakit",
         "location": {
           "@type": "Place",
           "name": "FTB Auditorium",
@@ -471,10 +475,50 @@
         <header class="section-head">
           <p class="eyebrow" data-reveal>Recap</p>
           <h2 class="section-title" id="past-heading" data-reveal data-split>Where we've been this year.</h2>
-          <p class="section-lead lead" data-reveal>From casting our 2026 goals on Proverbs 16:3 to a Saturday
-            wandering the National Museum — here's a look back at the fellowships and outings that got us
-            here. More memories in the <a class="link-emerald" href="index.html#gallery">gallery</a>.</p>
+          <p class="section-lead lead" data-reveal>Our latest gathering — June's &ldquo;Malasakit&rdquo;
+            Fellowship — plus the goal-casting, fellowships, and outings that got us here this year. More
+            memories in the <a class="link-emerald" href="index.html#gallery">gallery</a>.</p>
         </header>
+
+        <!-- Featured recap: the newest event WITH photos, grouped under its own
+             heading so the gallery reads as that event's photos — not a generic
+             dump. Future events with photo sets slot in above the timeline the
+             same way. Tiles reuse the home gallery + the body-level lightbox. -->
+        <article class="recap-feature" id="recap-malasakit">
+          <div class="recap-feature-head">
+            <p class="post-meta" data-reveal>
+              <span class="post-date">June 14, 2026</span>
+              <span class="post-tag">Fellowship</span>
+              <span class="badge badge-latest">Latest</span>
+            </p>
+            <h3 class="recap-feature-title" data-reveal>YP Fellowship — &ldquo;Malasakit&rdquo;</h3>
+            <p class="recap-feature-blurb" data-reveal>We sat with <em>malasakit</em> — compassionate care,
+              and carrying one another's burdens the way Christ carries ours. Worship, the Word, and a whole
+              lot of laughter with the barkada. Salamat sa lahat ng dumalo.</p>
+          </div>
+          <ul class="gallery-grid gallery-grid--recap" role="list">
+            <li class="gallery-item" data-reveal style="--i:0">
+              <button class="gallery-tile" type="button" data-lightbox
+                      data-full="assets/img/recap-malasakit-01.jpg"
+                      data-caption="Laughter and fellowship at YP Malasakit — June 14, 2026.">
+                <img class="gallery-img" data-mask loading="lazy" src="assets/img/recap-malasakit-01.jpg"
+                     alt="Young professionals laughing together during the YP Malasakit fellowship at Faith Temple Baptist Church."
+                     width="1280" height="853">
+                <span class="gallery-caption">The barkada &middot; Malasakit</span>
+              </button>
+            </li>
+            <li class="gallery-item" data-reveal style="--i:1">
+              <button class="gallery-tile" type="button" data-lightbox
+                      data-full="assets/img/recap-malasakit-02.jpg"
+                      data-caption="Worship and the Word at YP Malasakit — June 14, 2026.">
+                <img class="gallery-img" data-mask loading="lazy" src="assets/img/recap-malasakit-02.jpg"
+                     alt="The Young Pro group gathered for worship and the Word during the Malasakit fellowship."
+                     width="1280" height="853">
+                <span class="gallery-caption">Worship &amp; the Word</span>
+              </button>
+            </li>
+          </ul>
+        </article>
 
         <ul class="feed-grid" role="list">
 
@@ -485,7 +529,6 @@
                    src="assets/img/museum-poster-ypgt-05-30-2026.jpg"
                    alt="Poster for the Young Pro Get-Together Museum Tour at the National Museum of Fine Arts, Saturday May 30, 2026, 9 AM onwards — free entry."
                    width="990" height="1400">
-              <span class="badge badge-latest">Latest</span>
             </div>
             <div class="post-body">
               <p class="post-meta"><span class="post-date">May 30, 2026</span><span class="post-tag">YPGT</span></p>
@@ -613,6 +656,20 @@
     </div>
   </footer>
 
+  <!-- ===================== LIGHTBOX (image viewer) =====================
+       Direct child of <body> (sibling of <main>) so the open-state inert applied
+       to #main/header/footer never inerts the dialog itself. Wired by main.js
+       initLightbox via the [data-lightbox] recap tiles above. Vanilla and
+       focus-trapped: closes on ESC, backdrop click, and the X button. -->
+  <div class="lightbox" data-lightbox-dialog hidden>
+    <div class="lightbox-overlay" data-lightbox-close></div>
+    <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close image viewer">&times;</button>
+      <img class="lightbox-image" data-lightbox-image alt="">
+      <p class="lightbox-caption" data-lightbox-caption></p>
+    </div>
+  </div>
+
   <!-- Page-scoped styles for the Events page hero + small layout helpers.
        Reuses the global design tokens only (no new colors, zero purple). The
        feature cards/posters/badges all come from styles.css unchanged. -->
@@ -699,6 +756,33 @@
        Malasakit card lead. (Grid itself comes from .feed-grid in styles.css.) */
     @media (min-width: 480px) {
       .page-hero-actions, .events-join-actions { flex-direction: row; }
+    }
+
+    /* ---- Featured recap entry -------------------------------------------------
+       The newest event's own photo set, grouped under its heading so the gallery
+       reads as that event's photos. Sits above the timeline cards, separated by a
+       hairline. Reuses .gallery-tile / .gallery-img / .gallery-caption + the
+       body-level lightbox from styles.css unchanged. */
+    .recap-feature {
+      margin-bottom: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .recap-feature-head { max-width: 62ch; margin-bottom: var(--space-lg); }
+    .recap-feature-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--step-2);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin: var(--space-2xs) 0 var(--space-xs);
+    }
+    .recap-feature-blurb { color: var(--ink-dim); max-width: 62ch; }
+    /* Two photos read best as a side-by-side pair (full-width each on phones). */
+    .gallery-grid.gallery-grid--recap { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 640px) {
+      .gallery-grid.gallery-grid--recap { grid-template-columns: 1fr; }
     }
   </style>
 
