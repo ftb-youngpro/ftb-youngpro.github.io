@@ -1474,6 +1474,31 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   text-align: left;
 }
 
+/* Gallery grouped by event — a small dated heading above each event's tiles so
+   the collection reads as albums (latest first), not one undifferentiated grid.
+   New events drop in as their own .gallery-group. */
+.gallery-group + .gallery-group { margin-top: var(--space-2xl); }
+.gallery-group-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35em 0.7em;
+  margin-bottom: var(--space-md);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--step-1);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.gallery-group-date {
+  font-weight: 500;
+  font-size: var(--step--1);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--emerald-300);
+}
+
 /* Lightbox */
 .lightbox {
   position: fixed;

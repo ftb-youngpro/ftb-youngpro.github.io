@@ -915,11 +915,41 @@
         <header class="section-head">
           <p class="eyebrow" data-reveal>Gallery</p>
           <h2 class="section-title" id="gallery-heading" data-reveal data-split>Moments from the family.</h2>
-          <p class="section-lead lead" data-reveal>Our latest YPGT — a Saturday at the National Museum
-            of Fine Arts and a wander through Intramuros. Art, history, and a whole lot of barkada.
-            More albums to come as we make more memories together.</p>
+          <p class="section-lead lead" data-reveal>A look back at our recent gatherings — June's
+            &ldquo;Malasakit&rdquo; Fellowship and a Saturday at the National Museum of Fine Arts.
+            Worship, art, and a whole lot of barkada. More albums as we make more memories together.</p>
         </header>
 
+        <!-- Grouped by event so the gallery reads as dated albums (latest first),
+             not one undifferentiated grid. New events drop in as their own group. -->
+        <div class="gallery-group">
+          <h3 class="gallery-group-title" data-reveal>YP Fellowship &middot; Malasakit
+            <span class="gallery-group-date">June 14, 2026</span></h3>
+          <ul class="gallery-grid" role="list">
+            <li class="gallery-item" data-reveal style="--i:0">
+              <button class="gallery-tile" type="button" data-lightbox
+                      data-full="assets/img/recap-malasakit-01.jpg"
+                      data-caption="Laughter and fellowship at YP Malasakit — June 14, 2026.">
+                <img class="gallery-img" data-mask loading="lazy" src="assets/img/recap-malasakit-01.jpg"
+                     alt="Young professionals laughing together during the YP Malasakit fellowship." width="1280" height="853">
+                <span class="gallery-caption">The barkada &middot; Malasakit</span>
+              </button>
+            </li>
+            <li class="gallery-item" data-reveal style="--i:1">
+              <button class="gallery-tile" type="button" data-lightbox
+                      data-full="assets/img/recap-malasakit-02.jpg"
+                      data-caption="Worship and the Word at YP Malasakit — June 14, 2026.">
+                <img class="gallery-img" data-mask loading="lazy" src="assets/img/recap-malasakit-02.jpg"
+                     alt="The Young Pro group gathered for worship and the Word during the Malasakit fellowship." width="1280" height="853">
+                <span class="gallery-caption">Worship &amp; the Word</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="gallery-group">
+          <h3 class="gallery-group-title" data-reveal>YPGT &middot; National Museum
+            <span class="gallery-group-date">May 30, 2026</span></h3>
         <ul class="gallery-grid" role="list">
           <li class="gallery-item" data-reveal style="--i:0">
             <button class="gallery-tile" type="button" data-lightbox
@@ -1030,6 +1060,7 @@
             </button>
           </li>
         </ul>
+        </div>
       </div>
     </section>
 
