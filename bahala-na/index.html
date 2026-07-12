@@ -106,9 +106,12 @@
         <h1 class="page-hero-title">Bahala Na</h1>
         <p class="page-hero-lead lead">
           Salamat sa lahat ng dumalo! A look back at our Friend Day &mdash; worship, the Word on trusting
-          the God who holds us, and a whole lot of laughter with old friends and new. Cast all your cares on
-          Him, for He cares for you. <span class="recap-verse">&mdash; 1 Peter 5:7</span>
+          the God who holds us, and a whole lot of laughter with old friends and new.
         </p>
+        <blockquote class="recap-scripture">
+          <p class="recap-scripture-text">&ldquo;Cast all your cares on Him, for He cares for you.&rdquo;</p>
+          <cite class="recap-scripture-ref">1 Peter 5:7</cite>
+        </blockquote>
         <p class="page-hero-actions">
           <a class="btn btn-primary" href="#photos" data-magnetic>See the photos</a>
           <a class="btn btn-ghost" href="/events.html#upcoming" data-magnetic>Upcoming events</a>
@@ -143,7 +146,7 @@
         <ul class="gallery-grid" role="list">
           <li class="gallery-item" data-reveal style="--i:0"><button class="gallery-tile" type="button" data-lightbox data-full="/assets/img/recap-bahala-na-01.jpg" data-caption="The worship team at the Bahala Na Friend Day."><img class="gallery-img" data-mask loading="lazy" src="/assets/img/recap-bahala-na-01.jpg" alt="Young pros leading worship with microphones beside the cross." width="1400" height="1050"><span class="gallery-caption">The worship team</span></button></li>
           <li class="gallery-item" data-reveal style="--i:1"><button class="gallery-tile" type="button" data-lightbox data-full="/assets/img/recap-bahala-na-02.jpg" data-caption="You have called me friend."><img class="gallery-img" data-mask loading="lazy" src="/assets/img/recap-bahala-na-02.jpg" alt="Worship leaders singing, the screen reading You have called me friend." width="1400" height="1050"><span class="gallery-caption">You have called me friend</span></button></li>
-          <li class="gallery-item" data-reveal style="--i:2"><button class="gallery-tile" type="button" data-lightbox data-full="/assets/img/recap-bahala-na-03.jpg" data-caption="Worship and the Word."><img class="gallery-img" data-mask loading="lazy" src="/assets/img/recap-bahala-na-03.jpg" alt="A young pro singing worship at the lectern under the Worship God Make Disciples sign." width="1400" height="1051"><span class="gallery-caption">Worship &amp; the Word</span></button></li>
+          <li class="gallery-item" data-reveal style="--i:2"><button class="gallery-tile" type="button" data-lightbox data-full="/assets/img/recap-bahala-na-03.jpg" data-caption="Our host explaining the ice breaker."><img class="gallery-img" data-mask loading="lazy" src="/assets/img/recap-bahala-na-03.jpg" alt="A host explaining the ice breaker game to the group at the Bahala Na Friend Day." width="1400" height="1051"><span class="gallery-caption">How to play</span></button></li>
           <li class="gallery-item" data-reveal style="--i:3"><button class="gallery-tile" type="button" data-lightbox data-full="/assets/img/recap-bahala-na-04.jpg" data-caption="Ice breaker to start the afternoon."><img class="gallery-img" data-mask loading="lazy" src="/assets/img/recap-bahala-na-04.jpg" alt="Young pros during an ice breaker at the Bahala Na Friend Day." width="1400" height="788"><span class="gallery-caption">Ice breaker</span></button></li>
           <li class="gallery-item" data-reveal style="--i:4"><button class="gallery-tile" type="button" data-lightbox data-full="/assets/img/recap-bahala-na-05.jpg" data-caption="The band."><img class="gallery-img" data-mask loading="lazy" src="/assets/img/recap-bahala-na-05.jpg" alt="Three musicians playing guitars during the Bahala Na Friend Day." width="1400" height="1050"><span class="gallery-caption">The band</span></button></li>
           <li class="gallery-item" data-reveal style="--i:5"><button class="gallery-tile" type="button" data-lightbox data-full="/assets/img/recap-bahala-na-06.jpg" data-caption="A word on trusting God."><img class="gallery-img" data-mask loading="lazy" src="/assets/img/recap-bahala-na-06.jpg" alt="A speaker sharing the message with the Bahala Na slide on screen." width="1400" height="1050"><span class="gallery-caption">A word on trusting God</span></button></li>
@@ -221,7 +224,14 @@
       font-size: var(--step-5); line-height: 1.02; letter-spacing: -0.01em; color: var(--ink);
       margin-bottom: var(--space-md); text-wrap: balance; }
     .page-hero-lead { max-width: 62ch; margin-inline: auto; color: var(--ink-dim); }
-    .recap-verse { color: var(--emerald-300); white-space: nowrap; }
+    /* Scripture: pulled out of the paragraph into an obvious pull-quote. */
+    .recap-scripture { margin: var(--space-lg) auto 0; max-width: 44ch; padding-top: var(--space-lg);
+      border-top: 1px solid var(--hairline); }
+    .recap-scripture-text { font-family: var(--font-serif); font-style: italic; font-weight: 400;
+      font-size: var(--step-2); line-height: 1.32; color: var(--cream); text-wrap: balance; }
+    .recap-scripture-ref { display: block; margin-top: var(--space-sm); font-family: var(--font-display);
+      font-style: normal; font-weight: 600; font-size: var(--step--1); letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--emerald-300); }
     .page-hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-sm); margin-top: var(--space-xl); }
     @media (prefers-reduced-motion: no-preference) {
       .page-hero-inner > * { opacity: 0; transform: translateY(20px);
@@ -230,11 +240,13 @@
       .page-hero-inner > :nth-child(2) { animation-delay: 0.13s; }
       .page-hero-inner > :nth-child(3) { animation-delay: 0.21s; }
       .page-hero-inner > :nth-child(4) { animation-delay: 0.29s; }
+      .page-hero-inner > :nth-child(5) { animation-delay: 0.37s; }
       @keyframes yp-hero-rise { to { opacity: 1; transform: translateY(0); } }
     }
 
     /* Giant featured group photo, right under the hero. */
-    .recap-hero-photo-band { background: var(--bg-900); padding-block: 0 var(--space-2xl); }
+    /* Its own vertical space so it never crowds the hero above it; centered by .container. */
+    .recap-hero-photo-band { background: var(--bg-900); padding-block: var(--space-2xl); }
     .recap-hero-photo { display: block; width: 100%; padding: 0; position: relative; cursor: pointer;
       border: 1px solid var(--hairline-strong); border-radius: var(--radius-lg, 24px); overflow: hidden;
       background: var(--bg-750); box-shadow: var(--shadow-lg);

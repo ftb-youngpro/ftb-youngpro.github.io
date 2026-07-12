@@ -1498,6 +1498,18 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   text-transform: uppercase;
   color: var(--emerald-300);
 }
+/* A group heading that links to that event's full recap page. */
+.gallery-group-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.gallery-group-link:hover,
+.gallery-group-link:focus-visible { color: var(--emerald-300); }
+.gallery-group-more { margin-top: var(--space-md); }
+/* Recap link under a happenings card; poster becomes a clickable link too. */
+.post-more { margin-top: var(--space-xs); }
+.post-poster-link { display: block; }
 
 /* Lightbox */
 .lightbox {
