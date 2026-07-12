@@ -475,8 +475,8 @@
         <header class="section-head">
           <p class="eyebrow" data-reveal>Recap</p>
           <h2 class="section-title" id="past-heading" data-reveal data-split>Where we've been this year.</h2>
-          <p class="section-lead lead" data-reveal>Our latest gathering — June's &ldquo;Malasakit&rdquo;
-            Fellowship — plus the goal-casting, fellowships, and outings that got us here this year. More
+          <p class="section-lead lead" data-reveal>Our latest gathering — July's &ldquo;Bahala Na&rdquo;
+            Friend Day — plus Malasakit, the goal-casting, and the outings that got us here this year. More
             memories in the <a class="link-emerald" href="index.html#gallery">gallery</a>.</p>
         </header>
 
@@ -484,12 +484,50 @@
              heading so the gallery reads as that event's photos — not a generic
              dump. Future events with photo sets slot in above the timeline the
              same way. Tiles reuse the home gallery + the body-level lightbox. -->
+        <article class="recap-feature" id="recap-bahala-na">
+          <div class="recap-feature-head">
+            <p class="post-meta" data-reveal>
+              <span class="post-date">July 12, 2026</span>
+              <span class="post-tag">Friend Day</span>
+              <span class="badge badge-latest">Latest</span>
+            </p>
+            <h3 class="recap-feature-title" data-reveal>Friend Day — &ldquo;Bahala Na&rdquo;</h3>
+            <p class="recap-feature-blurb" data-reveal>Salamat sa lahat ng dumalo! Worship, the Word on
+              trusting the God who holds us, and a whole lot of laughter with old friends and new.
+              <a class="link-emerald" href="bahala-na.html">See all the photos &rarr;</a></p>
+          </div>
+          <ul class="gallery-grid gallery-grid--recap" role="list">
+            <li class="gallery-item" data-reveal style="--i:0">
+              <button class="gallery-tile" type="button" data-lightbox
+                      data-full="assets/img/recap-bahala-na-01.jpg"
+                      data-caption="Lifting our voices in worship — Bahala Na Friend Day.">
+                <img class="gallery-img" data-mask loading="lazy" src="assets/img/recap-bahala-na-01.jpg"
+                     alt="Young pros leading worship with microphones beside the cross at the Bahala Na Friend Day."
+                     width="1400" height="1050">
+                <span class="gallery-caption">Lifting our voices</span>
+              </button>
+            </li>
+            <li class="gallery-item" data-reveal style="--i:1">
+              <button class="gallery-tile" type="button" data-lightbox
+                      data-full="assets/img/recap-bahala-na-18.jpg"
+                      data-caption="The YP family at the Bahala Na Friend Day — July 12, 2026.">
+                <img class="gallery-img" data-mask loading="lazy" src="assets/img/recap-bahala-na-18.jpg"
+                     alt="The whole Young Pro group photo on stage at the Bahala Na Friend Day."
+                     width="1400" height="788">
+                <span class="gallery-caption">The YP family</span>
+              </button>
+            </li>
+          </ul>
+          <p class="recap-feature-more">
+            <a class="btn btn-ghost" href="bahala-na.html" data-magnetic>See all 18 photos &rarr;</a>
+          </p>
+        </article>
+
         <article class="recap-feature" id="recap-malasakit">
           <div class="recap-feature-head">
             <p class="post-meta" data-reveal>
               <span class="post-date">June 14, 2026</span>
               <span class="post-tag">Fellowship</span>
-              <span class="badge badge-latest">Latest</span>
             </p>
             <h3 class="recap-feature-title" data-reveal>YP Fellowship — &ldquo;Malasakit&rdquo;</h3>
             <p class="recap-feature-blurb" data-reveal>We sat with <em>malasakit</em> — compassionate care,
@@ -779,6 +817,7 @@
       margin: var(--space-2xs) 0 var(--space-xs);
     }
     .recap-feature-blurb { color: var(--ink-dim); max-width: 62ch; }
+    .recap-feature-more { margin-top: var(--space-lg); }
     /* Two photos read best as a side-by-side pair (full-width each on phones). */
     .gallery-grid.gallery-grid--recap { grid-template-columns: repeat(2, 1fr); }
     @media (max-width: 640px) {
