@@ -16,7 +16,7 @@
   Bump CACHE_VERSION whenever the shell assets change so clients pick up fresh files.
 */
 
-const CACHE_VERSION = "yp-cache-v5";
+const CACHE_VERSION = "yp-cache-v6";
 
 /*
   Core shell that must be present for the precache to succeed. Every entry here is a
