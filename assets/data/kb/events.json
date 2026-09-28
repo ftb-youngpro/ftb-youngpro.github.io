@@ -10,8 +10,8 @@
       "May schedule ba kayo ng mga events?",
       "Can I see your upcoming activities?"
     ],
-    "a_en": "Next up is the YP Evangelistic Running Fellowship — a YPGT on Saturday, September 19 at 4:00 PM at the Caloocan Sports Complex. After that: our Thanksgiving Fellowship on \"Utang na Loob\" (Nov 20) and our Christmas Fellowship in December. See it all — with posters and Add-to-Calendar — on our Events page.",
-    "a_tl": "Sunod ang YP Evangelistic Running Fellowship — YPGT sa Sabado, September 19, 4:00 PM sa Caloocan Sports Complex. Tapos Thanksgiving Fellowship sa \"Utang na Loob\" (Nov 20) at YP Christmas Fellowship sa December. Tingnan mo lahat — may posters at Add-to-Calendar — sa Events page namin.",
+    "a_en": "Next up is our YP Fellowship — \"How to Start an Office Bible Study\" on Sunday, October 11 at 2:30 PM in the FTB Auditorium. After that: our Thanksgiving Fellowship on \"Utang na Loob\" (Nov 20) and our Christmas Fellowship in December. See it all — with posters and Add-to-Calendar — on our Events page.",
+    "a_tl": "Sunod ang YP Fellowship — \"How to Start an Office Bible Study\" sa Linggo, October 11, 2:30 PM sa FTB Auditorium. Tapos Thanksgiving Fellowship sa \"Utang na Loob\" (Nov 20) at YP Christmas Fellowship sa December. Tingnan mo lahat — may posters at Add-to-Calendar — sa Events page namin.",
     "links": [{"label": "See all events", "href": "events.html#upcoming"}],
     "priority": 1
   },
@@ -26,9 +26,25 @@
       "Kailan ang susunod ninyong gathering?",
       "What's coming up next?"
     ],
-    "a_en": "Our very next gathering is the YP Evangelistic Running Fellowship — a YPGT on Saturday, September 19, at 4:00 PM at the Caloocan Sports Complex. A run with a purpose: moving our feet, sharing the Gospel, and cheering each other on. Everyone's welcome; bring a friend!",
-    "a_tl": "Ang pinakamalapit naming gathering ay ang YP Evangelistic Running Fellowship — YPGT sa Sabado, September 19, 4:00 PM sa Caloocan Sports Complex. Tatakbo kami nang may layunin: igalaw ang aming mga paa, ibahagi ang Ebanghelyo, at palakasin ang loob ng isa't isa. Welcome ang lahat; magdala ka ng kaibigan!",
-    "links": [{"label": "Running Fellowship — Sep 19", "href": "events.html#upcoming"}],
+    "a_en": "Our very next gathering is YP Fellowship — \"How to Start an Office Bible Study\" on Sunday, October 11, at 2:30 PM in the FTB Auditorium. Practical first steps for gathering coworkers around God's Word, right where you work — anchored on Matthew 18:20, \"For where two or three gather in my name, there am I with them.\" Everyone's welcome; bring a workmate!",
+    "a_tl": "Ang pinakamalapit naming gathering ay ang YP Fellowship — \"How to Start an Office Bible Study\" sa Linggo, October 11, 2:30 PM sa FTB Auditorium. Mga praktikal na unang hakbang para tipunin ang mga katrabaho sa Salita ng Diyos, mismo sa inyong opisina — naka-angkla sa Matthew 18:20, \"Sapagka't kung saan nagkakatipon ang dalawa o tatlo sa aking pangalan, ay naroroon ako sa gitna nila.\" Welcome ang lahat; magsama ka ng katrabaho!",
+    "links": [{"label": "Office Bible Study — Oct 11", "href": "events.html#upcoming"}],
+    "priority": 1
+  },
+  {
+    "id": "events-office-bible-study-oct-11",
+    "topic": "events",
+    "keywords": ["office bible study", "bible study", "how to start an office bible study", "start a bible study", "workplace bible study", "bible study at work", "bible study sa office", "bible study sa opisina", "october 11", "oct 11", "october fellowship", "fellowship sa october", "coworkers", "officemates", "katrabaho", "matthew 18:20", "two or three"],
+    "q": [
+      "Tell me about the Office Bible Study fellowship.",
+      "What's happening on October 11?",
+      "Kailan ang Office Bible Study?",
+      "How do I start a Bible study at work?",
+      "Paano magsimula ng Bible study sa opisina?"
+    ],
+    "a_en": "YP Fellowship — \"How to Start an Office Bible Study\" is on Sunday, October 11, 2026 at 2:30 PM in the FTB Auditorium (#206 P. Orbe St., Novaliches, Quezon City). We'll walk through practical first steps for gathering coworkers around God's Word, right where you work, anchored on Matthew 18:20: \"For where two or three gather in my name, there am I with them.\" It's free and everyone's welcome. Bring a workmate, and add it to your calendar from the Events page.",
+    "a_tl": "Ang YP Fellowship — \"How to Start an Office Bible Study\" ay sa Linggo, October 11, 2026, 2:30 PM sa FTB Auditorium (#206 P. Orbe St., Novaliches, Quezon City). Pag-uusapan namin ang mga praktikal na unang hakbang para tipunin ang mga katrabaho sa Salita ng Diyos, mismo sa inyong opisina, naka-angkla sa Matthew 18:20: \"Sapagka't kung saan nagkakatipon ang dalawa o tatlo sa aking pangalan, ay naroroon ako sa gitna nila.\" Libre ito at welcome ang lahat. Magsama ka ng katrabaho, at i-add mo ito sa calendar mo galing sa Events page.",
+    "links": [{"label": "Office Bible Study — Oct 11", "href": "events.html#upcoming"}],
     "priority": 1
   },
   {
@@ -98,32 +114,48 @@
   {
     "id": "events-later-2026",
     "topic": "events",
-    "keywords": ["running", "running fellowship", "september 19", "sep 19", "caloocan", "thanksgiving", "utang na loob", "november 20", "nov 20", "christmas", "december", "stewarding finances", "finance seminar", "later events", "rest of the year", "second half", "later this year"],
+    "keywords": ["october", "thanksgiving", "utang na loob", "november 20", "nov 20", "christmas", "december", "stewarding finances", "finance seminar", "later events", "rest of the year", "second half", "later this year"],
     "q": [
       "What events do you have later this year?",
-      "When is the Running Fellowship?",
-      "Anong events nyo sa Sep, Nov, Dec?",
+      "What's happening in October?",
+      "Anong events nyo sa Oct, Nov, Dec?",
       "May Christmas event ba kayo?",
       "Kailan ang Thanksgiving fellowship?"
     ],
-    "a_en": "Still ahead in 2026: the YP Evangelistic Running Fellowship at the Caloocan Sports Complex (Sat, Sep 19, 4:00 PM), a Thanksgiving Fellowship on \"Utang na Loob\" with a Stewarding Your Finances seminar (Nov 20), and our YP Christmas Fellowship in December. Dates and details get firmed up on the Events page as they get closer.",
-    "a_tl": "Sa natitirang bahagi ng 2026: YP Evangelistic Running Fellowship sa Caloocan Sports Complex (Sabado, Sep 19, 4:00 PM), Thanksgiving Fellowship sa \"Utang na Loob\" na may Stewarding Your Finances seminar (Nov 20), at YP Christmas Fellowship sa December. Lumalabas ang mga detalye sa Events page habang papalapit na ang mga ito.",
+    "a_en": "Still ahead in 2026: YP Fellowship — \"How to Start an Office Bible Study\" (Sun, Oct 11, 2:30 PM, FTB Auditorium), a Thanksgiving Fellowship on \"Utang na Loob\" with a Stewarding Your Finances seminar (Nov 20), and our YP Christmas Fellowship in December. Dates and details get firmed up on the Events page as they get closer.",
+    "a_tl": "Sa natitirang bahagi ng 2026: YP Fellowship — \"How to Start an Office Bible Study\" (Linggo, Oct 11, 2:30 PM, FTB Auditorium), Thanksgiving Fellowship sa \"Utang na Loob\" na may Stewarding Your Finances seminar (Nov 20), at YP Christmas Fellowship sa December. Lumalabas ang mga detalye sa Events page habang papalapit na ang mga ito.",
     "links": [{"label": "All upcoming events", "href": "events.html#upcoming"}],
+    "priority": 2
+  },
+  {
+    "id": "events-recap-taekwondo-sep-19",
+    "topic": "events",
+    "keywords": ["taekwondo", "taekwondo ypgt", "taekwondo basics", "martial arts", "ftb basement", "basement", "running", "running fellowship", "evangelistic run", "caloocan", "caloocan sports complex", "september 19", "sep 19", "cancelled", "canceled", "na-cancel", "latest event", "recent event", "nakaraang event", "past event", "pinakahuling event", "last event", "latest ypgt"],
+    "q": [
+      "What was your latest event?",
+      "What happened to the Running Fellowship?",
+      "Ano ang pinakahuling event ninyo?",
+      "Tuloy ba ang running sa Caloocan?",
+      "Anong nangyari noong September 19?"
+    ],
+    "a_en": "Our latest YPGT was on Saturday, September 19, 2026, with a change of plans. The Evangelistic Running Fellowship at the Caloocan Sports Complex was called off, so we moved into the FTB Basement for some basic Taekwondo training instead. Unexpected, and a whole lot of fun. Salamat sa lahat ng dumalo! Next up is our October 11 fellowship on starting an office Bible study.",
+    "a_tl": "Ang pinakahuling YPGT namin ay noong Sabado, September 19, 2026, pero nagbago ang plano. Hindi natuloy ang Evangelistic Running Fellowship sa Caloocan Sports Complex, kaya lumipat kami sa FTB Basement para sa basic Taekwondo training. Hindi inaasahan, pero sobrang saya! Salamat sa lahat ng dumalo! Sunod naman ang fellowship namin sa October 11 tungkol sa pagsisimula ng office Bible study.",
+    "links": [{"label": "Past events", "href": "events.html#past"}, {"label": "Next: Oct 11", "href": "events.html#upcoming"}],
     "priority": 2
   },
   {
     "id": "events-recap-cybersecurity-aug-22",
     "topic": "events",
-    "keywords": ["cybersecurity", "cyber security", "cyber security ypgt", "digital safety", "security essentials", "august 22", "aug 22", "phishing", "scams", "online safety", "latest event", "recent event", "nakaraang event", "past event", "recap", "pinakahuling event", "last event", "latest ypgt"],
+    "keywords": ["cybersecurity", "cyber security", "cyber security ypgt", "digital safety", "security essentials", "august 22", "aug 22", "phishing", "scams", "online safety", "recap", "photos"],
     "q": [
-      "What was your latest event?",
       "Tell me about the Cyber Security YPGT.",
-      "Ano ang pinakahuling event ninyo?",
+      "What did you cover at the Cyber Security YPGT?",
+      "Kailan ang Cyber Security YPGT?",
       "May photos ba ng Cybersecurity talk?",
       "Anong nangyari noong August 22?"
     ],
-    "a_en": "Our latest YPGT was Cyber Security — Digital Safety & Security Essentials — on Saturday, August 22, 2026 at 3:00 PM in the FTB Auditorium. We talked through phishing, scams, passwords, and privacy: practical habits to keep ourselves and the people we love safe online, anchored on Proverbs 4:23, \"Above all else, guard your heart.\" Salamat sa lahat ng dumalo! The photos are up on the recap page.",
-    "a_tl": "Ang pinakahuling YPGT namin ay ang Cyber Security — Digital Safety & Security Essentials — noong Sabado, August 22, 2026, 3:00 PM sa FTB Auditorium. Tinalakay namin ang phishing, scams, passwords, at privacy: mga praktikal na gawi para manatiling ligtas online, kami at ang aming mga mahal sa buhay, naka-angkla sa Proverbs 4:23, \"Higit sa lahat, ingatan ang iyong puso.\" Salamat sa lahat ng dumalo! Nasa recap page ang mga larawan.",
+    "a_en": "Our Cyber Security YPGT — Digital Safety & Security Essentials — was on Saturday, August 22, 2026 at 3:00 PM in the FTB Auditorium. We talked through phishing, scams, passwords, and privacy: practical habits to keep ourselves and the people we love safe online, anchored on Proverbs 4:23, \"Above all else, guard your heart.\" Salamat sa lahat ng dumalo! The photos are up on the recap page.",
+    "a_tl": "Ang Cyber Security YPGT namin — Digital Safety & Security Essentials — ay noong Sabado, August 22, 2026, 3:00 PM sa FTB Auditorium. Tinalakay namin ang phishing, scams, passwords, at privacy: mga praktikal na gawi para manatiling ligtas online, kami at ang aming mga mahal sa buhay, naka-angkla sa Proverbs 4:23, \"Higit sa lahat, ingatan ang iyong puso.\" Salamat sa lahat ng dumalo! Nasa recap page ang mga larawan.",
     "links": [{"label": "Cyber Security photos", "href": "/cybersecurity/"}],
     "priority": 2
   },

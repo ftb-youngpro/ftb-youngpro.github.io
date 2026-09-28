@@ -16,7 +16,7 @@
   Bump CACHE_VERSION whenever the shell assets change so clients pick up fresh files.
 */
 
-const CACHE_VERSION = "yp-cache-v6";
+const CACHE_VERSION = "yp-cache-v7";
 
 /*
   Core shell that must be present for the precache to succeed. Every entry here is a
@@ -41,7 +41,7 @@ const CORE_ASSETS = [
   "/assets/img/icon-192.png",
   "/assets/img/icon-512.png",
   // Event posters, so the happenings cards work offline (the next event first).
-  "/assets/img/ypgt-running-09-19-2026.jpg",
+  "/assets/img/ypf-office-bible-study-10-11-2026.jpg",
   "/assets/img/ypf-stories-08-09-2026.jpg",
   "/assets/img/ypf-malasakit-06-14-2026.jpg",
   "/assets/img/ypgt-cooking-06-20-2026.jpg",
