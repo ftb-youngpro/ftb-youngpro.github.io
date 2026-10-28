@@ -1029,6 +1029,55 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
 .post--noimg .post-body { padding-top: var(--space-xl); }
 .post--upcoming { opacity: 0.96; }
 
+/* "Poster coming soon": holds the poster's place on an upcoming card until the real
+   poster is shared, then the block is swapped for an <img class="post-poster">.
+   Echoes the posters themselves: forest-black, emerald + gold glow, gold hairline frame. */
+.post-soon {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  padding: var(--space-lg);
+  text-align: center;
+  background:
+    radial-gradient(90% 60% at 50% 0%, rgba(42, 255, 176, 0.14), rgba(42, 255, 176, 0) 70%),
+    radial-gradient(70% 50% at 50% 100%, rgba(255, 213, 107, 0.12), rgba(255, 213, 107, 0) 70%),
+    var(--bg-850);
+}
+.post-soon::before {
+  content: "";
+  position: absolute;
+  inset: var(--space-sm);
+  border: 1px solid var(--hairline-gold);
+  border-radius: 4px;
+  pointer-events: none;
+}
+.post-soon-kicker {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--emerald-300);
+}
+.post-soon-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: var(--step-2);
+  line-height: 1.1;
+  color: var(--gold-soft);
+}
+.post-soon-note {
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+}
+
 /* Badges */
 .badge {
   font-family: var(--font-display);
